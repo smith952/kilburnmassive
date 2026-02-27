@@ -283,16 +283,38 @@ async function loadAllFolder(dirPath) {
   return records;
 }
 
-const MAX_CHUNK_CHARS = 25000;
+const TARGET_CHUNKS = 3;
+
+function compactRecord(r) {
+  if (r.type === "attachment") {
+    return {
+      type: "attachment",
+      filename: r.filename,
+      file_type: r.file_type,
+      content: r.body.slice(0, 4000),
+    };
+  }
+  return {
+    type: "email",
+    from: r.from,
+    to: r.to,
+    subject: r.subject,
+    date: r.date,
+    body: r.body.slice(0, 500),
+  };
+}
 
 function buildChunks(records) {
+  const compacted = records.map((r) => JSON.stringify(compactRecord(r)));
+  const totalChars = compacted.reduce((sum, l) => sum + l.length, 0);
+  const chunkSize = Math.ceil(totalChars / TARGET_CHUNKS);
+
   const chunks = [];
   let current = [];
   let currentSize = 0;
 
-  for (const r of records) {
-    const line = JSON.stringify(r);
-    if (currentSize + line.length > MAX_CHUNK_CHARS && current.length > 0) {
+  for (const line of compacted) {
+    if (currentSize + line.length > chunkSize && current.length > 0) {
       chunks.push(current);
       current = [];
       currentSize = 0;
