@@ -1,0 +1,3113 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:847:b0:a7d:27b1:57ca with SMTP id f7csp96564ejd;
+        Tue, 13 Aug 2024 02:01:10 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFFaX/jJ0RBVyBPTFGfFv9spkWrhHk5w1Kzy6er8AjZIFMp04YqaiYjQjk3EGXIZzfXqDHx
+X-Received: by 2002:a05:6902:2d07:b0:e0e:88fc:edc7 with SMTP id 3f1490d57ef6-e113ce8620bmr3479670276.16.1723539669644;
+        Tue, 13 Aug 2024 02:01:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1723539669; cv=none;
+        d=google.com; s=arc-20160816;
+        b=y39/TRO+cFNfYPorxsD5T8C9Qq6q0o+gdyGKpwEoFfPv7neb9i61sqaP75FqDiFnr7
+         7gC9aOyF5eQ3pIvPuQ6coH1r/PG5cEFlBgwvE/MgmqofBLHwGDfrY9G0IUkEq2d/LQdw
+         vWuiI+n0kDN2aiEy9zYEWgavFsxWG04tCcpHUM4HLFkCmjH6K+x/xv75rt+6lW9IV0et
+         5/vWccb4AXnlTpRlUyAcYc13Yu7QCH7B+yfvwZ03jInELtX4T4lCOjyiaP426dKXzSLz
+         Z5g+ORLsfNtyhLQ8dzVkSRx5KkuAALBD48M5niVCINE2t/4Nl9oqHHiw7BfIr9sx2deP
+         De0w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=03zBkCKnJ8WVFunyLfqGO9PhxyFtaKEjZbq0fT1V8lw=;
+        fh=v4wzlEfLy3SB0iHiGoSWRGM8VNBc2V+8HoWTiA0ucDI=;
+        b=HXnAJ7pwzsNjP6sGkaSBkHbEbgTNSdhDX99Ug79gyVmkPN68L3+JpFE6JSs19EYW5i
+         84jB57deR4+j52Zms6Gq4hzEir/l3WA6oLRikjkx8PsC+N6NY0RW1dELs7kBnKRVz67B
+         0PpN+lEphx2xXY3UJlBlx+Ut8uikrFRthnstwapoXjy3b6Tv1LOSLGhRDWyXG1y4fFT2
+         dPl3AUuq4Rja+Y00rAKHByBMl26AGRHIXZAZo5lMPOQEesgp2/KR51uFW4BfqOd6hM/N
+         1OS7FjodujGM5ZycpZJ2bbKxpNZZOJVw/b3RvxtpRxlMtt5gckz6Jq6nqypeaB6AZN1L
+         kfAg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=2Eau0lsj;
+       spf=neutral (google.com: 2607:f8b0:4864:20::c32 is neither permitted nor denied by best guess record for domain of dave@inhomemedia.io) smtp.mailfrom=dave@inhomemedia.io;
+       dara=pass header.i=@inhomemedia.io
+Return-Path: <dave@inhomemedia.io>
+Received: from mail-oo1-xc32.google.com (mail-oo1-xc32.google.com. [2607:f8b0:4864:20::c32])
+        by mx.google.com with ESMTPS id 3f1490d57ef6-e0ec8ca1a73si3511024276.284.2024.08.13.02.01.09
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Aug 2024 02:01:09 -0700 (PDT)
+Received-SPF: neutral (google.com: 2607:f8b0:4864:20::c32 is neither permitted nor denied by best guess record for domain of dave@inhomemedia.io) client-ip=2607:f8b0:4864:20::c32;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=2Eau0lsj;
+       spf=neutral (google.com: 2607:f8b0:4864:20::c32 is neither permitted nor denied by best guess record for domain of dave@inhomemedia.io) smtp.mailfrom=dave@inhomemedia.io;
+       dara=pass header.i=@inhomemedia.io
+Received: by mail-oo1-xc32.google.com with SMTP id 006d021491bc7-5c661e75ff6so3427965eaf.2
+        for <ot@inhomemedia.io>; Tue, 13 Aug 2024 02:01:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1723539668; x=1724144468; darn=inhomemedia.io;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=03zBkCKnJ8WVFunyLfqGO9PhxyFtaKEjZbq0fT1V8lw=;
+        b=2Eau0lsjyfn1TWfyVJt7RNePwhBbGqWowTNu0SbCqT0BKrvuIL6FmNTcRtVSwW5uaA
+         rNDGl+TKbO3EN0wfPMgP9A7YZftlLd83T3JeceYM3aDA9sMgTet8LCP+SW7XOo3RLoDr
+         xgbR+J3rzFp08oSSXixwtTRJUzknZueLHwSma2DBMAsE9jRaKunM4JhIERM5HvIzK5iA
+         WYjrzhyek0Z0dDllc7NEcdmq7P6EYWNGx6jwDVRKWRkyzB2zr1BMm7vCc5dtRJ3r5Kj3
+         gkonP0MRQrgJk7lyQ3th8NL7T759wQmERivk85RX/rbWrUjiwF89gQ+/T2frP0XIffwt
+         eECg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723539668; x=1724144468;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=03zBkCKnJ8WVFunyLfqGO9PhxyFtaKEjZbq0fT1V8lw=;
+        b=Yjez0XBe2gcXPl4XzfUr1zus1C1g/ypCS5IGtpUwvVbxwZi8JusViPeRmRfSweaG15
+         B6TgWAvX4FuJvPJCeXhsVVdseU24h6Bkc+mSe0rMFblW7ZoiEJpjzjvMAXXPGHg1cRqm
+         nckJk0jhhA1XsO38bh+l1EClqqbIguytDXmh3HNF7GWyS820fmOMeV2u2zoVA7I7apFP
+         Q5pJL7bqJkbwPYvDxhzSrz6WpxP9nDi9AP3+oJ6oBvAbYedDJZI85fmMbiO2ttXuJ5Ti
+         UA3P7V8u7F7MQ2qVKN6nvb/XsbLgQGIdN5ooDMV6GKmPoJvchmDtWrzGEb/7k5NzVWa+
+         TOAg==
+X-Gm-Message-State: AOJu0YxP1t4N+P1hkiHbJpk2ER4wtruU+zJl2EXpByVd3LpUX3x1aypo
+	yn2Wm6VVdJnlPYn51KST3ynyEVv16RftjAgLo/mklcZQDps78UU8ZTIMhBjOycj6A6B0XVU5yv+
+	TNstFs9WxEGChOA5r1cVRhiZgKqbh+fTw2nQzG02l
+X-Received: by 2002:a05:6820:60f:b0:5c4:27f0:ae with SMTP id
+ 006d021491bc7-5da685a8726mr3572283eaf.1.1723539667332; Tue, 13 Aug 2024
+ 02:01:07 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAK4N=LBBKjBx2pPEPvKE=GzCMTBEKZBSBXMd=Mx+YGJZhTO1Qg@mail.gmail.com>
+ <BAB381ED-6AA0-4FA2-9507-2AD227C53DE2@inhomemedia.io>
+In-Reply-To: <BAB381ED-6AA0-4FA2-9507-2AD227C53DE2@inhomemedia.io>
+From: Dave Evans <dave@inhomemedia.io>
+Date: Tue, 13 Aug 2024 10:00:54 +0100
+Message-ID: <CAK4N=LBgZwGe1N+qKGM7953bsN6SFogErJKegT4iBvxcD1Dkbw@mail.gmail.com>
+Subject: Re: Budenberg Haus Digi Screens
+To: Anthony Hughes <th@inhomemedia.io>
+Cc: Owen Thomas <ot@inhomemedia.io>, Stephen Gale <stephen@inhomemedia.io>
+Content-Type: multipart/alternative; boundary="000000000000a0df28061f8cd983"
+
+--000000000000a0df28061f8cd983
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Tony
+
+My view is that our site visits usually reveal that the problems aren't as
+extensive as we are led to believe by them.  Often the reports come from
+the BM 2nd hand via a concierge with the BM having not visited themselves,
+and then what we find is different.
+
+Last time, one outdoor media player had failed and one router inside -
+this we know.  We got the router working again and Wez left with all bar
+one outdoor playing.
+
+The main problem last week was that they hadn't scheduled content. Their
+previous campaigns had expired.   We have given them access and training
+and someone in the marketing department had attempted to run a campaign but
+not completed the process - Jane & I published it last week.
+
+Putting myself in their shoes, they just want all the screens working again
+consistently - I get that.  We have a plan for achieving that with Ian, but
+part of it will be them using the CMS properly themselves.  Happy to offer
+them some support with that initially.
+
+Not sure how your idea of a separate MI server would work, but I don't
+think they have the technical knowhow or appetite to set that up and
+support it themselves going forward.  There's no getting away from the fact
+that they need some new equipment - new media players and a supply of
+routers that a local AV guy like Wez can replace when needed.  Longer term
+they need hard-wiring or communal wifi.  Ian thinks the screens themselves
+are ok.
+
+We can discuss this again later today on Zoom?
+
+D.
+
+
+
+Dave Evans
+
+Marketing Director
+
+
+T: 07930 124209
+
+A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QA
+
+E: dave@inhomemedia.io
+
+W: inhomemedia.io
+
+
+
+<https://inhomemedia.io/>
+
+
+<https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+
+
+Just so you know... this email and any files transmitted with it are
+confidential and intended solely for the use of the individual or entity to
+whom they are addressed. They are the property of In Home Media Ltd. If you
+have received this email in error please notify the system manager. This
+message may contain confidential information and is intended only for the
+individual named. Please notify the sender immediately by e-mail if you
+have received this email by mistake and delete this email from your system.
+In Home Media  Ltd accepts no liability for the content of this email, or
+for the consequences of any actions taken based on the information provided
+unless that information is subsequently confirmed in writing. If you are
+not the intended recipient you are notified that disclosing, copying,
+distributing or taking any action in reliance on the contents of this
+information is strictly prohibited. In Home Media Ltd, 2nd Floor, Balfour
+House, 46-54 Great Titchfield Street, London W1W 7QE. Company registration
+14606919. VAT no. 435094106.
+
+
+On Tue, Aug 13, 2024 at 9:35=E2=80=AFAM Anthony Hughes <th@inhomemedia.io> =
+wrote:
+
+> The below is fine, but is a holding pattern, and they cannot currently pu=
+t
+> content on the screens I assume.
+>
+> Xenia are fine the issue we face is there is an RMC at Budenberg and they
+> and Xenia agreed to jointly find the screens, perception at the RMC is th=
+ey
+> are off quite regularly and there has been suggestion to ask us to remove=
+.
+> Is there an option of them spinning up there own magicinfo server and
+> running the media to site is out of the loop completely?
+> Sent from my iPhone
+>
+> On 12 Aug 2024, at 14:09, Dave Evans <dave@inhomemedia.io> wrote:
+>
+> =EF=BB=BF
+> Hi Tony
+>
+> What is the best way of responding to this - do we say something like 'we
+> are in the process of agreeing a plan of action with our network support
+> team, which will include some replacement equipment (media players and
+> routers) and a site visit for installation, with checks on all screens.  =
+We
+> believe this will then resolve all issues with connectivity.  I will upda=
+te
+> as soon as possible this week but rest assured, I am pushing for the work
+> to be carried out urgently.'
+>
+> This is the case re. Ian and the plan of action/equipment but we also nee=
+d
+> access to MagicInfo from Ameco or this can't be supported remotely going
+> forward.
+>
+> D.
+>
+>
+>
+>
+> Dave Evans
+>
+> Marketing Director
+>
+>
+> T: 07930 124209
+>
+> A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QA
+>
+> E: dave@inhomemedia.io
+>
+> W: inhomemedia.io
+>
+>
+>
+> <https://inhomemedia.io/>
+>
+>
+> <https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+>
+>
+> Just so you know... this email and any files transmitted with it are
+> confidential and intended solely for the use of the individual or entity =
+to
+> whom they are addressed. They are the property of In Home Media Ltd. If y=
+ou
+> have received this email in error please notify the system manager. This
+> message may contain confidential information and is intended only for the
+> individual named. Please notify the sender immediately by e-mail if you
+> have received this email by mistake and delete this email from your syste=
+m.
+> In Home Media  Ltd accepts no liability for the content of this email, or
+> for the consequences of any actions taken based on the information provid=
+ed
+> unless that information is subsequently confirmed in writing. If you are
+> not the intended recipient you are notified that disclosing, copying,
+> distributing or taking any action in reliance on the contents of this
+> information is strictly prohibited. In Home Media Ltd, 2nd Floor, Balfour
+> House, 46-54 Great Titchfield Street, London W1W 7QE. Company registratio=
+n
+> 14606919. VAT no. 435094106.
+>
+>
+> ---------- Forwarded message ---------
+> From: Louis Babington <louis.babington@xeniaestates.com>
+> Date: Mon, Aug 12, 2024 at 12:54=E2=80=AFPM
+> Subject: RE: Budenberg Haus Digi Screens
+> To: Dave Evans <dave@inhomemedia.io>
+>
+>
+> Afternoon Dave
+>
+>
+>
+> Do we have any update on the below at all? I am conscious I want to
+> provide the Directors with an update tomorrow.
+>
+>
+>
+> Kind regards
+>
+>
+> <image544362.png>
+> <image836786.png>
+> Senior Estates Manager
+> <image212932.png>
+> <image688431.png>
+> <image799229.png>
+> <image540859.png>
+> <image760355.png>
+> www.xeniaestates.com
+> <image829268.png>
+> <https://www.linkedin.com/company/3754468/admin/feed/posts/>
+> <image628760.png>
+>
+>
+>
+> IMPORTANT NOTICE =E2=80=93 Cyber Crime Alert
+>
+> In light of the increased risk posed by cyber fraud and especially those
+> relating to bank account details, please take extra care and always be
+> vigilant in relation to electronic transfer of funds. Please also exercis=
+e
+> caution when opening any emails, attachments, or links and when respondin=
+g
+> to any requests for your bank details or notices of changes to bank detai=
+ls
+> of others. We will NOT accept responsibility if you transfer money into a=
+n
+> incorrect bank account.
+>
+> Please further note, our general policy is NOT to accept any changes to
+> bank account details by email.
+>
+> This e-mail contains information which may be legally privileged,
+> proprietary in nature, or otherwise protected by law from disclosure, and
+> is intended only for the use of the recipient named above. If you are not
+> the intended recipient, you are hereby notified that any dissemination or
+> copying of this e-mail may be strictly prohibited. If you have received t=
+he
+> e-mail in error, please notify the sender by e-mail immediately. Under th=
+e
+> Regulation of Investigatory Powers Act 2000, this company regularly
+> intercepts and monitors E-mails sent to it for the purpose of, for exampl=
+e,
+> ensuring that only legitimate business is being carried on and to ensure
+> the security of information being transmitted.
+>
+> Xenia Estates Ltd Company Number 12164345
+> Xenia Estates | Marsland House | Marsland Road | Sale | M33 3AQ
+>
+> *From:* Dave Evans <dave@inhomemedia.io>
+> *Sent:* Friday, August 9, 2024 3:53 PM
+> *To:* Louis Babington <louis.babington@xeniaestates.com>
+> *Subject:* Re: Budenberg Haus Digi Screens
+>
+>
+>
+> Hi Louis
+>
+>
+>
+> Apologies, I=E2=80=99ve been travelling but yes received and we are looki=
+ng into
+> it.
+>
+>
+>
+> Kind regards
+>
+>
+>
+> -Dave
+>
+>
+> Dave Evans
+>
+> Marketing Director
+>
+>
+>
+> T: 07930 124209
+>
+> A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QA
+>
+> E: dave@inhomemedia.io
+>
+> W: inhomemedia.io
+>
+>
+>
+> <https://inhomemedia.io/>
+> <~WRD2511.jpg> <https://inhomemedia.io/>
+>
+>
+>
+> <https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+> <~WRD2511.jpg>
+> <https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+>
+>
+>
+> Just so you know... this email and any files transmitted with it are
+> confidential and intended solely for the use of the individual or entity =
+to
+> whom they are addressed. They are the property of In Home Media Ltd. If y=
+ou
+> have received this email in error please notify the system manager. This
+> message may contain confidential information and is intended only for the
+> individual named. Please notify the sender immediately by e-mail if you
+> have received this email by mistake and delete this email from your syste=
+m.
+> In Home Media  Ltd accepts no liability for the content of this email, or
+> for the consequences of any actions taken based on the information provid=
+ed
+> unless that information is subsequently confirmed in writing. If you are
+> not the intended recipient you are notified that disclosing, copying,
+> distributing or taking any action in reliance on the contents of this
+> information is strictly prohibited. In Home Media Ltd, 2nd Floor, Balfour
+> House, 46-54 Great Titchfield Street, London W1W 7QE. Company registratio=
+n
+> 14606919. VAT no. 435094106.
+>
+>
+>
+>
+>
+> On Fri, 9 Aug 2024 at 11:30, Louis Babington <
+> louis.babington@xeniaestates.com> wrote:
+>
+> Good Morning Dave,
+>
+>
+>
+> Can you confirm you received my email yesterday?
+>
+>
+>
+> Kind regards
+>
+>
+>
+> <image001.png>
+>
+> <image002.png>
+>
+> Senior Estates Manager
+>
+> <image003.png>
+>
+> <image004.png>
+>
+> <image005.png>
+>
+> <image006.png>
+>
+> <image007.png>
+>
+> *www.xeniaestates.com <http://www.xeniaestates.com>*
+>
+> <https://www.linkedin.com/company/3754468/admin/feed/posts/>
+> <image008.png>
+> <https://www.linkedin.com/company/3754468/admin/feed/posts/>
+>
+> <image009.png>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> *IMPORTANT NOTICE =E2=80=93 Cyber Crime Alert In light of the increased r=
+isk posed
+> by cyber fraud and especially those relating to bank account details,
+> please take extra care and always be vigilant in relation to electronic
+> transfer of funds. Please also exercise caution when opening any emails,
+> attachments, or links and when responding to any requests for your bank
+> details or notices of changes to bank details of others. We will NOT acce=
+pt
+> responsibility if you transfer money into an incorrect bank account. Plea=
+se
+> further note, our general policy is NOT to accept any changes to bank
+> account details by email.*
+>
+> *This e-mail contains information which may be legally privileged,
+> proprietary in nature, or otherwise protected by law from disclosure, and
+> is intended only for the use of the recipient named above. If you are not
+> the intended recipient, you are hereby notified that any dissemination or
+> copying of this e-mail may be strictly prohibited. If you have received t=
+he
+> e-mail in error, please notify the sender by e-mail immediately. Under th=
+e
+> Regulation of Investigatory Powers Act 2000, this company regularly
+> intercepts and monitors E-mails sent to it for the purpose of, for exampl=
+e,
+> ensuring that only legitimate business is being carried on and to ensure
+> the security of information being transmitted.*
+>
+> Xenia Estates Ltd Company Number 12164345
+> Xenia Estates | Marsland House | Marsland Road | Sale | M33 3AQ
+>
+> *From:* Dave Evans <dave@inhomemedia.io>
+> *Sent:* Friday, August 2, 2024 4:00 PM
+> *To:* Louis Babington <louis.babington@xeniaestates.com>
+> *Subject:* Re: Budenberg Haus Digi Screens
+>
+>
+>
+> Hi Louis
+>
+>
+>
+> Having looked at our system, we believe the reason there was no content
+> showing on the screens was that all previous campaigns had elapsed.
+>
+>
+>
+> However, it looks like your colleague, Rachael, who now has access to the
+> content management portal, created a campaign on Tuesday but didn't
+> complete the final stage which is to 'publish' it.  We have now published
+> it and so that information and contact details should be playing on all
+> screens.  Could you confirm that's the case please?
+>
+>
+>
+> Kind regards
+>
+>
+>
+> Dave Evans
+>
+> Marketing Director
+>
+>
+>
+> T: 07930 124209
+>
+> A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QA
+> <https://www.google.com/maps/search/46-54+Great+Titchfield+Street,+London=
++W1W+7QA?entry=3Dgmail&source=3Dg>
+>
+> E: dave@inhomemedia.io
+>
+> W: inhomemedia.io
+>
+>
+>
+> <https://inhomemedia.io/>
+> <~WRD2511.jpg> <https://inhomemedia.io/>
+>
+>
+>
+> <https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+> <~WRD2511.jpg>
+> <https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+>
+>
+>
+> Just so you know... this email and any files transmitted with it are
+> confidential and intended solely for the use of the individual or entity =
+to
+> whom they are addressed. They are the property of In Home Media Ltd. If y=
+ou
+> have received this email in error please notify the system manager. This
+> message may contain confidential information and is intended only for the
+> individual named. Please notify the sender immediately by e-mail if you
+> have received this email by mistake and delete this email from your syste=
+m.
+> In Home Media  Ltd accepts no liability for the content of this email, or
+> for the consequences of any actions taken based on the information provid=
+ed
+> unless that information is subsequently confirmed in writing. If you are
+> not the intended recipient you are notified that disclosing, copying,
+> distributing or taking any action in reliance on the contents of this
+> information is strictly prohibited. In Home Media Ltd, 2nd Floor, Balfour
+> House, 46-54 Great Titchfield Street, London W1W 7QE
+> <https://www.google.com/maps/search/46-54+Great+Titchfield+Street,+London=
++W1W+7QE?entry=3Dgmail&source=3Dg>.
+> Company registration 14606919. VAT no. 435094106.
+>
+>
+>
+>
+>
+> On Mon, Jul 29, 2024 at 4:35=E2=80=AFPM Louis Babington <
+> louis.babington@xeniaestates.com> wrote:
+>
+> Thanks Dave,
+>
+>
+>
+> I believe currently the Security schedule should be on along with AGFM
+> contact details and also Xenia contact details.
+>
+>
+>
+> Kind regards
+>
+>
+>
+> <image001.png>
+>
+> <image002.png>
+>
+> Senior Estates Manager
+>
+> <image003.png>
+>
+> <image004.png>
+>
+> <image005.png>
+>
+> <image006.png>
+>
+> <image007.png>
+>
+> *www.xeniaestates.com <http://www.xeniaestates.com>*
+>
+> <https://www.linkedin.com/company/3754468/admin/feed/posts/>
+> <image008.png>
+> <https://www.linkedin.com/company/3754468/admin/feed/posts/>
+>
+> <image009.png>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> *IMPORTANT NOTICE =E2=80=93 Cyber Crime Alert In light of the increased r=
+isk posed
+> by cyber fraud and especially those relating to bank account details,
+> please take extra care and always be vigilant in relation to electronic
+> transfer of funds. Please also exercise caution when opening any emails,
+> attachments, or links and when responding to any requests for your bank
+> details or notices of changes to bank details of others. We will NOT acce=
+pt
+> responsibility if you transfer money into an incorrect bank account. Plea=
+se
+> further note, our general policy is NOT to accept any changes to bank
+> account details by email.*
+>
+> *This e-mail contains information which may be legally privileged,
+> proprietary in nature, or otherwise protected by law from disclosure, and
+> is intended only for the use of the recipient named above. If you are not
+> the intended recipient, you are hereby notified that any dissemination or
+> copying of this e-mail may be strictly prohibited. If you have received t=
+he
+> e-mail in error, please notify the sender by e-mail immediately. Under th=
+e
+> Regulation of Investigatory Powers Act 2000, this company regularly
+> intercepts and monitors E-mails sent to it for the purpose of, for exampl=
+e,
+> ensuring that only legitimate business is being carried on and to ensure
+> the security of information being transmitted.*
+>
+> Xenia Estates Ltd Company Number 12164345
+> Xenia Estates | Marsland House | Marsland Road | Sale | M33 3AQ
+>
+> *From:* Dave Evans <dave@inhomemedia.io>
+> *Sent:* Monday, July 29, 2024 4:31 PM
+> *To:* Louis Babington <louis.babington@xeniaestates.com>
+> *Cc:* Anthony Hughes <th@inhomemedia.io>
+> *Subject:* Re: Budenberg Haus Digi Screens
+>
+>
+>
+> Thanks for the additional information, Louis.
+>
+>
+>
+> We will look into it urgently, starting with a network management system
+> check, as it's highly unusual for all screens not to be working at the sa=
+me
+> time.
+>
+>
+>
+> In the meantime, could you advise which notices you expect to be playing
+> currently?
+>
+>
+>
+> Kind regards
+>
+>
+> Dave Evans
+>
+> Marketing Director
+>
+>
+>
+> T: 07930 124209
+>
+> A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QA
+> <https://www.google.com/maps/search/46-54+Great+Titchfield+Street,+London=
++W1W+7QA?entry=3Dgmail&source=3Dg>
+>
+> E: dave@inhomemedia.io
+>
+> W: inhomemedia.io
+>
+>
+>
+> <https://inhomemedia.io/>
+> <~WRD2511.jpg> <https://inhomemedia.io/>
+>
+>
+>
+> <https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+> <~WRD2511.jpg>
+> <https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+>
+>
+>
+> Just so you know... this email and any files transmitted with it are
+> confidential and intended solely for the use of the individual or entity =
+to
+> whom they are addressed. They are the property of In Home Media Ltd. If y=
+ou
+> have received this email in error please notify the system manager. This
+> message may contain confidential information and is intended only for the
+> individual named. Please notify the sender immediately by e-mail if you
+> have received this email by mistake and delete this email from your syste=
+m.
+> In Home Media  Ltd accepts no liability for the content of this email, or
+> for the consequences of any actions taken based on the information provid=
+ed
+> unless that information is subsequently confirmed in writing. If you are
+> not the intended recipient you are notified that disclosing, copying,
+> distributing or taking any action in reliance on the contents of this
+> information is strictly prohibited. In Home Media Ltd, 2nd Floor, Balfour
+> House, 46-54 Great Titchfield Street, London W1W 7QE
+> <https://www.google.com/maps/search/46-54+Great+Titchfield+Street,+London=
++W1W+7QE?entry=3Dgmail&source=3Dg>.
+> Company registration 14606919. VAT no. 435094106.
+>
+>
+>
+>
+>
+> On Mon, Jul 29, 2024 at 4:22=E2=80=AFPM Louis Babington <
+> louis.babington@xeniaestates.com> wrote:
+>
+> Good Afternoon Dave,
+>
+>
+>
+> After speaking with on site staff all of the screens are currently not
+> working and I believe they just read (InHomeMedia) on the screen with
+> nothing else on them.
+>
+>
+>
+> Also the one in Haus 3 currently just looks like a mobile phone screen?
+>
+>
+>
+> Thank you
+>
+>
+>
+> <image001.png>
+>
+> <image002.png>
+>
+> Senior Estates Manager
+>
+> <image003.png>
+>
+> <image004.png>
+>
+> <image005.png>
+>
+> <image006.png>
+>
+> <image007.png>
+>
+> *www.xeniaestates.com <http://www.xeniaestates.com>*
+>
+> <https://www.linkedin.com/company/3754468/admin/feed/posts/>
+> <image008.png>
+> <https://www.linkedin.com/company/3754468/admin/feed/posts/>
+>
+> <image009.png>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> *IMPORTANT NOTICE =E2=80=93 Cyber Crime Alert In light of the increased r=
+isk posed
+> by cyber fraud and especially those relating to bank account details,
+> please take extra care and always be vigilant in relation to electronic
+> transfer of funds. Please also exercise caution when opening any emails,
+> attachments, or links and when responding to any requests for your bank
+> details or notices of changes to bank details of others. We will NOT acce=
+pt
+> responsibility if you transfer money into an incorrect bank account. Plea=
+se
+> further note, our general policy is NOT to accept any changes to bank
+> account details by email.*
+>
+> *This e-mail contains information which may be legally privileged,
+> proprietary in nature, or otherwise protected by law from disclosure, and
+> is intended only for the use of the recipient named above. If you are not
+> the intended recipient, you are hereby notified that any dissemination or
+> copying of this e-mail may be strictly prohibited. If you have received t=
+he
+> e-mail in error, please notify the sender by e-mail immediately. Under th=
+e
+> Regulation of Investigatory Powers Act 2000, this company regularly
+> intercepts and monitors E-mails sent to it for the purpose of, for exampl=
+e,
+> ensuring that only legitimate business is being carried on and to ensure
+> the security of information being transmitted.*
+>
+> Xenia Estates Ltd Company Number 12164345
+> Xenia Estates | Marsland House | Marsland Road | Sale | M33 3AQ
+>
+> *From:* Dave Evans <dave@inhomemedia.io>
+> *Sent:* Monday, July 29, 2024 4:15 PM
+> *To:* Louis Babington <louis.babington@xeniaestates.com>
+> *Cc:* Anthony Hughes <th@inhomemedia.io>
+> *Subject:* Re: Budenberg Haus Digi Screens
+>
+>
+>
+> Hi Louis
+>
+>
+>
+> Thanks for your email.
+>
+>
+>
+> Could you confirm  - is this one of the internal or external screens?  On
+> our last visit, a couple of weeks ago, we resolved an issue with one of t=
+he
+> internal screens (all internals were then working) but noticed a problem
+> with one of the externals.  For the latter, I suggested a temporary
+> solution to Chris, whilst we investigated further.
+>
+>
+>
+> If you can let me know, we can check our systems and plan the best course
+> of action.
+>
+>
+>
+> Kind regards
+>
+>
+> Dave Evans
+>
+> Marketing Director
+>
+>
+>
+> T: 07930 124209
+>
+> A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QA
+> <https://www.google.com/maps/search/46-54+Great+Titchfield+Street,+London=
++W1W+7QA?entry=3Dgmail&source=3Dg>
+>
+> E: dave@inhomemedia.io
+>
+> W: inhomemedia.io
+>
+>
+>
+> <https://inhomemedia.io/>
+> <~WRD2511.jpg> <https://inhomemedia.io/>
+>
+>
+>
+> <https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+> <~WRD2511.jpg>
+> <https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+>
+>
+>
+> Just so you know... this email and any files transmitted with it are
+> confidential and intended solely for the use of the individual or entity =
+to
+> whom they are addressed. They are the property of In Home Media Ltd. If y=
+ou
+> have received this email in error please notify the system manager. This
+> message may contain confidential information and is intended only for the
+> individual named. Please notify the sender immediately by e-mail if you
+> have received this email by mistake and delete this email from your syste=
+m.
+> In Home Media  Ltd accepts no liability for the content of this email, or
+> for the consequences of any actions taken based on the information provid=
+ed
+> unless that information is subsequently confirmed in writing. If you are
+> not the intended recipient you are notified that disclosing, copying,
+> distributing or taking any action in reliance on the contents of this
+> information is strictly prohibited. In Home Media Ltd, 2nd Floor, Balfour
+> House, 46-54 Great Titchfield Street, London W1W 7QE
+> <https://www.google.com/maps/search/46-54+Great+Titchfield+Street,+London=
++W1W+7QE?entry=3Dgmail&source=3Dg>.
+> Company registration 14606919. VAT no. 435094106.
+>
+>
+>
+>
+>
+> On Mon, Jul 29, 2024 at 4:01=E2=80=AFPM Louis Babington <
+> louis.babington@xeniaestates.com> wrote:
+>
+> Good Afternoon Dave,
+>
+>
+>
+> I hope you`re well.
+>
+>
+>
+> We have received reports that the Digi Screen next to the lift in Haus 2
+> and Haus 3 have been off for a number of weeks.
+>
+>
+>
+> Please can we have an engineer out to take a look at why the screen are
+> currently off.
+>
+>
+>
+> Kind regards
+>
+> <image001.png>
+>
+> <image002.png>
+>
+> Senior Estates Manager
+>
+> <image003.png>
+>
+> <image004.png>
+>
+> <image005.png>
+>
+> <image006.png>
+>
+> <image007.png>
+>
+> *www.xeniaestates.com <http://www.xeniaestates.com>*
+>
+> <https://www.linkedin.com/company/3754468/admin/feed/posts/>
+> <image008.png>
+> <https://www.linkedin.com/company/3754468/admin/feed/posts/>
+>
+> <image009.png>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> *IMPORTANT NOTICE =E2=80=93 Cyber Crime Alert In light of the increased r=
+isk posed
+> by cyber fraud and especially those relating to bank account details,
+> please take extra care and always be vigilant in relation to electronic
+> transfer of funds. Please also exercise caution when opening any emails,
+> attachments, or links and when responding to any requests for your bank
+> details or notices of changes to bank details of others. We will NOT acce=
+pt
+> responsibility if you transfer money into an incorrect bank account. Plea=
+se
+> further note, our general policy is NOT to accept any changes to bank
+> account details by email.*
+>
+> *This e-mail contains information which may be legally privileged,
+> proprietary in nature, or otherwise protected by law from disclosure, and
+> is intended only for the use of the recipient named above. If you are not
+> the intended recipient, you are hereby notified that any dissemination or
+> copying of this e-mail may be strictly prohibited. If you have received t=
+he
+> e-mail in error, please notify the sender by e-mail immediately. Under th=
+e
+> Regulation of Investigatory Powers Act 2000, this company regularly
+> intercepts and monitors E-mails sent to it for the purpose of, for exampl=
+e,
+> ensuring that only legitimate business is being carried on and to ensure
+> the security of information being transmitted.*
+>
+> Xenia Estates Ltd Company Number 12164345
+> Xenia Estates | Marsland House | Marsland Road | Sale | M33 3AQ
+>
+>
+>
+>
+
+--000000000000a0df28061f8cd983
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Tony</div><div><br></div><div>My view is that our =
+site visits usually reveal that the problems aren&#39;t as extensive as we =
+are led to believe by them.=C2=A0 Often the reports come from the BM 2nd ha=
+nd via a concierge with the BM having not visited themselves, and then what=
+ we find is different.</div><div><br></div><div>Last time, one outdoor medi=
+a player had failed and one router inside -=C2=A0 this=C2=A0we know.=C2=A0 =
+We got the router working again and Wez left with all bar one outdoor playi=
+ng.</div><div><br></div><div>The main problem last week was that they hadn&=
+#39;t scheduled content. Their previous campaigns had expired.=C2=A0 =C2=A0=
+We have given them access and training and someone=C2=A0in the marketing=C2=
+=A0department had attempted to run a campaign but not completed the process=
+ - Jane &amp; I published it last week.</div><div><br></div><div>Putting my=
+self in their shoes, they just want all the screens working again consisten=
+tly - I get that.=C2=A0 We have a plan for achieving that with Ian, but par=
+t of it will be them using the CMS properly themselves.=C2=A0 Happy to offe=
+r them some support with that initially.=C2=A0</div><div><br></div><div>Not=
+ sure how your idea of a separate MI server would work, but I don&#39;t thi=
+nk they have the technical knowhow or appetite to set that up and support i=
+t themselves going forward.=C2=A0 There&#39;s no getting away from the fact=
+ that they need some new equipment - new media players and a supply of rout=
+ers that a local AV guy like Wez can replace when needed.=C2=A0 Longer term=
+ they need hard-wiring or communal wifi.=C2=A0 Ian thinks the screens thems=
+elves are ok.</div><div><br></div><div>We can discuss this again later toda=
+y on Zoom?</div><div><br></div><div>D.</div><div><br></div><div><br></div><=
+br clear=3D"all"><div><div dir=3D"ltr" class=3D"gmail_signature" data-smart=
+mail=3D"gmail_signature"><div dir=3D"ltr"><p dir=3D"ltr" style=3D"color:rgb=
+(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"f=
+ont-size:10pt;font-family:Poppins,sans-serif;color:rgb(26,34,52);background=
+-color:transparent;vertical-align:baseline">Dave Evans</span></p><p dir=3D"=
+ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-botto=
+m:0pt"><span style=3D"font-size:10pt;font-family:&quot;Times New Roman&quot=
+;,serif;color:rgb(117,130,131);background-color:transparent;vertical-align:=
+baseline">Marketing Director</span></p><p dir=3D"ltr" style=3D"color:rgb(0,=
+0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><br></p><p dir=3D"l=
+tr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:10pt;font-family:Poppins,sans-serif;color:rg=
+b(26,34,52);background-color:transparent;vertical-align:baseline">T: 07930 =
+124209</span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;=
+margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-family=
+:Poppins,sans-serif;color:rgb(26,34,52);background-color:transparent;vertic=
+al-align:baseline">A: Balfour House,=C2=A0</span><span style=3D"font-family=
+:Poppins,sans-serif;color:rgb(26,34,52);background-color:transparent;vertic=
+al-align:baseline;font-size:13.3333px">46-54 Great Titchfield Street, Londo=
+n W1W 7QA</span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.=
+38;margin-top:0pt;margin-bottom:0pt"><span style=3D"background-color:transp=
+arent;color:rgb(26,34,52);font-family:Poppins,sans-serif;font-size:10pt">E:=
+=C2=A0</span><a href=3D"mailto:dave@inhomemedia.io" style=3D"color:rgb(17,8=
+5,204);background-color:transparent;font-family:Poppins,sans-serif;font-siz=
+e:10pt" target=3D"_blank">dave@inhomemedia.io</a></p><p dir=3D"ltr" style=
+=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><sp=
+an style=3D"font-size:10pt;font-family:Poppins,sans-serif;color:rgb(26,34,5=
+2);background-color:transparent;vertical-align:baseline">W:=C2=A0<a href=3D=
+"http://inhomemedia.io/" style=3D"color:rgb(17,85,204)" target=3D"_blank">i=
+nhomemedia.io</a></span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-h=
+eight:1.38;margin-top:0pt;margin-bottom:0pt"><br><br></p><p dir=3D"ltr" sty=
+le=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><=
+a href=3D"https://inhomemedia.io/" style=3D"color:rgb(17,85,204)" target=3D=
+"_blank"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;backgro=
+und-color:transparent;vertical-align:baseline"><span style=3D"border:medium=
+;display:inline-block;overflow:hidden;width:520px;height:29px"><img src=3D"=
+https://lh7-us.googleusercontent.com/G4ff92Jazz4nl6U3XO4bw1HjizO0hBsjZS3iCZ=
+QOXffuUv-6C9ZOTq4IW15iyu5kB0duaGS4BIdTk6vBLe2by2YwpWZWU0ghiZa-ur3pLUYBvT5gm=
+flP-8PDQuJOrK3hWMiULmn98KuWeYwc8vZo5pQ" width=3D"520" height=3D"29" style=
+=3D"margin-left:0px;margin-top:0px"></span></span></a></p><p dir=3D"ltr" st=
+yle=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt">=
+<br></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-to=
+p:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-family:Poppins,=
+sans-serif;color:rgb(26,34,52);background-color:transparent;vertical-align:=
+baseline"><span style=3D"border:medium;display:inline-block;overflow:hidden=
+;width:164px;height:24px"><a href=3D"https://www.linkedin.com/company/in-ho=
+me-media/?viewAsMember=3Dtrue" target=3D"_blank"><img src=3D"https://lh7-us=
+.googleusercontent.com/cYdkuaQI6sWib78slCNi_Rz86PtOZ6DcUsNMwbOy-aII_ZEtMyjb=
+iyrSeCokvdKWRcqldt-NzAEylM60R3dg7sPvFvGJFgjTZ85Ao7BrS0HraUMDhHTYQ9iOdBeXX0a=
+pBCOe0ySlE2Y3esW4rs6EBV4" width=3D"164" height=3D"24" style=3D"margin-left:=
+0px;margin-top:0px"></a></span></span></p><p dir=3D"ltr" style=3D"color:rgb=
+(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><br></p><p dir=
+=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-b=
+ottom:0pt"><span style=3D"font-size:8pt;font-family:Arial,sans-serif;color:=
+rgb(153,153,153);background-color:transparent;vertical-align:baseline">Just=
+ so you know... this email and any files transmitted with it are confidenti=
+al and intended solely for the use of the individual or entity to whom they=
+ are addressed. They are the property of In Home Media Ltd. If you have rec=
+eived this email in error please notify the system manager. This message ma=
+y contain confidential information and is intended only for the individual =
+named. Please notify the sender immediately by e-mail if you have received =
+this email by mistake and delete this email from your system. In Home Media=
+=C2=A0 Ltd accepts no liability for the content of this email, or for the c=
+onsequences of any actions taken based on the information provided unless t=
+hat information is subsequently confirmed in writing. If you are not the in=
+tended recipient you are notified that disclosing, copying, distributing or=
+ taking any action in reliance on the contents of this information is stric=
+tly prohibited. In Home Media Ltd, 2nd Floor, Balfour House, 46-54 Great Ti=
+tchfield Street, London W1W 7QE. Company registration 14606919. VAT no. 435=
+094106.</span></p></div></div></div><br></div><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 13, 2024 at 9:35=E2=80=
+=AFAM Anthony Hughes &lt;<a href=3D"mailto:th@inhomemedia.io">th@inhomemedi=
+a.io</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
+ex"><div dir=3D"auto">The below is fine, but is a holding pattern, and they=
+ cannot currently put content on the screens I assume.<div><br></div><div>X=
+enia are fine the issue we face is there is an RMC at Budenberg and they an=
+d Xenia agreed to jointly find the screens, perception at the RMC is they a=
+re off quite regularly and there has been suggestion to ask us to remove. I=
+s there an option of them spinning up there own magicinfo server and runnin=
+g the media to site is out of the loop completely?<br><div><div><div dir=3D=
+"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cit=
+e">On 12 Aug 2024, at 14:09, Dave Evans &lt;<a href=3D"mailto:dave@inhomeme=
+dia.io" target=3D"_blank">dave@inhomemedia.io</a>&gt; wrote:<br><br></block=
+quote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D=
+"ltr"><div>Hi Tony</div><div><br></div><div>What is the best way of respond=
+ing to this - do we say something like &#39;we are in the process of agreei=
+ng a plan of action with our network support team, which will include some =
+replacement equipment (media players and routers) and a site visit for inst=
+allation, with checks on all screens.=C2=A0 We believe this will then resol=
+ve all issues with connectivity.=C2=A0 I will update as soon as possible th=
+is week but rest assured, I am pushing for the work to be carried=C2=A0out=
+=C2=A0urgently.&#39;=C2=A0</div><div><br></div><div>This is the case re. Ia=
+n and the plan of action/equipment but we also need access to MagicInfo fro=
+m Ameco or this can&#39;t be supported remotely going forward.</div><div><b=
+r></div><div>D.</div><div><br></div><div><br></div><div><br></div><br clear=
+=3D"all"><div><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><=
+p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;mar=
+gin-bottom:0pt"><span style=3D"font-size:10pt;font-family:Poppins,sans-seri=
+f;color:rgb(26,34,52);background-color:transparent;vertical-align:baseline"=
+>Dave Evans</span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:=
+1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-f=
+amily:&quot;Times New Roman&quot;,serif;color:rgb(117,130,131);background-c=
+olor:transparent;vertical-align:baseline">Marketing Director</span></p><p d=
+ir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin=
+-bottom:0pt"><br></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1=
+.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-fa=
+mily:Poppins,sans-serif;color:rgb(26,34,52);background-color:transparent;ve=
+rtical-align:baseline">T: 07930 124209</span></p><p dir=3D"ltr" style=3D"co=
+lor:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span sty=
+le=3D"font-size:10pt;font-family:Poppins,sans-serif;color:rgb(26,34,52);bac=
+kground-color:transparent;vertical-align:baseline">A: Balfour House,=C2=A0<=
+/span><span style=3D"font-family:Poppins,sans-serif;color:rgb(26,34,52);bac=
+kground-color:transparent;vertical-align:baseline;font-size:13.3333px">46-5=
+4 Great Titchfield Street, London W1W 7QA</span></p><p dir=3D"ltr" style=3D=
+"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span =
+style=3D"background-color:transparent;color:rgb(26,34,52);font-family:Poppi=
+ns,sans-serif;font-size:10pt">E:=C2=A0</span><a href=3D"mailto:dave@inhomem=
+edia.io" style=3D"color:rgb(17,85,204);background-color:transparent;font-fa=
+mily:Poppins,sans-serif;font-size:10pt" target=3D"_blank">dave@inhomemedia.=
+io</a></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-=
+top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-family:Poppin=
+s,sans-serif;color:rgb(26,34,52);background-color:transparent;vertical-alig=
+n:baseline">W:=C2=A0<a href=3D"http://inhomemedia.io/" style=3D"color:rgb(1=
+7,85,204)" target=3D"_blank">inhomemedia.io</a></span></p><p dir=3D"ltr" st=
+yle=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt">=
+<br><br></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margi=
+n-top:0pt;margin-bottom:0pt"><a href=3D"https://inhomemedia.io/" style=3D"c=
+olor:rgb(17,85,204)" target=3D"_blank"><span style=3D"font-size:11pt;font-f=
+amily:Arial,sans-serif;background-color:transparent;vertical-align:baseline=
+"><span style=3D"border:medium;display:inline-block;overflow:hidden;width:5=
+20px;height:29px"><img src=3D"https://lh7-us.googleusercontent.com/G4ff92Ja=
+zz4nl6U3XO4bw1HjizO0hBsjZS3iCZQOXffuUv-6C9ZOTq4IW15iyu5kB0duaGS4BIdTk6vBLe2=
+by2YwpWZWU0ghiZa-ur3pLUYBvT5gmflP-8PDQuJOrK3hWMiULmn98KuWeYwc8vZo5pQ" width=
+=3D"520" height=3D"29" style=3D"margin-left: 0px; margin-top: 0px;"></span>=
+</span></a></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;ma=
+rgin-top:0pt;margin-bottom:0pt"><br></p><p dir=3D"ltr" style=3D"color:rgb(0=
+,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"fon=
+t-size:10pt;font-family:Poppins,sans-serif;color:rgb(26,34,52);background-c=
+olor:transparent;vertical-align:baseline"><span style=3D"border:medium;disp=
+lay:inline-block;overflow:hidden;width:164px;height:24px"><a href=3D"https:=
+//www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue" target=3D"_b=
+lank"><img src=3D"https://lh7-us.googleusercontent.com/cYdkuaQI6sWib78slCNi=
+_Rz86PtOZ6DcUsNMwbOy-aII_ZEtMyjbiyrSeCokvdKWRcqldt-NzAEylM60R3dg7sPvFvGJFgj=
+TZ85Ao7BrS0HraUMDhHTYQ9iOdBeXX0apBCOe0ySlE2Y3esW4rs6EBV4" width=3D"164" hei=
+ght=3D"24" style=3D"margin-left: 0px; margin-top: 0px;"></a></span></span><=
+/p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt=
+;margin-bottom:0pt"><br></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-h=
+eight:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:8pt;f=
+ont-family:Arial,sans-serif;color:rgb(153,153,153);background-color:transpa=
+rent;vertical-align:baseline">Just so you know... this email and any files =
+transmitted with it are confidential and intended solely for the use of the=
+ individual or entity to whom they are addressed. They are the property of =
+In Home Media Ltd. If you have received this email in error please notify t=
+he system manager. This message may contain confidential information and is=
+ intended only for the individual named. Please notify the sender immediate=
+ly by e-mail if you have received this email by mistake and delete this ema=
+il from your system. In Home Media=C2=A0 Ltd accepts no liability for the c=
+ontent of this email, or for the consequences of any actions taken based on=
+ the information provided unless that information is subsequently confirmed=
+ in writing. If you are not the intended recipient you are notified that di=
+sclosing, copying, distributing or taking any action in reliance on the con=
+tents of this information is strictly prohibited. In Home Media Ltd, 2nd Fl=
+oor, Balfour House, 46-54 Great Titchfield Street, London W1W 7QE. Company =
+registration 14606919. VAT no. 435094106.</span></p></div></div></div><br><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">-------=
+--- Forwarded message ---------<br>From: <strong class=3D"gmail_sendername"=
+ dir=3D"auto">Louis Babington</strong> <span dir=3D"auto">&lt;<a href=3D"ma=
+ilto:louis.babington@xeniaestates.com" target=3D"_blank">louis.babington@xe=
+niaestates.com</a>&gt;</span><br>Date: Mon, Aug 12, 2024 at 12:54=E2=80=AFP=
+M<br>Subject: RE: Budenberg Haus Digi Screens<br>To: Dave Evans &lt;<a href=
+=3D"mailto:dave@inhomemedia.io" target=3D"_blank">dave@inhomemedia.io</a>&g=
+t;<br></div><br><br><div>
+
+
+
+
+
+<div lang=3D"EN-GB" style=3D"overflow-wrap: break-word;">
+<div>
+<p class=3D"MsoNormal"><span>Afternoon Dave <u></u>
+<u></u></span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span>Do we have any update on the below at all? I a=
+m conscious I want to provide the Directors with an update tomorrow.
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span>Kind regards<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<div dir=3D"ltr" style=3D"font-size:1px;direction:ltr"><table cellpadding=
+=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width:100%;border-collapse:c=
+ollapse;font-size:1px"><tbody><tr style=3D"font-size:0px"><td align=3D"left=
+" style=3D"vertical-align:top"><table cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0" style=3D"border-collapse:collapse;font-size:0px"><tbody><tr sty=
+le=3D"font-size:0px"><td align=3D"left" style=3D"padding:0px;border-top:non=
+e;border-right:none;border-bottom:8px solid rgb(0,56,168);border-left:none;=
+vertical-align:top"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0"=
+ style=3D"width:600px;border-collapse:collapse;font-size:0px"><tbody><tr st=
+yle=3D"font-size:0px"><td align=3D"left" style=3D"padding:0px;vertical-alig=
+n:top"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"wid=
+th:100%;border-collapse:collapse;font-size:0px"><tbody><tr style=3D"font-si=
+ze:0px"><td align=3D"left" style=3D"padding:0px;vertical-align:top"><table =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width:100%;border=
+-collapse:collapse;font-size:0px;line-height:normal"><tbody><tr style=3D"fo=
+nt-size:0px"><td align=3D"left" style=3D"vertical-align:top"><table cellpad=
+ding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse=
+;font-size:0px"><tbody><tr style=3D"font-size:0px"><td align=3D"left" style=
+=3D"padding:0px 30px 0px 0px;vertical-align:top"><table cellpadding=3D"0" c=
+ellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;font-size:0=
+px"><tbody><tr style=3D"font-size:0px"><td align=3D"left" style=3D"padding:=
+0px 37px 0px 0px;border-top:none;border-right:1px solid rgb(180,180,180);bo=
+rder-bottom:none;border-left:none;vertical-align:top"><table cellpadding=3D=
+"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;font-s=
+ize:0px;line-height:normal"><tbody><tr style=3D"font-size:0px"><td align=3D=
+"left" style=3D"padding:0px 0px 0px 20px;vertical-align:top"><div>&lt;image=
+544362.png&gt;</div></td></tr></tbody></table></td><td align=3D"left" style=
+=3D"padding:0px 0px 0px 25px;vertical-align:top"><table cellpadding=3D"0" c=
+ellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;font-size:0=
+px"><tbody><tr style=3D"font-size:0px"><td align=3D"left" style=3D"padding:=
+2px 0px 0px;vertical-align:top"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"border-collapse:collapse;font-size:0px"><tbody><tr st=
+yle=3D"font-size:0px"><td align=3D"left" style=3D"padding:2px 0px 0px;verti=
+cal-align:top"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" styl=
+e=3D"border-collapse:collapse;font-size:0px;color:rgb(0,56,168);font-style:=
+normal;font-weight:400;line-height:normal;white-space:nowrap"><tbody><tr st=
+yle=3D"font-size:0px"><td align=3D"left" style=3D"vertical-align:top"><div>=
+&lt;image836786.png&gt;</div></td></tr><tr style=3D"font-size:18px"><td ali=
+gn=3D"left" style=3D"vertical-align:top;font-family:Mulish">Senior=C2=A0Est=
+ates=C2=A0Manager<span style=3D"font-family:remialcxesans;font-size:1px;col=
+or:rgb(255,255,255);line-height:1px"><span style=3D"font-family:template-hf=
+Uly8HBEe62YGBFvcGvXQ"></span><span style=3D"font-family:zone-1"></span><spa=
+n style=3D"font-family:zones-AQ"></span></span><br></td></tr></tbody></tabl=
+e></td></tr><tr style=3D"font-size:0px"><td align=3D"left" style=3D"padding=
+:16px 0px 0px;vertical-align:top"><table cellpadding=3D"0" cellspacing=3D"0=
+" border=3D"0" style=3D"border-collapse:collapse;font-size:0px;line-height:=
+normal"><tbody><tr style=3D"font-size:0px"><td align=3D"left" style=3D"padd=
+ing:0px 10px 0px 0px;vertical-align:top"><div>&lt;image212932.png&gt;</div>=
+</td><td align=3D"left" style=3D"padding:0px;vertical-align:top"><table cel=
+lpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:coll=
+apse;font-size:0px;line-height:normal"><tbody><tr style=3D"font-size:0px"><=
+td align=3D"left" style=3D"padding:1px 0px 0px;vertical-align:top"><map id=
+=3D"m_7333762917395104394m_170888271452741595map_5e90398d-ad9a-4961-8cb2-1a=
+d0944e2732" name=3D"m_7333762917395104394_m_170888271452741595_map_5e90398d=
+-ad9a-4961-8cb2-1ad0944e2732"><area shape=3D"rect" coords=3D"25.19,0,124.9,=
+17.57" href=3D"tel:0330%20995%208010"></map><div>&lt;image688431.png&gt;</d=
+iv></td></tr></tbody></table></td></tr><tr style=3D"font-size:0px"><td alig=
+n=3D"left" style=3D"padding:5px 10px 0px 0px;vertical-align:top"><div>&lt;i=
+mage799229.png&gt;</div></td><td align=3D"left" style=3D"padding:5px 0px 0p=
+x;vertical-align:top"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"=
+0" style=3D"border-collapse:collapse;font-size:0px;line-height:normal"><tbo=
+dy><tr style=3D"font-size:0px"><td align=3D"left" style=3D"padding:2px 0px =
+0px;vertical-align:top"><map id=3D"m_7333762917395104394m_17088827145274159=
+5map_53338751-0255-4558-a862-859658b2e3ae" name=3D"m_7333762917395104394_m_=
+170888271452741595_map_53338751-0255-4558-a862-859658b2e3ae"><area shape=3D=
+"rect" coords=3D"42.44,0,266.98,17.57" href=3D"mailto:louis.babington@xenia=
+estates.com"></map><div>&lt;image540859.png&gt;</div></td></tr></tbody></ta=
+ble></td></tr><tr style=3D"font-size:0px"><td align=3D"left" style=3D"paddi=
+ng:5px 10px 0px 0px;vertical-align:top"><div>&lt;image760355.png&gt;</div><=
+/td><td align=3D"left" style=3D"padding:5px 0px 0px;vertical-align:top"><ta=
+ble cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collap=
+se:collapse;font-size:0px;color:rgb(8,32,64);font-style:normal;font-weight:=
+700;white-space:nowrap"><tbody><tr style=3D"font-size:14px"><td align=3D"le=
+ft" style=3D"padding:2px 0px 0px;vertical-align:top;font-family:Mulish"><a =
+href=3D"http://www.xeniaestates.com" target=3D"_blank">www.xeniaestates.com=
+</a></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody><=
+/table></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbod=
+y></table></td><td align=3D"left" style=3D"vertical-align:top"><a href=3D"h=
+ttps://www.linkedin.com/company/3754468/admin/feed/posts/" id=3D"m_73337629=
+17395104394m_170888271452741595LPlnk689713" style=3D"text-decoration:none" =
+target=3D"_blank"><div>&lt;image829268.png&gt;</div></a></td><td align=3D"l=
+eft" style=3D"vertical-align:top"><div>&lt;image628760.png&gt;</div></td></=
+tr></tbody></table></td><td style=3D"padding:0px">=C2=A0</td></tr></tbody><=
+/table></td></tr><tr style=3D"font-size:0px"><td style=3D"padding:7px 0px 1=
+3px;border-top:none;border-right:none;border-bottom:1px solid rgb(0,56,168)=
+;border-left:none">=C2=A0</td></tr></tbody></table></td></tr></tbody></tabl=
+e></td></tr><tr style=3D"font-size:0px"><td align=3D"left" style=3D"vertica=
+l-align:top"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=
+=3D"width:100%;border-collapse:collapse;font-size:0px"><tbody><tr style=3D"=
+font-size:0px"><td style=3D"padding:0px">=C2=A0</td><td style=3D"padding:0p=
+x 0px 0px 1000px">=C2=A0</td></tr></tbody></table></td></tr><tr style=3D"fo=
+nt-size:0px"><td align=3D"left" style=3D"vertical-align:top"><table cellpad=
+ding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width:100%;border-collap=
+se:collapse;font-size:0px"><tbody><tr style=3D"font-size:0px"><td align=3D"=
+left" style=3D"padding:25px 0px 0px;vertical-align:top"><table cellpadding=
+=3D"0" cellspacing=3D"0" border=3D"0" style=3D"white-space:normal;color:rgb=
+(166,166,166);font-size:14px;font-family:Arial;font-weight:400;font-style:i=
+talic;text-align:justify;width:100%;border-collapse:collapse"><tbody><tr st=
+yle=3D"font-size:14px"><td style=3D"font-family:Arial"><span style=3D"font-=
+size:10px">IMPORTANT NOTICE =E2=80=93 Cyber Crime Alert <br> <br> In light =
+of the increased risk posed by cyber fraud and especially those relating to=
+ bank account details, please take extra care and always be vigilant in rel=
+ation to electronic transfer of funds. Please also exercise caution when op=
+ening any emails, attachments, or links and when responding to any requests=
+ for your bank details or notices of changes to bank details of others. We =
+will NOT accept responsibility if you transfer money into an incorrect bank=
+ account. <br> <br> Please further note, our general policy is NOT to accep=
+t any changes to bank account details by email.</span><br> <span style=3D"f=
+ont-size:10px">=C2=A0</span><br> <span style=3D"font-size:10px">This e-mail=
+ contains information which may be legally privileged, proprietary in natur=
+e, or otherwise protected by law from disclosure, and is intended only for =
+the use of the recipient named above. If you are not the intended recipient=
+, you are hereby notified that any dissemination or copying of this e-mail =
+may be strictly prohibited. If you have received the e-mail in error, pleas=
+e notify the sender by e-mail immediately. Under the Regulation of Investig=
+atory Powers Act 2000, this company regularly intercepts and monitors E-mai=
+ls sent to it for the purpose of, for example, ensuring that only legitimat=
+e business is being carried on and to ensure the security of information be=
+ing transmitted.</span><br> <span style=3D"font-size:10px">=C2=A0</span><br=
+><span style=3D"font-size:12px;font-style:normal"><span style=3D"background=
+-color:rgb(255,255,255)">Xenia Estates Ltd Company Number 12164345</span><b=
+r>Xenia Estates | Marsland House | Marsland Road | Sale | M33 3AQ=C2=A0</sp=
+an><br></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbod=
+y></table></div><div style=3D"border-right:none;border-bottom:none;border-l=
+eft:none;border-top:1pt solid rgb(225,225,225);padding:3pt 0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11pt;font=
+-family:Calibri,sans-serif">From:</span></b><span lang=3D"EN-US" style=3D"f=
+ont-size:11pt;font-family:Calibri,sans-serif"> Dave Evans &lt;<a href=3D"ma=
+ilto:dave@inhomemedia.io" target=3D"_blank">dave@inhomemedia.io</a>&gt;
+<br>
+<b>Sent:</b> Friday, August 9, 2024 3:53 PM<br>
+<b>To:</b> Louis Babington &lt;<a href=3D"mailto:louis.babington@xeniaestat=
+es.com" target=3D"_blank">louis.babington@xeniaestates.com</a>&gt;<br>
+<b>Subject:</b> Re: Budenberg Haus Digi Screens<u></u><u></u></span></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal">Hi Louis=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Apologies, I=E2=80=99ve been travelling but yes rece=
+ived and we are looking into it.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Kind regards<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">-Dave<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><br clear=3D"all">
+<u></u><u></u></p>
+<div>
+<div>
+<div>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">Dave Evans</span><span style=3D"color:black"><u></u><u>=
+</u></span></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:&quot;Tim=
+es New Roman&quot;,serif;color:rgb(117,130,131)">Marketing Director</span><=
+span style=3D"color:black"><u></u><u></u></span></p>
+<p style=3D"margin:0cm"><span style=3D"color:black"><u></u>=C2=A0<u></u></s=
+pan></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">T: 07930 124209</span><span style=3D"color:black"><u></=
+u><u></u></span></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">A: Balfour House,=C2=A046-54 Great Titchfield Street, L=
+ondon W1W 7QA</span><span style=3D"color:black"><u></u><u></u></span></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">E:=C2=A0</span><span style=3D"color:black"><a href=3D"m=
+ailto:dave@inhomemedia.io" target=3D"_blank"><span style=3D"font-size:10pt;=
+font-family:Poppins;color:rgb(17,85,204)">dave@inhomemedia.io</span></a><u>=
+</u><u></u></span></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">W:=C2=A0<a href=3D"http://inhomemedia.io/" target=3D"_b=
+lank"><span style=3D"color:rgb(17,85,204)">inhomemedia.io</span></a></span>=
+<span style=3D"color:black"><u></u><u></u></span></p>
+<p style=3D"margin-right:0cm;margin-bottom:12pt;margin-left:0cm">
+<span style=3D"color:black"><u></u>=C2=A0<u></u></span></p>
+<p style=3D"margin:0cm"><a href=3D"https://inhomemedia.io/" target=3D"_blan=
+k"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(17,=
+85,204);border:1pt none windowtext;padding:0cm;text-decoration:none"></span=
+></a></p><div><a href=3D"https://inhomemedia.io/" target=3D"_blank">&lt;~WR=
+D2511.jpg&gt;</a></div><span style=3D"color:black"><u></u><u></u></span><p>=
+</p>
+<p style=3D"margin:0cm"><span style=3D"color:black"><u></u>=C2=A0<u></u></s=
+pan></p>
+<p style=3D"margin:0cm"><a href=3D"https://www.linkedin.com/company/in-home=
+-media/?viewAsMember=3Dtrue" target=3D"_blank"><span style=3D"font-size:10p=
+t;font-family:Poppins;border:1pt none windowtext;padding:0cm;text-decoratio=
+n:none"></span></a></p><div><a href=3D"https://www.linkedin.com/company/in-=
+home-media/?viewAsMember=3Dtrue" target=3D"_blank">&lt;~WRD2511.jpg&gt;</a>=
+</div><span style=3D"color:black"><u></u><u></u></span><p></p>
+<p style=3D"margin:0cm"><span style=3D"color:black"><u></u>=C2=A0<u></u></s=
+pan></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:8pt;font-family:Arial,sans=
+-serif;color:rgb(153,153,153)">Just so you know... this email and any files=
+ transmitted with it are confidential and intended solely for the use of th=
+e individual or entity to whom they are addressed.
+ They are the property of In Home Media Ltd. If you have received this emai=
+l in error please notify the system manager. This message may contain confi=
+dential information and is intended only for the individual named. Please n=
+otify the sender immediately by
+ e-mail if you have received this email by mistake and delete this email fr=
+om your system. In Home Media=C2=A0 Ltd accepts no liability for the conten=
+t of this email, or for the consequences of any actions taken based on the =
+information provided unless that information
+ is subsequently confirmed in writing. If you are not the intended recipien=
+t you are notified that disclosing, copying, distributing or taking any act=
+ion in reliance on the contents of this information is strictly prohibited.=
+ In Home Media Ltd, 2nd Floor, Balfour
+ House, 46-54 Great Titchfield Street, London W1W 7QE. Company registration=
+ 14606919. VAT no. 435094106.</span><span style=3D"color:black"><u></u><u><=
+/u></span></p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Fri, 9 Aug 2024 at 11:30, Louis Babington &lt;<a =
+href=3D"mailto:louis.babington@xeniaestates.com" target=3D"_blank">louis.ba=
+bington@xeniaestates.com</a>&gt; wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;b=
+order-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin-left:4=
+.8pt;margin-right:0cm">
+<div>
+<div>
+<p class=3D"MsoNormal">Good Morning Dave,
+<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Can you confirm you received my email yesterday?<u><=
+/u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Kind regards<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"border-top:none;border-right:none;border-left:n=
+one;border-bottom:6pt solid rgb(0,56,168);padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"600" style=
+=3D"width:450pt;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 22.5pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"border-top:none;border-bottom:none;border-left:=
+none;border-right:1pt solid rgb(180,180,180);padding:0cm 27.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 0cm 0cm 15pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age001.png&gt;</div><span style=3D"font-size:1pt"><u></u><u></u></span><p><=
+/p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td valign=3D"top" style=3D"padding:0cm 0cm 0cm 18.75pt">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:1.5pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:1.5pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt;color:rgb(0,56,168)"></=
+span></p><div>&lt;image002.png&gt;</div><span style=3D"font-size:1pt;color:=
+rgb(0,56,168)"><u></u><u></u></span><p></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:13.5pt;font-family:Mulish;c=
+olor:rgb(0,56,168)">Senior=C2=A0Estates=C2=A0Manager</span><span style=3D"f=
+ont-size:1pt;font-family:remialcxesans;color:white"></span><span style=3D"f=
+ont-size:1pt;font-family:template-hfUly8HBEe62YGBFvcGvXQ;color:white"></spa=
+n><span style=3D"font-size:1pt;font-family:zone-1;color:white"></span><span=
+ style=3D"font-size:1pt;font-family:zones-AQ;color:white"></span><span styl=
+e=3D"font-size:13.5pt;font-family:Mulish;color:rgb(0,56,168)"><u></u><u></u=
+></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:12pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 7.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age003.png&gt;</div><span style=3D"font-size:1pt"><u></u><u></u></span><p><=
+/p>
+</td>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0.75pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age004.png&gt;</div><span style=3D"font-size:1pt"><u></u><u></u></span><p><=
+/p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:3.75pt 7.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age005.png&gt;</div><span style=3D"font-size:1pt"><u></u><u></u></span><p><=
+/p>
+</td>
+<td valign=3D"top" style=3D"padding:3.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:1.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age006.png&gt;</div><span style=3D"font-size:1pt"><u></u><u></u></span><p><=
+/p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:3.75pt 7.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age007.png&gt;</div><span style=3D"font-size:1pt"><u></u><u></u></span><p><=
+/p>
+</td>
+<td valign=3D"top" style=3D"padding:3.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:1.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.5pt;font-family:Mulis=
+h;color:rgb(8,32,64)"><a href=3D"http://www.xeniaestates.com" target=3D"_bl=
+ank">www.xeniaestates.com</a><u></u><u></u></span></b></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td valign=3D"top" style=3D"padding:0cm">
+<p class=3D"MsoNormal"><a href=3D"https://www.linkedin.com/company/3754468/=
+admin/feed/posts/" target=3D"_blank"><span style=3D"font-size:1pt;text-deco=
+ration:none"></span></a></p><div><a href=3D"https://www.linkedin.com/compan=
+y/3754468/admin/feed/posts/" target=3D"_blank">&lt;image008.png&gt;</a></di=
+v><span style=3D"font-size:1pt"><u></u><u></u></span><p></p>
+</td>
+<td valign=3D"top" style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age009.png&gt;</div><span style=3D"font-size:1pt"><u></u><u></u></span><p><=
+/p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt">=C2=A0<u></u><u></u></=
+span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td style=3D"border-top:none;border-right:none;border-left:none;border-bott=
+om:1pt solid rgb(0,56,168);padding:5.25pt 0cm 9.75pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt">=C2=A0<u></u><u></u></=
+span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt">=C2=A0<u></u><u></u></=
+span></p>
+</td>
+<td style=3D"padding:0cm 0cm 0cm 750pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt">=C2=A0<u></u><u></u></=
+span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:18.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm">
+<p class=3D"MsoNormal" style=3D"text-align:justify"><i><span style=3D"font-=
+size:7.5pt;font-family:Arial,sans-serif;color:rgb(166,166,166)">IMPORTANT N=
+OTICE =E2=80=93 Cyber Crime Alert
+<br>
+<br>
+In light of the increased risk posed by cyber fraud and especially those re=
+lating to bank account details, please take extra care and always be vigila=
+nt in relation to electronic transfer of funds. Please also exercise cautio=
+n when opening any emails, attachments,
+ or links and when responding to any requests for your bank details or noti=
+ces of changes to bank details of others. We will NOT accept responsibility=
+ if you transfer money into an incorrect bank account.
+<br>
+<br>
+Please further note, our general policy is NOT to accept any changes to ban=
+k account details by email.</span></i><i><span style=3D"font-size:10.5pt;fo=
+nt-family:Arial,sans-serif;color:rgb(166,166,166)"><br>
+</span></i><i><span style=3D"font-size:7.5pt;font-family:Arial,sans-serif;c=
+olor:rgb(166,166,166)">=C2=A0</span></i><i><span style=3D"font-size:10.5pt;=
+font-family:Arial,sans-serif;color:rgb(166,166,166)"><br>
+</span></i><i><span style=3D"font-size:7.5pt;font-family:Arial,sans-serif;c=
+olor:rgb(166,166,166)">This e-mail contains information which may be legall=
+y privileged, proprietary in nature, or otherwise protected by law from dis=
+closure, and is intended only for the use
+ of the recipient named above. If you are not the intended recipient, you a=
+re hereby notified that any dissemination or copying of this e-mail may be =
+strictly prohibited. If you have received the e-mail in error, please notif=
+y the sender by e-mail immediately.
+ Under the Regulation of Investigatory Powers Act 2000, this company regula=
+rly intercepts and monitors E-mails sent to it for the purpose of, for exam=
+ple, ensuring that only legitimate business is being carried on and to ensu=
+re the security of information being
+ transmitted.</span></i><i><span style=3D"font-size:10.5pt;font-family:Aria=
+l,sans-serif;color:rgb(166,166,166)"><br>
+</span></i><i><span style=3D"font-size:7.5pt;font-family:Arial,sans-serif;c=
+olor:rgb(166,166,166)">=C2=A0</span></i><i><span style=3D"font-size:10.5pt;=
+font-family:Arial,sans-serif;color:rgb(166,166,166)"><br>
+</span></i><span style=3D"font-size:9pt;font-family:Arial,sans-serif;color:=
+rgb(166,166,166);background:white">Xenia Estates Ltd Company Number 1216434=
+5</span><span style=3D"font-size:9pt;font-family:Arial,sans-serif;color:rgb=
+(166,166,166)"><br>
+Xenia Estates | Marsland House | Marsland Road | Sale | M33 3AQ=C2=A0</span=
+><i><span style=3D"font-size:10.5pt;font-family:Arial,sans-serif;color:rgb(=
+166,166,166)"><u></u><u></u></span></i></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
+top:1pt solid rgb(225,225,225);padding:3pt 0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11pt;font=
+-family:Calibri,sans-serif">From:</span></b><span lang=3D"EN-US" style=3D"f=
+ont-size:11pt;font-family:Calibri,sans-serif"> Dave
+ Evans &lt;<a href=3D"mailto:dave@inhomemedia.io" target=3D"_blank">dave@in=
+homemedia.io</a>&gt;
+<br>
+<b>Sent:</b> Friday, August 2, 2024 4:00 PM<br>
+<b>To:</b> Louis Babington &lt;<a href=3D"mailto:louis.babington@xeniaestat=
+es.com" target=3D"_blank">louis.babington@xeniaestates.com</a>&gt;<br>
+<b>Subject:</b> Re: Budenberg Haus Digi Screens</span><u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal">Hi=C2=A0Louis<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Having looked at our system, we believe the reason t=
+here was no content showing on the screens was that all previous campaigns =
+had elapsed.<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">However, it looks like your colleague, Rachael, who =
+now has access to the content management portal, created a campaign=C2=A0on=
+ Tuesday but didn&#39;t complete the final stage which is to
+ &#39;publish&#39; it.=C2=A0 We have now published it and so that informati=
+on and contact details should be playing on all screens.=C2=A0 Could you co=
+nfirm that&#39;s the case please?<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Kind regards<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<div>
+<div>
+<div>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">Dave Evans</span><u></u><u></u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:&quot;Tim=
+es New Roman&quot;,serif;color:rgb(117,130,131)">Marketing Director</span><=
+u></u><u></u></p>
+<p style=3D"margin:0cm"><span style=3D"color:black">=C2=A0</span><u></u><u>=
+</u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">T: 07930 124209</span><u></u><u></u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">A: Balfour House,=C2=A0<a href=3D"https://www.google.co=
+m/maps/search/46-54+Great+Titchfield+Street,+London+W1W+7QA?entry=3Dgmail&a=
+mp;source=3Dg" target=3D"_blank">46-54 Great Titchfield Street, London W1W
+ 7QA</a></span><u></u><u></u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">E:=C2=A0</span><span style=3D"color:black"><a href=3D"m=
+ailto:dave@inhomemedia.io" target=3D"_blank"><span style=3D"font-size:10pt;=
+font-family:Poppins;color:rgb(17,85,204)">dave@inhomemedia.io</span></a></s=
+pan><u></u><u></u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">W:=C2=A0<a href=3D"http://inhomemedia.io/" target=3D"_b=
+lank"><span style=3D"color:rgb(17,85,204)">inhomemedia.io</span></a></span>=
+<u></u><u></u></p>
+<p style=3D"margin-bottom:12pt"><span style=3D"color:black">=C2=A0</span><u=
+></u><u></u></p>
+<p style=3D"margin:0cm"><a href=3D"https://inhomemedia.io/" target=3D"_blan=
+k"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(17,=
+85,204);border:1pt none windowtext;padding:0cm;text-decoration:none"></span=
+></a></p><div><a href=3D"https://inhomemedia.io/" target=3D"_blank">&lt;~WR=
+D2511.jpg&gt;</a></div><u></u><u></u><p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<p style=3D"margin:0cm"><span style=3D"color:black">=C2=A0</span><u></u><u>=
+</u></p>
+<p style=3D"margin:0cm"><a href=3D"https://www.linkedin.com/company/in-home=
+-media/?viewAsMember=3Dtrue" target=3D"_blank"><span style=3D"font-size:10p=
+t;font-family:Poppins;border:1pt none windowtext;padding:0cm;text-decoratio=
+n:none"></span></a></p><div><a href=3D"https://www.linkedin.com/company/in-=
+home-media/?viewAsMember=3Dtrue" target=3D"_blank">&lt;~WRD2511.jpg&gt;</a>=
+</div><u></u><u></u><p></p>
+<p style=3D"margin:0cm"><span style=3D"color:black">=C2=A0</span><u></u><u>=
+</u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:8pt;font-family:Arial,sans=
+-serif;color:rgb(153,153,153)">Just so you know... this email and any files=
+ transmitted with it are confidential and intended solely for the use of th=
+e individual or entity to whom they are addressed.
+ They are the property of In Home Media Ltd. If you have received this emai=
+l in error please notify the system manager. This message may contain confi=
+dential information and is intended only for the individual named. Please n=
+otify the sender immediately by
+ e-mail if you have received this email by mistake and delete this email fr=
+om your system. In Home Media=C2=A0 Ltd accepts no liability for the conten=
+t of this email, or for the consequences of any actions taken based on the =
+information provided unless that information
+ is subsequently confirmed in writing. If you are not the intended recipien=
+t you are notified that disclosing, copying, distributing or taking any act=
+ion in reliance on the contents of this information is strictly prohibited.=
+ In Home Media Ltd, 2nd Floor, Balfour
+ House, <a href=3D"https://www.google.com/maps/search/46-54+Great+Titchfiel=
+d+Street,+London+W1W+7QE?entry=3Dgmail&amp;source=3Dg" target=3D"_blank">
+46-54 Great Titchfield Street, London W1W 7QE</a>. Company registration 146=
+06919. VAT no. 435094106.</span><u></u><u></u></p>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Mon, Jul 29, 2024 at 4:35<span style=3D"font-fami=
+ly:Arial,sans-serif">=E2=80=AF</span>PM Louis Babington &lt;<a href=3D"mail=
+to:louis.babington@xeniaestates.com" target=3D"_blank">louis.babington@xeni=
+aestates.com</a>&gt;
+ wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;b=
+order-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin:5pt 0c=
+m 5pt 4.8pt">
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Thanks Dave,
+<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">I believe currently the Security schedule should be =
+on along with AGFM contact details and also Xenia contact details.
+<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Kind regards
+<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"border-top:none;border-right:none;border-left:n=
+one;border-bottom:6pt solid rgb(0,56,168);padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"600" style=
+=3D"width:450pt;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 22.5pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"border-top:none;border-bottom:none;border-left:=
+none;border-right:1pt solid rgb(180,180,180);padding:0cm 27.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 0cm 0cm 15pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age001.png&gt;</div><u></u><u></u><p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td valign=3D"top" style=3D"padding:0cm 0cm 0cm 18.75pt">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:1.5pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:1.5pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt;color:rgb(0,56,168)"></=
+span></p><div>&lt;image002.png&gt;</div><u></u><u></u><p></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:13.5pt;font-family:Mulish;c=
+olor:rgb(0,56,168)">Senior=C2=A0Estates=C2=A0Manager</span><span style=3D"f=
+ont-size:1pt;font-family:remialcxesans;color:white"></span><span style=3D"f=
+ont-size:1pt;font-family:template-hfUly8HBEe62YGBFvcGvXQ;color:white"></spa=
+n><span style=3D"font-size:1pt;font-family:zone-1;color:white"></span><span=
+ style=3D"font-size:1pt;font-family:zones-AQ;color:white"></span><u></u><u>=
+</u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:12pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 7.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age003.png&gt;</div><u></u><u></u><p></p>
+</td>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0.75pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age004.png&gt;</div><u></u><u></u><p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:3.75pt 7.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age005.png&gt;</div><u></u><u></u><p></p>
+</td>
+<td valign=3D"top" style=3D"padding:3.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:1.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age006.png&gt;</div><u></u><u></u><p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:3.75pt 7.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age007.png&gt;</div><u></u><u></u><p></p>
+</td>
+<td valign=3D"top" style=3D"padding:3.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:1.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.5pt;font-family:Mulis=
+h;color:rgb(8,32,64)"><a href=3D"http://www.xeniaestates.com" target=3D"_bl=
+ank">www.xeniaestates.com</a></span></b><u></u><u></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td valign=3D"top" style=3D"padding:0cm">
+<p class=3D"MsoNormal"><a href=3D"https://www.linkedin.com/company/3754468/=
+admin/feed/posts/" target=3D"_blank"><span style=3D"font-size:1pt;text-deco=
+ration:none"></span></a></p><div><a href=3D"https://www.linkedin.com/compan=
+y/3754468/admin/feed/posts/" target=3D"_blank">&lt;image008.png&gt;</a></di=
+v><u></u><u></u><p></p>
+</td>
+<td valign=3D"top" style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age009.png&gt;</div><u></u><u></u><p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt">=C2=A0</span><u></u><u=
+></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td style=3D"border-top:none;border-right:none;border-left:none;border-bott=
+om:1pt solid rgb(0,56,168);padding:5.25pt 0cm 9.75pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt">=C2=A0</span><u></u><u=
+></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt">=C2=A0</span><u></u><u=
+></u></p>
+</td>
+<td style=3D"padding:0cm 0cm 0cm 750pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt">=C2=A0</span><u></u><u=
+></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:18.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm">
+<p class=3D"MsoNormal" style=3D"text-align:justify">
+<i><span style=3D"font-size:7.5pt;font-family:Arial,sans-serif;color:rgb(16=
+6,166,166)">IMPORTANT NOTICE =E2=80=93 Cyber Crime Alert
+<br>
+<br>
+In light of the increased risk posed by cyber fraud and especially those re=
+lating to bank account details, please take extra care and always be vigila=
+nt in relation to electronic transfer of funds. Please also exercise cautio=
+n when opening any emails, attachments,
+ or links and when responding to any requests for your bank details or noti=
+ces of changes to bank details of others. We will NOT accept responsibility=
+ if you transfer money into an incorrect bank account.
+<br>
+<br>
+Please further note, our general policy is NOT to accept any changes to ban=
+k account details by email.</span></i><i><span style=3D"font-size:10.5pt;fo=
+nt-family:Arial,sans-serif;color:rgb(166,166,166)"><br>
+</span></i><i><span style=3D"font-size:7.5pt;font-family:Arial,sans-serif;c=
+olor:rgb(166,166,166)">=C2=A0</span></i><i><span style=3D"font-size:10.5pt;=
+font-family:Arial,sans-serif;color:rgb(166,166,166)"><br>
+</span></i><i><span style=3D"font-size:7.5pt;font-family:Arial,sans-serif;c=
+olor:rgb(166,166,166)">This e-mail contains information which may be legall=
+y privileged, proprietary in nature, or otherwise protected by law from dis=
+closure, and is intended only for the use
+ of the recipient named above. If you are not the intended recipient, you a=
+re hereby notified that any dissemination or copying of this e-mail may be =
+strictly prohibited. If you have received the e-mail in error, please notif=
+y the sender by e-mail immediately.
+ Under the Regulation of Investigatory Powers Act 2000, this company regula=
+rly intercepts and monitors E-mails sent to it for the purpose of, for exam=
+ple, ensuring that only legitimate business is being carried on and to ensu=
+re the security of information being
+ transmitted.</span></i><i><span style=3D"font-size:10.5pt;font-family:Aria=
+l,sans-serif;color:rgb(166,166,166)"><br>
+</span></i><i><span style=3D"font-size:7.5pt;font-family:Arial,sans-serif;c=
+olor:rgb(166,166,166)">=C2=A0</span></i><i><span style=3D"font-size:10.5pt;=
+font-family:Arial,sans-serif;color:rgb(166,166,166)"><br>
+</span></i><span style=3D"font-size:9pt;font-family:Arial,sans-serif;color:=
+rgb(166,166,166);background:white">Xenia Estates Ltd Company Number 1216434=
+5</span><span style=3D"font-size:9pt;font-family:Arial,sans-serif;color:rgb=
+(166,166,166)"><br>
+Xenia Estates | Marsland House | Marsland Road | Sale | M33 3AQ=C2=A0</span=
+><u></u><u></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
+top:1pt solid rgb(225,225,225);padding:3pt 0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11pt;font=
+-family:Calibri,sans-serif">From:</span></b><span lang=3D"EN-US" style=3D"f=
+ont-size:11pt;font-family:Calibri,sans-serif"> Dave
+ Evans &lt;<a href=3D"mailto:dave@inhomemedia.io" target=3D"_blank">dave@in=
+homemedia.io</a>&gt;
+<br>
+<b>Sent:</b> Monday, July 29, 2024 4:31 PM<br>
+<b>To:</b> Louis Babington &lt;<a href=3D"mailto:louis.babington@xeniaestat=
+es.com" target=3D"_blank">louis.babington@xeniaestates.com</a>&gt;<br>
+<b>Cc:</b> Anthony Hughes &lt;<a href=3D"mailto:th@inhomemedia.io" target=
+=3D"_blank">th@inhomemedia.io</a>&gt;<br>
+<b>Subject:</b> Re: Budenberg Haus Digi Screens</span><u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal">Thanks for the additional information, Louis.<u></u>=
+<u></u></p>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">We will look into it urgently, starting=C2=A0with a =
+network management system check, as it&#39;s highly unusual=C2=A0for all sc=
+reens not to be working at the same time.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">In the meantime, could you advise which notices you =
+expect to be playing currently?<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Kind regards<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><br clear=3D"all">
+<u></u><u></u></p>
+<div>
+<div>
+<div>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">Dave Evans</span><u></u><u></u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:&quot;Tim=
+es New Roman&quot;,serif;color:rgb(117,130,131)">Marketing Director</span><=
+u></u><u></u></p>
+<p style=3D"margin:0cm"><span style=3D"color:black">=C2=A0</span><u></u><u>=
+</u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">T: 07930 124209</span><u></u><u></u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">A: Balfour House,=C2=A0<a href=3D"https://www.google.co=
+m/maps/search/46-54+Great+Titchfield+Street,+London+W1W+7QA?entry=3Dgmail&a=
+mp;source=3Dg" target=3D"_blank">46-54 Great Titchfield Street, London W1W
+ 7QA</a></span><u></u><u></u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">E:=C2=A0</span><span style=3D"color:black"><a href=3D"m=
+ailto:dave@inhomemedia.io" target=3D"_blank"><span style=3D"font-size:10pt;=
+font-family:Poppins;color:rgb(17,85,204)">dave@inhomemedia.io</span></a></s=
+pan><u></u><u></u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">W:=C2=A0<a href=3D"http://inhomemedia.io/" target=3D"_b=
+lank"><span style=3D"color:rgb(17,85,204)">inhomemedia.io</span></a></span>=
+<u></u><u></u></p>
+<p style=3D"margin-bottom:12pt"><span style=3D"color:black">=C2=A0</span><u=
+></u><u></u></p>
+<p style=3D"margin:0cm"><a href=3D"https://inhomemedia.io/" target=3D"_blan=
+k"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(17,=
+85,204);border:1pt none windowtext;padding:0cm;text-decoration:none"></span=
+></a></p><div><a href=3D"https://inhomemedia.io/" target=3D"_blank">&lt;~WR=
+D2511.jpg&gt;</a></div><u></u><u></u><p></p>
+<p style=3D"margin:0cm"><span style=3D"color:black">=C2=A0</span><u></u><u>=
+</u></p>
+<p style=3D"margin:0cm"><a href=3D"https://www.linkedin.com/company/in-home=
+-media/?viewAsMember=3Dtrue" target=3D"_blank"><span style=3D"font-size:10p=
+t;font-family:Poppins;border:1pt none windowtext;padding:0cm;text-decoratio=
+n:none"></span></a></p><div><a href=3D"https://www.linkedin.com/company/in-=
+home-media/?viewAsMember=3Dtrue" target=3D"_blank">&lt;~WRD2511.jpg&gt;</a>=
+</div><u></u><u></u><p></p>
+<p style=3D"margin:0cm"><span style=3D"color:black">=C2=A0</span><u></u><u>=
+</u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:8pt;font-family:Arial,sans=
+-serif;color:rgb(153,153,153)">Just so you know... this email and any files=
+ transmitted with it are confidential and intended solely for the use of th=
+e individual or entity to whom they are addressed.
+ They are the property of In Home Media Ltd. If you have received this emai=
+l in error please notify the system manager. This message may contain confi=
+dential information and is intended only for the individual named. Please n=
+otify the sender immediately by
+ e-mail if you have received this email by mistake and delete this email fr=
+om your system. In Home Media=C2=A0 Ltd accepts no liability for the conten=
+t of this email, or for the consequences of any actions taken based on the =
+information provided unless that information
+ is subsequently confirmed in writing. If you are not the intended recipien=
+t you are notified that disclosing, copying, distributing or taking any act=
+ion in reliance on the contents of this information is strictly prohibited.=
+ In Home Media Ltd, 2nd Floor, Balfour
+ House, <a href=3D"https://www.google.com/maps/search/46-54+Great+Titchfiel=
+d+Street,+London+W1W+7QE?entry=3Dgmail&amp;source=3Dg" target=3D"_blank">
+46-54 Great Titchfield Street, London W1W 7QE</a>. Company registration 146=
+06919. VAT no. 435094106.</span><u></u><u></u></p>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Mon, Jul 29, 2024 at 4:22<span style=3D"font-fami=
+ly:Arial,sans-serif">=E2=80=AF</span>PM Louis Babington &lt;<a href=3D"mail=
+to:louis.babington@xeniaestates.com" target=3D"_blank">louis.babington@xeni=
+aestates.com</a>&gt;
+ wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;b=
+order-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin:5pt 0c=
+m 5pt 4.8pt">
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Good Afternoon Dave,
+<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">After speaking with on site staff all of the screens=
+ are currently not working and I believe they just read (InHomeMedia) on th=
+e screen with nothing else on them.
+<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Also the one in Haus 3 currently just looks like a m=
+obile phone screen?
+<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Thank you
+<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"border-top:none;border-right:none;border-left:n=
+one;border-bottom:6pt solid rgb(0,56,168);padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"600" style=
+=3D"width:450pt;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 22.5pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"border-top:none;border-bottom:none;border-left:=
+none;border-right:1pt solid rgb(180,180,180);padding:0cm 27.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 0cm 0cm 15pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age001.png&gt;</div><u></u><u></u><p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td valign=3D"top" style=3D"padding:0cm 0cm 0cm 18.75pt">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:1.5pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:1.5pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt;color:rgb(0,56,168)"></=
+span></p><div>&lt;image002.png&gt;</div><u></u><u></u><p></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:13.5pt;font-family:Mulish;c=
+olor:rgb(0,56,168)">Senior=C2=A0Estates=C2=A0Manager</span><span style=3D"f=
+ont-size:1pt;font-family:remialcxesans;color:white"></span><span style=3D"f=
+ont-size:1pt;font-family:template-hfUly8HBEe62YGBFvcGvXQ;color:white"></spa=
+n><span style=3D"font-size:1pt;font-family:zone-1;color:white"></span><span=
+ style=3D"font-size:1pt;font-family:zones-AQ;color:white"></span><u></u><u>=
+</u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:12pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 7.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age003.png&gt;</div><u></u><u></u><p></p>
+</td>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0.75pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age004.png&gt;</div><u></u><u></u><p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:3.75pt 7.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age005.png&gt;</div><u></u><u></u><p></p>
+</td>
+<td valign=3D"top" style=3D"padding:3.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:1.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age006.png&gt;</div><u></u><u></u><p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:3.75pt 7.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age007.png&gt;</div><u></u><u></u><p></p>
+</td>
+<td valign=3D"top" style=3D"padding:3.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:1.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.5pt;font-family:Mulis=
+h;color:rgb(8,32,64)"><a href=3D"http://www.xeniaestates.com" target=3D"_bl=
+ank">www.xeniaestates.com</a></span></b><u></u><u></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td valign=3D"top" style=3D"padding:0cm">
+<p class=3D"MsoNormal"><a href=3D"https://www.linkedin.com/company/3754468/=
+admin/feed/posts/" target=3D"_blank"><span style=3D"font-size:1pt;text-deco=
+ration:none"></span></a></p><div><a href=3D"https://www.linkedin.com/compan=
+y/3754468/admin/feed/posts/" target=3D"_blank">&lt;image008.png&gt;</a></di=
+v><u></u><u></u><p></p>
+</td>
+<td valign=3D"top" style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age009.png&gt;</div><u></u><u></u><p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt">=C2=A0</span><u></u><u=
+></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td style=3D"border-top:none;border-right:none;border-left:none;border-bott=
+om:1pt solid rgb(0,56,168);padding:5.25pt 0cm 9.75pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt">=C2=A0</span><u></u><u=
+></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt">=C2=A0</span><u></u><u=
+></u></p>
+</td>
+<td style=3D"padding:0cm 0cm 0cm 750pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt">=C2=A0</span><u></u><u=
+></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:18.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm">
+<p class=3D"MsoNormal" style=3D"text-align:justify">
+<i><span style=3D"font-size:7.5pt;font-family:Arial,sans-serif;color:rgb(16=
+6,166,166)">IMPORTANT NOTICE =E2=80=93 Cyber Crime Alert
+<br>
+<br>
+In light of the increased risk posed by cyber fraud and especially those re=
+lating to bank account details, please take extra care and always be vigila=
+nt in relation to electronic transfer of funds. Please also exercise cautio=
+n when opening any emails, attachments,
+ or links and when responding to any requests for your bank details or noti=
+ces of changes to bank details of others. We will NOT accept responsibility=
+ if you transfer money into an incorrect bank account.
+<br>
+<br>
+Please further note, our general policy is NOT to accept any changes to ban=
+k account details by email.</span></i><i><span style=3D"font-size:10.5pt;fo=
+nt-family:Arial,sans-serif;color:rgb(166,166,166)"><br>
+</span></i><i><span style=3D"font-size:7.5pt;font-family:Arial,sans-serif;c=
+olor:rgb(166,166,166)">=C2=A0</span></i><i><span style=3D"font-size:10.5pt;=
+font-family:Arial,sans-serif;color:rgb(166,166,166)"><br>
+</span></i><i><span style=3D"font-size:7.5pt;font-family:Arial,sans-serif;c=
+olor:rgb(166,166,166)">This e-mail contains information which may be legall=
+y privileged, proprietary in nature, or otherwise protected by law from dis=
+closure, and is intended only for the use
+ of the recipient named above. If you are not the intended recipient, you a=
+re hereby notified that any dissemination or copying of this e-mail may be =
+strictly prohibited. If you have received the e-mail in error, please notif=
+y the sender by e-mail immediately.
+ Under the Regulation of Investigatory Powers Act 2000, this company regula=
+rly intercepts and monitors E-mails sent to it for the purpose of, for exam=
+ple, ensuring that only legitimate business is being carried on and to ensu=
+re the security of information being
+ transmitted.</span></i><i><span style=3D"font-size:10.5pt;font-family:Aria=
+l,sans-serif;color:rgb(166,166,166)"><br>
+</span></i><i><span style=3D"font-size:7.5pt;font-family:Arial,sans-serif;c=
+olor:rgb(166,166,166)">=C2=A0</span></i><i><span style=3D"font-size:10.5pt;=
+font-family:Arial,sans-serif;color:rgb(166,166,166)"><br>
+</span></i><span style=3D"font-size:9pt;font-family:Arial,sans-serif;color:=
+rgb(166,166,166);background:white">Xenia Estates Ltd Company Number 1216434=
+5</span><span style=3D"font-size:9pt;font-family:Arial,sans-serif;color:rgb=
+(166,166,166)"><br>
+Xenia Estates | Marsland House | Marsland Road | Sale | M33 3AQ=C2=A0</span=
+><u></u><u></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
+top:1pt solid rgb(225,225,225);padding:3pt 0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11pt;font=
+-family:Calibri,sans-serif">From:</span></b><span lang=3D"EN-US" style=3D"f=
+ont-size:11pt;font-family:Calibri,sans-serif"> Dave
+ Evans &lt;<a href=3D"mailto:dave@inhomemedia.io" target=3D"_blank">dave@in=
+homemedia.io</a>&gt;
+<br>
+<b>Sent:</b> Monday, July 29, 2024 4:15 PM<br>
+<b>To:</b> Louis Babington &lt;<a href=3D"mailto:louis.babington@xeniaestat=
+es.com" target=3D"_blank">louis.babington@xeniaestates.com</a>&gt;<br>
+<b>Cc:</b> Anthony Hughes &lt;<a href=3D"mailto:th@inhomemedia.io" target=
+=3D"_blank">th@inhomemedia.io</a>&gt;<br>
+<b>Subject:</b> Re: Budenberg Haus Digi Screens</span><u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal">Hi Louis<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Thanks for your email.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Could you confirm=C2=A0 - is this one of the interna=
+l or external screens?=C2=A0 On our last visit, a couple of weeks ago, we r=
+esolved an issue with one of the internal screens (all internals
+ were then working) but noticed a problem with one of the externals.=C2=A0 =
+For the latter, I suggested a temporary solution to Chris, whilst we invest=
+igated further.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">If you can let me know, we can check our systems and=
+=C2=A0plan the=C2=A0best course of action.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Kind regards<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><br clear=3D"all">
+<u></u><u></u></p>
+<div>
+<div>
+<div>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">Dave Evans</span><u></u><u></u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:&quot;Tim=
+es New Roman&quot;,serif;color:rgb(117,130,131)">Marketing Director</span><=
+u></u><u></u></p>
+<p style=3D"margin:0cm"><span style=3D"color:black">=C2=A0</span><u></u><u>=
+</u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">T: 07930 124209</span><u></u><u></u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">A: Balfour House,=C2=A0<a href=3D"https://www.google.co=
+m/maps/search/46-54+Great+Titchfield+Street,+London+W1W+7QA?entry=3Dgmail&a=
+mp;source=3Dg" target=3D"_blank">46-54 Great Titchfield Street, London W1W
+ 7QA</a></span><u></u><u></u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">E:=C2=A0</span><span style=3D"color:black"><a href=3D"m=
+ailto:dave@inhomemedia.io" target=3D"_blank"><span style=3D"font-size:10pt;=
+font-family:Poppins;color:rgb(17,85,204)">dave@inhomemedia.io</span></a></s=
+pan><u></u><u></u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:10pt;font-family:Poppins;c=
+olor:rgb(26,34,52)">W:=C2=A0<a href=3D"http://inhomemedia.io/" target=3D"_b=
+lank"><span style=3D"color:rgb(17,85,204)">inhomemedia.io</span></a></span>=
+<u></u><u></u></p>
+<p style=3D"margin-bottom:12pt"><span style=3D"color:black">=C2=A0</span><u=
+></u><u></u></p>
+<p style=3D"margin:0cm"><a href=3D"https://inhomemedia.io/" target=3D"_blan=
+k"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(17,=
+85,204);border:1pt none windowtext;padding:0cm;text-decoration:none"></span=
+></a></p><div><a href=3D"https://inhomemedia.io/" target=3D"_blank">&lt;~WR=
+D2511.jpg&gt;</a></div><u></u><u></u><p></p>
+<p style=3D"margin:0cm"><span style=3D"color:black">=C2=A0</span><u></u><u>=
+</u></p>
+<p style=3D"margin:0cm"><a href=3D"https://www.linkedin.com/company/in-home=
+-media/?viewAsMember=3Dtrue" target=3D"_blank"><span style=3D"font-size:10p=
+t;font-family:Poppins;border:1pt none windowtext;padding:0cm;text-decoratio=
+n:none"></span></a></p><div><a href=3D"https://www.linkedin.com/company/in-=
+home-media/?viewAsMember=3Dtrue" target=3D"_blank">&lt;~WRD2511.jpg&gt;</a>=
+</div><u></u><u></u><p></p>
+<p style=3D"margin:0cm"><span style=3D"color:black">=C2=A0</span><u></u><u>=
+</u></p>
+<p style=3D"margin:0cm"><span style=3D"font-size:8pt;font-family:Arial,sans=
+-serif;color:rgb(153,153,153)">Just so you know... this email and any files=
+ transmitted with it are confidential and intended solely for the use of th=
+e individual or entity to whom they are addressed.
+ They are the property of In Home Media Ltd. If you have received this emai=
+l in error please notify the system manager. This message may contain confi=
+dential information and is intended only for the individual named. Please n=
+otify the sender immediately by
+ e-mail if you have received this email by mistake and delete this email fr=
+om your system. In Home Media=C2=A0 Ltd accepts no liability for the conten=
+t of this email, or for the consequences of any actions taken based on the =
+information provided unless that information
+ is subsequently confirmed in writing. If you are not the intended recipien=
+t you are notified that disclosing, copying, distributing or taking any act=
+ion in reliance on the contents of this information is strictly prohibited.=
+ In Home Media Ltd, 2nd Floor, Balfour
+ House, <a href=3D"https://www.google.com/maps/search/46-54+Great+Titchfiel=
+d+Street,+London+W1W+7QE?entry=3Dgmail&amp;source=3Dg" target=3D"_blank">
+46-54 Great Titchfield Street, London W1W 7QE</a>. Company registration 146=
+06919. VAT no. 435094106.</span><u></u><u></u></p>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Mon, Jul 29, 2024 at 4:01<span style=3D"font-fami=
+ly:Arial,sans-serif">=E2=80=AF</span>PM Louis Babington &lt;<a href=3D"mail=
+to:louis.babington@xeniaestates.com" target=3D"_blank">louis.babington@xeni=
+aestates.com</a>&gt;
+ wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;b=
+order-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin:5pt 0c=
+m 5pt 4.8pt">
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Good Afternoon Dave,
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I hope you`re well.
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">We have received reports that t=
+he Digi Screen next to the lift in Haus 2 and Haus 3 have been off for a nu=
+mber of weeks.
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Please can we have an engineer =
+out to take a look at why the screen are currently off.
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Kind regards
+</span><u></u><u></u></p>
+</div>
+<div>
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"border-top:none;border-right:none;border-left:n=
+one;border-bottom:6pt solid rgb(0,56,168);padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"600" style=
+=3D"width:450pt;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 22.5pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"border-top:none;border-bottom:none;border-left:=
+none;border-right:1pt solid rgb(180,180,180);padding:0cm 27.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 0cm 0cm 15pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age001.png&gt;</div><u></u><u></u><p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td valign=3D"top" style=3D"padding:0cm 0cm 0cm 18.75pt">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:1.5pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:1.5pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt;color:rgb(0,56,168)"></=
+span></p><div>&lt;image002.png&gt;</div><u></u><u></u><p></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:13.5pt;font-family:Mulish;c=
+olor:rgb(0,56,168)">Senior=C2=A0Estates=C2=A0Manager</span><span style=3D"f=
+ont-size:1pt;font-family:remialcxesans;color:white"></span><span style=3D"f=
+ont-size:1pt;font-family:template-hfUly8HBEe62YGBFvcGvXQ;color:white"></spa=
+n><span style=3D"font-size:1pt;font-family:zone-1;color:white"></span><span=
+ style=3D"font-size:1pt;font-family:zones-AQ;color:white"></span><u></u><u>=
+</u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:12pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 7.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age003.png&gt;</div><u></u><u></u><p></p>
+</td>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0.75pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age004.png&gt;</div><u></u><u></u><p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:3.75pt 7.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age005.png&gt;</div><u></u><u></u><p></p>
+</td>
+<td valign=3D"top" style=3D"padding:3.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:1.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age006.png&gt;</div><u></u><u></u><p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:3.75pt 7.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age007.png&gt;</div><u></u><u></u><p></p>
+</td>
+<td valign=3D"top" style=3D"padding:3.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:1.5pt 0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.5pt;font-family:Mulis=
+h;color:rgb(8,32,64)"><a href=3D"http://www.xeniaestates.com" target=3D"_bl=
+ank">www.xeniaestates.com</a></span></b><u></u><u></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td valign=3D"top" style=3D"padding:0cm">
+<p class=3D"MsoNormal"><a href=3D"https://www.linkedin.com/company/3754468/=
+admin/feed/posts/" target=3D"_blank"><span style=3D"font-size:1pt;text-deco=
+ration:none"></span></a></p><div><a href=3D"https://www.linkedin.com/compan=
+y/3754468/admin/feed/posts/" target=3D"_blank">&lt;image008.png&gt;</a></di=
+v><u></u><u></u><p></p>
+</td>
+<td valign=3D"top" style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt"></span></p><div>&lt;im=
+age009.png&gt;</div><u></u><u></u><p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt">=C2=A0</span><u></u><u=
+></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td style=3D"border-top:none;border-right:none;border-left:none;border-bott=
+om:1pt solid rgb(0,56,168);padding:5.25pt 0cm 9.75pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt">=C2=A0</span><u></u><u=
+></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt">=C2=A0</span><u></u><u=
+></u></p>
+</td>
+<td style=3D"padding:0cm 0cm 0cm 750pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:1pt">=C2=A0</span><u></u><u=
+></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:18.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%;border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm">
+<p class=3D"MsoNormal" style=3D"text-align:justify">
+<i><span style=3D"font-size:7.5pt;font-family:Arial,sans-serif;color:rgb(16=
+6,166,166)">IMPORTANT NOTICE =E2=80=93 Cyber Crime Alert
+<br>
+<br>
+In light of the increased risk posed by cyber fraud and especially those re=
+lating to bank account details, please take extra care and always be vigila=
+nt in relation to electronic transfer of funds. Please also exercise cautio=
+n when opening any emails, attachments,
+ or links and when responding to any requests for your bank details or noti=
+ces of changes to bank details of others. We will NOT accept responsibility=
+ if you transfer money into an incorrect bank account.
+<br>
+<br>
+Please further note, our general policy is NOT to accept any changes to ban=
+k account details by email.</span></i><i><span style=3D"font-size:10.5pt;fo=
+nt-family:Arial,sans-serif;color:rgb(166,166,166)"><br>
+</span></i><i><span style=3D"font-size:7.5pt;font-family:Arial,sans-serif;c=
+olor:rgb(166,166,166)">=C2=A0</span></i><i><span style=3D"font-size:10.5pt;=
+font-family:Arial,sans-serif;color:rgb(166,166,166)"><br>
+</span></i><i><span style=3D"font-size:7.5pt;font-family:Arial,sans-serif;c=
+olor:rgb(166,166,166)">This e-mail contains information which may be legall=
+y privileged, proprietary in nature, or otherwise protected by law from dis=
+closure, and is intended only for the use
+ of the recipient named above. If you are not the intended recipient, you a=
+re hereby notified that any dissemination or copying of this e-mail may be =
+strictly prohibited. If you have received the e-mail in error, please notif=
+y the sender by e-mail immediately.
+ Under the Regulation of Investigatory Powers Act 2000, this company regula=
+rly intercepts and monitors E-mails sent to it for the purpose of, for exam=
+ple, ensuring that only legitimate business is being carried on and to ensu=
+re the security of information being
+ transmitted.</span></i><i><span style=3D"font-size:10.5pt;font-family:Aria=
+l,sans-serif;color:rgb(166,166,166)"><br>
+</span></i><i><span style=3D"font-size:7.5pt;font-family:Arial,sans-serif;c=
+olor:rgb(166,166,166)">=C2=A0</span></i><i><span style=3D"font-size:10.5pt;=
+font-family:Arial,sans-serif;color:rgb(166,166,166)"><br>
+</span></i><span style=3D"font-size:9pt;font-family:Arial,sans-serif;color:=
+rgb(166,166,166);background:white">Xenia Estates Ltd Company Number 1216434=
+5</span><span style=3D"font-size:9pt;font-family:Arial,sans-serif;color:rgb=
+(166,166,166)"><br>
+Xenia Estates | Marsland House | Marsland Road | Sale | M33 3AQ=C2=A0</span=
+><u></u><u></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+
+</div></div></div>
+</div></blockquote></div></div></div></div></blockquote></div>
+
+--000000000000a0df28061f8cd983--

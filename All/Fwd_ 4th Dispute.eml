@@ -1,0 +1,160 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:4a55:b0:a8a:83f5:e594 with SMTP id a21csp172710ejv;
+        Tue, 17 Sep 2024 06:07:42 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE7I7EYGFA8aJ6ULH2fhOIAIKUtMKjNu3j1/PsQOfEau1XjG32T8cati1sXA+AI5nSLoA3E
+X-Received: by 2002:a2e:d11:0:b0:2f6:62a1:25ff with SMTP id 38308e7fff4ca-2f791b59aa3mr71391581fa.28.1726578462340;
+        Tue, 17 Sep 2024 06:07:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1726578462; cv=none;
+        d=google.com; s=arc-20240605;
+        b=fd37sGTnGmiiErYEWbbECErEObL/bkmCkPIQv3W+G2/Y1P6v8t70cLe/NPNgWzQKqP
+         94Azlbip5rFknFIKGiq2IfM/FS8d2sJNMfO36qYrHhOvUoq1+MxFQ7IzAKMtkvsM1b/a
+         vcqa9OcLgV0kgSMX6IABclh92uEUXJLYZx1E9Zf83+3F9umi59wbkZIqBy7TDz7S3tVG
+         SDU7O/UdP/jGPjd/jPLwjsHBUeV1Y+tNiUs1ZXvPFf5wf64eIqSjGTwpBcIqP06xmV2J
+         8buQC+az1deZocoett2JNq+3NdYfBSsZKqJoNuqKRST47m5mGHADYj0qYfdWJcemNRf3
+         oFbA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=date:to:references:message-id:subject:mime-version:from
+         :dkim-signature;
+        bh=Iq54WifRNnDRxZQAQeWQbWs0+UH5hkqhOIcPhujGBYk=;
+        fh=PPC1HqqdMuvCicfndAtvqlbv4AGpwjpAql224GPSQGU=;
+        b=V+bE+urd3hNmJkK44laVuHKHah/CmxkAMgsSMx/FS21YgFXvxh8SzmKUFLTP8W4/g7
+         KwL2ktzgqvN4wktDH36KjoU/DSTtJbRLENoBRwd2A4240GGm0LcH2IGbkMfknFtjgF7E
+         2p3xP0ze9h0DNYBh1qdjKkuWu5473OZvYUY57UHez29R4maz5eSSwoOV7w+7Dx97q5mJ
+         EQg/6Aa2CFoqFrucl+PNoADXWGdyg3ME99msT9mRA2Sgl0sP8tbSXjraX2oV/CW2l270
+         wJjr1aIoxpyDR3Ye2aKXXWe0QFvN/VJAK24MuE94z9NglKxoyt65ko8aGCCDRR6zZ/qB
+         xtfA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=NtGMqJG8;
+       spf=neutral (google.com: 2a00:1450:4864:20::331 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io;
+       dara=pass header.i=@inhomemedia.io
+Return-Path: <th@inhomemedia.io>
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com. [2a00:1450:4864:20::331])
+        by mx.google.com with ESMTPS id 38308e7fff4ca-2f79d488a00si22715711fa.599.2024.09.17.06.07.41
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Sep 2024 06:07:41 -0700 (PDT)
+Received-SPF: neutral (google.com: 2a00:1450:4864:20::331 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) client-ip=2a00:1450:4864:20::331;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=NtGMqJG8;
+       spf=neutral (google.com: 2a00:1450:4864:20::331 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io;
+       dara=pass header.i=@inhomemedia.io
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-42bb7298bdeso58133705e9.1
+        for <ot@inhomemedia.io>; Tue, 17 Sep 2024 06:07:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1726578461; x=1727183261; darn=inhomemedia.io;
+        h=date:to:references:message-id:subject:mime-version:from:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Iq54WifRNnDRxZQAQeWQbWs0+UH5hkqhOIcPhujGBYk=;
+        b=NtGMqJG87G2CDZ/9YBiMQ/PM2f9vtemiAc8SQ+tNjyArc3aLBQ/Msp2/PouD2DAOJf
+         5w59LV0feWfUyZTZ2UqMkHX23Nzj6m6vlO5d1FbTEq3gfyg+2mrHkKgAubI5xISraDmB
+         N3loh7WhjZlYxvgMmTTw5mFyXVC6TNK6k5tztXkfD1ICX9rrSSsfQOis0UHOmcT9odSF
+         tNoeYsHdHQh1kp4m5Lw7vOEk79pGl27E1mPoW8EHwLtsmGdoiy3r8q+QPUlzOi3/OcNq
+         MO4/F07edwJQboCPJeOVkmHog+JDEBs9Vue+MdOmN4nvNw/4GkwzvofskSPWsNshnMoX
+         M7vA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726578461; x=1727183261;
+        h=date:to:references:message-id:subject:mime-version:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Iq54WifRNnDRxZQAQeWQbWs0+UH5hkqhOIcPhujGBYk=;
+        b=VGx3OO6CW7+U7f8GQfCLn8agNPsquUbRZvs1BBVTBhpGbvwK8eo7ED9RPVqQES1iac
+         m0w9QE5F1UFerAll5/7hzPGm7jXMzjHTRLAWt91tm1jswqJQySrPvYx4Y0NRQIf/nttD
+         gyG5JS43Wz7maHXP4+OWYy9wyQ/jpLfiWUS8DlYXDLjE/6+HSpMb1sgoHKDJutlO1PAY
+         zPckQYYheRMG0xPgTziJudc7/rMC+12UFwAz8WmZoARPqkJuox2DI7NXcXKK/zpEo82y
+         MVx7KfDs8UhvOawVKO2970lpgF6Q5Ls1eXZZObt67Dlt0mytoiuuYRBYSmQuBqrD+i+D
+         R5zA==
+X-Gm-Message-State: AOJu0Yy52zn4I3X0Z2tPRSgufAm66EmH41swWkGad0b0rueT0h9E7ioc
+	Lo7Zmb2/QvsroLGz6/TnCv5JYrSq+Jl9PtqLOb5TyM5mdOn30fvYajFA/JKo1jLaWuDX0Cruccd
+	tvhZ0
+X-Received: by 2002:a05:600c:3b23:b0:42c:b62c:9f0d with SMTP id 5b1f17b1804b1-42d9082739dmr157903945e9.17.1726578460918;
+        Tue, 17 Sep 2024 06:07:40 -0700 (PDT)
+Return-Path: <th@inhomemedia.io>
+Received: from smtpclient.apple (host81-132-1-91.range81-132.btcentralplus.com. [81.132.1.91])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378e71f0699sm9466598f8f.15.2024.09.17.06.07.40
+        for <ot@inhomemedia.io>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 17 Sep 2024 06:07:40 -0700 (PDT)
+From: Anthony Hughes <th@inhomemedia.io>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_38DD0921-CA3F-4DEC-8604-F7F96713C670"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.700.6.1.1\))
+Subject: Fwd: 4th Dispute
+Message-Id: <6EE0D8A2-0695-4B93-953D-002DEEB1B643@inhomemedia.io>
+References: <893057AB-2D5D-494A-BCC5-F8EAEB53CA99@inhomemedia.io>
+To: Owen Thomas <ot@inhomemedia.io>
+Date: Tue, 17 Sep 2024 14:07:30 +0100
+X-Mailer: Apple Mail (2.3731.700.6.1.1)
+
+
+--Apple-Mail=_38DD0921-CA3F-4DEC-8604-F7F96713C670
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
+
+Fyi
+
+> Begin forwarded message:
+>=20
+> From: Anthony Hughes <th@inhomemedia.io>
+> Subject: Re: 4th Dispute
+> Date: 17 September 2024 at 12:56:48 BST
+> To: David Moulton <david.moulton@erismedia.co.uk>
+>=20
+> Hi Dave,
+>=20
+> Unfortunately if we do not have an agreed position on this by close of =
+play Wednesday 18tn September, I will write to Steels Raymond direct =
+copying both Eris Media and 4th utility. This letter was sent in August, =
+I have not seen site of it but have been told the content, to say I am =
+unhappy is an understatement..
+>=20
+> Best Tony
+>=20
+
+
+--Apple-Mail=_38DD0921-CA3F-4DEC-8604-F7F96713C670
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dus-ascii"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: =
+after-white-space;">Fyi<br><div><br><blockquote type=3D"cite"><div>Begin =
+forwarded message:</div><br class=3D"Apple-interchange-newline"><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px;"><span style=3D"font-family: -webkit-system-font, =
+Helvetica Neue, Helvetica, sans-serif; color:rgba(0, 0, 0, =
+1.0);"><b>From: </b></span><span style=3D"font-family: =
+-webkit-system-font, Helvetica Neue, Helvetica, sans-serif;">Anthony =
+Hughes &lt;th@inhomemedia.io&gt;<br></span></div><div style=3D"margin-top:=
+ 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;"><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif; color:rgba(0, 0, 0, 1.0);"><b>Subject: </b></span><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif;"><b>Re: 4th Dispute</b><br></span></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px;"><span style=3D"font-family: -webkit-system-font, =
+Helvetica Neue, Helvetica, sans-serif; color:rgba(0, 0, 0, =
+1.0);"><b>Date: </b></span><span style=3D"font-family: =
+-webkit-system-font, Helvetica Neue, Helvetica, sans-serif;">17 =
+September 2024 at 12:56:48 BST<br></span></div><div style=3D"margin-top: =
+0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;"><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif; color:rgba(0, 0, 0, 1.0);"><b>To: </b></span><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif;">David Moulton =
+&lt;david.moulton@erismedia.co.uk&gt;<br></span></div><br><div><meta =
+http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf-8"><div =
+style=3D"overflow-wrap: break-word; -webkit-nbsp-mode: space; =
+line-break: after-white-space;">Hi =
+Dave,<div><br></div><div>Unfortunately if we do not have an agreed =
+position on this by close of play Wednesday 18tn September, I will write =
+to Steels Raymond direct copying both Eris Media and 4th utility. This =
+letter was sent in August, I have not seen site of it but have been told =
+the content, to say I am unhappy is an =
+understatement..</div><div><br></div><div>Best =
+Tony<br><div><div><br></div></div></div></div></div></blockquote></div><br=
+></body></html>=
+
+--Apple-Mail=_38DD0921-CA3F-4DEC-8604-F7F96713C670--

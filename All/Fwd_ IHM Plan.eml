@@ -1,0 +1,1081 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:4495:b0:a86:9644:f083 with SMTP id y21csp60261ejo;
+        Wed, 4 Sep 2024 00:44:57 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFjZ2xrZvRIZ65SVc7+Jc12MnXQPvzjCEsAOmczY2cmG5ptTVKOsRKtCiuZ6zP6N2Voqd1y
+X-Received: by 2002:a05:6a20:d043:b0:1c8:bfa8:d552 with SMTP id adf61e73a8af0-1cece4d6d81mr14030157637.9.1725435897548;
+        Wed, 04 Sep 2024 00:44:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1725435897; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Pdiyv7rsMkA59Zd59zxQVO5cmqiU+QWrralcSiENfqNOMTeVLZ90kQjo/3SDjKixIF
+         on00z6PFwIa2vm6usGrty2Mu5yWKWPRkHw1NTW3VMP45xLq7ZU2gdyU5RipsV6N8EYox
+         1rqJPQsaZ788o1pxL7gJm9EeRAXoe4plYuVTSNjcgu6QHS/hR9qXTV5w5gyVgkShr0El
+         no7phLdkJfgdRsC9dMOXmnqCRT1unhwcacy0jmNPfkZgGxQJGUaGo9atXPIZY/d7xp8J
+         iXhT769vkRBvHD3tcE7p6s8ni3a7LFXfxnZG04Lg951AY/Pprv/srCm1f7d7WoTVyODp
+         +zOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=date:to:references:message-id:subject:mime-version:from
+         :dkim-signature;
+        bh=hzyRDYdXSnPC6DYImUYz4gV9ogdIrXA/RKjP7joQ0pg=;
+        fh=PPC1HqqdMuvCicfndAtvqlbv4AGpwjpAql224GPSQGU=;
+        b=SSFtq/h+RqMvPsgudpHrUMFmZtvsxSi/j1B29O3qbOOI+sjjlsQehtZz0qXgWFK8Vj
+         QzNterQrV1Zx/GNj1b6qN9no5TakxPsCFQKk/uK1VanE/JUk6VneecszV3gZKD+4+Ev+
+         MFsMjtbYHRUp/XZfpLNCdOBi0uVPTWbgmtCry6WONiHXvSU9tt1UpUmrgotkf1YrAf/I
+         NjnnWWwgUgTmvkZozyTeKlMEzw6dG/63smnsmtS8KsVfZ3o6nHgQwV0FjNNgVijnxDOY
+         USc8gYqttUYnxgX2fJc7BJ07hvCG3As6OntQHnbBlj9P5YyQCGty+4w5iavSB3XFnhus
+         V/7A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=VIWg2rox;
+       spf=neutral (google.com: 2a00:1450:4864:20::12d is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io;
+       dara=pass header.i=@inhomemedia.io
+Return-Path: <th@inhomemedia.io>
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com. [2a00:1450:4864:20::12d])
+        by mx.google.com with ESMTPS id 41be03b00d2f7-7d4fbdc6a27si1571222a12.726.2024.09.04.00.44.56
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Sep 2024 00:44:57 -0700 (PDT)
+Received-SPF: neutral (google.com: 2a00:1450:4864:20::12d is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) client-ip=2a00:1450:4864:20::12d;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=VIWg2rox;
+       spf=neutral (google.com: 2a00:1450:4864:20::12d is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io;
+       dara=pass header.i=@inhomemedia.io
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-5343d2af735so6109629e87.1
+        for <ot@inhomemedia.io>; Wed, 04 Sep 2024 00:44:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1725435893; x=1726040693; darn=inhomemedia.io;
+        h=date:to:references:message-id:subject:mime-version:from:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hzyRDYdXSnPC6DYImUYz4gV9ogdIrXA/RKjP7joQ0pg=;
+        b=VIWg2rox28Z/WErDy2l55wQKN689leKLTkYAacJu/EedyfPT7JANEdp5ytqS/VAdEt
+         e2P//LNHztJfR598mK6iN7yU+FXiFqI8EtFH+pPA2wPZqrhOqp93uoD2QKnRiRa7eDOR
+         JvgsIgLcdKmo5ieDelmeyWoEmjbzkASSnFLRxxU+t96VZskdYKHGIByG6eLQpeXX/PHH
+         JtTyoPX33sJikSBH8fxL/Rt/ngzl0mXSpf4f1OTGv/i0f6J6laHunjIMQahTlyn1k+4K
+         LuUCSXMdAGLwIG86Ol6Nv4iRs3Lky136RLNWDkBKFpqR3pqGvMPqer9Bhb8lfQaU5smz
+         mdSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725435893; x=1726040693;
+        h=date:to:references:message-id:subject:mime-version:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hzyRDYdXSnPC6DYImUYz4gV9ogdIrXA/RKjP7joQ0pg=;
+        b=PJynGJyXRFSFMkaxrjJDZteFMPcGQaaJ1WIjC9Ua6IXumV19RB1kWWgiIHye+cpfaT
+         QQAedZORCtW0qQbvzW+oBjf/oBLSt9NUuKRnPaocW1r0yscbjLWYNrmyMFTftZ2LtloY
+         69R99ycX7EDv4GQhsdjWMIFiE2BYiCQo2idp9IiPDKLfM14mLJJ7dPZQ8S+rAuPnwPrM
+         iHjOi6SeqJKfQCX3rExAo7y/xrHEXOjoZMEqWTB5tVqWnfi17qaaRFrmGGJu37gJ40EX
+         MxygdG4KFyCYC1X6m7+4EzfK7XNYDCZiTcRSmNEmL/HbvznFvzmIZG4fI6NjJ43o+2pK
+         Mbsg==
+X-Gm-Message-State: AOJu0YwmJKMdHuWL7I0iluY4uwjbiDIdbxIigvJJzrFbljc9a2SanAKE
+	2W/Sr338OIwqOjRe8uJPeOq4AgNlyu3LIh2Rt/JEmoMkM/MSCOZE7iddeX4sIOJKO6e0DfWiHdC
+	+zg==
+X-Received: by 2002:a05:6512:12c7:b0:533:3fc8:43ee with SMTP id 2adb3069b0e04-53546b249fcmr10899562e87.13.1725435892777;
+        Wed, 04 Sep 2024 00:44:52 -0700 (PDT)
+Return-Path: <th@inhomemedia.io>
+Received: from smtpclient.apple (host81-132-1-91.range81-132.btcentralplus.com. [81.132.1.91])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a898900f243sm775267566b.69.2024.09.04.00.44.52
+        for <ot@inhomemedia.io>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 04 Sep 2024 00:44:52 -0700 (PDT)
+From: Anthony Hughes <th@inhomemedia.io>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_80329251-2EA0-4860-856B-B349782D716F"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.700.6.1.1\))
+Subject: Fwd: IHM Plan
+Message-Id: <92F478AA-D5CD-4CC3-A799-11185A8435CE@inhomemedia.io>
+References: <EF474D82-02F8-4F07-AF24-EA50F5435F77@inhomemedia.io>
+To: Owen Thomas <ot@inhomemedia.io>
+Date: Wed, 4 Sep 2024 08:44:42 +0100
+X-Mailer: Apple Mail (2.3731.700.6.1.1)
+
+
+--Apple-Mail=_80329251-2EA0-4860-856B-B349782D716F
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+FYI
+
+> Begin forwarded message:
+>=20
+> From: Anthony Hughes <th@inhomemedia.io>
+> Subject: Re: IHM Plan
+> Date: 4 September 2024 at 08:44:13 BST
+> To: David Moulton <david.moulton@erismedia.co.uk>
+>=20
+> Hi Dave,
+>=20
+> It is disappointing that further to my original email of the 22nd July =
+and subsequent discussions we are still not in a position to move =
+forward as proposed, another 2 week delay further impacts the plan we =
+have put in place to move the business forward to  generate value for =
+shareholders from growing the business.
+>=20
+> We have continued to keep opportunities warm but that is now =
+increasingly difficult, I look fotward to your update once you have had =
+your discussions.
+>=20
+> Best regards
+>=20
+> Tony
+>=20
+>> On 29 Aug 2024, at 18:11, David Moulton =
+<david.moulton@erismedia.co.uk> wrote:
+>>=20
+>> Hi Tony,
+>> =20
+>> Thanks for your email and update.
+>> =20
+>> I have a board meeting with James in the next couple of weeks, where =
+we will discuss and revert.
+>> =20
+>> Be in touch soonest.
+>> =20
+>> Best
+>> =20
+>> Dave
+>> =20
+>> <image001.png>
+>> David Moulton
+>> Managing Director
+>> Eris Media Solutions Limited
+>> <image002.png>
+>> 0800 069 8228 <tel:08000698228>
+>> <image003.png>
+>> 07747 443 561 <tel:07747443561>
+>> <image004.png>
+>> 1, Winnall Valley Road, Winchester, SO23 0LD
+>> <image005.png>
+>> erismedia.co.uk <https://www.erismedia.co.uk/>
+>> This email and any files transmitted with it are confidential and =
+intended solely for the use of the individual or entity to whom they are =
+addressed. If you have received this email in error please notify the =
+system manager. This message contains confidential information and is =
+intended only for the individual named. If you are not the named =
+addressee you should not disseminate, distribute or copy this e-mail. =
+Please notify the sender immediately by e-mail if you have received this =
+e-mail by mistake and delete this e-mail from your system. If you are =
+not the intended recipient you are notified that disclosing, copying, =
+distributing or taking any action in reliance on the contents of this =
+information is strictly prohibited.
+>>=20
+>> WARNING: Although the company has taken reasonable precautions to =
+ensure no viruses are present in this email, the company cannot accept =
+responsibility for any loss or damage arising from the use of this email =
+or attachments.
+>>=20
+>> Eris Media Solutions Limited is a company registered in England & =
+Wales
+>> Registered number: 010605270. Registered office address: Burlington =
+House, Botleigh Grange Business Park, Hedge End, Southampton, SO30 2AF
+>> =20
+>> =20
+>> From: Anthony Hughes <th@inhomemedia.io <mailto:th@inhomemedia.io>>
+>> Date: Tuesday, 20 August 2024 at 08:25
+>> To: David Moulton <david.moulton@erismedia.co.uk =
+<mailto:david.moulton@erismedia.co.uk>>
+>> Subject: IHM Plan
+>>=20
+>> Hi Dave,=20
+>> =20
+>> Further to our discussion please see below in terms of moving forward =
+and numbers attached.
+>> =20
+>> New proposed Structure
+>>=20
+>> Dave Moulton & James Tuttiet to retain 12.5% each and 33% of any =
+dividends moving forward.
+>>=20
+>> Amend shareholders agreement/Articles to move to a majority decision =
+making process.
+>>=20
+>> Dave Evans and Stephen Gale brought in as shareholders diluting Owen =
+and Tony.
+>> =20
+>> Owen and Tony to use remaining equity to raise growth funding.
+>>=20
+>> IHM to approach 4th utility to take ownership of the current screens =
+in non Eris buildings.=20
+>> =20
+>> The existing screens in Eris buildings are owned by 4th Utility and =
+it is up to Eris to negotiate fees directly with 4th Utility for the =
+screens to remain in situ, or to be removed. IHM can support the removal =
+of the screens if required. We have previously quoted 4th Utility for =
+this.
+>>=20
+>> Eris outstanding invoices to be written off. Our view is that the =
+agreement of =C2=A350/screen was invalidated by Eris being unable to =
+deliver on the guaranteed portal fees of =C2=A31/apartment per month - =
+plus the end of the 4th Utility arrangement and their unwillingness to =
+pay any additional fees for access to Eris buildings.=20
+>> =20
+>> IHM paid Eris =C2=A329,160 from October 23- Jan 24 - without being =
+able to recover any costs from 4th Utility during this period. Any =
+further liability will put the business at risk.
+>> =20
+>> Personal loans with Tony and Owen to be written off. We have been =
+working without taking any money for several months now and believe it =
+is only fair to remove this personal liability as we strive to re-launch =
+the business and attract new investment.
+>> =20
+>> Update on the business:
+>> =20
+>> The current status of the company is remarkably encouraging =
+considering the challenges we have faced over the past 6 months. We have =
+a strong brand/website and go-to-market customer SaaS platform and =
+recurring revenue =3D =C2=A3200k+ committed, with the potential of =
+upselling utility providers in the buildings (est =C2=A3500k annually) - =
+see below breakdown and revenue and attached model:
+>> =20
+>> =20
+>> =20
+>> IHM pending contracts=20
+>> =20
+>> Freeholder / MA: Kings Chelsea Estates
+>> Site: Kings Chelsea
+>> Tenure: Residential
+>> Units: 289
+>> Annual software revenue: =C2=A35,202
+>> Annual advertising revenue: =C2=A36,000
+>> Forecast start date: Sept/Oct 2024
+>> Status: Approved STC
+>> =20
+>> Freeholder / MA:  Xenia Estates
+>> Sites: Phase 1 - existing 10 sites with screens in-situ
+>> Tenure: Residential
+>> Units: 1518
+>> Annual software revenue: =C2=A327,324
+>> Annual advertising revenue: =C2=A340,000=20
+>> Forecast start date: Nov 2024-Jan 2025?
+>> Status: Agreed in principle
+>> =20
+>> Freeholder / MA:  Xenia Estates
+>> Sites: Phase 2 - new X sites
+>> Units: 7,000
+>> Annual software revenue: =C2=A3126,000
+>> Annual advertising revenue: =C2=A3372,000
+>> Forecast start date: Apr-June 2025?
+>> Status: Agreed in principle=20
+>> =20
+>> Freeholder / MA:  JTRE / Rhodium
+>> Site: Triptych Bankside
+>> Tenure: Residential and Commercial
+>> Units: 169 resi and 85,000 sq ft office buildings
+>> Annual software revenue: =C2=A310,056
+>> Annual advertising revenue: =C2=A315,000=20
+>> Forecast start date: Nov 2024
+>> Status: Proposal for Triptych sent. Other Rhodium sites identified.
+>> =20
+>> Freeholder / MA: Various (via G-Network)
+>> Sites: Various X sites
+>> Tenure: Residential
+>> Units:
+>> Annual software revenue:=20
+>> Annual advertising (agency/direct) revenue:=20
+>> Annual ISP ad revenue:
+>> Forecast start date:=20
+>> Status: Agreed in principle with G-Network, subject to MA approval
+>> =20
+>> =20
+>> I hope you can see the value in the business we have built to date. =
+We really want to avoid a hiatus and the above plan protects the =C2=A3250=
+k investment made to date.
+>> =20
+>> =20
+>> Best regards
+>> =20
+>> Tony
+>> =20
+>> =20
+>> =20
+>> =20
+>> =20
+>> =20
+>> =20
+>> =20
+>> =20
+>> =20
+>>=20
+>>=20
+>> Disclaimer
+>>=20
+>> The information contained in this communication from the sender is =
+confidential. It is intended solely for use by the recipient and others =
+authorized to receive it. If you are not the recipient, you are hereby =
+notified that any disclosure, copying, distribution or taking action in =
+relation of the contents of this information is strictly prohibited and =
+may be unlawful.
+>>=20
+>> This email has been scanned for viruses and malware, and may have =
+been automatically archived by Mimecast, a leader in email security and =
+cyber resilience. Mimecast integrates email defenses with brand =
+protection, security awareness training, web security, compliance and =
+other essential capabilities. Mimecast helps protect large and small =
+organizations from malicious activity, human error and technology =
+failure; and to lead the movement toward building a more resilient =
+world. To find out more, visit our website.
+>>=20
+>=20
+
+
+--Apple-Mail=_80329251-2EA0-4860-856B-B349782D716F
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: =
+after-white-space;">FYI<br><div><br><blockquote type=3D"cite"><div>Begin =
+forwarded message:</div><br class=3D"Apple-interchange-newline"><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px;"><span style=3D"font-family: -webkit-system-font, =
+Helvetica Neue, Helvetica, sans-serif; color:rgba(0, 0, 0, =
+1.0);"><b>From: </b></span><span style=3D"font-family: =
+-webkit-system-font, Helvetica Neue, Helvetica, sans-serif;">Anthony =
+Hughes &lt;th@inhomemedia.io&gt;<br></span></div><div style=3D"margin-top:=
+ 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;"><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif; color:rgba(0, 0, 0, 1.0);"><b>Subject: </b></span><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif;"><b>Re: IHM Plan</b><br></span></div><div style=3D"margin-top:=
+ 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;"><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif; color:rgba(0, 0, 0, 1.0);"><b>Date: </b></span><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif;">4 September 2024 at 08:44:13 BST<br></span></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px;"><span style=3D"font-family: -webkit-system-font, =
+Helvetica Neue, Helvetica, sans-serif; color:rgba(0, 0, 0, 1.0);"><b>To: =
+</b></span><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif;">David Moulton =
+&lt;david.moulton@erismedia.co.uk&gt;<br></span></div><br><div><meta =
+http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf-8"><div =
+style=3D"overflow-wrap: break-word; -webkit-nbsp-mode: space; =
+line-break: after-white-space;"><div dir=3D"auto" style=3D"overflow-wrap: =
+break-word; -webkit-nbsp-mode: space; line-break: =
+after-white-space;"><div>Hi Dave,</div><div><br></div><div>It is =
+disappointing that further to my original email of the 22nd July and =
+subsequent discussions we are still not in a position to move forward as =
+proposed, another 2 week delay further impacts the plan we have put in =
+place to move the business forward to &nbsp;generate value for =
+shareholders from growing the business.</div><div><br></div><div>We have =
+continued to keep opportunities warm but that is now increasingly =
+difficult, I look fotward to your update once you have had your =
+discussions.</div><div><br></div><div>Best =
+regards</div><div><br></div><div>Tony</div><div><br><blockquote =
+type=3D"cite"><div>On 29 Aug 2024, at 18:11, David Moulton =
+&lt;david.moulton@erismedia.co.uk&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div><meta charset=3D"UTF-8"><div =
+class=3D"WordSection1" style=3D"page: WordSection1; caret-color: rgb(0, =
+0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+text-decoration: none;"><div style=3D"margin: 0cm; font-size: 10pt; =
+font-family: Aptos, sans-serif;"><span style=3D"font-size: 11pt;">Hi =
+Tony,<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: 10pt; =
+font-family: Aptos, sans-serif;"><span style=3D"font-size: =
+11pt;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 11pt;">Thanks for your email and =
+update.<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+10pt; font-family: Aptos, sans-serif;"><span style=3D"font-size: =
+11pt;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 11pt;">I have a board meeting with James in the next =
+couple of weeks, where we will discuss and =
+revert.<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+10pt; font-family: Aptos, sans-serif;"><span style=3D"font-size: =
+11pt;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 11pt;">Be in touch =
+soonest.<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+10pt; font-family: Aptos, sans-serif;"><span style=3D"font-size: =
+11pt;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 11pt;">Best<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 10pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: =
+11pt;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 11pt;">Dave<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 10pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: =
+11pt;"><o:p>&nbsp;</o:p></span></div><div><table class=3D"MsoNormalTable" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse:=
+ collapse;"><tbody><tr><td style=3D"padding: 0cm 0.75pt 0cm 0cm;"><table =
+class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0"><tbody><tr><td valign=3D"top" style=3D"padding: 0cm =
+3.75pt 0cm 0cm;"><div align=3D"center"><table class=3D"MsoNormalTable" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse:=
+ collapse;"><tbody><tr><td style=3D"padding: 0cm 0.75pt 0cm 0cm;"><div =
+style=3D"margin: 0.75pt; font-size: 10pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: 12pt;"><span =
+id=3D"cid:image001.png@01DAFA3E.BCE4AB70">&lt;image001.png&gt;</span><o:p>=
+</o:p></span></div></td></tr></tbody></table></div></td><td valign=3D"top"=
+ style=3D"padding: 0cm 4.5pt 0cm 0.75pt;"><table class=3D"MsoNormalTable" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse:=
+ collapse;"><tbody><tr><td nowrap=3D"" style=3D"padding: 0cm 0.75pt 0cm =
+0cm;"><div style=3D"margin: 0.75pt; font-size: 10pt; font-family: Aptos, =
+sans-serif; line-height: 13.5pt;"><b><span style=3D"font-family: Arial, =
+sans-serif;">David Moulton</span></b><span style=3D"font-size: =
+12pt;"><o:p></o:p></span></div><div style=3D"margin: 0.75pt; font-size: =
+10pt; font-family: Aptos, sans-serif; line-height: 14.25pt;"><span =
+style=3D"font-family: Arial, sans-serif;">Managing Director</span><span =
+style=3D"font-size: 12pt;"><o:p></o:p></span></div><div style=3D"margin: =
+0.75pt; font-size: 10pt; font-family: Aptos, sans-serif; line-height: =
+14.25pt;"><span style=3D"font-family: Arial, sans-serif;">Eris Media =
+Solutions Limited</span><span style=3D"font-size: =
+12pt;"><o:p></o:p></span></div></td></tr></tbody></table></td><td =
+style=3D"border-width: medium 1pt medium medium; border-style: none =
+solid none none; border-color: currentcolor windowtext currentcolor =
+currentcolor; border-image: none; padding: 0.75pt 0cm 0cm;"></td><td =
+valign=3D"top" style=3D"padding: 0cm 0.75pt 0cm 4.5pt;"><table =
+class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+style=3D"border-collapse: collapse;"><tbody><tr><td style=3D"padding: =
+0cm 0.75pt 0cm 0cm;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse: =
+collapse;"><tbody><tr><td style=3D"padding: 0.75pt 3.75pt 0.75pt =
+0cm;"><div style=3D"margin: 0.75pt; font-size: 10pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: 12pt;"><span =
+id=3D"cid:image002.png@01DAFA3E.BCE4AB70">&lt;image002.png&gt;</span><o:p>=
+</o:p></span></div></td><td nowrap=3D"" style=3D"padding: 0.75pt =
+0cm;"><div style=3D"margin: 0.75pt; font-size: 10pt; font-family: Aptos, =
+sans-serif; line-height: 13.5pt;"><span style=3D"font-family: Arial, =
+sans-serif; color: rgb(0, 0, 1);"><a href=3D"tel:08000698228" =
+target=3D"_blank" title=3D"tel:08000698228"><span style=3D"">0800 069 =
+8228</span></a></span><span style=3D"font-size: =
+12pt;"><o:p></o:p></span></div></td></tr><tr><td style=3D"padding: =
+0.75pt 3.75pt 0.75pt 0cm;"><div style=3D"margin: 0.75pt; font-size: =
+10pt; font-family: Aptos, sans-serif;"><span style=3D"font-size: =
+12pt;"><span =
+id=3D"cid:image003.png@01DAFA3E.BCE4AB70">&lt;image003.png&gt;</span><o:p>=
+</o:p></span></div></td><td nowrap=3D"" style=3D"padding: 0.75pt =
+0cm;"><div style=3D"margin: 0.75pt; font-size: 10pt; font-family: Aptos, =
+sans-serif; line-height: 13.5pt;"><span style=3D"font-family: Arial, =
+sans-serif; color: rgb(0, 0, 1);"><a href=3D"tel:07747443561" =
+target=3D"_blank" title=3D"tel:07747443561"><span style=3D"">07747 443 =
+561</span></a></span><span style=3D"font-size: =
+12pt;"><o:p></o:p></span></div></td></tr><tr><td style=3D"padding: =
+0.75pt 3.75pt 0.75pt 0cm;"><div style=3D"margin: 0.75pt; font-size: =
+10pt; font-family: Aptos, sans-serif;"><span style=3D"font-size: =
+12pt;"><span =
+id=3D"cid:image004.png@01DAFA3E.BCE4AB70">&lt;image004.png&gt;</span><o:p>=
+</o:p></span></div></td><td nowrap=3D"" style=3D"padding: 0.75pt =
+0cm;"><div style=3D"margin: 0.75pt; font-size: 10pt; font-family: Aptos, =
+sans-serif; line-height: 13.5pt;"><span style=3D"font-family: Arial, =
+sans-serif;">1, Winnall Valley Road, Winchester, SO23 0LD</span><span =
+style=3D"font-size: 12pt;"><o:p></o:p></span></div></td></tr><tr><td =
+style=3D"padding: 0.75pt 3.75pt 0.75pt 0cm;"><div style=3D"margin: =
+0.75pt; font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 12pt;"><span =
+id=3D"cid:image005.png@01DAFA3E.BCE4AB70">&lt;image005.png&gt;</span><o:p>=
+</o:p></span></div></td><td nowrap=3D"" style=3D"padding: 0.75pt =
+0cm;"><div style=3D"margin: 0.75pt; font-size: 10pt; font-family: Aptos, =
+sans-serif; line-height: 13.5pt;"><b><span style=3D"font-family: Arial, =
+sans-serif; color: rgb(63, 41, 236);"><a =
+href=3D"https://www.erismedia.co.uk/" target=3D"_blank" =
+title=3D"https://www.erismedia.co.uk/"><span style=3D"color: rgb(63, 41, =
+237);">erismedia.co.uk</span></a></span></b><span style=3D"font-size: =
+12pt;"><o:p></o:p></span></div></td></tr></tbody></table></td></tr></tbody=
+></table></td></tr><tr><td colspan=3D"4" style=3D"border-width: medium =
+medium 1pt; border-style: none none solid; border-color: currentcolor =
+currentcolor windowtext; border-image: none; padding: 0cm 0.75pt 3.75pt =
+0cm;"></td></tr><tr><td style=3D"padding: 0cm;"></td><td style=3D"padding:=
+ 0cm;"></td><td style=3D"padding: 0cm;"></td><td style=3D"padding: =
+0cm;"></td></tr></tbody></table></td></tr><tr><td style=3D"padding: 0cm =
+0.75pt 0cm 0cm;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" style=3D"max-width: 450pt; =
+border-collapse: collapse;"><tbody><tr><td style=3D"padding: 4.5pt =
+0.75pt 0cm 0cm;"><div style=3D"margin: 0.75pt; font-size: 10pt; =
+font-family: Aptos, sans-serif; line-height: 10.5pt;"><span =
+style=3D"font-size: 7.5pt; font-family: Arial, sans-serif; color: =
+rgb(136, 136, 136);">This email and any files transmitted with it are =
+confidential and intended solely for the use of the individual or entity =
+to whom they are addressed. If you have received this email in error =
+please notify the system manager. This message contains confidential =
+information and is intended only for the individual named. If you are =
+not the named addressee you should not disseminate, distribute or copy =
+this e-mail. Please notify the sender immediately by e-mail if you have =
+received this e-mail by mistake and delete this e-mail from your system. =
+If you are not the intended recipient you are notified that disclosing, =
+copying, distributing or taking any action in reliance on the contents =
+of this information is strictly prohibited.<br><br>WARNING: Although the =
+company has taken reasonable precautions to ensure no viruses are =
+present in this email, the company cannot accept responsibility for any =
+loss or damage arising from the use of this email or =
+attachments.<br><br>Eris Media Solutions Limited is a company registered =
+in England &amp; Wales<br>Registered number: 010605270. Registered =
+office address: Burlington House, Botleigh Grange Business Park, Hedge =
+End, Southampton, SO30 2AF</span><span style=3D"font-size: =
+12pt;"><o:p></o:p></span></div></td></tr></tbody></table></td></tr></tbody=
+></table></div><div style=3D"margin: 0cm; font-size: 10pt; font-family: =
+Aptos, sans-serif;"><span style=3D"font-size: =
+11pt;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 11pt;"><o:p>&nbsp;</o:p></span></div><div =
+id=3D"mail-editor-reference-message-container"><div><div><div =
+style=3D"border-width: 1pt medium medium; border-style: solid none none; =
+border-color: rgb(181, 196, 223) currentcolor currentcolor; =
+border-image: none; padding: 3pt 0cm 0cm;"><p class=3D"MsoNormal" =
+style=3D"margin: 0cm 0cm 12pt; font-size: 10pt; font-family: Aptos, =
+sans-serif;"><b><span style=3D"font-size: 12pt;">From:<span =
+class=3D"Apple-converted-space">&nbsp;</span></span></b><span =
+style=3D"font-size: 12pt;">Anthony Hughes &lt;<a =
+href=3D"mailto:th@inhomemedia.io">th@inhomemedia.io</a>&gt;<br><b>Date:<sp=
+an class=3D"Apple-converted-space">&nbsp;</span></b>Tuesday, 20 August =
+2024 at 08:25<br><b>To:<span =
+class=3D"Apple-converted-space">&nbsp;</span></b>David Moulton &lt;<a =
+href=3D"mailto:david.moulton@erismedia.co.uk">david.moulton@erismedia.co.u=
+k</a>&gt;<br><b>Subject:<span =
+class=3D"Apple-converted-space">&nbsp;</span></b>IHM =
+Plan<o:p></o:p></span></p></div><div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 12pt;">Hi Dave,<span =
+class=3D"Apple-converted-space">&nbsp;</span><o:p></o:p></span></div><div>=
+<div style=3D"margin: 0cm; font-size: 10pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: =
+12pt;"><o:p>&nbsp;</o:p></span></div></div><div><div style=3D"margin: =
+0cm; font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 12pt;">Further to our discussion please see below in =
+terms of moving forward and numbers =
+attached.<o:p></o:p></span></div></div><div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 12pt;"><o:p>&nbsp;</o:p></span></div></div><div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica Neue&quot;;">New =
+proposed Structure</span></b><span style=3D"font-size: 10pt; =
+font-family: &quot;Helvetica Neue&quot;;"><br><br>Dave Moulton &amp; =
+James Tuttiet to retain 12.5% each and 33% of any dividends moving =
+forward.<br><br>Amend shareholders agreement/Articles to move to a =
+majority decision making process.<br><br>Dave Evans and Stephen Gale =
+brought in as shareholders diluting Owen and =
+Tony.<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Owen and Tony to use remaining equity to raise growth =
+funding.<br><br>IHM to approach 4th utility to take ownership of the =
+current screens in non Eris buildings.&nbsp;<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">&nbsp;<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">The existing screens in Eris buildings are owned by 4th =
+Utility and it is up to Eris to negotiate fees directly with 4th Utility =
+for the screens to remain in situ, or to be removed. IHM can support the =
+removal of the screens if required. We have previously quoted 4th =
+Utility<span class=3D"xgmail-apple-converted-space">&nbsp;for =
+this.</span><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><br>Eris outstanding invoices to be written off. Our view =
+is that the agreement of =C2=A350/screen was invalidated by Eris being =
+unable to deliver on the guaranteed portal fees of =C2=A31/apartment per =
+month - plus the end of the 4th Utility arrangement and their =
+unwillingness to pay any additional fees for access to Eris =
+buildings.&nbsp;<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span class=3D"xgmail-apple-converted-space"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica Neue&quot;;">IHM =
+paid Eris =C2=A329,160 from October 23- Jan 24 - without being able to =
+recover any costs from 4th Utility during this period. Any further =
+liability will put the business at risk.</span></span><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Personal loans with Tony and Owen to be written off. We =
+have been working without taking any money for several months&nbsp;now =
+and believe&nbsp;it is only fair to remove this personal =
+liability&nbsp;as we strive to re-launch the business and attract new =
+investment.<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">&nbsp;<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Update on the business:</span></b><span style=3D"font-size: =
+10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">The current status of the company is remarkably encouraging =
+considering the&nbsp;challenges we have faced&nbsp;over the past 6 =
+months. We have a strong brand/website and go-to-market customer SaaS =
+platform and recurring revenue =3D =C2=A3200k+ committed, with the =
+potential of upselling utility providers in the buildings (est =C2=A3500k =
+annually) - see below breakdown and revenue and attached =
+model:<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: normal; =
+min-height: 15px;"><span style=3D"font-size: 10pt; font-family: =
+&quot;Helvetica Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal; min-height: =
+15px;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal; min-height: 15px;"><span style=3D"font-size: 10pt; font-family: =
+&quot;Helvetica Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+class=3D"xgmail-s1"><b><u><span style=3D"font-size: 10pt; font-family: =
+&quot;Helvetica Neue&quot;;">IHM pending =
+contracts&nbsp;</span></u></b></span><span style=3D"font-size: 10pt; =
+font-family: &quot;Helvetica Neue&quot;;"><o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal; min-height: =
+15px;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Freeholder / MA: Kings Chelsea Estates</span></b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Site: Kings Chelsea</span></b><span style=3D"font-size: =
+10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Tenure: Residential<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Units: 289<o:p></o:p></span></div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual software revenue: =
+=C2=A35,202<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual advertising revenue: =
+=C2=A36,000<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Forecast start date: Sept/Oct =
+2024<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Status: Approved STC<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal; min-height: =
+15px;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Freeholder / MA:&nbsp; Xenia Estates</span></b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Sites: Phase 1 - existing 10 sites with screens =
+in-situ</span></b><span style=3D"font-size: 10pt; font-family: =
+&quot;Helvetica Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin:=
+ 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Tenure: Residential<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Units: 1518<o:p></o:p></span></div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual software revenue: =
+=C2=A327,324<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual advertising revenue: =
+=C2=A340,000&nbsp;<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Forecast start date: Nov 2024-Jan =
+2025?<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Status: Agreed in principle<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal; min-height: =
+15px;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Freeholder / MA:&nbsp; Xenia Estates</span></b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Sites: Phase 2 - new X sites</span></b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Units: 7,000<o:p></o:p></span></div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual software revenue: =
+=C2=A3126,000<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual advertising =
+revenue:&nbsp;=C2=A3372,000<o:p></o:p></span></div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Forecast start date: Apr-June =
+2025?<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Status: Agreed in =
+principle&nbsp;<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal; min-height: 15px;"><span style=3D"font-size: 10pt; font-family: =
+&quot;Helvetica Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Freeholder / MA:&nbsp; JTRE / Rhodium</span></b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Site: Triptych Bankside</span></b><span style=3D"font-size: =
+10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Tenure: Residential and =
+Commercial<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Units:&nbsp;169 resi and 85,000 sq ft office =
+buildings<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual software revenue: =
+=C2=A310,056<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual advertising revenue: =
+=C2=A315,000&nbsp;<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Forecast start date: Nov 2024<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Status: Proposal for Triptych sent. Other Rhodium sites =
+identified.<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: normal; =
+min-height: 15px;"><span style=3D"font-size: 10pt; font-family: =
+&quot;Helvetica Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Freeholder / MA: Various (via G-Network)</span></b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Sites: Various X sites</span></b><span style=3D"font-size: =
+10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Tenure: Residential<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Units:<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual software revenue:&nbsp;<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual advertising (agency/direct) =
+revenue:&nbsp;<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual ISP ad revenue:<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Forecast start date:&nbsp;<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Status: Agreed in principle with G-Network, subject to MA =
+approval<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">I hope you can see the value in the business we have built =
+to date. We really want to avoid a hiatus and the above plan protects =
+the =C2=A3250k investment made to date.<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Best regards<o:p></o:p></span></div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Tony<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div></div></div><div><div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: 10pt; font-family: =
+&quot;Helvetica Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: =
+12pt;"><o:p>&nbsp;</o:p></span></div></div></div></div></div></div></div><=
+br style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; =
+font-size: 12px; font-style: normal; font-variant-caps: normal; =
+font-weight: 400; letter-spacing: normal; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
+none;"><br style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; =
+font-size: 12px; font-style: normal; font-variant-caps: normal; =
+font-weight: 400; letter-spacing: normal; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
+none;"><p style=3D"font-style: normal; font-variant-caps: normal; =
+font-weight: 400; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+text-decoration: none; font-family: Verdana; font-size: 10pt; color: =
+rgb(102, 102, 102);"><b>Disclaimer</b></p><p style=3D"font-style: =
+normal; font-variant-caps: normal; font-weight: 400; letter-spacing: =
+normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-stroke-width: 0px; text-decoration: none; font-family: =
+Verdana; font-size: 8pt; color: rgb(102, 102, 102);">The information =
+contained in this communication from the sender is confidential. It is =
+intended solely for use by the recipient and others authorized to =
+receive it. If you are not the recipient, you are hereby notified that =
+any disclosure, copying, distribution or taking action in relation of =
+the contents of this information is strictly prohibited and may be =
+unlawful.<br><br>This email has been scanned for viruses and malware, =
+and may have been automatically archived by Mimecast, a leader in email =
+security and cyber resilience. Mimecast integrates email defenses with =
+brand protection, security awareness training, web security, compliance =
+and other essential capabilities. Mimecast helps protect large and small =
+organizations from malicious activity, human error and technology =
+failure; and to lead the movement toward building a more resilient =
+world. To find out more, visit our =
+website.</p></div></blockquote></div><br></div></div></div></blockquote></=
+div><br></body></html>=
+
+--Apple-Mail=_80329251-2EA0-4860-856B-B349782D716F--

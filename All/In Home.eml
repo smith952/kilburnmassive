@@ -1,0 +1,1173 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:907:76e6:b0:a99:e650:f0ad with SMTP id kg6csp1691821ejc;
+        Thu, 21 Nov 2024 09:09:29 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGU8EgpUVO5FpJZPyCSdPERHj+GUIQEYHYiIRIBrt2QZLwSupuvOJUQz4BFT5Im95obf94M
+X-Received: by 2002:a05:6402:5108:b0:5cf:d078:c9dc with SMTP id 4fb4d7f45d1cf-5cff4ccfa11mr5349148a12.22.1732208968885;
+        Thu, 21 Nov 2024 09:09:28 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732208968; cv=none;
+        d=google.com; s=arc-20240605;
+        b=KmlFQNfyzw2owDA4TIyKZ+GNNRh0g7H//OmHUII6wuCnP8o7KiT9qtkl6tUdnhlHFd
+         8YreriYUehV8RIXe4E+ePHJnsslt4zt3zPFSwMTblosCdBmVWkdFatPShlX2N3g19Nuw
+         kKopDDCxGU+x7JO0lDLz5nSRN73JrGQBu6FHMyQQpZrirNlBf/hRK+UMJMd923hzA1Zc
+         1/6SyDAI5vRUCv9k/fZSSIj4ufm7++7Y0YTSKXhqDil3BX5eA/xoQ7JtIH0bz6Uhn1Es
+         LzGQ+vjbt54mq3wNqYG8JpbfuYAL8+OF47x2QA2dkmbRgydkvCKZB/9dYPZzKpGmLqrR
+         S69w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-language:mime-version:accept-language:in-reply-to
+         :references:message-id:date:thread-index:thread-topic:subject:cc:to
+         :from:dkim-signature;
+        bh=fh3Xl4spG8QaWKbXvGyW1xV1Gea1S4RM2iL+NaSrBis=;
+        fh=EgFHksnXUYmYXWIJ4HNTUF98tsacIg62qXWF4XSQykY=;
+        b=TflwSraZ0DU8CpSBtI53lC4y8f3o/aPEAlGWjP+bM24bRZKkBT2DbdNUSuxIUo1shJ
+         nMZC8disV9Ur3j9JY/wdzk20qHQNSKEFmY67sxFViunYzomJBnzP1uep7mucwwDW4QFM
+         CZoRLKuQGSXyDdo6GG3KEZK9H8ko9R1rztUdymiWoDISeHtTV0dpE5yLuTFbS9fQOuxV
+         eW5b40FqsIKsx9NePeh1oqGTdQoTH91i4QC00pmHgcGxlqeXJ245DkqCVCdKQ6e9Znk+
+         h5FBPlIsMby18xrr8hC1yJ+gT1XlRpTI2d8UPo0MAVGkvtL7ad0RHVuBmjtYK7g/Z7D/
+         jR0A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@erismedia.co.uk header.s=mimecast20220812 header.b=UpIm5lpv;
+       spf=pass (google.com: domain of david.moulton@erismedia.co.uk designates 185.58.85.139 as permitted sender) smtp.mailfrom=david.moulton@erismedia.co.uk;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=erismedia.co.uk
+Return-Path: <david.moulton@erismedia.co.uk>
+Received: from eu-smtp-delivery-139.mimecast.com (eu-smtp-delivery-139.mimecast.com. [185.58.85.139])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-5cff453c42csi2609991a12.309.2024.11.21.09.09.28
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Nov 2024 09:09:28 -0800 (PST)
+Received-SPF: pass (google.com: domain of david.moulton@erismedia.co.uk designates 185.58.85.139 as permitted sender) client-ip=185.58.85.139;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@erismedia.co.uk header.s=mimecast20220812 header.b=UpIm5lpv;
+       spf=pass (google.com: domain of david.moulton@erismedia.co.uk designates 185.58.85.139 as permitted sender) smtp.mailfrom=david.moulton@erismedia.co.uk;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=erismedia.co.uk
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=erismedia.co.uk;
+	s=mimecast20220812; t=1732208967;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=fh3Xl4spG8QaWKbXvGyW1xV1Gea1S4RM2iL+NaSrBis=;
+	b=UpIm5lpvFvD5GBKQ52JuQ9BKIyK+/a3nEaMa4XUOuzvXu+rwnx/08sP7WdiXbUp8CYkPa/
+	zuwOkHgvVuTHS9Y6/eSIKrdi3s632zGe2qXBg2e0I7F/TMTJr9H19V9lV/8XFifAQZGCJv
+	no6FII9ct+S02GuIu0I8ly54iP5wVmYGZF5N+UX8J84I5vTiwy/o/X207EfoKQVJfFrRgD
+	6NxP9WgN9qCFykcgVK5cD0VYDvEMSrq2zxjyews2m5eB3e0OGzoLscxqCkgks/lelpWsQH
+	t+IFMv5rq/yOD5kHWdDUZQRa9INC5subIfe4jte5qVmS2IcGMEQD+F5IiGmNOw==
+Received: from LO0P265CU003.outbound.protection.outlook.com
+ (mail-uksouthazlp17012055.outbound.protection.outlook.com [40.93.67.55]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id uk-mta-254-CDt2lwkINbS4xQlkKYjntQ-1; Thu,
+ 21 Nov 2024 17:09:24 +0000
+X-MC-Unique: CDt2lwkINbS4xQlkKYjntQ-1
+X-Mimecast-MFC-AGG-ID: CDt2lwkINbS4xQlkKYjntQ
+Received: from LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:2e0::12)
+ by LOYP265MB1903.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:f4::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.17; Thu, 21 Nov
+ 2024 17:09:22 +0000
+Received: from LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::b6d3:c15f:383c:f4f6]) by LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::b6d3:c15f:383c:f4f6%4]) with mapi id 15.20.8158.023; Thu, 21 Nov 2024
+ 17:09:22 +0000
+From: David Moulton <david.moulton@erismedia.co.uk>
+To: Anthony Hughes <th@inhomemedia.io>
+CC: Owen Thomas <ot@inhomemedia.io>
+Subject: Re: In Home
+Thread-Topic: In Home
+Thread-Index: AQHbGLgfDuwzIZSt8EScVerlggCyzLLCMEUM
+Date: Thu, 21 Nov 2024 17:09:22 +0000
+Message-ID: <LO4P265MB6480B63569D752E8D22F38C2BF222@LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM>
+References: <131D23E2-8B99-4109-B3E1-1C98F17E7082@inhomemedia.io>
+In-Reply-To: <131D23E2-8B99-4109-B3E1-1C98F17E7082@inhomemedia.io>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-ms-reactions: allow
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: LO4P265MB6480:EE_|LOYP265MB1903:EE_
+x-ms-office365-filtering-correlation-id: f968c1da-cad8-4bbc-3b10-08dd0a4f3eb1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|376014|366016|8096899003|38070700018
+x-microsoft-antispam-message-info: =?Windows-1252?Q?zNVARq0+kkInIim1Una6qbdrxC3NzBWRIXp4Oj21G/VV6TvF4ZY2wT0r?=
+ =?Windows-1252?Q?VYECfDYPA0vfWlvvsUIDzhHRVUqjDrhhT47P0z5zgsLORNEyiHQojMWw?=
+ =?Windows-1252?Q?RdpthLg1c7OGz6TZLOummgXlEKlCf3pSR54wkEIijuxPgEdVH8dXf4U9?=
+ =?Windows-1252?Q?vx4guzaSrvZj+RM4l9R4rhBMZJkD/1no8rePsWU0yHcxTW/llfd89zB0?=
+ =?Windows-1252?Q?P6G+pz8d4E9mKboRHF4UDlXpLoNIJ9KghT6h4BigkwUNeg9cCFztSJU2?=
+ =?Windows-1252?Q?qxje2YdXe1xqIWyTjqPulmJ7+av+EBDNN8CTE2/dSNFw6Y7Pk+nOjdcf?=
+ =?Windows-1252?Q?clLCGO4I5dx4Bx7A1MVxcTmw/BADaHsm621+1hUxqvorsfBbuII8DH6M?=
+ =?Windows-1252?Q?BvYZe73I9hzlHXoDctcSSRgWzjGa7/fzvo2MGpIbOZkAoKhC+MbDTgyQ?=
+ =?Windows-1252?Q?JV3tS/nbx8te74iHZBiLgh5pAOAmgCtF9TIPj58LgMmMEM7YIg4DbY8I?=
+ =?Windows-1252?Q?ZDv6AUQ1D+QNoOyhwldk9/UEcDlPiM+K7z7fy79BhDS6BL8aOiKSq3sK?=
+ =?Windows-1252?Q?kHLDr8uGvuxGhk6ZEDIoQAPkNIJuqaxTADLav0h9xl1UQx8hFgRe4ML1?=
+ =?Windows-1252?Q?l4n6n5XhpnkIex5Zyrvfi9zwFJ9v666NdGOk32Y24hhRFGLRHs+wZ6Fp?=
+ =?Windows-1252?Q?oXTqy/jM1l5vgplRtDU9lSo9QmaBm6Bh2VFI2GqRbv6Xxw6cp4rI6LFd?=
+ =?Windows-1252?Q?6ZX+3/hImQUskmaww/5SNBHq6DuCXE0ss2PCUG7g5Mbfii1Gkhzna163?=
+ =?Windows-1252?Q?wnzgWzcVKxQct/NJKl5cBTpPb3mgP557Glyv6xdpcrv37pLjFM7K74jn?=
+ =?Windows-1252?Q?6ijvRty0Njjnqa1sTCC2b3CsPke8JoPPNF7EOWvxtVtFEGATDbBml88R?=
+ =?Windows-1252?Q?MsO1UByi61sKU0M8T+PLg6FuR72LeulbuOyhyFfgoUOW08FiMqF7SC6+?=
+ =?Windows-1252?Q?qLaFQjCgeb3qx4FjqwtRJ+WyymHNdVrsOWRMibz8MGp3G8SaklFwFOrW?=
+ =?Windows-1252?Q?0OHmeAGREgcsp6M3id8u4ucG2KcBlE1hKbhSwND34mmOZcNj8dkQFHTQ?=
+ =?Windows-1252?Q?r3fLzupMwddnqnQm+Q/kodjnzUQn9DQJTcTtr69ChC14e9tiAQxWay4I?=
+ =?Windows-1252?Q?k/Ga7s2T9PpyxqHuQ2Dti52JNZxUy/hAs3RY5+uy020IaMfaXGpS8158?=
+ =?Windows-1252?Q?IF0Qx7v88YKTXXfu6HZAlGnlFiFOFy+b1qZqR0MC0TC4v1UV4LnZC1zZ?=
+ =?Windows-1252?Q?RxcPwucLdKLkrWDV463/IjYGbhWBrbkZui8vBZRbxwEpHwmuzhy+fCOv?=
+ =?Windows-1252?Q?8qxOe7AP6XWAJ4+P/Dp0aOvZwn6p6kO4Zo708rex4NWKTekUaOExxnvh?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(8096899003)(38070700018);DIR:OUT;SFP:1102
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?Windows-1252?Q?IJTMXP6pWHNgrWb3Uv5z5yrczT6e4L/wihbbGHxePbNQZhyVNNQJCUw7?=
+ =?Windows-1252?Q?7haQeNG/GJD5n0gVrmBGl7T/Tg9B8Jia2jrGuGbk88ckMsrM1kImvpfO?=
+ =?Windows-1252?Q?8wiLTUIaday/PuCqvIpR05abbBTc7bws6kdoSd2cJEsRAHCqDKrdyFiv?=
+ =?Windows-1252?Q?DNRYWQ38WYXGJx+P8ROKKzfvMkHf7mzS0dCT3eXAJI+Q8Jhw3JDAudNO?=
+ =?Windows-1252?Q?1cimmgpdz8fqx6CbUqAGoCgq0IFNaAPZsbZH5kXQEnhUgjaFZA9OK3cG?=
+ =?Windows-1252?Q?H3/z5hWLZxGRPiT+fEgSS7CN8Wvxdh/fAGu4fKLSaktGvflyrzJjmDHY?=
+ =?Windows-1252?Q?zmw1yXmYA0AHgJvwW4ie7BIs11/EMK0ihulmRztrU2eUPEO4ZBaPRrOm?=
+ =?Windows-1252?Q?RIsYJe5PbnxeEdwPO8RK24OjqCDbmgAkzX+u9Mt5Q+SqdoxBbENDe6qm?=
+ =?Windows-1252?Q?1xI/5eeZRLNRRtPkgl4+2TJbOVJDNnJXxutOjvBWh1/aztWgCrgZtZg2?=
+ =?Windows-1252?Q?2C9wMD5zDQ9Im5mZ9bdJOMyKGAMDkuQa91Ttjtx6i733HDn93YdA/7c+?=
+ =?Windows-1252?Q?H8vAzJT815CVKwjcY077ASuhdfxADYCg4LhYt+jrqgAgwwwYx4Rxqu5f?=
+ =?Windows-1252?Q?8eBMREOpkxA8ortYt58agkq5SigMMpQKJVNPdj966T4a7orTmBMiKlVV?=
+ =?Windows-1252?Q?QbP2yZ+4ClDJqYTP36n5r4BHqKpIN3Ky/W/2zZWYjwfbi16yV6JYBRAY?=
+ =?Windows-1252?Q?ROcfVykj/AxsBX1uBZfCw8D3Lf/+akeySPB1/6SpBEqWQq/W9nL49iWN?=
+ =?Windows-1252?Q?yzYxnFj1DRikabi2ClVVCfe36z9wtFC/Jhmz614o4xJcQBwMbjVp8PvO?=
+ =?Windows-1252?Q?ELrBxJs0wLLcBkdMOFtvLqySGoORAbvgbRM5jguYuclpIqPDBLomOKsi?=
+ =?Windows-1252?Q?jd6GOE9ndAetoWIRgnn2jlN7jJmCWGC/r29xJ0JwA2Xw6NOPdHAd6Fkk?=
+ =?Windows-1252?Q?XH/Rb+RRMdMUQEDa4O/SxROpPszNlhP1p2FScakcsVmLbWL6/yzmS8o0?=
+ =?Windows-1252?Q?crEaqZna3z7LnJq24XwBuU2tK2NDF187osONf2oD5CFL2B3RTzYTSXlo?=
+ =?Windows-1252?Q?oZYI0mpekCyvRB9DRO94//OX++YoRRCm+20ECO8HX4zwi17C9x1vYWRp?=
+ =?Windows-1252?Q?K+G4GWre5Uq2UnA3Hc0byEYNVE78OXHJXudn111tTUGz37FdJoHtxAxN?=
+ =?Windows-1252?Q?b7ICWBDb4lmw9UDAoOvyvvvtW7qSOh4FsjwnvhlVdWUTSR/ikcgDvFIK?=
+ =?Windows-1252?Q?PWPaI8TjG1cWGVAKRlvEG/RP6Wg3XqRGX7z/phefMmjMmmgZOoWvVhLg?=
+ =?Windows-1252?Q?IZBW/rjLJbz7Cb2zZoW3Gt+Y6vgs/c2tGZmfuyWVEeVg6oywWHnkJHp1?=
+ =?Windows-1252?Q?OI8FqtIeCLcfrdw8gDKjElr9U4C52Kpgiw4k66SaTxrsFcEOvBYODtNW?=
+ =?Windows-1252?Q?QjakPPVGY2cvUeDdnxWrMXCQkz/52Y2VxfEyN2judls7eEAlsTUU9UD3?=
+ =?Windows-1252?Q?FpCFVAt6hZLls+1MHwOaYf1L3Cbl2JKKZvxUx0zg4dDegy+T8L8G3n1k?=
+ =?Windows-1252?Q?gNkWRqJRx21W0jVsiNZnB/R50FnB86GHRcegMV59eMy/LIJo1SkLc5Tg?=
+ =?Windows-1252?Q?+zSqBkaUco0lDdP4WTJvne/2JxViyYhLC6qOOU0Xxq3irCQqu7LqCRJf?=
+ =?Windows-1252?Q?Gy1e22N07z3yEBkt6YY=3D?=
+MIME-Version: 1.0
+X-OriginatorOrg: erismedia.co.uk
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: f968c1da-cad8-4bbc-3b10-08dd0a4f3eb1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Nov 2024 17:09:22.6339
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3a36f15e-d1be-43aa-a418-5a3c7384cc00
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: bBUWVMf9F2Yf9dV2d4SGOg15q3GCD7vJTeQhgagFrbKWdPaq34jvupTmk1l1n1j/k3gcAKdiUvZ9SCyHtZ2LpFzVlW/NQ7I+khFh0Q8ZZPA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LOYP265MB1903
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: 6xUJeL-ng2_kGRh4TaBheOm4O-Z6XrTL8t55h9nCK3k_1732208964
+X-Mimecast-Originator: erismedia.co.uk
+Content-Language: en-GB
+Content-Type: multipart/related;
+	boundary="_008_LO4P265MB6480B63569D752E8D22F38C2BF222LO4P265MB6480GBRP_";
+	type="multipart/alternative"
+
+--_008_LO4P265MB6480B63569D752E8D22F38C2BF222LO4P265MB6480GBRP_
+Content-Type: multipart/alternative;
+	boundary="_000_LO4P265MB6480B63569D752E8D22F38C2BF222LO4P265MB6480GBRP_"
+
+--_000_LO4P265MB6480B63569D752E8D22F38C2BF222LO4P265MB6480GBRP_
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Dear Tony & Owen,
+
+Hope you are well?
+
+Thank you for your email below.
+
+As the two directors of IHM, the decision on whether to wind the business u=
+p, or to leave it dormant rests with yourselves, having due regard to the c=
+urrent position with creditors, (whose interests should of course be paramo=
+unt in decisions you make as directors).  I imagine you might consider thou=
+gh that the latter option does not resolve anything for anyone.
+
+However, despite best efforts, it would seem that the business cannot conti=
+nue to trade.
+
+Have you sought advice from an insolvency practitioner? There are risks in =
+any of the options available without expert advice.
+
+If you decide to wind the business up, I believe this will realise 90% of o=
+ur respective investments to be refunded by way of a tax rebate (50% of ini=
+tial investment on an SEIS basis and a further 40% on completion of winding=
+ up). This will enable both of you to recover most of the loan amount, to f=
+acilitate the full repayment of your loans from Eris Media.
+
+Given that both myself and James have made the same, proportionate investme=
+nts (which we cannot write off) the same has to be the case with both of yo=
+u.
+
+There are no circumstances where Eris would write off your personal loans h=
+owever no doubt they would be in a far better frame of mind if you were to =
+orchestrate the tax refunds and use them to reduce your loans at the earlie=
+st opportunity.
+
+Once you have decided on the best way forward, please advise us accordingly=
+, as formal consent will be required under the terms of the shareholders ag=
+reement.
+
+Best
+
+Dave
+
+
+[A blue and white logo  Description automatically generated]
+David Moulton
+Managing Director
+Eris Media Solutions Limited
+[A blue circle with a black phone symbol  Description automatically generat=
+ed]
+0800 069 8228<tel:08000698228>
+[A blue circle with a black cell phone in it  Description automatically gen=
+erated]
+07747 443 561<tel:07747443561>
+[A blue circle with a black and white pin  Description automatically genera=
+ted]
+1, Winnall Valley Road, Winchester, SO23 0LD
+[A blue circle with a black chain in it  Description automatically generate=
+d]
+erismedia.co.uk<https://www.erismedia.co.uk/>
+This email and any files transmitted with it are confidential and intended =
+solely for the use of the individual or entity to whom they are addressed. =
+If you have received this email in error please notify the system manager. =
+This message contains confidential information and is intended only for the=
+ individual named. If you are not the named addressee you should not dissem=
+inate, distribute or copy this e-mail. Please notify the sender immediately=
+ by e-mail if you have received this e-mail by mistake and delete this e-ma=
+il from your system. If you are not the intended recipient you are notified=
+ that disclosing, copying, distributing or taking any action in reliance on=
+ the contents of this information is strictly prohibited.
+
+WARNING: Although the company has taken reasonable precautions to ensure no=
+ viruses are present in this email, the company cannot accept responsibilit=
+y for any loss or damage arising from the use of this email or attachments.
+
+Eris Media Solutions Limited is a company registered in England & Wales
+Registered number: 010605270. Registered office address: Burlington House, =
+Botleigh Grange Business Park, Hedge End, Southampton, SO30 2AF
+
+
+From: Anthony Hughes <th@inhomemedia.io>
+Date: Monday, 7 October 2024 at 13:55
+To: David Moulton <david.moulton@erismedia.co.uk>
+Cc: Owen Thomas <ot@inhomemedia.io>
+Subject: In Home
+
+Hi Dave,
+
+
+
+Further to my previous note in relation to In Home Media, we have clearly n=
+ot made progress since we first reached out in July with a view to a viable=
+ plan to take the business forward. Due to this passage of time with no pro=
+gress made, both Stephen and Dave have left the business to pursue other av=
+enues in their career and both have confirmed that they will not step back =
+into the business in the future.
+
+
+
+We are therefore no longer in a position to take the business forward and w=
+e would welcome your input as shareholders (and due to the structure and vo=
+ting rights) and your agreement on closing the Company and/or leaving it do=
+rmant.
+
+
+
+Both Owen and I would also welcome a discussion to write off the loans. Our=
+ view is that the ability to take the Company forward has been frustrated d=
+ue to elements outside of our control. We have both invested significant ti=
+me and effort without taking our payments over a significant period of time=
+. We have not encumbered the Company with these costs despite what was agre=
+ed.
+
+
+
+We are keen to work amicably to the best solution possible and a considerat=
+ion, within your discussions with 4th, could be to offer the tech built to =
+4th utility to purchase so they can manage the screens, place ads offer spa=
+ce to MA=E2=80=99s etc, our understanding is 4th utility are keen to utilis=
+e screens for sign ups and ads but due to the lack of software cannot utili=
+se this. This would also enable Eris to agree a commercial deal for access =
+direct with 4th utility, `In Home could also ensure access to the non- Eris=
+ buildings within this process.
+
+
+
+If you can come back with your thoughts and or a time for a call that would=
+ be most helpful.
+
+
+
+Best regards
+
+
+
+Tony
+
+Disclaimer
+
+The information contained in this communication from the sender is confiden=
+tial. It is intended solely for use by the recipient and others authorized =
+to receive it. If you are not the recipient, you are hereby notified that a=
+ny disclosure, copying, distribution or taking action in relation of the co=
+ntents of this information is strictly prohibited and may be unlawful.
+
+This email has been scanned for viruses and malware, and may have been auto=
+matically archived by Mimecast, a leader in email security and cyber resili=
+ence. Mimecast integrates email defenses with brand protection, security aw=
+areness training, web security, compliance and other essential capabilities=
+. Mimecast helps protect large and small organizations from malicious activ=
+ity, human error and technology failure; and to lead the movement toward bu=
+ilding a more resilient world. To find out more, visit our website.
+
+--_000_LO4P265MB6480B63569D752E8D22F38C2BF222LO4P265MB6480GBRP_
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+=09{font-family:"Cambria Math";
+=09panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+=09{font-family:Aptos;
+=09panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+=09{font-family:"Helvetica Neue";
+=09panose-1:2 0 5 3 0 0 0 2 0 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+=09{margin:0cm;
+=09font-size:10.0pt;
+=09font-family:"Aptos",sans-serif;}
+p.gmail-p1, li.gmail-p1, div.gmail-p1
+=09{mso-style-name:gmail-p1;
+=09mso-margin-top-alt:auto;
+=09margin-right:0cm;
+=09mso-margin-bottom-alt:auto;
+=09margin-left:0cm;
+=09font-size:12.0pt;
+=09font-family:"Aptos",sans-serif;}
+p.gmail-p2, li.gmail-p2, div.gmail-p2
+=09{mso-style-name:gmail-p2;
+=09mso-margin-top-alt:auto;
+=09margin-right:0cm;
+=09mso-margin-bottom-alt:auto;
+=09margin-left:0cm;
+=09font-size:12.0pt;
+=09font-family:"Aptos",sans-serif;}
+.MsoChpDefault
+=09{mso-style-type:export-only;
+=09font-size:10.0pt;
+=09mso-ligatures:none;}
+@page WordSection1
+=09{size:612.0pt 792.0pt;
+=09margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+=09{page:WordSection1;}
+--></style>
+<style type=3D"text/css">.style1 {font-family: "Times New Roman";}</style><=
+/head><body lang=3D"EN-GB" link=3D"#467886" vlink=3D"#96607D" style=3D"word=
+-wrap:break-word;line-break:after-white-space">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">Dear Tony &amp; Owen,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">Hope you are well?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">Thank you for your email below.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">As the two directors of IHM, the decision on whether to=
+ wind the business up, or to leave it dormant rests with yourselves, having=
+ due regard to the current position
+ with creditors,&nbsp;(whose interests should of course be paramount in dec=
+isions you make as directors). &nbsp;I imagine you might consider though th=
+at the latter option does not resolve anything for anyone.<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">However, despite best efforts, it would seem that the b=
+usiness cannot continue to trade.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">Have you sought advice from an insolvency practitioner?=
+&nbsp;There are risks in any of the options available without expert advice=
+.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">If you decide to wind the business up, I believe this w=
+ill realise 90% of our respective investments to be refunded by way of a ta=
+x rebate (50% of initial investment
+ on an SEIS basis and a further 40% on completion of winding up). This will=
+ enable both of you to recover most of the loan amount, to facilitate the f=
+ull repayment of your loans from Eris Media.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">Given that both myself and&nbsp;James&nbsp;have made th=
+e same, proportionate investments (which we cannot write off) the same has =
+to be the case with both of you.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">There are no circumstances where Eris would write off y=
+our personal loans however no doubt they would be in a far better frame of =
+mind if you were to orchestrate the
+ tax refunds and use them to reduce your loans at the earliest opportunity.=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">Once you have decided on the best way forward, please a=
+dvise us accordingly, as formal consent will be required under the terms of=
+ the shareholders agreement.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">Best<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:black;mso-fare=
+ast-language:EN-US">Dave<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language=
+:EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language=
+:EN-US"><o:p>&nbsp;</o:p></span></p>
+<div>
+<div>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm .75pt 0cm 0cm">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 3.75pt 0cm 0cm">
+<div align=3D"center">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm .75pt 0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt"><span style=3D"font-size:12.0=
+pt"><img width=3D"125" height=3D"118" style=3D"width:1.302in;height:1.2291i=
+n" id=3D"Picture_x0020_5" src=3D"cid:image006.png@01DB3C37.CADB7750" alt=3D=
+"A blue and white logo=0A=0ADescription automatically generated"><o:p></o:p=
+></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+<td valign=3D"top" style=3D"padding:0cm 4.5pt 0cm .75pt">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr>
+<td nowrap=3D"" style=3D"padding:0cm .75pt 0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt;line-height:13.5pt"><b><span s=
+tyle=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">David Moulton=
+</span></b><span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin:.75pt;line-height:14.25pt"><span sty=
+le=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">Managing Direct=
+or</span><span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin:.75pt;line-height:14.25pt"><span sty=
+le=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">Eris Media Solu=
+tions Limited</span><span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style=3D"border:none;border-right:solid windowtext 1.0pt;padding:.75pt =
+0cm 0cm 0cm">
+</td>
+<td valign=3D"top" style=3D"padding:0cm .75pt 0cm 4.5pt">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm .75pt 0cm 0cm">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:.75pt 3.75pt .75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt"><span style=3D"font-size:12.0=
+pt"><img width=3D"20" height=3D"20" style=3D"width:.2083in;height:.2083in" =
+id=3D"Picture_x0020_4" src=3D"cid:image007.png@01DB3C37.CADB7750" alt=3D"A =
+blue circle with a black phone symbol=0A=0ADescription automatically genera=
+ted"><o:p></o:p></span></p>
+</td>
+<td nowrap=3D"" style=3D"padding:.75pt 0cm .75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt;line-height:13.5pt"><span styl=
+e=3D"font-family:&quot;Arial&quot;,sans-serif;color:#000001"><a href=3D"tel=
+:08000698228" target=3D"_blank" title=3D"tel:08000698228"><span style=3D"co=
+lor:black">0800 069 8228</span></a></span><span style=3D"font-size:12.0pt">=
+<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:.75pt 3.75pt .75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt"><span style=3D"font-size:12.0=
+pt"><img border=3D"0" width=3D"20" height=3D"20" style=3D"width:.2083in;hei=
+ght:.2083in" id=3D"Picture_x0020_3" src=3D"cid:image008.png@01DB3C37.CADB77=
+50" alt=3D"A blue circle with a black cell phone in it=0A=0ADescription aut=
+omatically generated"><o:p></o:p></span></p>
+</td>
+<td nowrap=3D"" style=3D"padding:.75pt 0cm .75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt;line-height:13.5pt"><span styl=
+e=3D"font-family:&quot;Arial&quot;,sans-serif;color:#000001"><a href=3D"tel=
+:07747443561" target=3D"_blank" title=3D"tel:07747443561"><span style=3D"co=
+lor:black">07747 443 561</span></a></span><span style=3D"font-size:12.0pt">=
+<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:.75pt 3.75pt .75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt"><span style=3D"font-size:12.0=
+pt"><img border=3D"0" width=3D"20" height=3D"20" style=3D"width:.2083in;hei=
+ght:.2083in" id=3D"Picture_x0020_2" src=3D"cid:image009.png@01DB3C37.CADB77=
+50" alt=3D"A blue circle with a black and white pin=0A=0ADescription automa=
+tically generated"><o:p></o:p></span></p>
+</td>
+<td nowrap=3D"" style=3D"padding:.75pt 0cm .75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt;line-height:13.5pt"><span styl=
+e=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">1, Winnall Valle=
+y Road, Winchester, SO23 0LD</span><span style=3D"font-size:12.0pt"><o:p></=
+o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:.75pt 3.75pt .75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt"><span style=3D"font-size:12.0=
+pt"><img border=3D"0" width=3D"20" height=3D"20" style=3D"width:.2083in;hei=
+ght:.2083in" id=3D"Picture_x0020_1" src=3D"cid:image010.png@01DB3C37.CADB77=
+50" alt=3D"A blue circle with a black chain in it=0A=0ADescription automati=
+cally generated"><o:p></o:p></span></p>
+</td>
+<td nowrap=3D"" style=3D"padding:.75pt 0cm .75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt;line-height:13.5pt"><b><span s=
+tyle=3D"font-family:&quot;Arial&quot;,sans-serif;color:#3F29EC"><a href=3D"=
+https://www.erismedia.co.uk/" target=3D"_blank" title=3D"https://www.erisme=
+dia.co.uk/"><span style=3D"color:#3F29ED">erismedia.co.uk</span></a></span>=
+</b><span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan=3D"4" style=3D"border:none;border-bottom:solid windowtext 1.0pt=
+;padding:0cm .75pt 3.75pt 0cm">
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0cm 0cm 0cm 0cm"></td>
+<td style=3D"padding:0cm 0cm 0cm 0cm"></td>
+<td style=3D"padding:0cm 0cm 0cm 0cm"></td>
+<td style=3D"padding:0cm 0cm 0cm 0cm"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0cm .75pt 0cm 0cm">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"max-width:450.0pt;border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:4.5pt .75pt 0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt;line-height:10.5pt"><span styl=
+e=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#888888=
+">This email and any files transmitted with it are confidential and intende=
+d solely for the use of the individual or entity
+ to whom they are addressed. If you have received this email in error pleas=
+e notify the system manager. This message contains confidential information=
+ and is intended only for the individual named. If you are not the named ad=
+dressee you should not disseminate,
+ distribute or copy this e-mail. Please notify the sender immediately by e-=
+mail if you have received this e-mail by mistake and delete this e-mail fro=
+m your system. If you are not the intended recipient you are notified that =
+disclosing, copying, distributing
+ or taking any action in reliance on the contents of this information is st=
+rictly prohibited.<br>
+<br>
+WARNING: Although the company has taken reasonable precautions to ensure no=
+ viruses are present in this email, the company cannot accept responsibilit=
+y for any loss or damage arising from the use of this email or attachments.=
+<br>
+<br>
+Eris Media Solutions Limited is a company registered in England &amp; Wales=
+<br>
+Registered number: 010605270. Registered office address: Burlington House, =
+Botleigh Grange Business Park, Hedge End, Southampton, SO30 2AF</span><span=
+ style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language=
+:EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language=
+:EN-US"><o:p>&nbsp;</o:p></span></p>
+<div id=3D"mail-editor-reference-message-container">
+<div>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><b><span style=3D"fon=
+t-size:12.0pt;color:black">From:
+</span></b><span style=3D"font-size:12.0pt;color:black">Anthony Hughes &lt;=
+th@inhomemedia.io&gt;<br>
+<b>Date: </b>Monday, 7 October 2024 at 13:55<br>
+<b>To: </b>David Moulton &lt;david.moulton@erismedia.co.uk&gt;<br>
+<b>Cc: </b>Owen Thomas &lt;ot@inhomemedia.io&gt;<br>
+<b>Subject: </b>In Home<o:p></o:p></span></p>
+</div>
+<p class=3D"gmail-p1" style=3D"margin:0cm;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;font-size-adjust:n=
+one;font-kerning:auto;font-feature-settings:normal;font-stretch:normal">
+<span style=3D"font-size:10.0pt;font-family:&quot;Helvetica Neue&quot;">Hi =
+Dave,<o:p></o:p></span></p>
+<p class=3D"gmail-p2" style=3D"margin:0cm;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;font-size-adjust:n=
+one;font-kerning:auto;font-feature-settings:normal;font-stretch:normal;min-=
+height:15px">
+<span style=3D"font-size:10.0pt;font-family:&quot;Helvetica Neue&quot;"><o:=
+p>&nbsp;</o:p></span></p>
+<p class=3D"gmail-p1" style=3D"margin:0cm;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;font-size-adjust:n=
+one;font-kerning:auto;font-feature-settings:normal;font-stretch:normal">
+<span style=3D"font-size:10.0pt;font-family:&quot;Helvetica Neue&quot;">Fur=
+ther to my previous note in relation to In Home Media, we have clearly not =
+made progress since we first reached out in July with a view to a viable pl=
+an to take the business forward. Due to this
+ passage of time with no progress made, both Stephen and Dave have left the=
+ business to pursue other avenues in their career and both have confirmed t=
+hat they will not step back into the business in the future.<o:p></o:p></sp=
+an></p>
+<p class=3D"gmail-p2" style=3D"margin:0cm;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;font-size-adjust:n=
+one;font-kerning:auto;font-feature-settings:normal;font-stretch:normal;min-=
+height:15px">
+<span style=3D"font-size:10.0pt;font-family:&quot;Helvetica Neue&quot;"><o:=
+p>&nbsp;</o:p></span></p>
+<p class=3D"gmail-p1" style=3D"margin:0cm;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;font-size-adjust:n=
+one;font-kerning:auto;font-feature-settings:normal;font-stretch:normal">
+<span style=3D"font-size:10.0pt;font-family:&quot;Helvetica Neue&quot;">We =
+are therefore no longer in a position to take the business forward and we w=
+ould welcome your input as shareholders (and due to the structure and votin=
+g rights) and your agreement on closing the
+ Company and/or leaving it dormant.<o:p></o:p></span></p>
+<p class=3D"gmail-p2" style=3D"margin:0cm;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;font-size-adjust:n=
+one;font-kerning:auto;font-feature-settings:normal;font-stretch:normal;min-=
+height:15px">
+<span style=3D"font-size:10.0pt;font-family:&quot;Helvetica Neue&quot;"><o:=
+p>&nbsp;</o:p></span></p>
+<p class=3D"gmail-p1" style=3D"margin:0cm;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;font-size-adjust:n=
+one;font-kerning:auto;font-feature-settings:normal;font-stretch:normal">
+<span style=3D"font-size:10.0pt;font-family:&quot;Helvetica Neue&quot;">Bot=
+h Owen and I would also welcome a discussion to write off the loans. Our vi=
+ew is that the ability to take the Company forward has been frustrated due =
+to elements outside of our control. We have
+ both invested significant time and effort without taking our payments over=
+ a significant period of time. We have not encumbered the Company with thes=
+e costs despite what was agreed.<o:p></o:p></span></p>
+<p class=3D"gmail-p2" style=3D"margin:0cm;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;font-size-adjust:n=
+one;font-kerning:auto;font-feature-settings:normal;font-stretch:normal;min-=
+height:15px">
+<span style=3D"font-size:10.0pt;font-family:&quot;Helvetica Neue&quot;"><o:=
+p>&nbsp;</o:p></span></p>
+<p class=3D"gmail-p1" style=3D"margin:0cm;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;font-size-adjust:n=
+one;font-kerning:auto;font-feature-settings:normal;font-stretch:normal">
+<span style=3D"font-size:10.0pt;font-family:&quot;Helvetica Neue&quot;">We =
+are keen to work amicably to the best solution possible and a consideration=
+, within your discussions with 4th, could be to offer the tech built to 4th=
+ utility to purchase so they can manage the
+ screens, place ads offer space to MA=E2=80=99s etc, our understanding is 4=
+th utility are keen to utilise screens for sign ups and ads but due to the =
+lack of software cannot utilise this. This would also enable Eris to agree =
+a commercial deal for access direct with
+ 4th utility, `In Home could also ensure access to the non- Eris buildings =
+within this process.<o:p></o:p></span></p>
+<p class=3D"gmail-p1" style=3D"margin:0cm;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;font-size-adjust:n=
+one;font-kerning:auto;font-feature-settings:normal;font-stretch:normal">
+<span style=3D"font-size:10.0pt;font-family:&quot;Helvetica Neue&quot;"><o:=
+p>&nbsp;</o:p></span></p>
+<p class=3D"gmail-p1" style=3D"margin:0cm;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;font-size-adjust:n=
+one;font-kerning:auto;font-feature-settings:normal;font-stretch:normal">
+<span style=3D"font-size:10.0pt;font-family:&quot;Helvetica Neue&quot;">If =
+you can come back with your thoughts and or a time for a call that would be=
+ most helpful.<o:p></o:p></span></p>
+<p class=3D"gmail-p2" style=3D"margin:0cm;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;font-size-adjust:n=
+one;font-kerning:auto;font-feature-settings:normal;font-stretch:normal;min-=
+height:15px">
+<span style=3D"font-size:10.0pt;font-family:&quot;Helvetica Neue&quot;"><o:=
+p>&nbsp;</o:p></span></p>
+<p class=3D"gmail-p1" style=3D"margin:0cm;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;font-size-adjust:n=
+one;font-kerning:auto;font-feature-settings:normal;font-stretch:normal">
+<span style=3D"font-size:10.0pt;font-family:&quot;Helvetica Neue&quot;">Bes=
+t regards<o:p></o:p></span></p>
+<p class=3D"gmail-p2" style=3D"margin:0cm;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;font-size-adjust:n=
+one;font-kerning:auto;font-feature-settings:normal;font-stretch:normal;min-=
+height:15px">
+<span style=3D"font-size:10.0pt;font-family:&quot;Helvetica Neue&quot;"><o:=
+p>&nbsp;</o:p></span></p>
+<p class=3D"gmail-p1" style=3D"margin:0cm;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;font-size-adjust:n=
+one;font-kerning:auto;font-feature-settings:normal;font-stretch:normal">
+<span style=3D"font-size:10.0pt;font-family:&quot;Helvetica Neue&quot;">Ton=
+y<o:p></o:p></span></p>
+</div>
+</div>
+</div>
+</div>
+
+
+<br><br><p style=3D"font-family: Verdana; font-size:10pt; color:#666666;"><=
+b>Disclaimer</b></p><p style=3D"font-family: Verdana; font-size:8pt; color:=
+#666666;">The information contained in this communication from the sender i=
+s confidential. It is intended solely for use by the recipient and others a=
+uthorized to receive it. If you are not the recipient, you are hereby notif=
+ied that any disclosure, copying, distribution or taking action in relation=
+ of the contents of this information is strictly prohibited and may be unla=
+wful.<br><br>This email has been scanned for viruses and malware, and may h=
+ave been automatically archived by Mimecast, a leader in email security and=
+ cyber resilience. Mimecast integrates email defenses with brand protection=
+, security awareness training, web security, compliance and other essential=
+ capabilities. Mimecast helps protect large and small organizations from ma=
+licious activity, human error and technology failure; and to lead the movem=
+ent toward building a more resilient world. To find out more, visit our web=
+site.</p></body></html>
+
+--_000_LO4P265MB6480B63569D752E8D22F38C2BF222LO4P265MB6480GBRP_--
+
+--_008_LO4P265MB6480B63569D752E8D22F38C2BF222LO4P265MB6480GBRP_
+Content-Type: image/png; name="image006.png"
+Content-Description: image006.png
+Content-Disposition: inline; filename="image006.png"; size=14593;
+	creation-date="Thu, 21 Nov 2024 17:07:09 GMT";
+	modification-date="Thu, 21 Nov 2024 17:07:09 GMT"
+Content-ID: <image006.png@01DB3C37.CADB7750>
+Content-Transfer-Encoding: base64
+
+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
+AA==
+--_008_LO4P265MB6480B63569D752E8D22F38C2BF222LO4P265MB6480GBRP_
+Content-Type: image/png; name="image007.png"
+Content-Description: image007.png
+Content-Disposition: inline; filename="image007.png"; size=1211;
+	creation-date="Thu, 21 Nov 2024 17:07:09 GMT";
+	modification-date="Thu, 21 Nov 2024 17:07:09 GMT"
+Content-ID: <image007.png@01DB3C37.CADB7750>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAEgElEQVR4AeXBPW7j6AEA0BeGfb4m
+QLplu1WYbjpTJzB9gqVOYLtKOlknsH0CaU5gzQnMOcGw25bbpQnAvUEGoIHPHOtfsixg3vvLxa//
+8zNJ/GQSP5nU+8uRI8M/ESz3FR1qNN5J6n2UuESJYDuFoQW+YIHOkaSOJ0OFawSHK1FihjmmaB0o
+dbiACW68nwoV5piitafUYSrcIziNChWmuLOH1H4CZih9jAkuMUZjB4nd5fiG0sfK8YzSDhK7yfGM
+zHkIeEJlS4nt5XhGcH5mqGwhsZ0czwjO1wyVDRKbBTwjOK3O7mbIrZHa7AnB6cxxiw4BBS6Qo7DZ
+E/6FzhKp9W5QOJ0aY1GHBRaiApeoELyVYYYrSyRWyzBxWp9FmeVq3GKEznIlCkv8Nfv7v61wj09O
+p8VYL+B3/Aef8KteK/ov/oFPlivw6Aep5TJUTuuzqETQK1FiojfGXO9Pq2WoMPdKYrmJ03sQTayW
+2d7EDxJvBVROa45Or0DmODKUXkm8VTm9R9G19TrRLza79Erird+cVo1GL0NpvUaU2az0SmIoIHda
+X0WlzVpRbrOA0ovEUOH0LkQPuLVai1YvQ7Cd3IvEUO70ClSiB1yh81YtKmzvwovE0IWPMcOdaIER
+GkNfRBe2l3uRGAo+zgRPCHoNxqIOC1Fpe8GLxFDuY5UIomvRQlQi2E3uu8R5eUCrl6MSTUW/2V3w
+XeJ8NJiK7kVztHoZSntKnIcOY3R6NyhEU9HEARLvp0WNznodRmj0ckxEU7R6GSoHSA11CA5T4xEL
+vYB7VN7qMEKjFzBD0GtwJ5rZX+O71FCDwu46LDBFa6jDLXLkogZjNKIn5HodxqIbFPbX+S411NpN
+i0fM0RkKCGjR4QrfEPCAKTq9gBkK0RiNXoaJ/TVepIb+sL05xt7KMEGpN0KDFiME1KIMT8hFYyz0
+Ap4Q7K/1IjVUY2KzFmNDBa5RGpphhA6NoRIzBNEYc9E9cof56kVqqEaHYL1WlOEZmeVyzHAlynCP
+UtThFnPRDJXD1V6k3lqgsl4QBWTWK3GPKW4wMdTiCo1ohsrhWjRepN76gsp6OQI6NLZzgwrB0AOm
+6EQzVI5j4ZXUWwu0yKyXo9arUdgsiGpMUYsCnpE7nkevpJb7jIn1CtR6X1HYzgKPqA2VmCE4ngVa
+r6SWe8A1gtUuRDUmVmvwGQu0hjLco3R8j36QWq7DIyZWK0QNalGDP1GjQeetgBtcIzi+OWo/SK12
+h0vkVsvRoMPIdnJco0TwPjpMLZFab4xvVpvgymY5Slwi9/6maC2RWq/BFBPLlXjGIzq9gBx/Q47C
+aS3wYIXUZnf4BZXlChTOQ4OxNRLbuUXjvHW4QmeNxHY6jNA4Tx1GaG2Q2F6HEWrnpcEIjS0kdtNh
+hAfnocYIjS2l9nOLr5gh+BhT3NlRan8L1LhH5XRqjNHaQ+owHcZ4xD0K76fGFLUDpI6jwQgZrlEh
+OI45PqN2BKnjanGLWxS4RI7C9ho0+IIanSNKvZ8atShHQIZM1KLVq72z1Ok0zsD/AXcdH9rGYMYl
+AAAAAElFTkSuQmCCAAA=
+--_008_LO4P265MB6480B63569D752E8D22F38C2BF222LO4P265MB6480GBRP_
+Content-Type: image/png; name="image008.png"
+Content-Description: image008.png
+Content-Disposition: inline; filename="image008.png"; size=815;
+	creation-date="Thu, 21 Nov 2024 17:07:09 GMT";
+	modification-date="Thu, 21 Nov 2024 17:07:09 GMT"
+Content-ID: <image008.png@01DB3C37.CADB7750>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAC9ElEQVR4AeXB0XHaZgAA4K//6b3/
+BuW1T9EGhgmsTlB5goQJMBPEngAygckEyBNE3UAZoHfaoPWduTOKwQiQbA6+77erP/91SYILE1yY
+RP9SpBjgE6LNHlGjQKkniX5kuEaGqJ2hpgW+Y4FaRxLdGSDHZ0THy5BhhjmmqBwpcbyICb7oT44c
+c0xROVDiODm+InofOXJMcesAicNEzJD5GBNc4walPQT7S/EDmY+VYonMHoL9pFhi4DREPCDXUtBe
+iiWi0zNDroWgnRRLRKdrhtwOid0ilojaqTDGwvFSzJBqZ4YSpS2C3R4QtVNjhIVulBih0t4Doi2C
+t33BUHsLVLpVY6q9AWa2SGw3wMR+fnqR4ofDjXHnWWU/GYYo/CLYboLocNFxouPMbJDYbIBcdwo8
+2u0TMt0YIMfcmsRmE926QaWd/3Rngrk1wWsRuW5VPsYAmTXBa7nzcm1N8NrfzktmTdAUkTovEZmV
+oGnoPKVWgqbUebqyEjRdOU+plaApOk/RStCUOl+pJ8HliJ4EFya4MMGFCZpq56v0JGgqna/ak6Cp
+cp5KK0HTT+epshI0FfoRfaxHK4mmAjWibs3wj91+14/CSuK1BXLdypD5GBVKK4nXviPXrxEKpFgi
+6s/CmuC1BSr9maPwrMRYv+6tCTb7pj+197NAZU2w2R1q/cgx9GyAif7c+0Visxr3mOhexBI1ov7M
+UfhFYrtbXCN1mBJTh1s4XI2pDRJvu8EP7V15UeNWN67tZ4rKBsHbSky1N0SuWyly7S1wZ4vEbrf4
+A7l2ZrjCIyqHi7hCjqidEjfekGhnjBSpdnLk3leNv1B7Q9BOjRFKp6nGCJUdgvZqjFA4LSVGKLUQ
+7KfGCHdOQ4ERSi0lDjPGI2aIPsYUt/aUONwCBb4i934K3KBygMRxatzgHl8x1J8CUxSOkOhGiREG
++IwcUTfm+IZCBxLdqjDGGENcI8VQeyVKfEeBWocS/SlQeJEiYoCBFxUqzwo9S7yf0gn4H0GApiwA
+OdejAAAAAElFTkSuQmCCAAA=
+--_008_LO4P265MB6480B63569D752E8D22F38C2BF222LO4P265MB6480GBRP_
+Content-Type: image/png; name="image009.png"
+Content-Description: image009.png
+Content-Disposition: inline; filename="image009.png"; size=1230;
+	creation-date="Thu, 21 Nov 2024 17:07:10 GMT";
+	modification-date="Thu, 21 Nov 2024 17:07:10 GMT"
+Content-ID: <image009.png@01DB3C37.CADB7750>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAEk0lEQVR4AeXBIXMb6QEA0NeNwMGP
+ZOZYF17RbVmKLLMWWWFXdCt2LBYKlAWLbKNCKahz6GTUFnnzC7JhhRvWgs4szLHLjDTzeb2yrV2t
+E8/kvd8d/eH/viaJr0ziKzPy+DJkSPE9gt3eokaB0iMZeRwTnGCCYD9jTWtcYY3aQEaGkyLHKwSH
+m2CCJVZYoHKgkcMFzHHq8eTIscIClZ5GDpPjHMHnkSPHAmd6GOknYImJL2OOE0xR6iDRXYZ3mPiy
+MlxjooNENxmukXoaAn5Bbk+J/WW4RvD0LJHbQ2I/Ga4RPF1L5B4w8rCAawT91VjjCiUqUUCGE0yQ
+6m+JEqU7PEufv/aAf+I7/dT4G/6Kn/Ef1Jo+osK/cYkPyBD082e8wUc7PEufv3aPU/yknwJ/wr/w
+0f5KvME3eKG7gO/wsx1G7pZirp8VpppS5DhChmCjQIk3KG3UmOE9lrqbYIzCLc/S56/d4RwvdLfC
+VBTwd6wwRopvRCle4CeM8R7/tVHiAya6G+PSLc/S56/tkGKluxJ/EWV4hxf2k+IH/A+ljRIpMt0E
+fEDphsRuc/1MRRmuEXQTsEQumqHS3dwtibaAXHcrlDYCfkGwW40CtbudI7VRY6G7FBM3jLTl+lmI
+TpFqKzFDIcowx0RTwBLHNlY4R9DNCda2Em0/6q5EJXqlbYU/otBU4iUutI2Rita6m7gh0RSQ6a4Q
+TRA0VZi53wyFtlx0pbuAia1E01g/70WZtkvUHrbQdiSq9JPZSjRl+qlEv9dW2k/hfqV+jmwlmo4c
+LtVW+rIyW4mm4HCltsx+gscRbCWaMv1kog/afrSfibZaNNZf5pPEML4XrbXlyNwv4FzblSjTX/BJ
+YhgTUYVC2zUyu6W4RtBUYy06caCRYQTkWNlYYKwp4B1WuEJt4wQ5grZL1DZSjB1oZDhzrGwUWGOi
+LUfuYRXORHMDSDTV+kuRi2ao9TcVZcgdpvRJoql0mHMEGxUu9bNGITp3uNoniabKYQLmojOUuqkx
+E+UYO0xpK9H0weFOkYlmulmgshFw7nCVrURTYRhLUYEL+ylxIZojONxbW4mmArXDZTgVLVB72FQ0
+xqlhFLYSbWvDmCO1UWPqfguUoqVhVChtJdquDCNgKVpjbbcKF6IzpIaxdkOibY3KMMaYiGaotU1R
+20gxN5xLNyR2e2M4SwQbFRaa1ihES8NZo3JDYrcL1IYRMBddoLRRYyo6xdhwLt2S2K3GpeGcYiya
+2pihthEwN5wVCrck7naG0nCWohIvsRItEQyjxsIOiftNDSfFmWgtGmNiOAtUdkjcr8TCcObINAUs
+DWeNC3d4lj5/7QEFUmSG8QO+xa/I8Q98axglXuKjO4zsZ4YMmcMFnOLUsGq8RO0eif3UOEbpaapx
+jMoDEvurcYzC01LiGKU9JLqpcYwLT0OBY5T2NNLPDG+xRPBlLHCmo5H+1ihwjtznU2CKSg8jh6kx
+xSXOMfZ4CixQOMDIMEocI8Ur5AiGscIbFAYwMqwKM8wwxgkyjO2vRIkrFKgNaOTxFChEGQJSpKIK
+lY3CIxv5fEpPwG+pBx9nHH3wXwAAAABJRU5ErkJgggAA
+--_008_LO4P265MB6480B63569D752E8D22F38C2BF222LO4P265MB6480GBRP_
+Content-Type: image/png; name="image010.png"
+Content-Description: image010.png
+Content-Disposition: inline; filename="image010.png"; size=1171;
+	creation-date="Thu, 21 Nov 2024 17:07:10 GMT";
+	modification-date="Thu, 21 Nov 2024 17:07:10 GMT"
+Content-ID: <image010.png@01DB3C37.CADB7750>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAEWElEQVR4AeXBMXLb2AEA0LdYFCl/
+s3WwZSojJzB4AnFPEKBLJ7HKpKJ4AsknAHwC0912hMtURm6AHCAzSJcynqFmvmhRJCgStjJ+76e3
+f/q3H0niB5P4waSmlyNHhjcI9vuEAS06E0lNY44rzBGMU9i1xkesMbiQ1OVkKHGN4HxzzFGjwQq9
+M6XOF7DEjemUKNFghd4Lpc5T4g7Bt1GixAq3XiD1MgE15r6PJa5QoXOCxOlyfMbc95Vjg7kTJE6T
+Y4PM6xDwAaWREuPl2CB4fWqURkiMk2OD4PWqUToicVzABsHrVyN3QOq4Dwi+jQEt/mnrDXJkxvuA
+P2OwR+qwGxSm12GFtf0KLFE4LkON3+yRel6GpendY+GwFi1usXTcHAVaX0k8b4lgWhUWxrtFZZza
+Hqn9MpSmVaERBdzgGsHWgDUWGGw1uMLcYRlKNB5J7Lc0rQqNKGCDJYIooMRnZKLKOEtfSTwVUJpO
+hUYUsEHueRlq0YDGcRnmHkk8VZpOhUYUsEHuuAKF6KNxrjySeOovprFCIwrYIDdeIRqMM/dIYldA
+7vJa3IoCNsi9XGecgLkHiV2FaaxEARvkzpMbL/cgsSt3eR1a0R1yWw16461FmfHeepDa9dbltaKA
+0tY9FrZqlA5boxNdGS/3ILEruIxe9B9RLnonqtB4XodKlGNuvOBBYlfufBV+ddw1gqhC66kOMwyi
+2ulyXyQuq0Jjq/NUL7rBBkFU2dVhhkFUI3e64IvE5VRoRL2tN6IevSjHB1GPta0BMwyiGqUzJC6j
+QiMKyG3NEUSVXQVy0SdbAYOoRulMifPdoxEFbJCJbkQtKgyiuagTZbZqlC4gsWtwmhYLUcAGuV1L
+5KIGv6J32Bw1SufrfJHY1TnNShSwQW6/DXK7MluD/e5QuozBF4ldvfE6tKI75J4XsMGNrTvRWpS7
+vM6D1K5/Ge+jKKB0XMAdlgi27tGLrlxe70FiV2u8XpQ7TbDVYSUqULi8Tx4kdrUYjNM7T4cZBtGd
+abQeJJ5aG6cQDU7TYYZBVCN3eT06DxJPfTTOH0UdeuN0mGEQ1ShNY+2RxFNr9I6bI4gWjuswwyCq
+UZrOO48k9nvvuIAb0RqV560xwyCqUZrOGr1HUvvd4xrBYddYo7PVoMU1cls93qO1q0ZpWu98JbXf
+gHdYOizgA2bobfVYOKxGaVoNWl9JPO8WneMyfEbhuAwblKY1YGWPn7Nf/uaAf+CvjvsDShT4CT3+
+KyqwRIPM9P6O3+2ROqzDCkvjFChQ+37WuPeMxHG3aPx/6FA5IDHOAp3XbcBvGByQGGfADJ3XacAM
+vSMS4w2YofW6dJihM0LiNANmuPc6tJihM1LqZRb4hBrB97HCrROlXm6NFncofTstKvReIHWeARXe
+4Q6F6bRYoXWG1GV0mCHDNUoEl9HgPVoXkLqsHgssUOAKOQrjdejwES0GF5SaTotWlCMgQybq0dtq
+TSz17XRegf8BD+QSUcaU7H0AAAAASUVORK5CYIIAAA==
+--_008_LO4P265MB6480B63569D752E8D22F38C2BF222LO4P265MB6480GBRP_--
+

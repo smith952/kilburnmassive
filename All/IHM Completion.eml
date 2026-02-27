@@ -1,0 +1,258 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:37d3:b0:a3b:fbe6:40dd with SMTP id o19csp88774ejc;
+        Fri, 9 Feb 2024 01:22:02 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGz4UcWBW6KKhQdpK79kuySV/F+DfpSJ866wbhjX170IRApCI8sKvowm5u7saYATpwlIJPG
+X-Received: by 2002:aa7:d851:0:b0:560:9267:95af with SMTP id f17-20020aa7d851000000b00560926795afmr868369eds.22.1707470522402;
+        Fri, 09 Feb 2024 01:22:02 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1707470522; cv=none;
+        d=google.com; s=arc-20160816;
+        b=XK3LjAJm4jMO+QYYu9t75ukaOw9gK4yFs2AnwKTvySvPzRrEr4kJvAOoJANjNtlwwh
+         zWuDxoORwWZc/6j11hlvMPnbfcSUeRHtchjxdJVS/Oz/gHnR4PFwtxwR7nhKnRzXZflo
+         SF8YBPSG76wBxbPBOwuTY7YWoC5zqiIQxEjfU9MxCgR+62/E3ejd54hYCL3bYKADeDx4
+         RWKrWk82RFj9Rxk1w4I1vJlqfl7HkvDAEGo4+Ng8xDUr+QjPvph9OoMMB+yn5OrB/gzN
+         CXrqNWbweO5rEUs3E3/6kRbH7pzzPRDjiaG7VW7vL75vgEFCoOoX9RGt3ZMhMxwM2lFJ
+         IwOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=dkim-signature:content-transfer-encoding:to:message-id:thread-topic
+         :subject:from:date:mime-version;
+        bh=439P/r27HtTzsaWhBwgDSTVdhcCoBrnzCHfGnwbKkn0=;
+        fh=8EMXY5n0fS/0GMgPqP7CoPTeueAXco4qAVe+vH1Wr/k=;
+        b=TX9BqVyGUuuYNVcI7IYIS6OdrGeek2lMLC6HZJjIN5NF+vAdN+bOI8R1YBPy/Sm1uQ
+         n+fMOZG8IAShmiy1kV0Z7QU+oUBgeh5tN1sIjd8s4hqINZMVYEoUeDobM7ExmNWBsMtX
+         nysp3H9mdjsGgOmAW9lAPFHdAJog1QtmlhuubwadA9kh0LNbqgcPwEyXVI5Hl3WQxC75
+         NZto4lPXEEmFEjAXyd2kNzrlhakvGUmgEQ+k3Kx0Hz0j0J5Rk9TdDJblVMW5kklJM5F5
+         MzNATlkpyfzJPp/XyCjTkvKFQeAkYrICTDCjk+Xh0qnKhg1Ke2X1wFIhMFZHvsSHo75K
+         qD7A==;
+        darn=inhomemedia.io
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@jms-consult.com header.s=20230208 header.b="a1CET/Wk";
+       spf=neutral (google.com: 62.128.193.157 is neither permitted nor denied by best guess record for domain of jacqueline.hills@jms-consult.com) smtp.mailfrom=jacqueline.hills@jms-consult.com
+X-Forwarded-Encrypted: i=1; AJvYcCVRvNvzTnl798HCpAgFJx36ziz7iv3RB0TxLIeJnhxMVP8YcRiOeKJqvH0/LhzR7KurwH0cNFrMwQ4vrbaquJN0mA==
+Return-Path: <jacqueline.hills@jms-consult.com>
+Received: from mta7.iomartmail.com (mta7.iomartmail.com. [62.128.193.157])
+        by mx.google.com with ESMTPS id a15-20020a05640233cf00b005605a6cbb4bsi678122edc.182.2024.02.09.01.22.01
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 09 Feb 2024 01:22:02 -0800 (PST)
+Received-SPF: neutral (google.com: 62.128.193.157 is neither permitted nor denied by best guess record for domain of jacqueline.hills@jms-consult.com) client-ip=62.128.193.157;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@jms-consult.com header.s=20230208 header.b="a1CET/Wk";
+       spf=neutral (google.com: 62.128.193.157 is neither permitted nor denied by best guess record for domain of jacqueline.hills@jms-consult.com) smtp.mailfrom=jacqueline.hills@jms-consult.com
+Received: from vs2.iomartmail.com (vs2.iomartmail.com [10.12.10.123])
+	by mta7.iomartmail.com (8.14.7/8.14.7) with ESMTP id 4199M120019953;
+	Fri, 9 Feb 2024 09:22:01 GMT
+Received: from vs2.iomartmail.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 7F46746048;
+	Fri,  9 Feb 2024 09:22:01 +0000 (GMT)
+Received: from vs2.iomartmail.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 687994604C;
+	Fri,  9 Feb 2024 09:22:01 +0000 (GMT)
+Received: from asmtp1.iomartmail.com (unknown [10.12.10.248])
+	by vs2.iomartmail.com (Postfix) with ESMTPS;
+	Fri,  9 Feb 2024 09:22:01 +0000 (GMT)
+Received: from Jacquelines-MBP (host86-144-244-228.range86-144.btcentralplus.com [86.144.244.228])
+	(authenticated bits=0)
+	by asmtp1.iomartmail.com (8.14.7/8.14.7) with ESMTP id 4199M0rO019608
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Fri, 9 Feb 2024 09:22:01 GMT
+MIME-Version: 1.0
+Date: Fri, 9 Feb 2024 09:22:00 +0000
+From: "jacqueline.hills@jms-consult.com" <jacqueline.hills@jms-consult.com>
+Subject: IHM Completion
+Thread-Topic: IHM Completion
+Message-ID: <E6A3D4CC-365A-114C-BF95-40B7AF9E48CE@hxcore.ol>
+To: Owen Thomas <ot@inhomemedia.io>, Anthony Hughes <th@inhomemedia.io>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
+X-Originating-IP: 86.144.244.228
+X-Thinkmail-Auth: jacqueline.hills@jms-consult.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=jms-consult.com; h=
+	mime-version:date:from:subject:message-id:to
+	:content-transfer-encoding:content-type; s=20230208; bh=GDIMKmdY
+	Y1QaG9RzSk8XK+nCmJ6SkKm9YLqu5w1ktLk=; b=a1CET/WkaSPTzVCGpfC/SLzU
+	0MLbQTwvt0uqWrXHa4hk5bx+pM1NDRe6Y+5YPUmsIajTRsVLiZLItMZ2WfItGPGj
+	qnFH2oI8yPfG/44TwhbsbnMJY89DEitdq8qQjyAsDaklkowP4YvX2n5W0sGg5TSI
+	ozzDHo2FdvqQas0901DGfnkMIEN6xVVAxVHIk7Pa+8Wa1Fz+LqdWKpGKD46R/aA7
+	hdNXH63Dm5VB5AyQP9TkGBE2xffMuxF+tAdCgQL8dewW2wOcaV+RK9sbj01flYBL
+	iG8NS8SDtyZjooQ73QheIywKbW9MXrZrIaR+LABPbPpiYGwzyv86XE61T1oknw==
+X-TM-AS-GCONF: 00
+X-TM-AS-Product-Ver: IMSVA-9.1.0.2090-9.0.0.1002-28180.006
+X-TM-AS-Result: No--26.480-10.0-31-10
+X-imss-scan-details: No--26.480-10.0-31-10
+X-TMASE-Version: IMSVA-9.1.0.2090-9.0.1002-28180.006
+X-TMASE-Result: 10--26.480200-10.000000
+X-TMASE-MatchedRID: G3LejBM62v5EXwnTCGfm3f0peXGEEBlvDvKSaIxu6kpXG3yI9k2vbCpY
+	AmrFxIhiLkTtdgQKNN5Se6rq1H4K1f+z7xWvCPyPzH6d90mb4+KOVGny5q72hiPS9JdK3W4/tAg
+	K4TtXrP1vs7O6BK2XsLuAYBYzL15HQOFTxWCroW8COoDG5aR1MaNPTD9MknDoLbzXwmi9rgJL/h
+	r/YMmS/6czgss8RCBcc2U9zIrxG4fTeVqFDd/bPhD3+0w1DhqKuzjG1aZp4flYC5LPd7BvbXQTW
+	fFStMP22wLDasrm2W1CyAl6sRfMymBhXZK5mQ8WPPov5T+l6PFJ0h0KLwFrgN0OTWJge8K7QbNT
+	sIpfWx3DOEn54a+/i7Awt5JMowOoOGVj8qUeiBSQDCPIwePW3kfLPdsHmQbnLX3qyf3ewG+bbFz
+	NJfKbHOBa80AtXJok6CBy7I/luQlNA0JNP2kn9TiEPRj9j9rvWMg9YkJEDExncSzHLoRamZrTfC
+	3+Fp3fW7bq9gwZaCBeWwXKQGp3JOXmR45MYCL5FFvjh2JlOFQ6En2bnefhoEbhULSLyKWZ0HI63
+	c2ctSTpCKB1+FBScV+24nCsUSFNBLPx9cDMrKayUQZy4sY6KvJT+hf62k2YIbZSWXZZ520=
+X-TMASE-SNAP-Result: 1.821001.0001-0-1-22:0,33:0,34:0-0
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40"><head><meta http-equiv=3DContent-Type content=
+=3D"text/html; charset=3Dutf-8"><meta name=3DGenerator content=3D"Microsoft=
+ Word 15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ligatures:standardcontextual;
+	mso-fareast-language:EN-US;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB link=3D"#0563C1=
+" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div class=3DWordSection=
+1><p class=3DMsoNormal><span style=3D'color:#212121;mso-ligatures:none;mso-=
+fareast-language:EN-GB'>Hi Owen/Anthony,</span><span style=3D'font-size:10.=
+0pt;color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'><o:p></o:p=
+></span></p><p class=3DMsoNormal><span style=3D'color:#212121;mso-ligatures=
+:none;mso-fareast-language:EN-GB'>&nbsp;</span><span style=3D'font-size:10.=
+0pt;color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'><o:p></o:p=
+></span></p><p class=3DMsoNormal><span style=3D'color:#212121;mso-ligatures=
+:none;mso-fareast-language:EN-GB'>To prepare for completion we have the fol=
+lowing documents which I=E2=80=99d be grateful if you could&nbsp;<b>confirm=
+ your approval</b>&nbsp;of;</span><span style=3D'font-size:10.0pt;color:#21=
+2121;mso-ligatures:none;mso-fareast-language:EN-GB'><o:p></o:p></span></p><=
+p class=3DMsoNormal><span style=3D'color:#212121;mso-ligatures:none;mso-far=
+east-language:EN-GB'>1 =E2=80=93 Articles of Association</span><span style=
+=3D'font-size:10.0pt;color:#212121;mso-ligatures:none;mso-fareast-language:=
+EN-GB'><o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'color:#212=
+121;mso-ligatures:none;mso-fareast-language:EN-GB'>2 =E2=80=93 Shareholders=
+ Agreement</span><span style=3D'font-size:10.0pt;color:#212121;mso-ligature=
+s:none;mso-fareast-language:EN-GB'><o:p></o:p></span></p><p class=3DMsoNorm=
+al><span style=3D'color:#212121;mso-ligatures:none;mso-fareast-language:EN-=
+GB'>3 =E2=80=93 Loan Agreement with Eris</span><span style=3D'font-size:10.=
+0pt;color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'><o:p></o:p=
+></span></p><p class=3DMsoNormal><span style=3D'color:#212121;mso-ligatures=
+:none;mso-fareast-language:EN-GB'>4 =E2=80=93 Written Shareholder resolutio=
+n adopting the new Articles, redesignating the Ordinary share into A Ordina=
+ry share, increasing the share capital to =C2=A3200 Ordinary A shares and =
+=C2=A318 Ordinary B shares (nominal values)</span><span style=3D'font-size:=
+10.0pt;color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'><o:p></=
+o:p></span></p><p class=3DMsoNormal><span style=3D'color:#212121;mso-ligatu=
+res:none;mso-fareast-language:EN-GB'>5 =E2=80=93 Board Minute noting the ne=
+w Articles, approving the Company enter into the Shareholders Agreement, ap=
+pointing Anthony as a new director, acknowledging the Deed of Waiver author=
+ising the directors to issue the shares according to the Subscription and S=
+hareholders Agreement</span><span style=3D'font-size:10.0pt;color:#212121;m=
+so-ligatures:none;mso-fareast-language:EN-GB'><o:p></o:p></span></p><p clas=
+s=3DMsoNormal><span style=3D'color:#212121;mso-ligatures:none;mso-fareast-l=
+anguage:EN-GB'>6 =E2=80=93 Deed of waiver of Pre emption rights for Owen&nb=
+sp;</span><span style=3D'font-size:10.0pt;color:#212121;mso-ligatures:none;=
+mso-fareast-language:EN-GB'><o:p></o:p></span></p><p class=3DMsoNormal><spa=
+n style=3D'color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'>&nb=
+sp;</span><span style=3D'font-size:10.0pt;color:#212121;mso-ligatures:none;=
+mso-fareast-language:EN-GB'><o:p></o:p></span></p><p class=3DMsoNormal><b><=
+span style=3D'color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'>=
+To be actioned&nbsp;</span></b><span style=3D'font-size:10.0pt;color:#21212=
+1;mso-ligatures:none;mso-fareast-language:EN-GB'><o:p></o:p></span></p><p c=
+lass=3DMsoNormal><span style=3D'color:#212121;mso-ligatures:none;mso-fareas=
+t-language:EN-GB'>1 - The board minutes need an address where the board mee=
+ting is to be held.</span><span style=3D'font-size:10.0pt;color:#212121;mso=
+-ligatures:none;mso-fareast-language:EN-GB'><o:p></o:p></span></p><p class=
+=3DMsoNormal><span style=3D'color:#212121;mso-ligatures:none;mso-fareast-la=
+nguage:EN-GB'>2 - I=E2=80=99m not sure whom will complete your companies ho=
+use filings and make up statutory registers etc.&nbsp; The filings of the s=
+pecial resolution and the articles will need to be completed within 14 days=
+, the share transactions will need to be reflected on the company books and=
+ relevant share forms completed for companies house.&nbsp; This can be done=
+ on line if you have an authorisation code from companies house.&nbsp;&nbsp=
+;</span><span style=3D'font-size:10.0pt;color:#212121;mso-ligatures:none;ms=
+o-fareast-language:EN-GB'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'>3 - W=
+e will also need to issue share certificates as per the requirements of the=
+ Loan document these need to be drafted</span><span style=3D'font-size:10.0=
+pt;color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'><o:p></o:p>=
+</span></p><p class=3DMsoNormal><span style=3D'color:#212121;mso-ligatures:=
+none;mso-fareast-language:EN-GB'>4 =E2=80=93 there is no documentation rela=
+ting to the issue of the B shares, ie Subscription Agreement and Deed of Ad=
+herence, plus board minute to issue B shares and relevant filings with comp=
+anies house and amendments to the books and registers of the Company&nbsp;<=
+/span><span style=3D'font-size:10.0pt;color:#212121;mso-ligatures:none;mso-=
+fareast-language:EN-GB'><o:p></o:p></span></p><p class=3DMsoNormal><span st=
+yle=3D'color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'>5 =E2=
+=80=93 We need the bank details for the Company for payment of the subscrip=
+tion monies.&nbsp; Owen are you expecting the money to flow to you and then=
+ you make the subscription or do we need to change the subscription amount =
+to reflect the actual amount payable for 149 shares (=C2=A381,724.65) being=
+ 149 x =C2=A31,667.85</span><span style=3D'font-size:10.0pt;color:#212121;m=
+so-ligatures:none;mso-fareast-language:EN-GB'><o:p></o:p></span></p><p clas=
+s=3DMsoNormal><span style=3D'color:#212121;mso-ligatures:none;mso-fareast-l=
+anguage:EN-GB'>&nbsp;</span><span style=3D'font-size:10.0pt;color:#212121;m=
+so-ligatures:none;mso-fareast-language:EN-GB'><o:p></o:p></span></p><p clas=
+s=3DMsoNormal><b><span style=3D'color:#212121;mso-ligatures:none;mso-fareas=
+t-language:EN-GB'>For completion once everything is agreed the following sh=
+ould occur;</span></b><span style=3D'font-size:10.0pt;color:#212121;mso-lig=
+atures:none;mso-fareast-language:EN-GB'><o:p></o:p></span></p><p class=3DMs=
+oNormal><span style=3D'color:#212121;mso-ligatures:none;mso-fareast-languag=
+e:EN-GB'>1 =E2=80=93 Jonathan or myself will hold documents 1-6 above all s=
+igned by yourselves (Owen and Anthony) Q =E2=80=93 whom is getting David=E2=
+=80=99s signature?</span><span style=3D'font-size:10.0pt;color:#212121;mso-=
+ligatures:none;mso-fareast-language:EN-GB'><o:p></o:p></span></p><p class=
+=3DMsoNormal><span style=3D'color:#212121;mso-ligatures:none;mso-fareast-la=
+nguage:EN-GB'>2 =E2=80=93 we can share these documents with Kelvin on behal=
+f of James and he can obtain James=E2=80=99 signature where necessary.</spa=
+n><span style=3D'font-size:10.0pt;color:#212121;mso-ligatures:none;mso-fare=
+ast-language:EN-GB'><o:p></o:p></span></p><p class=3DMsoNormal><span style=
+=3D'color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'>3 =E2=80=
+=93 Once we have all the signatures Kelvin and JMS will arrange a call to c=
+onfirm we have executed documents which will be held for completion.&nbsp; =
+Completion will take place once the monies have been received into the bank=
+ account of the Company.&nbsp; JMS and Kelvin will then confirm Completion =
+has taken place and all the documents can be dated accordingly.</span><span=
+ style=3D'font-size:10.0pt;color:#212121;mso-ligatures:none;mso-fareast-lan=
+guage:EN-GB'><o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'colo=
+r:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'>&nbsp;</span><span=
+ style=3D'font-size:10.0pt;color:#212121;mso-ligatures:none;mso-fareast-lan=
+guage:EN-GB'><o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'colo=
+r:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'>Please can you res=
+pond to the items outstanding that still need to be actioned and let me hav=
+e any comments on the Completion process.&nbsp;<o:p></o:p></span></p><p cla=
+ss=3DMsoNormal><span style=3D'color:#212121;mso-ligatures:none;mso-fareast-=
+language:EN-GB'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span styl=
+e=3D'color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'>Also Jona=
+than would like to speak to you about the loan document if you could arrang=
+e for a call that would be great.</span><span style=3D'font-size:10.0pt;col=
+or:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'><o:p></o:p></span=
+></p><p class=3DMsoNormal><span style=3D'color:#212121;mso-ligatures:none;m=
+so-fareast-language:EN-GB'>&nbsp;</span><span style=3D'font-size:10.0pt;col=
+or:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'><o:p></o:p></span=
+></p><p class=3DMsoNormal><span style=3D'color:#212121;mso-ligatures:none;m=
+so-fareast-language:EN-GB'>Kind regards</span><span style=3D'font-size:10.0=
+pt;color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'><o:p></o:p>=
+</span></p><p class=3DMsoNormal><span style=3D'color:#212121;mso-ligatures:=
+none;mso-fareast-language:EN-GB'>Jacqueline</span><span style=3D'font-size:=
+10.0pt;color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'><o:p></=
+o:p></span></p><p class=3DMsoNormal><span style=3D'mso-ligatures:none;mso-f=
+areast-language:EN-GB'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><o:=
+p>&nbsp;</o:p></p></div></body></html>=
+

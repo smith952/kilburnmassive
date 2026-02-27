@@ -1,0 +1,193 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:907:700b:b0:a65:8c51:92bb with SMTP id wr11csp697400ejb;
+        Thu, 30 May 2024 00:49:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG4ZWyr9mnybz0yLyL0RCzmcmjRmnBbrrCiUT53KDnfPpifcqP8R1y21UNxhkNFWyZlDdwd
+X-Received: by 2002:a05:6a20:3218:b0:1b1:ed95:6191 with SMTP id adf61e73a8af0-1b2646764d7mr1121891637.52.1717055360103;
+        Thu, 30 May 2024 00:49:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1717055360; cv=none;
+        d=google.com; s=arc-20160816;
+        b=NWniLQSa2YUXhonmw3mG2iZf+O//Xg37fJKo9TPgLPyQhmcwg7uMsLp+Trvx9sK6Ag
+         /oJomzV5COSLGLaynxomMYqkmZNINQ7Q3++jewxul/ICkGrPhrAlwTmRjVlOH+PnJL7C
+         OMiti2jjtviJR9QbE22OSUJkPJ+BO2jcjHIsD2hPy0HzoRon81oWt8rAn/qC8hDvO0ii
+         W/EPN/0GnIcejVoBgoj6ph0OTdsr3OXfc0yEPnEotoSHm+Q3bewAzWb6jIz3zRtAvYZb
+         rEaGqrtU0b65bhCtM6gp/matfVQiw16B2HkFC2XN0uyLh5ONxzyqKf1XAOkEhVNmYAis
+         BWvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:dkim-signature;
+        bh=Q/pW/6TAroq20GKnNuT7/ebaweQPGtm9KoaFbglDbbw=;
+        fh=Xy2oq5HXIWTtYryBjUSZ+7VhiG1WTD+izgaMqg9qu6k=;
+        b=yrF3lwifc/cG5SUY0aiWTCLPWtQIrXg7Ln4QuqFy2zBPcCDB0ezW+3vi56RjaI1ZDO
+         NSBjXP6lR6tlBWf3pkbQoJsJZiQawLrjXMMw40ZIEtNe6eZ+jXhXFyQotYQE70Y2rHcX
+         YvNmt8uT2tWWfpWQNVlPBmlaICMSwgoA82IcjBzlyEUyLCWs4srkkRqtoz+d4Wtfubr+
+         QdoEcMQ8G5CVX8Bri94LU5+HmcFl/h4XliDLlx9dyqCJ6t7jsI+tAyXVExsMoioVrs4/
+         NIi+gVl0oemfnXQliS3+dPZWMufJXKRq0K8j0ddOJb3jnZ5wzi9MWFPSAFbZThY8mRXI
+         Wnlg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=1nNMztnY;
+       spf=neutral (google.com: 2a00:1450:4864:20::429 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+Return-Path: <th@inhomemedia.io>
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com. [2a00:1450:4864:20::429])
+        by mx.google.com with ESMTPS id d2e1a72fcca58-7022afc6104si1493182b3a.202.2024.05.30.00.49.19
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 May 2024 00:49:20 -0700 (PDT)
+Received-SPF: neutral (google.com: 2a00:1450:4864:20::429 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) client-ip=2a00:1450:4864:20::429;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=1nNMztnY;
+       spf=neutral (google.com: 2a00:1450:4864:20::429 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-354e22bc14bso595037f8f.1
+        for <ot@inhomemedia.io>; Thu, 30 May 2024 00:49:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1717055357; x=1717660157; darn=inhomemedia.io;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Q/pW/6TAroq20GKnNuT7/ebaweQPGtm9KoaFbglDbbw=;
+        b=1nNMztnYLs0a6v8rLlIrO303mhGWX7KEqIWDk5t9i+8Ob10XavARL/Q3WluojeC5mK
+         puTEw+nu5Jfk2S1MwGs28+Mctc1PWT6LBDSxdcoLrgovuIY+wU0DvL23dJawmZHw2DYy
+         z7MrRBgXSGIBXMeu/pKFS+KZmE9dI5a0nSGYlCmHr/I9c++hWMVFSYt9Z821PTuK01bQ
+         ujqo238g1HCA+wSkym4UZs5bkOPI1P84j5GtLAKDOo/lO680OPmmvv3dfyv0c8MIJKXJ
+         04UaAiPuYjpe/XNBkw/GJACJ+OLQe9ogpezvPkvftJvXe/BzizMkdyIkhbbwyxCm16G3
+         L11g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717055357; x=1717660157;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Q/pW/6TAroq20GKnNuT7/ebaweQPGtm9KoaFbglDbbw=;
+        b=bg4llrhTH/F8O2d5fdMdZt5g5V+LTTTpt7ejj17ssmbH0pBxTnVujJfm4iJ1MbKGdR
+         YNgIAxAE1vvvymLtGEY620ho9A0gErcHiZPalzev6hEINVphQuEP1FPpywPbn/modyxW
+         l6pUqhY3JRj7+cN67REznXU0PCGGIxkEBpQNb/ZUkRtM+aBgNf1Tb9bOZlq+ujKqPrVc
+         diXxl2LgBC/ixWsrxhTUwOUW+y2lIHvMXUqTqoTdq+HvW1ZpgGOFSLP9DIPvTT6WFoG4
+         x67AeUVtdUZEDRhri6B+JDwyS6YcW7YVeTfVfnwXYU43nBnFKs7DZl3ktQwgK0810y7T
+         s6yA==
+X-Gm-Message-State: AOJu0Yw75TwZ1VAGdiACgJM7AgTJgGZ1ZwqqGwgKQjKNygAb9zNdsf3P
+	vPqIH91RC2V+gcV2RTYXumi4A4aEaUgfZpkttVojJ+KxtZRHg4YcW8HRf8Ws/nkN1zFwEZbdXfA
+	dPw==
+X-Received: by 2002:a5d:544b:0:b0:354:db85:3039 with SMTP id ffacd0b85a97d-35dc00c6f89mr885608f8f.44.1717055356854;
+        Thu, 30 May 2024 00:49:16 -0700 (PDT)
+Return-Path: <th@inhomemedia.io>
+Received: from smtpclient.apple ([2a00:23c4:6022:d901:d18:b125:f66:d225])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35579d7de7esm16514255f8f.14.2024.05.30.00.49.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 May 2024 00:49:16 -0700 (PDT)
+Content-Type: multipart/alternative; boundary=Apple-Mail-B9099EFA-18DE-4B9C-BA2B-5F1CD1F03216
+Content-Transfer-Encoding: 7bit
+From: Anthony Hughes <th@inhomemedia.io>
+Mime-Version: 1.0 (1.0)
+Subject: Re: Screen Numbers
+Date: Thu, 30 May 2024 08:49:05 +0100
+Message-Id: <5F510A68-226D-4132-AF98-BF2391D1EEA6@inhomemedia.io>
+References: <CAMr_NGENZA6TKUMNVme5FqCuYMtkjVPkHH6nLJNx1gnOXTxy7g@mail.gmail.com>
+Cc: Stephen Gale <stephen@inhomemedia.io>
+In-Reply-To: <CAMr_NGENZA6TKUMNVme5FqCuYMtkjVPkHH6nLJNx1gnOXTxy7g@mail.gmail.com>
+To: Owen Thomas <ot@inhomemedia.io>
+X-Mailer: iPhone Mail (21E236)
+
+
+--Apple-Mail-B9099EFA-18DE-4B9C-BA2B-5F1CD1F03216
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">No problem<br id=3D"lineBreakAtBeginningOfS=
+ignature"><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><bl=
+ockquote type=3D"cite">On 30 May 2024, at 08:44, Owen Thomas &lt;ot@inhomeme=
+dia.io&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div d=
+ir=3D"ltr">=EF=BB=BF<div dir=3D"ltr">Tony I will bell you re this, just need=
+ to be clear before I update the Steve email</div><br><div class=3D"gmail_qu=
+ote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 30, 2024 at 8:38=E2=80=
+=AFAM Anthony Hughes &lt;<a href=3D"mailto:th@inhomemedia.io">th@inhomemedia=
+.io</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+><div dir=3D"auto">I would assume the issue is a large number are not on at a=
+ny point in time. All in 4th have ordered circa 300 screens around 20 are sa=
+fe with Ameco and another 40 with SCCI. In terms of Watmos and Greenwich 4th=
+ own the access and control of install ie wayleave so around 200 will be saf=
+e under our control for decommissioning. We need to ensure we are right on t=
+he numbers linked to the exit plan.<br id=3D"m_-1166739176846627163lineBreak=
+AtBeginningOfSignature"><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D=
+"ltr"><br><blockquote type=3D"cite">On 30 May 2024, at 08:21, Stephen Gale &=
+lt;<a href=3D"mailto:stephen@inhomemedia.io" target=3D"_blank">stephen@inhom=
+emedia.io</a>&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"=
+><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr">This gets ever more confusing! T=
+o my knowledge (and Ana can confirm) we have never been invoiced for more th=
+an c160 live screens with LDSK, but as we know with the SE18 sites, these we=
+re entered on to the system but never installed.<div><br clear=3D"all"><div>=
+<div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><p style=3D"line=
+-height:1.38;margin-top:0pt;margin-bottom:0pt"><font color=3D"#1a2234" face=3D=
+"Poppins, sans-serif"><span style=3D"font-size:13.3333px">Stephen Gale</span=
+></font></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin=
+-top:0pt;margin-bottom:0pt"><br></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0)=
+;line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size=
+:10pt;font-family:Poppins,sans-serif;color:rgb(26,34,52);background-color:tr=
+ansparent;vertical-align:baseline">T: 07837 52186</span></p><p dir=3D"ltr" s=
+tyle=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt">=
+<span style=3D"font-size:10pt;font-family:Poppins,sans-serif;color:rgb(26,34=
+,52);background-color:transparent;vertical-align:baseline">A: Balfour House,=
+&nbsp;</span><span style=3D"font-family:Poppins,sans-serif;color:rgb(26,34,5=
+2);background-color:transparent;vertical-align:baseline;font-size:13.3333px"=
+>46-54 Great Titchfield Street, London W1W 7QE</span></p><p dir=3D"ltr" styl=
+e=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><sp=
+an style=3D"background-color:transparent;color:rgb(26,34,52);font-family:Pop=
+pins,sans-serif;font-size:10pt">E: Stephen</span><a href=3D"mailto:dave@inho=
+memedia.io" style=3D"color:rgb(17,85,204);background-color:transparent;font-=
+family:Poppins,sans-serif;font-size:10pt" target=3D"_blank">@inhomemedia.io<=
+/a></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:=
+0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-family:Poppins,san=
+s-serif;color:rgb(26,34,52);background-color:transparent;vertical-align:base=
+line">W:&nbsp;<a href=3D"http://inhomemedia.io/" style=3D"color:rgb(17,85,20=
+4)" target=3D"_blank">inhomemedia.io</a></span></p><p dir=3D"ltr" style=3D"c=
+olor:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><br><br><=
+/p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;=
+margin-bottom:0pt"><a href=3D"https://inhomemedia.io/" style=3D"color:rgb(17=
+,85,204)" target=3D"_blank"><span style=3D"font-size:11pt;font-family:Arial,=
+sans-serif;background-color:transparent;vertical-align:baseline"><span style=
+=3D"border:medium;display:inline-block;overflow:hidden;width:520px;height:29=
+px"><img src=3D"https://lh7-us.googleusercontent.com/G4ff92Jazz4nl6U3XO4bw1H=
+jizO0hBsjZS3iCZQOXffuUv-6C9ZOTq4IW15iyu5kB0duaGS4BIdTk6vBLe2by2YwpWZWU0ghiZa=
+-ur3pLUYBvT5gmflP-8PDQuJOrK3hWMiULmn98KuWeYwc8vZo5pQ" width=3D"520" height=3D=
+"29" style=3D"margin-left: 0px; margin-top: 0px;" data-unique-identifier=3D"=
+"></span></span></a></p></div></div></div><br></div></div><br><div class=3D"=
+gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 30, 2024 at 8=
+:15=E2=80=AFAM Owen Thomas &lt;<a href=3D"mailto:ot@inhomemedia.io" target=3D=
+"_blank">ot@inhomemedia.io</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex"><div><div dir=3D"auto">So we have invoiced 4th U for=
+ 210 screens in total.&nbsp;</div><div dir=3D"auto"><br></div><div dir=3D"au=
+to">I=E2=80=99ve messaged Ana to see how many screens we have bought from Mi=
+dwich to date.&nbsp;</div><div dir=3D"auto"><br></div><div dir=3D"auto">But w=
+e are 32 screens down on these numbers you have shared Tony.&nbsp;</div><div=
+ dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div><br><div class=3D"g=
+mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, 30 May 2024 at 07:=
+42, Anthony Hughes &lt;<a href=3D"mailto:th@inhomemedia.io" target=3D"_blank=
+">th@inhomemedia.io</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex">As per the below see info attached which shows 242 installe=
+d screens.<br>
+<br>
+<br>
+<br>
+&gt; On 30 May 2024, at 07:34, Anthony Hughes &lt;<a href=3D"mailto:th@inhom=
+emedia.io" target=3D"_blank">th@inhomemedia.io</a>&gt; wrote:<br>
+&gt; <br>
+&gt; Hi both,<br>
+&gt; <br>
+&gt; I have been going through the screen data and based on that there are a=
+pproximately 227 installed screens currently acrosss the 4th estate, there a=
+re number of sites not listed that have live screens such as Watmos estate i=
+n Walsall that from memory has 30+. We should ensure we are clear on this da=
+ta as we may well need to be in the discussions you have with 4th.<br>
+&gt; <br>
+&gt; Tony<br>
+<br>
+</blockquote></div></div>
+</div>
+</blockquote></div>
+</div></blockquote></div></blockquote></div>
+</div></blockquote></body></html>=
+
+--Apple-Mail-B9099EFA-18DE-4B9C-BA2B-5F1CD1F03216--

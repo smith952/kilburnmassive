@@ -1,0 +1,180 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:f0cf:b0:a3f:5198:7fe5 with SMTP id dk15csp74861ejb;
+        Wed, 21 Feb 2024 01:20:23 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH7WkXhMsA9UGeNCX7Li2chRh1Cz2UV1XroHymTnBzwh2chwUyHCOkhJJqPcSfGxYAb6dmU
+X-Received: by 2002:a17:90b:1a8e:b0:299:7a77:5e5b with SMTP id ng14-20020a17090b1a8e00b002997a775e5bmr6870571pjb.46.1708507223596;
+        Wed, 21 Feb 2024 01:20:23 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1708507223; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ZoV1jEclDzit+qp9vvx2LoCyjOGIjMCPf0v507x/zNg+6ygfcuXbDOSM5WGUHt0Shp
+         JF74+dN/pEVfMCKxhRLU7mq7EGww5U9RB31xhsJn/gRK62bx6B6z+4wtjBov0fmkhTDt
+         EwivX8K5MzxNeAIiMtQm3YYNUIc+kpb77y9lNj/kRx1YaL4eOiODpbpfGvmMPeoUEbpf
+         t9lXMEWO0389rtX7mG/JceqVAxmDirkwo+Il2B0nf5zcVp0/bkW3dWzVsvXYfVVySvOW
+         zb+SlJcPhgIXmJfclFPlAWWj7zti4lEAi9eFX0oPkyN6e5J6mFiKgj6vnpY6VpJiyUfg
+         /hFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:dkim-signature;
+        bh=2vakx0JGGykXYjEssTyxVCYm7/sQjdHBAxfIWGq2GFQ=;
+        fh=P7x2DiEZzQoJTXFc4KEuAHFus7cJU7b6x8kelorp2/o=;
+        b=ZnWjD9hqP178X+ixhiU8MkvUwRPqGJXVjSir5Ykxg5wwZZvw3scKgXJKhN6TglsG47
+         VlAQKLymDgSI+U2XETke/6g2Gp5phIR7+ANa3CoKr8d3fXaxrOE1uRYfYrj/d2yjGPO7
+         gRrcdqfsjOBJWqqvaRo5vCO2URPKPDXTmc73VShDA1cV4T4u29DaaTelRblp8eToRpiv
+         WFscp5XafN10yidA02MMdDsBNJPK4I0Mls4f30RqrHchAY0b9YCIobFcnQDX0DDNqvTE
+         KoRLVI4TfqvWKqdgxtgkz0ABiQBjfNSbfvmwBwOXX6RQQ8CLiV4RhGe/lqif/Td/0teA
+         zGmg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=Hwfuu2oD;
+       spf=neutral (google.com: 2a00:1450:4864:20::631 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+Return-Path: <th@inhomemedia.io>
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com. [2a00:1450:4864:20::631])
+        by mx.google.com with ESMTPS id x15-20020a17090aca0f00b0029a19777c30si669995pjt.93.2024.02.21.01.20.23
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Feb 2024 01:20:23 -0800 (PST)
+Received-SPF: neutral (google.com: 2a00:1450:4864:20::631 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) client-ip=2a00:1450:4864:20::631;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=Hwfuu2oD;
+       spf=neutral (google.com: 2a00:1450:4864:20::631 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-a26ed1e05c7so870465666b.2
+        for <ot@inhomemedia.io>; Wed, 21 Feb 2024 01:20:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1708507220; x=1709112020; darn=inhomemedia.io;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2vakx0JGGykXYjEssTyxVCYm7/sQjdHBAxfIWGq2GFQ=;
+        b=Hwfuu2oD5YNKaIhTOAQXbZLbB+nL6E395xGax5zEzFdmQUNgae8KvibRgZY1SLxMa7
+         qkuNtFglAMSysCVj/qbX0H0gcKt/ErRdDBtM2067OlMq2r/Ujea4Bgho2nF/KOKE+c24
+         ZykpUmBuGi4XS5hpleszzuhV//OVLPtxC/e55a1IPnPUjmTPXi3P9Xr4SdLUZ091nirT
+         8A/7h8IIPyq7jBWn57pbRb01TQj5A3+ZceEf4jDjHerfE2QKEBcT0w+ic2wq1D04rnYa
+         ZrI2X8I565vTZJox/ssE7iSQxTK6fYEteOxgvokbDyhSN/x9mh4FCUlSpE9dAj0+0TV0
+         VT3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708507220; x=1709112020;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2vakx0JGGykXYjEssTyxVCYm7/sQjdHBAxfIWGq2GFQ=;
+        b=d4PHVfAl+uqMGy4mXU0LUm3N1Szye3hVIaZkePwrmDZVotfFULtHrPLTgSu0oT3OoH
+         czelFIJ1QSfoJiEiVIdi14wCfPzoj8WmF9l0XLws73+emJEcE9tGNZ4MacFb6mXQPr0S
+         WfR46db9Pbe4GGzu41NVa7SH8A5ufsZ1RdWG5m5m6AYAOf2hVqHsycZsy0StuJ/29Bra
+         rUsPozu5Oqgn3F9TyCa/7Aap+Lsu7/lV4w/oye3y90fXCroiUv3LLlMjDgz3jPQYR/GX
+         NEE3dpy5bFZ/nkn9fZSpDYZ9k5aE9BsUh/73lSdFetAqMezP80Uzo5we/2wLAa2eorGh
+         Y2cQ==
+X-Gm-Message-State: AOJu0YxQQ+rC0Kp9gJQ3U4fLXk1fOLAG1+NSniKJtz1LE9gI7cffupO6
+	/2aeT6OW1LBh6RxtPvmPCj5ip0//nGCQf1Es7dVRdoDNnKhNs/6HR8M6m3Ewiw==
+X-Received: by 2002:a17:906:1155:b0:a3e:6862:dc81 with SMTP id i21-20020a170906115500b00a3e6862dc81mr5646456eja.64.1708507220353;
+        Wed, 21 Feb 2024 01:20:20 -0800 (PST)
+Return-Path: <th@inhomemedia.io>
+Received: from smtpclient.apple (82-132-219-168.dab.02.net. [82.132.219.168])
+        by smtp.gmail.com with ESMTPSA id qo9-20020a170907874900b00a3e59410a75sm3738002ejc.170.2024.02.21.01.20.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Feb 2024 01:20:20 -0800 (PST)
+Content-Type: multipart/alternative; boundary=Apple-Mail-595BB725-C7DE-4D34-8EEE-E0A3A1729CB8
+Content-Transfer-Encoding: 7bit
+From: Anthony Hughes <th@inhomemedia.io>
+Mime-Version: 1.0 (1.0)
+Subject: Re: Meeting
+Date: Wed, 21 Feb 2024 09:20:07 +0000
+Message-Id: <B739A029-7AE6-4CCD-9B1E-5ABB494EA09D@inhomemedia.io>
+References: <LO4P265MB648031648B09D04A49653190BF572@LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM>
+Cc: Owen Thomas <ot@inhomemedia.io>, Stephen Gale <stephen@inhomemedia.io>
+In-Reply-To: <LO4P265MB648031648B09D04A49653190BF572@LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM>
+To: David Moulton <david.moulton@erismedia.co.uk>
+X-Mailer: iPhone Mail (21C66)
+
+
+--Apple-Mail-595BB725-C7DE-4D34-8EEE-E0A3A1729CB8
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto"><span style=3D"font-size:-webkit-xxx-large"=
+>=F0=9F=98=AD=F0=9F=98=AD =F0=9F=92=A4&nbsp;</span><br id=3D"lineBreakAtBegi=
+nningOfSignature"><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"=
+><br><blockquote type=3D"cite">On 21 Feb 2024, at 09:02, David Moulton &lt;d=
+avid.moulton@erismedia.co.uk&gt; wrote:<br><br></blockquote></div><blockquot=
+e type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">=
+
+
+<div>
+<div dir=3D"ltr">
+<div dir=3D"ltr">I reckon he overslept!!</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">At this present moment in time, I should be with you before=
+ 10:30!</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Cheers</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Dave</div>
+</div>
+</div>
+<div id=3D"ms-outlook-mobile-signature">
+<div><br>
+</div>
+<div style=3D"direction: ltr;" dir=3D"ltr">Sent from my iPhone 14</div>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" sty=
+le=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Owen Thomas &lt;ot@inho=
+memedia.io&gt;<br>
+<b>Sent:</b> Wednesday, February 21, 2024 8:54:21 AM<br>
+<b>To:</b> Anthony Hughes &lt;th@inhomemedia.io&gt;<br>
+<b>Cc:</b> David Moulton &lt;david.moulton@erismedia.co.uk&gt;; Stephen Gale=
+ &lt;stephen@inhomemedia.io&gt;<br>
+<b>Subject:</b> Re: Meeting</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"auto">Bloody trains!</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">No worries Tony, see you in a bit&nbsp;</div>
+<div><br>
+<div class=3D"x_gmail_quote">
+<div dir=3D"ltr" class=3D"x_gmail_attr">On Wed, 21 Feb 2024 at 08:06, Anthon=
+y Hughes &lt;<a href=3D"mailto:th@inhomemedia.io">th@inhomemedia.io</a>&gt; w=
+rote:<br>
+</div>
+<blockquote class=3D"x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; borde=
+r-left-width:1px; border-left-style:solid; padding-left:1ex; border-left-col=
+or:rgb(204,204,204)">
+Hi all,<br>
+<br>
+My 8.13am train has just been cancelled so I am on the later train at 9.13am=
+ so will not be with you until 11.20am. No reason to not push through the ag=
+enda and I will join as soon as possible.<br>
+<br>
+Apologies.<br>
+<br>
+Tony<br>
+Sent from my iPhone</blockquote>
+</div>
+</div>
+</div>
+
+
+<br><br><p style=3D"font-family: Verdana; font-size:10pt; color:#666666;"><b=
+>Disclaimer</b></p><p style=3D"font-family: Verdana; font-size:8pt; color:#6=
+66666;">The information contained in this communication from the sender is c=
+onfidential. It is intended solely for use by the recipient and others autho=
+rized to receive it. If you are not the recipient, you are hereby notified t=
+hat any disclosure, copying, distribution or taking action in relation of th=
+e contents of this information is strictly prohibited and may be unlawful.<b=
+r><br>This email has been scanned for viruses and malware, and may have been=
+ automatically archived by Mimecast, a leader in email security and cyber re=
+silience. Mimecast integrates email defenses with brand protection, security=
+ awareness training, web security, compliance and other essential capabiliti=
+es. Mimecast helps protect large and small organizations from malicious acti=
+vity, human error and technology failure; and to lead the movement toward bu=
+ilding a more resilient world. To find out more, visit our website.</p>
+</div></blockquote></body></html>=
+
+--Apple-Mail-595BB725-C7DE-4D34-8EEE-E0A3A1729CB8--

@@ -1,0 +1,166 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:4445:b0:a72:537e:a5f0 with SMTP id i5csp1608170ejp;
+        Tue, 25 Jun 2024 22:36:03 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEeWJceEV2vpC3xP+OiUIMoreZt9OZiyH66m/R6w7OFkCs/7TUiWLN8bhFLVhqd6Dqo5q7H
+X-Received: by 2002:ac2:5f4e:0:b0:52c:db4d:9f3a with SMTP id 2adb3069b0e04-52ce18327cbmr6557598e87.15.1719380158868;
+        Tue, 25 Jun 2024 22:35:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1719380158; cv=none;
+        d=google.com; s=arc-20160816;
+        b=SK5SrWDxaCffJiPQyDXMN7/F+Qsmtbn/Nf0dkoVswzMGcMeXEUx6CM4E/rwHLGdtgj
+         6lb3HboG+vKP4Bri1rdk2QZPrkjGFzhG62BllzhvI3DrLtSuquPrZKmXTA4oGAs3I8W7
+         F7lX/qTJRKaCFzLW+N+24kbFcjOhoYluBkWW+ATXe9RIuWQk312+IyEkpajCtzk8HO3P
+         KrORdY9ijhJ7fKeBFtvXxAbQpc/PVanFMQjXlvLT32qJZmIJIFrMrL8uJKLYALKXA3gU
+         amZGIOVcFBrYDjXI/24olNZhtraf/bmow0UGmV1gPWIt9v7JaSkY1nGA9kxGbxaZCoGA
+         eNbg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=WrSClSYDS/XPqFymvSQqxXfPr4egwgiF7sI05Um3qjc=;
+        fh=QeYo1pQyw2NDw4HRSeHTX2KFaHHHUcyEZJ7OSfhYlIg=;
+        b=W+hDv8oKpUjviHmDtm9Wlu3y+RUIvys3FCPsRJUQAVPqf/Mb/+xuzFyNtqsX6Rqahd
+         2YVlDTOALSH660Ht6/ZpqiB8ZDYd0xSg10c2qvznisRnLJbF+IrzAtajfKh/AiHmmdZ3
+         JIND5sCOJbSSa6J2nwjzVWxQOTWjbdVWsAz273v2yLcyiHfu4/Ls+2aBfockZoJ9xNtC
+         pqWHBFL8FzOVWtAd7V7ocZesx4bHvZrgFlGcKG9KBBsdSkd3cl+1GVSotk5inTY9Dtk3
+         lmckBD6sSSldL38ZQ1C0cav1m+DEJR3DmRR3Mkai9XvzYARy2pfeY8UvmULcOvKnxPaQ
+         QfNA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=uVihJgSB;
+       spf=neutral (google.com: 2a00:1450:4864:20::530 is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) smtp.mailfrom=stephen@inhomemedia.io
+Return-Path: <stephen@inhomemedia.io>
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com. [2a00:1450:4864:20::530])
+        by mx.google.com with ESMTPS id 2adb3069b0e04-52cd63b428asi3331957e87.78.2024.06.25.22.35.58
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Jun 2024 22:35:58 -0700 (PDT)
+Received-SPF: neutral (google.com: 2a00:1450:4864:20::530 is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) client-ip=2a00:1450:4864:20::530;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=uVihJgSB;
+       spf=neutral (google.com: 2a00:1450:4864:20::530 is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) smtp.mailfrom=stephen@inhomemedia.io
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-57d106f4025so931124a12.1
+        for <ot@inhomemedia.io>; Tue, 25 Jun 2024 22:35:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1719380158; x=1719984958; darn=inhomemedia.io;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=WrSClSYDS/XPqFymvSQqxXfPr4egwgiF7sI05Um3qjc=;
+        b=uVihJgSB8ETF9w8Iij2UqEd88ZJ9jV/U95O63pVFqYpSqUabk9F8J+aiPEEdpw/gXY
+         UEmT/yF8Bp/VIj66jlS2mdpLiRKKMmcf+xGYDUs2SqPW2Kp5UW6E1E5JH6D++UEwsLJk
+         sKnGAkx5dYi1RKvZLqc7Vx9kjisKEzDvvRSSSqrYwh4UR+9aZ9/6MNVF/GSYL/HASQ6J
+         Xnu0id/cag0ZNTnOFyCXtSQnMP02pM1J9kp8Hn+4MGATeNwmx5TY7FMDaLvmj3Wef52M
+         rhdzU4JYjVYiWBvmoNCC79KdMnPZC43yKHLGeWWe7XwdqGofHBZ2sTutYd6Vk/gkD75O
+         GZaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719380158; x=1719984958;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WrSClSYDS/XPqFymvSQqxXfPr4egwgiF7sI05Um3qjc=;
+        b=DKgDkXvofkOr+XPPmWlmsvEprv34jL7ZBRQi+9NQvReE3j9dSiNaOX0P9pxZm5Hzch
+         LdBErAzVcaT2CNM4x0WFKY9kY/TDdJGyieNTpDJPBiJUZJKRLxkWo73a+7xeGtXDtQ13
+         YI8gB89uHZy8HSK0OcNkQ/pdJjQ8arEVrx+NQBw0aj+8jjdKKV2qc8VGVawWQ5f9Skl3
+         ScnSB1XSZNQvNWa4t/8zWuMOmw72VZgDLQWOD1YOTFYBF9Atpho33H0vBOIKxUi0dNUX
+         79XRkKqznNFHwVSsp7Wh/G/+7aGaGEn+w+CmbKxVsdRkyB1R8lqw33ot67y9i6H0HKZz
+         DyAQ==
+X-Gm-Message-State: AOJu0YwGO/57io1PWyfhnE2h9luXCX00g66v5ODO2yVeknsiXokvsEpg
+	5VAy7l7qU4o+eoMa9swN8oWMSD7fyWgrfY8fGDaOPliQbupK/1Z2CZksLZhZgIlS4gnCFw28uuK
+	R++HWeYQ99S9DNVK1dwElU5IS0G1IPHS21ykdzX8NHDlVEE1S6FOywQ==
+X-Received: by 2002:a50:d710:0:b0:57c:bc7f:fb48 with SMTP id
+ 4fb4d7f45d1cf-57d414fbc87mr6855981a12.0.1719380157890; Tue, 25 Jun 2024
+ 22:35:57 -0700 (PDT)
+MIME-Version: 1.0
+From: Stephen Gale <stephen@inhomemedia.io>
+Date: Wed, 26 Jun 2024 06:35:47 +0100
+Message-ID: <CAPsP-GY2u7SqAsHb3Ln3rH61+mLHQkmBCNK-voYPXFC1gX-5EA@mail.gmail.com>
+Subject: 4th Utility - Non Eris buildings
+To: Owen Thomas <ot@inhomemedia.io>, Dave Evans <dave@inhomemedia.io>
+Cc: Anthony Hughes <th@inhomemedia.io>
+Content-Type: multipart/alternative; boundary="0000000000008b96e5061bc463db"
+
+--0000000000008b96e5061bc463db
+Content-Type: text/plain; charset="UTF-8"
+
+Morning!
+
+Further to our conversation yesterday, below are the current developments
+which will have a monetary value to the 'newco' moving forward and
+therefore where we would like to keep screens. Most are in Manchester, but
+I have noted the three which are not. Owen, I thought this might be useful
+to have up your sleeve in advance of your call with Steve Wilson this pm.
+In addition, there might be a couple more Xenia ones which I have missed,
+which don't meet with our ratio criteria but would be part of a portfolio
+deal.
+
+Kings Chelsea (London) = 11 screens
+Dock 5 = 6 screens
+Budenberg = 6 screens
+Downtown = 5 screens
+Elizabeth Gardens = 2 screens
+Fox Street Village (Liverpool) = 3 screens
+Merebank Tower = 1 screen
+Regent Plaza = 2 screens
+Sky Gardens = 1 screen
+Tempus Tower = 1 screen
+Silkhouse Court (Liverpool) = 3 screens
+Adelphi = 6 screens
+Northill = 1 screen
+
+Total schemes = 13
+Total screens = 48
+
+
+
+
+
+E: Stephen@inhomemedia.io <dave@inhomemedia.io>
+
+W: inhomemedia.io
+
+
+
+<https://inhomemedia.io/>
+
+--0000000000008b96e5061bc463db
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><blockquote type=3D"cite"><div dir=3D"ltr"><div>Morni=
+ng!</div><div><br></div><div>Further to our conversation yesterday, below a=
+re the current developments which will have a monetary value to the &#39;ne=
+wco&#39; moving forward and therefore where we would like to keep screens. =
+Most are in Manchester, but I have noted the three which are not. Owen, I t=
+hought this might be useful to have up your sleeve in advance of your call =
+with Steve Wilson this pm. In addition, there might be a couple more Xenia =
+ones which I have missed, which don&#39;t meet with our ratio criteria but =
+would be part of a portfolio deal.=C2=A0</div><div><br></div><div>Kings Che=
+lsea (London) =3D 11 screens</div><div>Dock 5 =3D 6 screens</div><div>Buden=
+berg=C2=A0=3D 6 screens</div><div>Downtown =3D 5 screens</div><div>Elizabet=
+h Gardens =3D 2 screens</div><div>Fox Street Village (Liverpool) =3D 3 scre=
+ens</div><div>Merebank Tower =3D 1 screen</div><div>Regent Plaza =3D 2 scre=
+ens</div><div>Sky Gardens =3D 1 screen</div><div>Tempus Tower =3D 1 screen<=
+/div><div>Silkhouse Court (Liverpool) =3D 3 screens</div><div>Adelphi =3D 6=
+ screens</div><div>Northill =3D 1 screen</div><div><br></div><div>Total sch=
+emes =3D 13</div><div>Total screens =3D 48</div></div></blockquote></div><d=
+iv><br></div><div><br></div><div><br></div><div><br></div><div><div dir=3D"=
+ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=
+=3D"ltr"><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-t=
+op:0pt;margin-bottom:0pt"><span style=3D"background-color:transparent;color=
+:rgb(26,34,52);font-family:Poppins,sans-serif;font-size:10pt">E: Stephen</s=
+pan><a href=3D"mailto:dave@inhomemedia.io" style=3D"color:rgb(17,85,204);ba=
+ckground-color:transparent;font-family:Poppins,sans-serif;font-size:10pt" t=
+arget=3D"_blank">@inhomemedia.io</a></p><p dir=3D"ltr" style=3D"color:rgb(0=
+,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"fon=
+t-size:10pt;font-family:Poppins,sans-serif;color:rgb(26,34,52);background-c=
+olor:transparent;vertical-align:baseline">W:=C2=A0<a href=3D"http://inhomem=
+edia.io/" style=3D"color:rgb(17,85,204)" target=3D"_blank">inhomemedia.io</=
+a></span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;marg=
+in-top:0pt;margin-bottom:0pt"><br><br></p><p dir=3D"ltr" style=3D"color:rgb=
+(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><a href=3D"https=
+://inhomemedia.io/" style=3D"color:rgb(17,85,204)" target=3D"_blank"><span =
+style=3D"font-size:11pt;font-family:Arial,sans-serif;background-color:trans=
+parent;vertical-align:baseline"><span style=3D"border:medium;display:inline=
+-block;overflow:hidden;width:520px;height:29px"><img src=3D"https://lh7-us.=
+googleusercontent.com/G4ff92Jazz4nl6U3XO4bw1HjizO0hBsjZS3iCZQOXffuUv-6C9ZOT=
+q4IW15iyu5kB0duaGS4BIdTk6vBLe2by2YwpWZWU0ghiZa-ur3pLUYBvT5gmflP-8PDQuJOrK3h=
+WMiULmn98KuWeYwc8vZo5pQ" width=3D"520" height=3D"29" style=3D"margin-left:0=
+px;margin-top:0px"></span></span></a></p></div></div></div></div>
+
+--0000000000008b96e5061bc463db--

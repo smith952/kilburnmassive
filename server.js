@@ -1,12 +1,16 @@
 require("dotenv").config();
 const express = require("express");
+const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
+const os = require("os");
 const pdfParse = require("pdf-parse");
 const mammoth = require("mammoth");
 const XLSX = require("xlsx");
+const AdmZip = require("adm-zip");
 
 const app = express();
+const zipUpload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 500 * 1024 * 1024 } });
 app.use(express.json({ limit: "10mb" }));
 app.use(express.static("public"));
 
@@ -180,6 +184,75 @@ async function parseAttachment(fp, id, filename) {
     file_type: ext.replace(".", "").toUpperCase(),
     body: sanitize(text),
   };
+}
+
+// --------------- buffer-based parsers (for zip upload) ---------------
+
+async function parseAttachmentFromBuffer(buffer, id, filename) {
+  const ext = path.extname(filename).toLowerCase();
+  let text = "";
+  try {
+    if (ext === ".pdf") {
+      const data = await pdfParse(buffer);
+      text = data.text || "";
+    } else if (ext === ".docx" || ext === ".pptx") {
+      const tmpPath = path.join(os.tmpdir(), `upload-${Date.now()}-${filename}`);
+      fs.writeFileSync(tmpPath, buffer);
+      const r = await mammoth.extractRawText({ path: tmpPath });
+      text = r.value || "";
+      fs.unlinkSync(tmpPath);
+    } else if (ext === ".xlsx") {
+      const wb = XLSX.read(buffer, { type: "buffer" });
+      const sheets = [];
+      for (const name of wb.SheetNames) {
+        const csv = XLSX.utils.sheet_to_csv(wb.Sheets[name]);
+        if (csv.trim()) sheets.push(`[Sheet: ${name}]\n${csv}`);
+      }
+      text = sheets.join("\n\n");
+    } else if (ext === ".doc") {
+      text = buffer.toString("utf8").replace(/[^\x09\x0A\x0D\x20-\x7E]/g, " ").replace(/\s{3,}/g, "\n").trim();
+    }
+  } catch (_e) {
+    text = `[Could not extract text from ${filename}]`;
+  }
+  return {
+    id, filename,
+    type: "attachment",
+    file_type: ext.replace(".", "").toUpperCase(),
+    body: sanitize(text),
+  };
+}
+
+async function loadFromZipBuffer(zipBuffer) {
+  const zip = new AdmZip(zipBuffer);
+  const entries = zip.getEntries();
+  const records = [];
+  let id = 0;
+
+  const sorted = entries
+    .filter((e) => !e.isDirectory && !e.entryName.startsWith("__MACOSX"))
+    .sort((a, b) => a.entryName.localeCompare(b.entryName));
+
+  for (const entry of sorted) {
+    const filename = path.basename(entry.entryName);
+    const ext = path.extname(filename).toLowerCase();
+    const buf = entry.getData();
+
+    try {
+      if (ext === ".eml") {
+        id++;
+        const content = buf.toString("utf8");
+        const record = parseEml(content, id, filename);
+        if (record.from || record.to || record.subject || record.body) records.push(record);
+      } else if (ATTACHMENT_EXTS.has(ext)) {
+        id++;
+        const record = await parseAttachmentFromBuffer(buf, id, filename);
+        if (record.body && record.body.length > 20) records.push(record);
+      }
+    } catch (_e) {}
+  }
+
+  return records;
 }
 
 // --------------- in-memory store ---------------

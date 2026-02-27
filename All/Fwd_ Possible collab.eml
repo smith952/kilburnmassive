@@ -1,0 +1,851 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:3c53:b0:a77:c3e9:7948 with SMTP id i19csp762232ejg;
+        Fri, 5 Jul 2024 09:09:03 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCWTKuYhDR1i7j0+QjusKsdFbPljHpexmUVFGE0V3jxwvfO4JQ//QHD+5WQiEE21fT4Fsk2URxmE1ZmMJI6DG9o/Cw==
+X-Google-Smtp-Source: AGHT+IEWbivZpUSiEpoAl0bO6ZljVAEi95JnOWt6wATKhUZAxeKXYzzpFhJaM5WqVVDa9NJEtnyj
+X-Received: by 2002:a05:690c:c07:b0:64a:5443:7cbb with SMTP id 00721157ae682-652d6d9e188mr63275937b3.23.1720195743502;
+        Fri, 05 Jul 2024 09:09:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1720195743; cv=none;
+        d=google.com; s=arc-20160816;
+        b=b4e2z55gH2hEwf+AbefVv61JWY92y1pR6evyv0xOe2oh5yAmtEkVTZPI+JfTP94E2r
+         zPmsbq2w6niFk+Zayn2Y8kDoszxWNAJ8x0W9f9D/d3Tsfje55fn4oIxbdK3eV+2ZWJ1h
+         WnBhcmVT9oa8+Ga7Ngdl2JxyZ+OMzoXJSmfWb7zvXJRHzjZLvV6w7R1TSSUy67+UBGGJ
+         4KuhHAPKpZDt0LmZb03dQC8T6pPIrP9xVCTrEb6LTv2my+1NuuU7lWWmnOVDTqkSYnGl
+         cUasac8kxCrFS90wAGscCNMoNMcLsyEgYJK+PuXO4mdKGhMjUu+If1SVr+3mx+FUrEXn
+         5M3Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=o3uXxSK4rh7dzAyYdOpcKCNeFDPnz1ImGIkuFiqraxw=;
+        fh=CJoMmmiJV0P5j8G7vxNZzpo7AzqWGDO2Kc/YzthQY8s=;
+        b=asUo8TsnTJu+3nez2un2vRsmxufq8mHXqbliysTQoJcGq43USmmsHpc2q3Elbn3bba
+         FwCtFMqFxf0NAedGIie+pTpDYqRDb9QOU7iSOhWFOTZmum0lptN69qMHoatvvnOsj8r3
+         Dr5IjQpWTP1qybtMVUuwwZ34CfVNaZHR80OeN+4+HhM1+DNKUvk2L+KaEL8rluuNB5RU
+         AEKTdE2d7Mw3hb5HJcIwKDiGtHo0uOSx6fa6T3LsfA04t6+tuQ3Xp90WR7DnR1pgoOxp
+         yXdk2AyOvn+9C4PfCi8XegtzfM6m/poRlo3Q1+IwbpK/vzJXQQTZ7ZRoHOzBseGCy429
+         iyUw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=gF4LOs8K;
+       spf=neutral (google.com: 2001:4860:4864:20::2b is neither permitted nor denied by best guess record for domain of dave@inhomemedia.io) smtp.mailfrom=dave@inhomemedia.io
+Return-Path: <dave@inhomemedia.io>
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com. [2001:4860:4864:20::2b])
+        by mx.google.com with ESMTPS id 00721157ae682-65021ee3259si42741867b3.412.2024.07.05.09.09.03
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Jul 2024 09:09:03 -0700 (PDT)
+Received-SPF: neutral (google.com: 2001:4860:4864:20::2b is neither permitted nor denied by best guess record for domain of dave@inhomemedia.io) client-ip=2001:4860:4864:20::2b;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=gF4LOs8K;
+       spf=neutral (google.com: 2001:4860:4864:20::2b is neither permitted nor denied by best guess record for domain of dave@inhomemedia.io) smtp.mailfrom=dave@inhomemedia.io
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-25e076f79d5so828123fac.2
+        for <ot@inhomemedia.io>; Fri, 05 Jul 2024 09:09:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1720195743; x=1720800543; darn=inhomemedia.io;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=o3uXxSK4rh7dzAyYdOpcKCNeFDPnz1ImGIkuFiqraxw=;
+        b=gF4LOs8KDY/Enb+cc3WB6H9QUaYN9mrZmv8paAntmY1MlYj3+rmoeiRR+96LbBhFrq
+         Sn74A5L8HkvPVCkzfQUJbUKPDS1Bw2HmODJf2fmT71+Ejgz+n5FGuhdr4aR35podnWXP
+         h8zHb8rBtf4qv7GPa717WUbr4kxr4SS/02vyW0WJTEN10fvR7Hh57/icoB9w9ikuxCN6
+         1FssTUuajwe2oDFjcE6/+XaKSGYNvu7NGXbY2xZ0JbKuGhaZCztCnxo7yL1TCMsGsDbR
+         zjRJ1oJuFRjgSRTx7xHy4gk/PdmgfJj/7bWX0/RBtVQAlRYpP1XBZOL/NoTaF6pbeGtk
+         V8hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720195743; x=1720800543;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=o3uXxSK4rh7dzAyYdOpcKCNeFDPnz1ImGIkuFiqraxw=;
+        b=s1101gTrS5W8LBhCZp6xqEJ/5DWPJnBWycE3cQ2frrQxqqO3mfFWFLa9356WO5yqOc
+         3bgLxPi0sdXjIs1HdqK4v1gUKmeoQ1X2bNbpcoPXf8aBUu5MgF5D33VUkhsSx91OeVjh
+         ayvE9obb92iZq2kU5GovWonskmM+5yS05lz1sTFLaVjAM3Vn1ZkKygRLYm4Jx6k4uI8R
+         a0gmlNaMku/eFaxZLLZhdF1UBd+drEkL26oIL9uKzur81e4ZKfmYRftI0++JhWE70/20
+         tOGeZ6X2qdW90IobAd9ENlYAd6d5c+I6UHe/H+A4AaKTzscZTwJisQn0fwMbYWx1CGZh
+         jLpA==
+X-Forwarded-Encrypted: i=1; AJvYcCUxwkWMtFvIFmcoLzQB/Si8wiuGXzFtGCPQHzauAdQIG7Twte1Nlh+bwYq5FlZBN4xHpG/TZwkQdP8TFnSTOG6mmg==
+X-Gm-Message-State: AOJu0YzMB6sbXLtpFZTfUsV8U6WnuqWTadTmY3F+iQ7jzo8DbieHWTiO
+	5t72VPm3SvN+Kcg/BMOXRUSlFnNTi7XkcNFPIjwVMswtHHXn9MFE90p7hu0dgdX+oQ2Iy4d52ke
+	K+bHpwc/g6Yx036t6UiqJFcmd7HIf/Zz21ZYL+NzS
+X-Received: by 2002:a05:6871:24cd:b0:254:94a4:35d0 with SMTP id
+ 586e51a60fabf-25e2bf96744mr4411444fac.48.1720195742485; Fri, 05 Jul 2024
+ 09:09:02 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAPMUJYWhtrSE+1F7-WxYzpAuDpdromC_ysNX0dTCWepMFdZ8Sw@mail.gmail.com>
+ <CAHhFQEtUTEo51SVSwC5kM+Md0hc+MxMDA9EZ2cB5WP2sFzNdBA@mail.gmail.com>
+ <CAK4N=LCuMThd9yDr3iNYcfpDxOT4m3=8CFRFB05-yUwGmRDCjQ@mail.gmail.com>
+ <CAHhFQEtO0Tyfj_D23bpUknTSeWxWGjET4orSaiFxBTJGBQNPag@mail.gmail.com>
+ <CAHhFQEsdp36bF30Sn3d6fTORuCQAw_49R9CO=FLLPFu5QJD0ww@mail.gmail.com>
+ <CAK4N=LCT+m1hS7D-ozN62vCeyj_86OadzhA1=PmbUJvt6Gf1vQ@mail.gmail.com> <CAHhFQEud_HLc_fB_4KuHUoYHexN1O83VBD_CqkEvQ-F466VF7Q@mail.gmail.com>
+In-Reply-To: <CAHhFQEud_HLc_fB_4KuHUoYHexN1O83VBD_CqkEvQ-F466VF7Q@mail.gmail.com>
+From: Dave Evans <dave@inhomemedia.io>
+Date: Fri, 5 Jul 2024 17:08:51 +0100
+Message-ID: <CAK4N=LArs20=576peq=Qj6_OdJ1uSRF3xcnWv-iF29Mr1+WAjw@mail.gmail.com>
+Subject: Fwd: Possible collab
+To: Anthony Hughes <th@inhomemedia.io>, Owen Thomas <ot@inhomemedia.io>, 
+	Stephen Gale <stephen@inhomemedia.io>
+Content-Type: multipart/alternative; boundary="0000000000002ce77c061c8248a2"
+
+--0000000000002ce77c061c8248a2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Gents
+
+Chat more about this next week. More pressing matters took over yesterday!
+
+Nice guy though.
+
+D.
+
+Dave Evans
+
+Marketing Director
+
+
+T: 07930 124209
+
+A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QA
+
+E: dave@inhomemedia.io
+
+W: inhomemedia.io
+
+
+
+<https://inhomemedia.io/>
+
+
+<https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+
+
+Just so you know... this email and any files transmitted with it are
+confidential and intended solely for the use of the individual or entity to
+whom they are addressed. They are the property of In Home Media Ltd. If you
+have received this email in error please notify the system manager. This
+message may contain confidential information and is intended only for the
+individual named. Please notify the sender immediately by e-mail if you
+have received this email by mistake and delete this email from your system.
+In Home Media  Ltd accepts no liability for the content of this email, or
+for the consequences of any actions taken based on the information provided
+unless that information is subsequently confirmed in writing. If you are
+not the intended recipient you are notified that disclosing, copying,
+distributing or taking any action in reliance on the contents of this
+information is strictly prohibited. In Home Media Ltd, 2nd Floor, Balfour
+House, 46-54 Great Titchfield Street, London W1W 7QE. Company registration
+14606919. VAT no. 435094106.
+
+
+---------- Forwarded message ---------
+From: Adam | BlockPro <adam@blockpro.co.uk>
+Date: Fri, 5 Jul 2024 at 16:41
+Subject: Re: Possible collab
+To: Dave Evans <dave@inhomemedia.io>
+
+
+Hi Dave,
+
+Likewise - nice to meet you.
+
+Funnily enough I spoke with my client at MVN earlier today and she asked
+for an intro so i'll email her shortly and copy you in.
+
+I'll certainly bear you in mind when I'm speaking with current and future
+clients and will make intros where I can.
+
+Kind regards,
+
+
+*Adam Norris*
+
+BlockPro
+
+blockpro.co.uk
+
+
+
+
+
+
+On Fri, 5 Jul 2024 at 11:21, Dave Evans <dave@inhomemedia.io> wrote:
+
+> Hi Adam
+>
+> Great to meet you yesterday - thanks for coming over to see us.
+>
+> It was really useful for me to get some of your insights into block
+> management and we were very impressed with BlockPro and how you've manage=
+d
+> this by yourself!
+>
+> I'm sure we can do something together in the future.  When we look at the
+> next phase of our content management portal, I will certainly consider
+> API's and how we could connect with BuildPro. This will hopefully start i=
+n
+> August or September.
+>
+> In the meantime, let's stay in touch and if there's a good opportunity fo=
+r
+> intro's to clients and contacts going either way, that would be a great w=
+ay
+> to start our collaboration.
+>
+> Regards
+>
+> -Dave
+>
+> Dave Evans
+>
+> Marketing Director
+>
+>
+> T: 07930 124209
+>
+> A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QA
+> <https://www.google.com/maps/search/46-54+Great+Titchfield+Street,+London=
++W1W+7QA?entry=3Dgmail&source=3Dg>
+>
+> E: dave@inhomemedia.io
+>
+> W: inhomemedia.io
+>
+>
+>
+> <https://inhomemedia.io/>
+>
+>
+> <https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+>
+>
+> Just so you know... this email and any files transmitted with it are
+> confidential and intended solely for the use of the individual or entity =
+to
+> whom they are addressed. They are the property of In Home Media Ltd. If y=
+ou
+> have received this email in error please notify the system manager. This
+> message may contain confidential information and is intended only for the
+> individual named. Please notify the sender immediately by e-mail if you
+> have received this email by mistake and delete this email from your syste=
+m.
+> In Home Media  Ltd accepts no liability for the content of this email, or
+> for the consequences of any actions taken based on the information provid=
+ed
+> unless that information is subsequently confirmed in writing. If you are
+> not the intended recipient you are notified that disclosing, copying,
+> distributing or taking any action in reliance on the contents of this
+> information is strictly prohibited. In Home Media Ltd, 2nd Floor, Balfour
+> House, 46-54 Great Titchfield Street, London W1W 7QE
+> <https://www.google.com/maps/search/46-54+Great+Titchfield+Street,+London=
++W1W+7QE?entry=3Dgmail&source=3Dg>.
+> Company registration 14606919. VAT no. 435094106.
+>
+>
+> On Fri, Jun 21, 2024 at 9:14=E2=80=AFAM Adam | BlockPro <adam@blockpro.co=
+.uk>
+> wrote:
+>
+>> Hi Dave,
+>>
+>> Further to my previous email, my client has gone for the only free day I
+>> had next week, however I've got plenty of availability from 3rd July
+>> onwards.
+>>
+>> If you let me know when it suits you and your team then I'll stop by.
+>>
+>> Kind regards,
+>>
+>>
+>> *Adam Norris*
+>>
+>> BlockPro
+>>
+>> blockpro.co.uk
+>>
+>>
+>>
+>>
+>>
+>>
+>> On Wed, 19 Jun 2024 at 20:30, Adam | BlockPro <adam@blockpro.co.uk>
+>> wrote:
+>>
+>>> Hi Dave,
+>>>
+>>> Many thanks. I'm just waiting back on a client who wants to see me next
+>>> week - I should hear back tomorrow so I'll come back to you then.
+>>>
+>>> Kind regards,
+>>>
+>>>
+>>> *Adam Norris*
+>>>
+>>> BlockPro
+>>>
+>>> blockpro.co.uk
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>> On Wed, 19 Jun 2024 at 11:27, Dave Evans <dave@inhomemedia.io> wrote:
+>>>
+>>>> Hi Adam (and thanks for the intro Tony)
+>>>>
+>>>> Your product sounds really interesting from what Tony has outlined.
+>>>> Yes, that would be great if you can pop in for a chat and perhaps give=
+ us a
+>>>> demo.
+>>>>
+>>>> How's your diary looking next week?  I've cc'd some colleagues to chec=
+k
+>>>> their availability also.
+>>>>
+>>>> Kind regards
+>>>>
+>>>> Dave Evans
+>>>>
+>>>> Marketing Director
+>>>>
+>>>>
+>>>> T: 07930 124209
+>>>>
+>>>> A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QA
+>>>> <https://www.google.com/maps/search/46-54+Great+Titchfield+Street,+Lon=
+don+W1W+7QA?entry=3Dgmail&source=3Dg>
+>>>>
+>>>> E: dave@inhomemedia.io
+>>>>
+>>>> W: inhomemedia.io
+>>>>
+>>>>
+>>>>
+>>>> <https://inhomemedia.io/>
+>>>>
+>>>>
+>>>> <https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+>>>>
+>>>>
+>>>> Just so you know... this email and any files transmitted with it are
+>>>> confidential and intended solely for the use of the individual or enti=
+ty to
+>>>> whom they are addressed. They are the property of In Home Media Ltd. I=
+f you
+>>>> have received this email in error please notify the system manager. Th=
+is
+>>>> message may contain confidential information and is intended only for =
+the
+>>>> individual named. Please notify the sender immediately by e-mail if yo=
+u
+>>>> have received this email by mistake and delete this email from your sy=
+stem.
+>>>> In Home Media  Ltd accepts no liability for the content of this email,=
+ or
+>>>> for the consequences of any actions taken based on the information pro=
+vided
+>>>> unless that information is subsequently confirmed in writing. If you a=
+re
+>>>> not the intended recipient you are notified that disclosing, copying,
+>>>> distributing or taking any action in reliance on the contents of this
+>>>> information is strictly prohibited. In Home Media Ltd, 2nd Floor, Balf=
+our
+>>>> House, 46-54 Great Titchfield Street, London W1W 7QE
+>>>> <https://www.google.com/maps/search/46-54+Great+Titchfield+Street,+Lon=
+don+W1W+7QE?entry=3Dgmail&source=3Dg>.
+>>>> Company registration 14606919. VAT no. 435094106.
+>>>>
+>>>>
+>>>> On Wed, Jun 19, 2024 at 8:43=E2=80=AFAM Adam | BlockPro <adam@blockpro=
+.co.uk>
+>>>> wrote:
+>>>>
+>>>>> Thanks Tony.
+>>>>>
+>>>>> Hi Dave - nice to meet you. I'm not sure what a collaboration might
+>>>>> look like, but there is no doubt an overlap in clients. Maybe not on =
+the
+>>>>> smaller blocks where budgets are small, but certainly in the larger b=
+locks
+>>>>> where there is a focus on resident engagement. In the first instance =
+I'm
+>>>>> happy to pop in and see you if you like?
+>>>>>
+>>>>> Kind regards,
+>>>>>
+>>>>>
+>>>>> *Adam Norris*
+>>>>>
+>>>>> BlockPro
+>>>>>
+>>>>> blockpro.co.uk
+>>>>>
+>>>>>
+>>>>>
+>>>>>
+>>>>>
+>>>>>
+>>>>> On Tue, 18 Jun 2024 at 15:28, Tony Hymers <tonyh@thconsultancy.co.uk>
+>>>>> wrote:
+>>>>>
+>>>>>> Adam and Dave, writing to do intros.  Have made you both aware of
+>>>>>> each others services.  Adam, I suggest you have an initial meeting w=
+ith
+>>>>>> Dave to discuss further.  Atb Tony
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>> *Tony Hymers* FIRPM FRICS
+>>>>>>
+>>>>>> *Managing Director*
+>>>>>>
+>>>>>> *TH Consultancy Ltd*
+>>>>>>
+>>>>>>
+>>>>>> <http://www.thconsultancy.co.uk/>
+>>>>>> [image: image.png]
+>>>>>>
+>>>>>> tonyh@thconsultancy.co.uk
+>>>>>>
+>>>>>> 07502031205
+>>>>>>
+>>>>>> thconsultancy.co.uk <http://www.thconsultancy.co.uk/>
+>>>>>>
+>>>>>>
+
+--0000000000002ce77c061c8248a2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Gents=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"=
+auto">Chat more about this next week. More pressing matters took over yeste=
+rday!</div><div dir=3D"auto"><br></div><div dir=3D"auto">Nice guy though.</=
+div><div dir=3D"auto"><br></div><div dir=3D"auto">D.<br clear=3D"all"><br c=
+lear=3D"all"><div dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature" d=
+ata-smartmail=3D"gmail_signature"><div dir=3D"ltr"><p dir=3D"ltr" style=3D"=
+color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span s=
+tyle=3D"font-size:10pt;font-family:Poppins,sans-serif;color:rgb(26,34,52);b=
+ackground-color:transparent;vertical-align:baseline">Dave Evans</span></p><=
+p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;mar=
+gin-bottom:0pt"><span style=3D"font-size:10pt;font-family:&quot;Times New R=
+oman&quot;,serif;color:rgb(117,130,131);background-color:transparent;vertic=
+al-align:baseline">Marketing Director</span></p><p dir=3D"ltr" style=3D"col=
+or:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><br></p><p=
+ dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;marg=
+in-bottom:0pt"><span style=3D"font-size:10pt;font-family:Poppins,sans-serif=
+;color:rgb(26,34,52);background-color:transparent;vertical-align:baseline">=
+T: 07930 124209</span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-hei=
+ght:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;fo=
+nt-family:Poppins,sans-serif;color:rgb(26,34,52);background-color:transpare=
+nt;vertical-align:baseline">A: Balfour House,=C2=A0</span><span style=3D"fo=
+nt-family:Poppins,sans-serif;color:rgb(26,34,52);background-color:transpare=
+nt;vertical-align:baseline;font-size:13.3333px">46-54 Great Titchfield Stre=
+et, London W1W 7QA</span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-=
+height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"background-col=
+or:transparent;color:rgb(26,34,52);font-family:Poppins,sans-serif;font-size=
+:10pt">E:=C2=A0</span><a href=3D"mailto:dave@inhomemedia.io" style=3D"color=
+:rgb(17,85,204);background-color:transparent;font-family:Poppins,sans-serif=
+;font-size:10pt" target=3D"_blank">dave@inhomemedia.io</a></p><p dir=3D"ltr=
+" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0=
+pt"><span style=3D"font-size:10pt;font-family:Poppins,sans-serif;color:rgb(=
+26,34,52);background-color:transparent;vertical-align:baseline">W:=C2=A0<a =
+href=3D"http://inhomemedia.io/" style=3D"color:rgb(17,85,204)" target=3D"_b=
+lank">inhomemedia.io</a></span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0)=
+;line-height:1.38;margin-top:0pt;margin-bottom:0pt"><br><br></p><p dir=3D"l=
+tr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom=
+:0pt"><a href=3D"https://inhomemedia.io/" style=3D"color:rgb(17,85,204)" ta=
+rget=3D"_blank"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;=
+background-color:transparent;vertical-align:baseline"><span style=3D"border=
+:medium;display:inline-block;overflow:hidden;width:520px;height:29px"><img =
+src=3D"https://lh7-us.googleusercontent.com/G4ff92Jazz4nl6U3XO4bw1HjizO0hBs=
+jZS3iCZQOXffuUv-6C9ZOTq4IW15iyu5kB0duaGS4BIdTk6vBLe2by2YwpWZWU0ghiZa-ur3pLU=
+YBvT5gmflP-8PDQuJOrK3hWMiULmn98KuWeYwc8vZo5pQ" width=3D"520" height=3D"29" =
+style=3D"margin-left:0px;margin-top:0px"></span></span></a></p><p dir=3D"lt=
+r" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:=
+0pt"><br></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;marg=
+in-top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-family:Pop=
+pins,sans-serif;color:rgb(26,34,52);background-color:transparent;vertical-a=
+lign:baseline"><span style=3D"border:medium;display:inline-block;overflow:h=
+idden;width:164px;height:24px"><a href=3D"https://www.linkedin.com/company/=
+in-home-media/?viewAsMember=3Dtrue" target=3D"_blank"><img src=3D"https://l=
+h7-us.googleusercontent.com/cYdkuaQI6sWib78slCNi_Rz86PtOZ6DcUsNMwbOy-aII_ZE=
+tMyjbiyrSeCokvdKWRcqldt-NzAEylM60R3dg7sPvFvGJFgjTZ85Ao7BrS0HraUMDhHTYQ9iOdB=
+eXX0apBCOe0ySlE2Y3esW4rs6EBV4" width=3D"164" height=3D"24" style=3D"margin-=
+left:0px;margin-top:0px"></a></span></span></p><p dir=3D"ltr" style=3D"colo=
+r:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><br></p><p =
+dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margi=
+n-bottom:0pt"><span style=3D"font-size:8pt;font-family:Arial,sans-serif;col=
+or:rgb(153,153,153);background-color:transparent;vertical-align:baseline">J=
+ust so you know... this email and any files transmitted with it are confide=
+ntial and intended solely for the use of the individual or entity to whom t=
+hey are addressed. They are the property of In Home Media Ltd. If you have =
+received this email in error please notify the system manager. This message=
+ may contain confidential information and is intended only for the individu=
+al named. Please notify the sender immediately by e-mail if you have receiv=
+ed this email by mistake and delete this email from your system. In Home Me=
+dia=C2=A0 Ltd accepts no liability for the content of this email, or for th=
+e consequences of any actions taken based on the information provided unles=
+s that information is subsequently confirmed in writing. If you are not the=
+ intended recipient you are notified that disclosing, copying, distributing=
+ or taking any action in reliance on the contents of this information is st=
+rictly prohibited. In Home Media Ltd, 2nd Floor, Balfour House, 46-54 Great=
+ Titchfield Street, London W1W 7QE. Company registration 14606919. VAT no. =
+435094106.</span></p></div></div></div></div><div><br></div><div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">---------- Forwa=
+rded message ---------<br>From: <strong class=3D"gmail_sendername" dir=3D"a=
+uto">Adam | BlockPro</strong> <span dir=3D"auto">&lt;<a href=3D"mailto:adam=
+@blockpro.co.uk">adam@blockpro.co.uk</a>&gt;</span><br>Date: Fri, 5 Jul 202=
+4 at 16:41<br>Subject: Re: Possible collab<br>To: Dave Evans &lt;<a href=3D=
+"mailto:dave@inhomemedia.io">dave@inhomemedia.io</a>&gt;<br></div><br><br><=
+div dir=3D"ltr">Hi Dave,<div><br></div><div>Likewise - nice to meet you.</d=
+iv><div><br></div><div>Funnily enough I spoke with my client at MVN earlier=
+ today and she asked for an intro so i&#39;ll email her shortly and copy yo=
+u in.</div><div><br></div><div>I&#39;ll certainly bear you in mind when I&#=
+39;m speaking with current and future clients and will make intros where I =
+can.</div></div><div dir=3D"ltr"><div><br></div><div>Kind regards,</div><di=
+v><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_s=
+ignature"><div dir=3D"ltr"><p class=3D"MsoNormal"><b><font face=3D"arial, s=
+ans-serif"><br></font></b></p><p class=3D"MsoNormal"><b><font face=3D"arial=
+, sans-serif">Adam
+Norris</font></b></p><p class=3D"MsoNormal" style=3D"margin-bottom:0cm;marg=
+in-bottom:0cm;margin-top:0cm"><font face=3D"arial, sans-serif">BlockPro</fo=
+nt></p><p class=3D"MsoNormal">
+
+
+
+</p><p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-bottom:0cm;mar=
+gin-top:0cm"><font face=3D"arial, sans-serif"><a href=3D"http://blockpro.co=
+.uk" target=3D"_blank">blockpro.co.uk</a></font><font face=3D"Calibri, sans=
+-serif"></font></p><p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin=
+-bottom:0cm;margin-top:0cm"><font face=3D"arial, sans-serif"><br></font></p=
+>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-bottom:0cm;margin-=
+top:0cm"><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">=C2=A0<=
+img width=3D"96" height=3D"96" src=3D"https://ci3.googleusercontent.com/mai=
+l-sig/AIorK4zaaCsSpFB41xTL61CkbKF8iiqg0b9_Cc7aZhqaIjIscrNic-n3lbcw3B1jhoalm=
+R8_67m9xiqQuHOn"></span></p>
+
+<p class=3D"MsoNormal"></p></div></div></div><br></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, 5 Jul 2024 a=
+t 11:21, Dave Evans &lt;<a href=3D"mailto:dave@inhomemedia.io" target=3D"_b=
+lank">dave@inhomemedia.io</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex"><div dir=3D"ltr">Hi Adam<div><br></div><div>Great =
+to meet you yesterday - thanks for coming over to see us.</div><div><br></d=
+iv><div>It was really useful for me to get some of your insights into block=
+ management and we were very impressed with BlockPro and how you&#39;ve man=
+aged this by yourself!</div><div><br></div><div>I&#39;m sure we can do some=
+thing together in the future.=C2=A0 When we look at the next phase of our c=
+ontent management=C2=A0portal, I will certainly=C2=A0consider API&#39;s and=
+ how we could connect=C2=A0with BuildPro. This will hopefully start in Augu=
+st or=C2=A0September.</div><div><br></div><div>In the=C2=A0meantime, let&#3=
+9;s stay in touch and if there&#39;s a good opportunity for intro&#39;s to =
+clients and contacts going either way, that would be a great way to start o=
+ur collaboration.</div><div><br></div><div>Regards</div><div><br></div><div=
+>-Dave</div><div><br clear=3D"all"><div><div dir=3D"ltr" class=3D"gmail_sig=
+nature"><div dir=3D"ltr"><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-heig=
+ht:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;fon=
+t-family:Poppins,sans-serif;color:rgb(26,34,52);background-color:transparen=
+t;vertical-align:baseline">Dave Evans</span></p><p dir=3D"ltr" style=3D"col=
+or:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span styl=
+e=3D"font-size:10pt;font-family:&quot;Times New Roman&quot;,serif;color:rgb=
+(117,130,131);background-color:transparent;vertical-align:baseline">Marketi=
+ng Director</span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:=
+1.38;margin-top:0pt;margin-bottom:0pt"><br></p><p dir=3D"ltr" style=3D"colo=
+r:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=
+=3D"font-size:10pt;font-family:Poppins,sans-serif;color:rgb(26,34,52);backg=
+round-color:transparent;vertical-align:baseline">T: 07930 124209</span></p>=
+<p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;ma=
+rgin-bottom:0pt"><span style=3D"font-size:10pt;font-family:Poppins,sans-ser=
+if;color:rgb(26,34,52);background-color:transparent;vertical-align:baseline=
+">A: Balfour House,=C2=A0</span><span style=3D"font-family:Poppins,sans-ser=
+if;color:rgb(26,34,52);background-color:transparent;vertical-align:baseline=
+;font-size:13.3333px"><a href=3D"https://www.google.com/maps/search/46-54+G=
+reat+Titchfield+Street,+London+W1W+7QA?entry=3Dgmail&amp;source=3Dg">46-54 =
+Great Titchfield Street, London W1W 7QA</a></span></p><p dir=3D"ltr" style=
+=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><sp=
+an style=3D"background-color:transparent;color:rgb(26,34,52);font-family:Po=
+ppins,sans-serif;font-size:10pt">E:=C2=A0</span><a href=3D"mailto:dave@inho=
+memedia.io" style=3D"color:rgb(17,85,204);background-color:transparent;font=
+-family:Poppins,sans-serif;font-size:10pt" target=3D"_blank">dave@inhomemed=
+ia.io</a></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;marg=
+in-top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-family:Pop=
+pins,sans-serif;color:rgb(26,34,52);background-color:transparent;vertical-a=
+lign:baseline">W:=C2=A0<a href=3D"http://inhomemedia.io/" style=3D"color:rg=
+b(17,85,204)" target=3D"_blank">inhomemedia.io</a></span></p><p dir=3D"ltr"=
+ style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0p=
+t"><br><br></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;ma=
+rgin-top:0pt;margin-bottom:0pt"><a href=3D"https://inhomemedia.io/" style=
+=3D"color:rgb(17,85,204)" target=3D"_blank"><span style=3D"font-size:11pt;f=
+ont-family:Arial,sans-serif;background-color:transparent;vertical-align:bas=
+eline"><span style=3D"border:medium;display:inline-block;overflow:hidden;wi=
+dth:520px;height:29px"><img src=3D"https://lh7-us.googleusercontent.com/G4f=
+f92Jazz4nl6U3XO4bw1HjizO0hBsjZS3iCZQOXffuUv-6C9ZOTq4IW15iyu5kB0duaGS4BIdTk6=
+vBLe2by2YwpWZWU0ghiZa-ur3pLUYBvT5gmflP-8PDQuJOrK3hWMiULmn98KuWeYwc8vZo5pQ" =
+width=3D"520" height=3D"29" style=3D"margin-left:0px;margin-top:0px"></span=
+></span></a></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;m=
+argin-top:0pt;margin-bottom:0pt"><br></p><p dir=3D"ltr" style=3D"color:rgb(=
+0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"fo=
+nt-size:10pt;font-family:Poppins,sans-serif;color:rgb(26,34,52);background-=
+color:transparent;vertical-align:baseline"><span style=3D"border:medium;dis=
+play:inline-block;overflow:hidden;width:164px;height:24px"><a href=3D"https=
+://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue" target=3D"_=
+blank"><img src=3D"https://lh7-us.googleusercontent.com/cYdkuaQI6sWib78slCN=
+i_Rz86PtOZ6DcUsNMwbOy-aII_ZEtMyjbiyrSeCokvdKWRcqldt-NzAEylM60R3dg7sPvFvGJFg=
+jTZ85Ao7BrS0HraUMDhHTYQ9iOdBeXX0apBCOe0ySlE2Y3esW4rs6EBV4" width=3D"164" he=
+ight=3D"24" style=3D"margin-left:0px;margin-top:0px"></a></span></span></p>=
+<p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;ma=
+rgin-bottom:0pt"><br></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-heig=
+ht:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:8pt;font=
+-family:Arial,sans-serif;color:rgb(153,153,153);background-color:transparen=
+t;vertical-align:baseline">Just so you know... this email and any files tra=
+nsmitted with it are confidential and intended solely for the use of the in=
+dividual or entity to whom they are addressed. They are the property of In =
+Home Media Ltd. If you have received this email in error please notify the =
+system manager. This message may contain confidential information and is in=
+tended only for the individual named. Please notify the sender immediately =
+by e-mail if you have received this email by mistake and delete this email =
+from your system. In Home Media=C2=A0 Ltd accepts no liability for the cont=
+ent of this email, or for the consequences of any actions taken based on th=
+e information provided unless that information is subsequently confirmed in=
+ writing. If you are not the intended recipient you are notified that discl=
+osing, copying, distributing or taking any action in reliance on the conten=
+ts of this information is strictly prohibited. In Home Media Ltd, 2nd Floor=
+, Balfour House, <a href=3D"https://www.google.com/maps/search/46-54+Great+=
+Titchfield+Street,+London+W1W+7QE?entry=3Dgmail&amp;source=3Dg">46-54 Great=
+ Titchfield Street, London W1W 7QE</a>. Company registration 14606919. VAT =
+no. 435094106.</span></p></div></div></div><br></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun 21, 2024=
+ at 9:14=E2=80=AFAM Adam | BlockPro &lt;<a href=3D"mailto:adam@blockpro.co.=
+uk" target=3D"_blank">adam@blockpro.co.uk</a>&gt; wrote:<br></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
+solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Dave,<div><br>=
+</div><div>Further to my previous email, my client has gone for the only fr=
+ee day I had next week, however I&#39;ve got plenty of availability from=C2=
+=A03rd July onwards.</div><div><br></div><div>If you let me know when it su=
+its you and your team then I&#39;ll stop by.</div><div><br></div><div>Kind =
+regards,</div><div><div><div dir=3D"ltr" class=3D"gmail_signature"><div dir=
+=3D"ltr"><p class=3D"MsoNormal"><b><font face=3D"arial, sans-serif"><br></f=
+ont></b></p><p class=3D"MsoNormal"><b><font face=3D"arial, sans-serif">Adam
+Norris</font></b></p><p class=3D"MsoNormal" style=3D"margin-bottom:0cm;marg=
+in-top:0cm"><font face=3D"arial, sans-serif">BlockPro</font></p><p class=3D=
+"MsoNormal">
+
+
+
+</p><p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-top:0cm"><font=
+ face=3D"arial, sans-serif"><a href=3D"http://blockpro.co.uk" target=3D"_bl=
+ank">blockpro.co.uk</a></font><font face=3D"Calibri, sans-serif"></font></p=
+><p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-top:0cm"><font fa=
+ce=3D"arial, sans-serif"><br></font></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-top:0cm"><span sty=
+le=3D"font-family:Calibri,sans-serif">=C2=A0<img width=3D"96" height=3D"96"=
+ src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4zaaCsSpFB41xTL61Ck=
+bKF8iiqg0b9_Cc7aZhqaIjIscrNic-n3lbcw3B1jhoalmR8_67m9xiqQuHOn"></span></p>
+
+<p class=3D"MsoNormal"></p></div></div></div><br></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, 19 Jun 2024 =
+at 20:30, Adam | BlockPro &lt;<a href=3D"mailto:adam@blockpro.co.uk" target=
+=3D"_blank">adam@blockpro.co.uk</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Dave,<div><br></div><d=
+iv>Many thanks. I&#39;m just waiting back on a client who wants to see me n=
+ext week - I should hear back tomorrow so I&#39;ll come back to you then.</=
+div><div><br></div><div>Kind regards,<br clear=3D"all"><div><div dir=3D"ltr=
+" class=3D"gmail_signature"><div dir=3D"ltr"><p class=3D"MsoNormal"><b><fon=
+t face=3D"arial, sans-serif"><br></font></b></p><p class=3D"MsoNormal"><b><=
+font face=3D"arial, sans-serif">Adam
+Norris</font></b></p><p class=3D"MsoNormal" style=3D"margin-bottom:0cm;marg=
+in-top:0cm"><font face=3D"arial, sans-serif">BlockPro</font></p><p class=3D=
+"MsoNormal">
+
+
+
+</p><p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-top:0cm"><font=
+ face=3D"arial, sans-serif"><a href=3D"http://blockpro.co.uk" target=3D"_bl=
+ank">blockpro.co.uk</a></font><font face=3D"Calibri, sans-serif"></font></p=
+><p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-top:0cm"><font fa=
+ce=3D"arial, sans-serif"><br></font></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-top:0cm"><span sty=
+le=3D"font-family:Calibri,sans-serif">=C2=A0<img width=3D"96" height=3D"96"=
+ src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4zaaCsSpFB41xTL61Ck=
+bKF8iiqg0b9_Cc7aZhqaIjIscrNic-n3lbcw3B1jhoalmR8_67m9xiqQuHOn"></span></p>
+
+<p class=3D"MsoNormal"></p></div></div></div><br></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, 19 Jun 2024 =
+at 11:27, Dave Evans &lt;<a href=3D"mailto:dave@inhomemedia.io" target=3D"_=
+blank">dave@inhomemedia.io</a>&gt; wrote:<br></div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
+04,204);padding-left:1ex"><div dir=3D"ltr">Hi Adam (and thanks for the intr=
+o Tony)<div><br></div><div>Your product sounds really interesting from what=
+ Tony has outlined. Yes, that would be great if you can pop in for a chat a=
+nd perhaps give us a demo.</div><div><br></div><div>How&#39;s your diary lo=
+oking next week?=C2=A0 I&#39;ve cc&#39;d some colleagues to check their ava=
+ilability also.</div><div><br></div><div>Kind regards</div><div><br></div><=
+div><div><div><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><=
+p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;mar=
+gin-bottom:0pt"><span style=3D"font-size:10pt;font-family:Poppins,sans-seri=
+f;color:rgb(26,34,52);background-color:transparent;vertical-align:baseline"=
+>Dave Evans</span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:=
+1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-f=
+amily:&quot;Times New Roman&quot;,serif;color:rgb(117,130,131);background-c=
+olor:transparent;vertical-align:baseline">Marketing Director</span></p><p d=
+ir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin=
+-bottom:0pt"><br></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1=
+.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-fa=
+mily:Poppins,sans-serif;color:rgb(26,34,52);background-color:transparent;ve=
+rtical-align:baseline">T: 07930 124209</span></p><p dir=3D"ltr" style=3D"co=
+lor:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span sty=
+le=3D"font-size:10pt;font-family:Poppins,sans-serif;color:rgb(26,34,52);bac=
+kground-color:transparent;vertical-align:baseline">A: Balfour House,=C2=A0<=
+/span><span style=3D"font-family:Poppins,sans-serif;color:rgb(26,34,52);bac=
+kground-color:transparent;vertical-align:baseline;font-size:13.3333px"><a h=
+ref=3D"https://www.google.com/maps/search/46-54+Great+Titchfield+Street,+Lo=
+ndon+W1W+7QA?entry=3Dgmail&amp;source=3Dg">46-54 Great Titchfield Street, L=
+ondon W1W 7QA</a></span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-h=
+eight:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"background-colo=
+r:transparent;color:rgb(26,34,52);font-family:Poppins,sans-serif;font-size:=
+10pt">E:=C2=A0</span><a href=3D"mailto:dave@inhomemedia.io" style=3D"color:=
+rgb(17,85,204);background-color:transparent;font-family:Poppins,sans-serif;=
+font-size:10pt" target=3D"_blank">dave@inhomemedia.io</a></p><p dir=3D"ltr"=
+ style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0p=
+t"><span style=3D"font-size:10pt;font-family:Poppins,sans-serif;color:rgb(2=
+6,34,52);background-color:transparent;vertical-align:baseline">W:=C2=A0<a h=
+ref=3D"http://inhomemedia.io/" style=3D"color:rgb(17,85,204)" target=3D"_bl=
+ank">inhomemedia.io</a></span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);=
+line-height:1.38;margin-top:0pt;margin-bottom:0pt"><br><br></p><p dir=3D"lt=
+r" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:=
+0pt"><a href=3D"https://inhomemedia.io/" style=3D"color:rgb(17,85,204)" tar=
+get=3D"_blank"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;b=
+ackground-color:transparent;vertical-align:baseline"><span style=3D"border:=
+medium;display:inline-block;overflow:hidden;width:520px;height:29px"><img s=
+rc=3D"https://lh7-us.googleusercontent.com/G4ff92Jazz4nl6U3XO4bw1HjizO0hBsj=
+ZS3iCZQOXffuUv-6C9ZOTq4IW15iyu5kB0duaGS4BIdTk6vBLe2by2YwpWZWU0ghiZa-ur3pLUY=
+BvT5gmflP-8PDQuJOrK3hWMiULmn98KuWeYwc8vZo5pQ" width=3D"520" height=3D"29" s=
+tyle=3D"margin-left:0px;margin-top:0px"></span></span></a></p><p dir=3D"ltr=
+" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0=
+pt"><br></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margi=
+n-top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-family:Popp=
+ins,sans-serif;color:rgb(26,34,52);background-color:transparent;vertical-al=
+ign:baseline"><span style=3D"border:medium;display:inline-block;overflow:hi=
+dden;width:164px;height:24px"><a href=3D"https://www.linkedin.com/company/i=
+n-home-media/?viewAsMember=3Dtrue" target=3D"_blank"><img src=3D"https://lh=
+7-us.googleusercontent.com/cYdkuaQI6sWib78slCNi_Rz86PtOZ6DcUsNMwbOy-aII_ZEt=
+MyjbiyrSeCokvdKWRcqldt-NzAEylM60R3dg7sPvFvGJFgjTZ85Ao7BrS0HraUMDhHTYQ9iOdBe=
+XX0apBCOe0ySlE2Y3esW4rs6EBV4" width=3D"164" height=3D"24" style=3D"margin-l=
+eft:0px;margin-top:0px"></a></span></span></p><p dir=3D"ltr" style=3D"color=
+:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><br></p><p d=
+ir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin=
+-bottom:0pt"><span style=3D"font-size:8pt;font-family:Arial,sans-serif;colo=
+r:rgb(153,153,153);background-color:transparent;vertical-align:baseline">Ju=
+st so you know... this email and any files transmitted with it are confiden=
+tial and intended solely for the use of the individual or entity to whom th=
+ey are addressed. They are the property of In Home Media Ltd. If you have r=
+eceived this email in error please notify the system manager. This message =
+may contain confidential information and is intended only for the individua=
+l named. Please notify the sender immediately by e-mail if you have receive=
+d this email by mistake and delete this email from your system. In Home Med=
+ia=C2=A0 Ltd accepts no liability for the content of this email, or for the=
+ consequences of any actions taken based on the information provided unless=
+ that information is subsequently confirmed in writing. If you are not the =
+intended recipient you are notified that disclosing, copying, distributing =
+or taking any action in reliance on the contents of this information is str=
+ictly prohibited. In Home Media Ltd, 2nd Floor, Balfour House, <a href=3D"h=
+ttps://www.google.com/maps/search/46-54+Great+Titchfield+Street,+London+W1W=
++7QE?entry=3Dgmail&amp;source=3Dg">46-54 Great Titchfield Street, London W1=
+W 7QE</a>. Company registration 14606919. VAT no. 435094106.</span></p></di=
+v></div></div><br></div></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Wed, Jun 19, 2024 at 8:43=E2=80=AFAM Adam =
+| BlockPro &lt;<a href=3D"mailto:adam@blockpro.co.uk" target=3D"_blank">ada=
+m@blockpro.co.uk</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex"><div dir=3D"ltr">Thanks Tony.<div><br></div><div>Hi Dave - =
+nice to meet you. I&#39;m not sure what a collaboration might look like, bu=
+t there is no doubt an overlap in clients. Maybe not on the smaller blocks =
+where budgets are small, but certainly in the larger blocks where there is =
+a focus on resident engagement. In the first instance I&#39;m happy to pop =
+in and see you if you like?</div><div><br></div><div>Kind regards,<br clear=
+=3D"all"><div><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><=
+p class=3D"MsoNormal"><b><font face=3D"arial, sans-serif"><br></font></b></=
+p><p class=3D"MsoNormal"><b><font face=3D"arial, sans-serif">Adam
+Norris</font></b></p><p class=3D"MsoNormal" style=3D"margin-bottom:0cm;marg=
+in-top:0cm"><font face=3D"arial, sans-serif">BlockPro</font></p><p class=3D=
+"MsoNormal">
+
+
+
+</p><p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-top:0cm"><font=
+ face=3D"arial, sans-serif"><a href=3D"http://blockpro.co.uk" target=3D"_bl=
+ank">blockpro.co.uk</a></font><font face=3D"Calibri, sans-serif"></font></p=
+><p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-top:0cm"><font fa=
+ce=3D"arial, sans-serif"><br></font></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-top:0cm"><span sty=
+le=3D"font-family:Calibri,sans-serif">=C2=A0<img width=3D"96" height=3D"96"=
+ src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4zaaCsSpFB41xTL61Ck=
+bKF8iiqg0b9_Cc7aZhqaIjIscrNic-n3lbcw3B1jhoalmR8_67m9xiqQuHOn"></span></p>
+
+<p class=3D"MsoNormal"></p></div></div></div><br></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, 18 Jun 2024 =
+at 15:28, Tony Hymers &lt;<a href=3D"mailto:tonyh@thconsultancy.co.uk" targ=
+et=3D"_blank">tonyh@thconsultancy.co.uk</a>&gt; wrote:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">Adam and Dave, wri=
+ting to do intros.=C2=A0 Have made you both aware of each others services.=
+=C2=A0 Adam, I suggest you have an initial meeting with Dave to discuss fur=
+ther.=C2=A0 Atb Tony<br clear=3D"all"><br clear=3D"all"><div><div dir=3D"lt=
+r" class=3D"gmail_signature"><div dir=3D"ltr"><div><span><p style=3D"font-f=
+amily:Arial,sans-serif;font-size:13px;line-height:17px;color:rgb(0,0,0);mar=
+gin:1px"><b><br></b></p><p style=3D"font-family:Arial,sans-serif;font-size:=
+13px;line-height:17px;color:rgb(0,0,0);margin:1px"><b><br></b></p><p style=
+=3D"font-family:Arial,sans-serif;font-size:13px;line-height:17px;color:rgb(=
+0,0,0);margin:1px"><b><br></b></p><p style=3D"font-family:Arial,sans-serif;=
+font-size:13px;line-height:17px;color:rgb(0,0,0);margin:1px"><b><br></b></p=
+><p style=3D"font-family:Arial,sans-serif;font-size:13px;line-height:17px;c=
+olor:rgb(0,0,0);margin:1px"><b>Tony Hymers</b><span style=3D"font-weight:70=
+0">=C2=A0FIRPM FRICS</span></p><p style=3D"font-family:Arial,sans-serif;fon=
+t-size:13px;line-height:17px;color:rgb(39,39,39);margin:1px"><b>Managing Di=
+rector</b></p><p style=3D"font-family:Arial,sans-serif;font-size:13px;line-=
+height:17px;color:rgb(39,39,39);margin:1px"><b>TH Consultancy Ltd</b></p></=
+span><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"color=
+:rgb(34,34,34)"><tbody><tr><td style=3D"padding:9px 1px 9px 0px;border-top:=
+2px solid rgb(0,0,0);border-bottom:2px solid rgb(0,0,0)"><table cellpadding=
+=3D"0" cellspacing=3D"0" border=3D"0"><tbody><tr><td valign=3D"middle" styl=
+e=3D"padding:0px 17px 0px 0px"><table cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0"><tbody><tr><td style=3D"padding:0px 1px 0px 0px"><p style=3D"ma=
+rgin:1px"><a href=3D"http://www.thconsultancy.co.uk/" style=3D"color:rgb(17=
+,85,204)" target=3D"_blank"><br></a></p></td></tr></tbody></table><img alt=
+=3D"image.png" style=3D"width:667px;max-width:100%"><br></td><td width=3D"1=
+0" style=3D"padding:0px 1px 0px 0px"></td><td style=3D"padding:0px 1px 0px =
+0px"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0"><tbody><tr><td=
+ valign=3D"middle" style=3D"padding:1px 5px 1px 0px;vertical-align:middle">=
+<p style=3D"margin:1px"><img src=3D"https://signaturehound.com/api/v1/png/e=
+mail/default/f1c438.png" alt=3D"" width=3D"18" height=3D"18" style=3D"displ=
+ay:block;border:0px;max-width:18px"></p></td><td style=3D"line-height:17px;=
+padding:1px 0px;vertical-align:middle"><p style=3D"margin:1px"><a style=3D"=
+color:rgb(39,39,39);font-family:Arial,sans-serif;font-size:13px;line-height=
+:17px">tonyh@thconsultancy.co.uk</a></p></td></tr><tr><td valign=3D"middle"=
+ style=3D"padding:1px 5px 1px 0px;vertical-align:middle"><p style=3D"margin=
+:1px"><img src=3D"https://signaturehound.com/api/v1/png/mobile/default/f1c4=
+38.png" alt=3D"" width=3D"18" height=3D"18" style=3D"display:block;border:0=
+px;max-width:18px"></p></td><td style=3D"line-height:17px;padding:1px 0px;v=
+ertical-align:middle"><p style=3D"margin:1px"><a style=3D"color:rgb(39,39,3=
+9);font-family:Arial,sans-serif;font-size:13px;line-height:17px">0750203120=
+5</a></p></td></tr><tr><td colspan=3D"2" style=3D"line-height:17px;padding:=
+5px 3px 0px 0px"><p style=3D"margin:1px"><a href=3D"http://www.thconsultanc=
+y.co.uk/" style=3D"color:rgb(241,196,56);font-family:Arial,sans-serif;font-=
+size:13px;line-height:17px;font-weight:700" target=3D"_blank">thconsultancy=
+.co.uk</a></p></td></tr></tbody></table></td></tr></tbody></table></td></tr=
+></tbody></table></div><div><br></div></div></div></div></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</div></div>
+
+--0000000000002ce77c061c8248a2--

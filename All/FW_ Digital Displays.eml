@@ -1,0 +1,1277 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:907:76e6:b0:a99:e650:f0ad with SMTP id kg6csp2223762ejc;
+        Fri, 22 Nov 2024 04:19:05 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHEqG6/zoNgmnBnJXagr/ayFyWRo0sHgLB1mNz0GOmkJVF9zzcO9+WJHx45RlmdrYHBkGB2
+X-Received: by 2002:a05:6512:3d28:b0:53d:ceff:5a4 with SMTP id 2adb3069b0e04-53dd35a699emr1622231e87.10.1732277945004;
+        Fri, 22 Nov 2024 04:19:05 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732277944; cv=none;
+        d=google.com; s=arc-20240605;
+        b=du7GNlTyYyK2iJcaDrh8WQ3Ir/PnLpheBPmiiwbBoPmGNFXw4aIqY3s6zb4YFajJ6t
+         757JoyURqq+fiW0YheJ6vyx42SH3jok1YVnMGbm2chMu42DdlLiTpF24IAdhnFkBTXuY
+         oKWC+ceqLYXa7wWRlKZIvFz6VQQ28/HdPGbjYqAjnPRGp4pSxPi/3udqmE1ONAfcPUvz
+         Zy6en9O+yV6d1obo71qtblnL/QLekOZMZMdGODAssPs7pIzYAtmA0xmGyCe/eTtfiQkZ
+         7HXBbNQSv/v7gMrl8Dxw/meAlh4qq+ZVrY6IbNnzlspLlTbVZdio5qSndYYmlvg2YQyC
+         Oexw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:dkim-signature;
+        bh=IvUiRbwCrEsP8TzpEgoQZX0+N/cVNG4yc/vQvUs1IhQ=;
+        fh=pxszPaqFoTnCkC2A02S223KcTm/goZsZRVlV/OROJRU=;
+        b=DzJQ0N3AHv8Bo1d5bCi1c6HfxNXIrMOkyXZSsXvrF0T7B2faQdMJdQm+IuFllEn2E4
+         AAa92O5xkkZ2oOkOek46Mh6OaxPXjsBfZtna6rlhWKFh6c1fZI/kt/rEdhrT7suNlU22
+         ADy6rQygVBw3+wuVA3eMYL/IUhfB7PAFKoPgSHlNhmJR4vG9ElfLntGF5+Fe9n96Zoos
+         tcWAvfCleYP94ZWwHgIJl3g7DlFgoCgu51d6t38xtLDXJmaTrv7Cph/C9Ra70okPM/iy
+         Uo3LKk1gV+z2oURyXiS3UhQhDsFMf3dUCzO5qdfGYyOSAnZdCO04GuxiRkSVOYePKii3
+         m27w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=YuHREyKc;
+       spf=none (google.com: th@inhomemedia.io does not designate permitted sender hosts) smtp.mailfrom=th@inhomemedia.io;
+       dara=pass header.i=@inhomemedia.io
+Return-Path: <th@inhomemedia.io>
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com. [2a00:1450:4864:20::32a])
+        by mx.google.com with ESMTPS id 2adb3069b0e04-53dd9ff3e7dsi34949e87.346.2024.11.22.04.19.04
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Nov 2024 04:19:04 -0800 (PST)
+Received-SPF: none (google.com: th@inhomemedia.io does not designate permitted sender hosts) client-ip=2a00:1450:4864:20::32a;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=YuHREyKc;
+       spf=none (google.com: th@inhomemedia.io does not designate permitted sender hosts) smtp.mailfrom=th@inhomemedia.io;
+       dara=pass header.i=@inhomemedia.io
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-43158625112so18093755e9.3
+        for <ot@inhomemedia.io>; Fri, 22 Nov 2024 04:19:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1732277944; x=1732882744; darn=inhomemedia.io;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IvUiRbwCrEsP8TzpEgoQZX0+N/cVNG4yc/vQvUs1IhQ=;
+        b=YuHREyKcIzlJ4wl2/aEnSeR1PyOcxaakb4az9JCPoYxJBLqGpmemzhndckKpcyopUe
+         oF+b0XTJJ4HiUQox5S2T3eeChHBj0IQLhAxnIe4M4sXyolEdIL9N+4t76/HvcChbstXN
+         sDrEDiOueu53PcxcqXCKsO0/XeucRJfsAFxACH6FOUVZKkLSPXYVVAwqyXG2fdavCWQS
+         pypcjmuAnjEe5B0oARnnpkw13/jj1nOfUJgjeCYuTlNSV6W0dYbCxuFVMRAnNjIlEX96
+         8tTiwV9I9fgG4WNc8i8kMdiuicdyaUo61Lzab/eO8FA+H1nJzwGac4EYBN5qWlZfevsN
+         Fdwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732277944; x=1732882744;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IvUiRbwCrEsP8TzpEgoQZX0+N/cVNG4yc/vQvUs1IhQ=;
+        b=E3o/S32HBQpD0kJRLidDbY/f4aw0gOTA+iQ8upYRKQFTnyPZkGfCNIOrsDJNfYF4ge
+         JQJs/AyDu6YAPpAv+/brzlrwSKoqw3XEKMnQXciSKQOvZYqdsibONApWFd8aRComxLKk
+         dZO+OAWWwQk1+sE5tX1QN5OD14wPALSTeAU790aQt1OZ+pQspvFyEVyRbPf+QntN/mK0
+         BquyZ/hoqC3Jbx65JDPHz5V/SQX5AGFRvj/63l7dwUXbbzPBolUPUeWGY8oA8oAE8Akj
+         t7yN3KWnunX3t5xT+ekZc16vbkqSMqfsY2ClrwG3txsZC+qs/72/Lo+utvNoKCdpAiZs
+         dvEg==
+X-Gm-Message-State: AOJu0Yyx0eoUPPPrJUfMjvhQdlOAcCIto6sxJtSR/L8gZrt+/wU7pl8A
+	JyjYfDNvOeSsyR4sYc2VaQvwf1BtIt9jEyAjuc5YPU6T4ZQTO0iby/+JLDdo0A==
+X-Gm-Gg: ASbGncuhZCckqg3++j7oghJKxTV/nIuYwsds6OL/3yGLi1Zl1OEJY4+4p8V7NZg9q6M
+	o6W//amPqmRFWJLDmE8PBaNDpt27z1fB/Hlx/hasRve3Kexo2wofzvAgt17p1jlhHvrBHa2CBvX
+	5pD1s+hzPgf+c00PHE8ammaOXgr5gsCOpvEkMARlTM1ANi0DtcGL+Qcx+n+UYAAUOv8ZktuifjW
+	sLiN3LlYasAbMD05InzvRwk5F1REKpEeUhvyUke5e2oPT04Km3UqfJnQyYEDGQ9ukqtKFIdcE6c
+	YRZpuhlVcHlKo+AB6lKUQ+NH9FZoX1Q//M5pTg==
+X-Received: by 2002:a05:600c:45c7:b0:431:518a:683b with SMTP id 5b1f17b1804b1-434891a1e57mr8046545e9.18.1732277943621;
+        Fri, 22 Nov 2024 04:19:03 -0800 (PST)
+Return-Path: <th@inhomemedia.io>
+Received: from smtpclient.apple (host81-132-5-107.range81-132.btcentralplus.com. [81.132.5.107])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-433b463ab5fsm91713685e9.27.2024.11.22.04.19.03
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 22 Nov 2024 04:19:03 -0800 (PST)
+From: Anthony Hughes <th@inhomemedia.io>
+Message-Id: <5E44ECC6-DC5D-492B-ADBE-FF23DF89BD19@inhomemedia.io>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_BDB639CA-77DE-4418-AEE3-6F015E866AC7"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.700.6.1.1\))
+Subject: Re: Digital Displays
+Date: Fri, 22 Nov 2024 12:18:52 +0000
+In-Reply-To: <CWLP123MB3027C87F754282E46F3822E28B202@CWLP123MB3027.GBRP123.PROD.OUTLOOK.COM>
+Cc: "ot@inhomemedia.io" <ot@inhomemedia.io>,
+ Paul Wright <paul@xeniaestates.com>
+To: Zoe Agnew <zoe.agnew@xeniaestates.com>
+References: <CWLP123MB3027C9EDA3D2922F8F69F7AF8B432@CWLP123MB3027.GBRP123.PROD.OUTLOOK.COM>
+ <CWLP123MB3027F96D20A3675E5F5200E68B432@CWLP123MB3027.GBRP123.PROD.OUTLOOK.COM>
+ <B64D1471-2EEE-40DA-82F6-A9316D87266B@inhomemedia.io>
+ <CWLP123MB302769243190F401C36591BF8B562@CWLP123MB3027.GBRP123.PROD.OUTLOOK.COM>
+ <CAGJh6Drhm3g2FJxUGD8vw05-Mpwp3jZ_fE6g=eCSNT5ihnc5uQ@mail.gmail.com>
+ <CWLP123MB3027B96D0E1356EC2C3496B98B562@CWLP123MB3027.GBRP123.PROD.OUTLOOK.COM>
+ <CWLP123MB30276B0B11BCBDBDEF69E0258B592@CWLP123MB3027.GBRP123.PROD.OUTLOOK.COM>
+ <CWLP123MB3027C87F754282E46F3822E28B202@CWLP123MB3027.GBRP123.PROD.OUTLOOK.COM>
+X-Mailer: Apple Mail (2.3731.700.6.1.1)
+
+
+--Apple-Mail=_BDB639CA-77DE-4418-AEE3-6F015E866AC7
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+Hi Zoe,
+
+Apologies, we have 3 options and the last one we are just checking, this =
+has been slowed as I had some personal issues to deal with.
+
+We should be able to confirm options by Tuesday next week latest.
+
+Thanks
+
+Tony
+
+> On 19 Nov 2024, at 16:01, Zoe Agnew <zoe.agnew@xeniaestates.com> =
+wrote:
+>=20
+> Hi Tony,
+> =20
+> Any update on who I need to speak to in relation to the displays which =
+are not working or displaying content?
+> =20
+> Many thanks
+> =20
+> Zoe
+> =20
+> <image183655.png>
+> Zoe Agnew=E2=80=8B=E2=80=8B=E2=80=8B=E2=80=8B
+> Contract and Project Manager
+> <image255691.png>
+> Tel: 0330=C2=A0995=C2=A08010 <tel:0330%20995%208010>
+> <image225195.png>
+> Email: zoe.agnew@xeniaestates.com <mailto:zoe.agnew@xeniaestates.com>
+> <image903550.png>
+> www.xeniaestates.com <http://www.xeniaestates.com/>=09
+> <image180059.png>
+> =20
+> =20
+> <image382539.png> =
+<https://www.linkedin.com/company/10104133/admin/feed/posts/>=09
+> <image036189.png>
+> <image317239.jpg>
+> =20
+> IMPORTANT NOTICE =E2=80=93 Cyber Crime Alert=20
+>=20
+> In light of the increased risk posed by cyber fraud and especially =
+those relating to bank account details, please take extra care and =
+always be vigilant in relation to electronic transfer of funds. Please =
+also exercise caution when opening any emails, attachments, or links and =
+when responding to any requests for your bank details or notices of =
+changes to bank details of others. We will NOT accept responsibility if =
+you transfer money into an incorrect bank account. Please further note, =
+our general policy is NOT to accept any changes to bank account details =
+by email.
+> =20
+> This e-mail contains information which may be legally privileged, =
+proprietary in nature, or otherwise protected by law from disclosure, =
+and is intended only for the use of the recipient named above. If you =
+are not the intended recipient, you are hereby notified that any =
+dissemination or copying of this e-mail may be strictly prohibited. If =
+you have received the e-mail in error, please notify the sender by =
+e-mail immediately. Under the Regulation of Investigatory Powers Act =
+2000, this company regularly intercepts and monitors E-mails sent to it =
+for the purpose of, for example, ensuring that only legitimate business =
+is being carried on and to ensure the security of information being =
+transmitted.
+> =20
+> Xenia Estates Ltd Company Number 12164345
+> Xenia Estates | Marsland House | Marsland Road | Sale | M33 3AQ=20
+> From: Zoe Agnew <zoe.agnew@xeniaestates.com =
+<mailto:zoe.agnew@xeniaestates.com>>=20
+> Sent: 12 November 2024 11:05
+> To: Anthony Hughes <th@inhomemedia.io <mailto:th@inhomemedia.io>>
+> Cc: ot@inhomemedia.io <mailto:ot@inhomemedia.io>; Paul Wright =
+<paul@xeniaestates.com <mailto:paul@xeniaestates.com>>
+> Subject: Re: Digital Displays
+> =20
+> Hi Anthony,
+> =20
+> I was hoping to have an update from you in relation to the digital =
+displays which do not work across our estate.
+> =20
+> Who do I speak to in relation to the issues we are faced with and have =
+you any suggestions on how we can fix them?
+> =20
+> Can you please come back to me by the end of today with an update?
+> =20
+> I have also attached some past communications from one of our =
+buildings who have served notice on the displays, as they are not =
+working to their full capacity.  This was shared with Dave who I know =
+has left the business, however wanted to ensure this was on your radar.
+> =20
+> Many thanks
+> =20
+> Zoe
+> =20
+> =20
+> <image001.png>
+>=20
+> =20
+>=20
+> From: Zoe Agnew
+> Sent: 01 November 2024 12:44 PM
+> To: Anthony Hughes <th@inhomemedia.io <mailto:th@inhomemedia.io>>
+> Cc: ot@inhomemedia.io <mailto:ot@inhomemedia.io> <ot@inhomemedia.io =
+<mailto:ot@inhomemedia.io>>
+> Subject: RE: Digital Displays
+> =20
+> Hi Tony,
+> =20
+> Ok thanks.
+> =20
+> I do have a question on the screens which are not working, who do we =
+speak to with regards this issue?
+> =20
+> Many thanks
+> =20
+> Zoe
+> =20
+> <image001.png>
+> =20
+> From: Anthony Hughes <th@inhomemedia.io <mailto:th@inhomemedia.io>>=20
+> Sent: 01 November 2024 11:09
+> To: Zoe Agnew <zoe.agnew@xeniaestates.com =
+<mailto:zoe.agnew@xeniaestates.com>>
+> Cc: ot@inhomemedia.io <mailto:ot@inhomemedia.io>
+> Subject: Re: Digital Displays
+> =20
+> Hi Zoe,
+> =20
+> We will train you and or other members of your team on s/w we have =
+built to provide access to the tech platform and support but you will =
+essentially be self-sufficient in posting info to the screens. I just =
+need to discuss commercials with Paul, but we can look to plan to have =
+dates for training asap.
+> =20
+> Best
+> =20
+> Tony
+> =20
+> On Fri, Nov 1, 2024 at 11:02=E2=80=AFAM Zoe Agnew =
+<zoe.agnew@xeniaestates.com <mailto:zoe.agnew@xeniaestates.com>> wrote:
+> Hi Anthony,
+> =20
+> Thank you for your email.
+> =20
+> Paul has asked me to deal with this in his absence.
+> =20
+> With regards the plan of action to make us self sufficient, what does =
+this entail and would there be anything I can assist with whilst Paul is =
+away?
+> =20
+> Kind regards
+> =20
+> Zoe
+> =20
+> <image001.png>
+> =20
+> <image002.png>
+> Zoe Agnew=E2=80=8B=E2=80=8B=E2=80=8B=E2=80=8B
+> Contract and Project Manager
+> <image003.png>
+> Tel: 0330=C2=A0995=C2=A08010 <tel:0330%20995%208010>
+> <image004.png>
+> Email: zoe.agnew@xeniaestates.com <mailto:zoe.agnew@xeniaestates.com>
+> <image005.png>
+> www.xeniaestates.com <http://www.xeniaestates.com/>=09
+> <image006.png>
+> =20
+> =20
+> <image007.png> =
+<https://www.linkedin.com/company/10104133/admin/feed/posts/>=09
+> <image008.png>
+> <image009.jpg>
+> =20
+> IMPORTANT NOTICE =E2=80=93 Cyber Crime Alert=20
+>=20
+> In light of the increased risk posed by cyber fraud and especially =
+those relating to bank account details, please take extra care and =
+always be vigilant in relation to electronic transfer of funds. Please =
+also exercise caution when opening any emails, attachments, or links and =
+when responding to any requests for your bank details or notices of =
+changes to bank details of others. We will NOT accept responsibility if =
+you transfer money into an incorrect bank account. Please further note, =
+our general policy is NOT to accept any changes to bank account details =
+by email.
+> =20
+> This e-mail contains information which may be legally privileged, =
+proprietary in nature, or otherwise protected by law from disclosure, =
+and is intended only for the use of the recipient named above. If you =
+are not the intended recipient, you are hereby notified that any =
+dissemination or copying of this e-mail may be strictly prohibited. If =
+you have received the e-mail in error, please notify the sender by =
+e-mail immediately. Under the Regulation of Investigatory Powers Act =
+2000, this company regularly intercepts and monitors E-mails sent to it =
+for the purpose of, for example, ensuring that only legitimate business =
+is being carried on and to ensure the security of information being =
+transmitted.
+> =20
+> Xenia Estates Ltd Company Number 12164345
+> Xenia Estates | Marsland House | Marsland Road | Sale | M33 3AQ=20
+> From: Anthony Hughes <th@inhomemedia.io <mailto:th@inhomemedia.io>>=20
+> Sent: 01 November 2024 10:54
+> To: Zoe Agnew <zoe.agnew@xeniaestates.com =
+<mailto:zoe.agnew@xeniaestates.com>>
+> Cc: ot@inhomemedia.io <mailto:ot@inhomemedia.io>
+> Subject: Re: Digital Displays
+> =20
+> Hi Zoe,
+> =20
+> We have discussed this internally and now have a plan to progress, I =
+will need to pick up with Paul Wright to close off how we do this and he =
+is away until next Thursday. The plan will be make you fully self =
+sufficient via the platform www have built to push info to the screens.
+> =20
+> Best regards
+> =20
+> Tony
+> =20
+>=20
+> On 21 Oct 2024, at 10:52, Zoe Agnew <zoe.agnew@xeniaestates.com =
+<mailto:zoe.agnew@xeniaestates.com>> wrote:
+> =20
+> =20
+> Good Morning All,
+> =20
+> I hope you are well?
+> =20
+> Here at Xenia, we have a number of your display screens in our =
+properties, which currently either do not display any information for =
+our residents or show incorrect information from a contact perspective.
+> =20
+> Who in your team is best to speak to about :-
+> a) getting the displays to work=20
+>  b) getting the information on display updated?
+> =20
+> I look forward to speaking with you or a member of your team shortly.
+> =20
+> Many thanks
+> =20
+> Zoe
+> =20
+> <image001.png>
+> =20
+> <image318495.png>
+> <image194476.png>
+> Contract and Project Manager=E2=80=8B=E2=80=8B=E2=80=8B=E2=80=8B
+> <image485506.png>
+> <image105521.png>
+> <image586524.png>
+> <image720384.png>
+> <image539332.png>
+> www.xeniaestates.com <http://www.xeniaestates.com/>=09
+> <image627123.png>
+> =20
+> =20
+> <image350727.png> =
+<https://www.linkedin.com/company/10104133/admin/feed/posts/>=09
+> <image571060.png>
+> <image076601.jpg>
+> =20
+> IMPORTANT NOTICE =E2=80=93 Cyber Crime Alert=20
+>=20
+> In light of the increased risk posed by cyber fraud and especially =
+those relating to bank account details, please take extra care and =
+always be vigilant in relation to electronic transfer of funds. Please =
+also exercise caution when opening any emails, attachments, or links and =
+when responding to any requests for your bank details or notices of =
+changes to bank details of others. We will NOT accept responsibility if =
+you transfer money into an incorrect bank account. Please further note, =
+our general policy is NOT to accept any changes to bank account details =
+by email.
+> =20
+> This e-mail contains information which may be legally privileged, =
+proprietary in nature, or otherwise protected by law from disclosure, =
+and is intended only for the use of the recipient named above. If you =
+are not the intended recipient, you are hereby notified that any =
+dissemination or copying of this e-mail may be strictly prohibited. If =
+you have received the e-mail in error, please notify the sender by =
+e-mail immediately. Under the Regulation of Investigatory Powers Act =
+2000, this company regularly intercepts and monitors E-mails sent to it =
+for the purpose of, for example, ensuring that only legitimate business =
+is being carried on and to ensure the security of information being =
+transmitted.
+> =20
+> Xenia Estates Ltd Company Number 12164345
+> Xenia Estates | Marsland House | Marsland Road | Sale | M33 3AQ=20
+> =20
+
+
+--Apple-Mail=_BDB639CA-77DE-4418-AEE3-6F015E866AC7
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;">Hi =
+Zoe,<div><br></div><div>Apologies, we have 3 options and the last one we =
+are just checking, this has been slowed as I had some personal issues to =
+deal with.</div><div><br></div><div>We should be able to confirm options =
+by Tuesday next week =
+latest.</div><div><br></div><div>Thanks</div><div><br></div><div>Tony<br><=
+div><br><blockquote type=3D"cite"><div>On 19 Nov 2024, at 16:01, Zoe =
+Agnew &lt;zoe.agnew@xeniaestates.com&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div><meta charset=3D"UTF-8"><div =
+class=3D"WordSection1" style=3D"page: WordSection1; caret-color: rgb(0, =
+0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+text-decoration: none;"><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif;"><span>Hi =
+Tony,<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, =
+sans-serif;"><span><o:p>&nbsp;</o:p></span></div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;"><span>Any update =
+on who I need to speak to in relation to the displays which are not =
+working or displaying content?<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span><o:p>&nbsp;</o:p></span></div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;"><span>Many =
+thanks<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, =
+sans-serif;"><span><o:p>&nbsp;</o:p></span></div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span>Zoe<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span><o:p>&nbsp;</o:p></span></div><div><div dir=3D"ltr" =
+style=3D"font-size: 1px; direction: ltr;"><table dir=3D"ltr" =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width: 722px; =
+direction: ltr; border-collapse: collapse; font-size: 1px;"><tbody><tr =
+style=3D"font-size: 0px;"><td align=3D"left" style=3D"vertical-align: =
+top;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+style=3D"border-collapse: collapse; font-size: 0px;"><tbody><tr =
+style=3D"font-size: 0px;"><td align=3D"left" style=3D"padding: 0px; =
+border-width: medium medium 8px; border-style: none none solid; =
+border-color: currentcolor currentcolor rgb(0, 56, 168); vertical-align: =
+top;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+style=3D"width: 600px; border-collapse: collapse; font-size: =
+0px;"><tbody><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"padding: 0px; vertical-align: top;"><table cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" style=3D"width: 600px; border-collapse: =
+collapse; font-size: 0px;"><tbody><tr style=3D"font-size: 0px;"><td =
+align=3D"left" style=3D"padding: 0px; vertical-align: top;"><table =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width: 600px; =
+border-collapse: collapse; font-size: 0px;"><tbody><tr style=3D"font-size:=
+ 0px;"><td align=3D"left" style=3D"vertical-align: top;"><table =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:=
+ collapse; font-size: 0px;"><tbody><tr style=3D"font-size: 0px;"><td =
+align=3D"left" style=3D"padding: 0px 30px 0px 0px; vertical-align: =
+top;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+style=3D"border-collapse: collapse; font-size: 0px;"><tbody><tr =
+style=3D"font-size: 0px;"><td align=3D"left" style=3D"padding: 0px 37px =
+0px 0px; border-width: medium 1px medium medium; border-style: none =
+solid none none; border-color: currentcolor rgb(180, 180, 180) =
+currentcolor currentcolor; vertical-align: top;"><table cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; =
+font-size: 0px; line-height: normal;"><tbody><tr style=3D"font-size: =
+0px;"><td align=3D"left" style=3D"padding: 15px 0px 0px; vertical-align: =
+top;"><div style=3D"margin-top: 0px; margin-bottom: 0px;"><span =
+id=3D"cid:image183655.png@5DB5B3B6.92538659">&lt;image183655.png&gt;</span=
+></div></td></tr></tbody></table></td><td align=3D"left" style=3D"padding:=
+ 0px 0px 0px 25px; vertical-align: top;"><table cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; =
+font-size: 0px;"><tbody><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"padding: 0px; vertical-align: bottom;"><table cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; =
+font-size: 0px; color: rgb(8, 32, 64); font-style: normal; font-weight: =
+700; white-space: nowrap;"><tbody><tr style=3D"font-size: 16px;"><td =
+align=3D"left" style=3D"vertical-align: top; font-family: Calibri;"><div =
+style=3D"margin-top: 0px; margin-bottom: 0px;">Zoe&nbsp;Agnew<span =
+style=3D"font-family: remialcxesans; font-size: 1px; color: rgb(255, =
+255, 255); line-height: 1px;">=E2=80=8B<span style=3D"font-family: =
+template-1Gx9Mb68Ee62YGBFvcGvXQ;">=E2=80=8B</span><span =
+style=3D"font-family: zone-1;">=E2=80=8B</span><span style=3D"font-family:=
+ zones-AQ;">=E2=80=8B</span></span></div></td></tr><tr style=3D"font-size:=
+ 0px;"><td align=3D"left" style=3D"vertical-align: top;"><table =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:=
+ collapse; font-size: 0px; color: rgb(0, 56, 168); font-style: normal; =
+font-weight: 700; white-space: nowrap;"><tbody><tr style=3D"font-size: =
+14px;"><td align=3D"left" style=3D"padding: 4px 0px 0px; vertical-align: =
+top; font-family: Calibri;"><div style=3D"margin-top: 0px; =
+margin-bottom: =
+0px;">Contract&nbsp;and&nbsp;Project&nbsp;Manager</div></td></tr></tbody><=
+/table></td></tr></tbody></table></td></tr><tr style=3D"font-size: =
+0px;"><td align=3D"left" style=3D"padding: 16px 0px 0px; vertical-align: =
+top;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+style=3D"border-collapse: collapse; font-size: 0px; color: rgb(8, 32, =
+64); font-style: normal; font-weight: 400; line-height: normal; =
+white-space: nowrap;"><tbody><tr style=3D"font-size: 14px;"><td =
+align=3D"left" style=3D"padding: 0px 10px 0px 0px; vertical-align: top; =
+font-size: 0px;"><div style=3D"margin-top: 0px; margin-bottom: =
+0px;"><span =
+id=3D"cid:image255691.png@C115DAFF.4DF7F70A">&lt;image255691.png&gt;</span=
+></div></td><td align=3D"left" style=3D"padding: 0px; vertical-align: =
+top; font-family: Calibri;"><div style=3D"margin-top: 0px; =
+margin-bottom: 0px;">Tel:&nbsp;<a href=3D"tel:0330%20995%208010" =
+target=3D"_blank" id=3D"LPlnk689713" style=3D"color: rgb(8, 32, 64); =
+text-decoration: none;">0330&nbsp;995&nbsp;8010</a></div></td></tr><tr =
+style=3D"font-size: 14px;"><td align=3D"left" style=3D"padding: 5px 10px =
+0px 0px; vertical-align: top; font-size: 0px;"><div style=3D"margin-top: =
+0px; margin-bottom: 0px;"><span =
+id=3D"cid:image225195.png@F21521E2.66ECED58">&lt;image225195.png&gt;</span=
+></div></td><td align=3D"left" style=3D"padding: 7px 0px 0px; =
+vertical-align: top; font-family: Calibri;"><div style=3D"margin-top: =
+0px; margin-bottom: 0px;">Email:&nbsp;<a =
+href=3D"mailto:zoe.agnew@xeniaestates.com" target=3D"_blank" =
+id=3D"LPlnk689713" style=3D"color: rgb(8, 32, 64); text-decoration: =
+none;">zoe.agnew@xeniaestates.com</a></div></td></tr><tr =
+style=3D"font-size: 0px;"><td align=3D"left" style=3D"padding: 5px 10px =
+0px 0px; vertical-align: top;"><div style=3D"margin-top: 0px; =
+margin-bottom: 0px;"><span =
+id=3D"cid:image903550.png@4083D111.B710CF7A">&lt;image903550.png&gt;</span=
+></div></td><td align=3D"left" style=3D"padding: 5px 0px 0px; =
+vertical-align: top;"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"border-collapse: collapse; font-size: 0px; color: =
+rgb(8, 32, 64); font-style: normal; font-weight: 400; white-space: =
+nowrap;"><tbody><tr style=3D"font-size: 14px;"><td align=3D"left" =
+style=3D"padding: 1px 0px 0px; vertical-align: top; font-family: =
+Calibri;"><div style=3D"margin-top: 0px; margin-bottom: 0px;"><a =
+href=3D"http://www.xeniaestates.com/" style=3D"color: blue; =
+text-decoration: =
+underline;">www.xeniaestates.com</a></div></td></tr></tbody></table></td><=
+/tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></=
+td></tr></tbody></table></td><td align=3D"left" style=3D"vertical-align: =
+top;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+style=3D"border-collapse: collapse; font-size: 0px; line-height: =
+normal;"><tbody><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"padding: 0px 0px 0px 15px; vertical-align: top;"><div =
+style=3D"margin-top: 0px; margin-bottom: 0px;"><span =
+id=3D"cid:image180059.png@7F756650.9F690996">&lt;image180059.png&gt;</span=
+></div></td></tr></tbody></table></td></tr></tbody></table></td><td =
+style=3D"padding: 0px;">&nbsp;</td></tr></tbody></table></td></tr><tr =
+style=3D"font-size: 0px;"><td style=3D"padding: 7px 0px 13px; =
+border-width: medium medium 1px; border-style: none none solid; =
+border-color: currentcolor currentcolor rgb(0, 56, =
+168);">&nbsp;</td></tr></tbody></table></td></tr></tbody></table></td></tr=
+><tr style=3D"font-size: 0px;"><td align=3D"left" style=3D"vertical-align:=
+ top;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+style=3D"width: 722px; border-collapse: collapse; font-size: =
+0px;"><tbody><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"padding: 0px; vertical-align: top;"><table cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" style=3D"width: 1px; border-collapse: =
+collapse; font-size: 0px;"><tbody><tr style=3D"font-size: 0px;"><td =
+align=3D"left" style=3D"vertical-align: top;"><table cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" style=3D"width: 0px; border-collapse: =
+collapse; font-size: 0px;"><tbody><tr style=3D"font-size: 0px;"><td =
+align=3D"left" style=3D"vertical-align: top;"><table cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; =
+font-size: 0px; line-height: normal;"><tbody><tr style=3D"font-size: =
+0px;"><td align=3D"left" style=3D"padding: 21px 0px 0px; vertical-align: =
+top;"><div style=3D"margin-top: 0px; margin-bottom: 0px;"><a =
+href=3D"https://www.linkedin.com/company/10104133/admin/feed/posts/" =
+target=3D"_blank" id=3D"LPlnk689713" style=3D"color: blue; =
+text-decoration: none;"><span =
+id=3D"cid:image382539.png@3DDA5908.C07773C8">&lt;image382539.png&gt;</span=
+></a></div></td></tr></tbody></table></td><td align=3D"left" =
+style=3D"vertical-align: top;"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"border-collapse: collapse; font-size: 0px; =
+line-height: normal;"><tbody><tr style=3D"font-size: 0px;"><td =
+align=3D"left" style=3D"padding: 21px 0px 0px; vertical-align: =
+top;"><div style=3D"margin-top: 0px; margin-bottom: 0px;"><span =
+id=3D"cid:image036189.png@201005ED.3ED32DC6">&lt;image036189.png&gt;</span=
+></div></td></tr></tbody></table></td></tr></tbody></table></td><td =
+align=3D"left" style=3D"vertical-align: top;"><table cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; =
+font-size: 0px; line-height: normal;"><tbody><tr style=3D"font-size: =
+0px;"><td align=3D"left" style=3D"padding: 17px 0px 0px; vertical-align: =
+top;"><div style=3D"margin-top: 0px; margin-bottom: 0px;"><span =
+id=3D"cid:image317239.jpg@FEE08FB1.0B63AE75">&lt;image317239.jpg&gt;</span=
+></div></td></tr></tbody></table></td></tr></tbody></table></td><td =
+style=3D"padding: 0px 0px 0px =
+12px;">&nbsp;</td></tr></tbody></table></td></tr><tr style=3D"font-size: =
+0px;"><td align=3D"left" style=3D"vertical-align: top;"><table =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width: 722px; =
+border-collapse: collapse; font-size: 0px;"><tbody><tr style=3D"font-size:=
+ 0px;"><td align=3D"left" style=3D"padding: 25px 0px 0px; =
+vertical-align: top;"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"white-space: normal; color: rgb(166, 166, 166); =
+font-size: 14px; font-family: Arial; font-weight: 400; font-style: =
+normal; text-align: justify; width: 722px; border-collapse: =
+collapse;"><tbody><tr style=3D"font-size: 14px;"><td style=3D"font-family:=
+ Arial;"><div style=3D"margin-top: 0px; margin-bottom: 0px;"><span =
+style=3D"font-size: 10px;">IMPORTANT NOTICE =E2=80=93 Cyber Crime =
+Alert<span class=3D"Apple-converted-space">&nbsp;</span><br><br>In light =
+of the increased risk posed by cyber fraud and especially those relating =
+to bank account details, please take extra care and always be vigilant =
+in relation to electronic transfer of funds. Please also exercise =
+caution when opening any emails, attachments, or links and when =
+responding to any requests for your bank details or notices of changes =
+to bank details of others. We will NOT accept responsibility if you =
+transfer money into an incorrect bank account. Please further note, our =
+general policy is NOT to accept any changes to bank account details by =
+email.<br>&nbsp;<br>This e-mail contains information which may be =
+legally privileged, proprietary in nature, or otherwise protected by law =
+from disclosure, and is intended only for the use of the recipient named =
+above. If you are not the intended recipient, you are hereby notified =
+that any dissemination or copying of this e-mail may be strictly =
+prohibited. If you have received the e-mail in error, please notify the =
+sender by e-mail immediately. Under the Regulation of Investigatory =
+Powers Act 2000, this company regularly intercepts and monitors E-mails =
+sent to it for the purpose of, for example, ensuring that only =
+legitimate business is being carried on and to ensure the security of =
+information being transmitted.</span><br>&nbsp;<br><span =
+style=3D"font-size: 12px;"><span style=3D"background-color: rgb(255, =
+255, 255);">Xenia Estates Ltd Company Number 12164345</span><br>Xenia =
+Estates | Marsland House | Marsland Road | Sale | M33 =
+3AQ&nbsp;</span><br></div></td></tr></tbody></table></td></tr></tbody></ta=
+ble></td></tr></tbody></table></div><div style=3D"border-width: 1pt =
+medium medium; border-style: solid none none; border-color: rgb(225, =
+225, 225) currentcolor currentcolor; border-image: none; padding: 3pt =
+0cm 0cm;"><div style=3D"margin: 0cm; font-size: 12pt; font-family: =
+Aptos, sans-serif;"><b><span lang=3D"EN-US" style=3D"font-size: 11pt; =
+font-family: Calibri, sans-serif;">From:</span></b><span lang=3D"EN-US" =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif;"><span =
+class=3D"Apple-converted-space">&nbsp;</span>Zoe Agnew &lt;<a =
+href=3D"mailto:zoe.agnew@xeniaestates.com" style=3D"color: blue; =
+text-decoration: underline;">zoe.agnew@xeniaestates.com</a>&gt;<span =
+class=3D"Apple-converted-space">&nbsp;</span><br><b>Sent:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span>12 November 2024 =
+11:05<br><b>To:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span>Anthony Hughes &lt;<a =
+href=3D"mailto:th@inhomemedia.io" style=3D"color: blue; text-decoration: =
+underline;">th@inhomemedia.io</a>&gt;<br><b>Cc:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:ot@inhomemedia.io" style=3D"color: blue; text-decoration: =
+underline;">ot@inhomemedia.io</a>; Paul Wright &lt;<a =
+href=3D"mailto:paul@xeniaestates.com" style=3D"color: blue; =
+text-decoration: =
+underline;">paul@xeniaestates.com</a>&gt;<br><b>Subject:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span>Re: Digital =
+Displays<o:p></o:p></span></div></div></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, =
+sans-serif;"><o:p>&nbsp;</o:p></div><div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;"><span style=3D"">Hi =
+Anthony,<o:p></o:p></span></div></div><div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D""><o:p>&nbsp;</o:p></span></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;"><span style=3D"">I =
+was hoping to have an update from you in relation to the digital =
+displays which do not work across our =
+estate.<o:p></o:p></span></div></div><div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D""><o:p>&nbsp;</o:p></span></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D"">Who do I speak to in relation to the issues we are faced with =
+and have you any suggestions on how we can fix =
+them?<o:p></o:p></span></div></div><div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D""><o:p>&nbsp;</o:p></span></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D"">Can you please come back to me by the end of today with an =
+update?<o:p></o:p></span></div></div><div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D""><o:p>&nbsp;</o:p></span></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;"><span style=3D"">I =
+have also attached some past communications from one of our buildings =
+who have served notice on the displays, as they are not working to their =
+full capacity.&nbsp; This was shared with Dave who I know has left the =
+business, however wanted to ensure this was on your =
+radar.<o:p></o:p></span></div></div><div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D""><o:p>&nbsp;</o:p></span></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D"">Many thanks<o:p></o:p></span></div></div><div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span =
+style=3D""><o:p>&nbsp;</o:p></span></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D"">Zoe<o:p></o:p></span></div></div><div =
+id=3D"Signature"><div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif;"><span =
+style=3D""><o:p>&nbsp;</o:p></span></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D""><o:p>&nbsp;</o:p></span></div></div><p><span =
+id=3D"cid:image001.png@01DB3A9C.4FF977E0">&lt;image001.png&gt;</span><o:p>=
+</o:p></p><p><span style=3D"font-size: =
+10pt;">&nbsp;</span><o:p></o:p></p></div><div class=3D"MsoNormal" =
+align=3D"center" style=3D"margin: 0cm; font-size: 12pt; font-family: =
+Aptos, sans-serif; text-align: center;"><hr size=3D"2" width=3D"98%" =
+align=3D"center"></div><div id=3D"divRplyFwdMsg"><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;"><b><span =
+style=3D"font-size: 11pt; font-family: Calibri, =
+sans-serif;">From:</span></b><span style=3D"font-size: 11pt; =
+font-family: Calibri, sans-serif;"><span =
+class=3D"Apple-converted-space">&nbsp;</span>Zoe =
+Agnew<br><b>Sent:</b><span class=3D"Apple-converted-space">&nbsp;</span>01=
+ November 2024 12:44 PM<br><b>To:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span>Anthony Hughes &lt;<a =
+href=3D"mailto:th@inhomemedia.io" style=3D"color: blue; text-decoration: =
+underline;">th@inhomemedia.io</a>&gt;<br><b>Cc:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:ot@inhomemedia.io" style=3D"color: blue; text-decoration: =
+underline;">ot@inhomemedia.io</a><span =
+class=3D"Apple-converted-space">&nbsp;</span>&lt;<a =
+href=3D"mailto:ot@inhomemedia.io" style=3D"color: blue; text-decoration: =
+underline;">ot@inhomemedia.io</a>&gt;<br><b>Subject:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span>RE: Digital =
+Displays</span><o:p></o:p></div><div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div></div></div><div><div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">Hi Tony,<o:p></o:p></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;">Ok =
+thanks.<o:p></o:p></div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif;">&nbsp;<o:p></o:p></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">I do have a question on the screens which are not working, =
+who do we speak to with regards this issue?<o:p></o:p></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;">Many =
+thanks<o:p></o:p></div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif;">&nbsp;<o:p></o:p></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">Zoe<o:p></o:p></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif;">&nbsp;<o:p></o:p></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span =
+id=3D"cid:image001.png@01DB3A9C.4FF977E0">&lt;image001.png&gt;</span><o:p>=
+</o:p></div><div style=3D"margin: 0cm; font-size: 12pt; font-family: =
+Aptos, sans-serif;">&nbsp;<o:p></o:p></div><div style=3D"border-width: =
+1pt medium medium; border-style: solid none none; border-color: rgb(225, =
+225, 225) currentcolor currentcolor; border-image: none; padding: 3pt =
+0cm 0cm;"><div style=3D"margin: 0cm; font-size: 12pt; font-family: =
+Aptos, sans-serif;"><b><span lang=3D"EN-US" style=3D"font-size: 11pt; =
+font-family: Calibri, sans-serif;">From:</span></b><span lang=3D"EN-US" =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif;"><span =
+class=3D"Apple-converted-space">&nbsp;</span>Anthony Hughes &lt;<a =
+href=3D"mailto:th@inhomemedia.io" style=3D"color: blue; text-decoration: =
+underline;">th@inhomemedia.io</a>&gt;<span =
+class=3D"Apple-converted-space">&nbsp;</span><br><b>Sent:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span>01 November 2024 =
+11:09<br><b>To:</b><span class=3D"Apple-converted-space">&nbsp;</span>Zoe =
+Agnew &lt;<a href=3D"mailto:zoe.agnew@xeniaestates.com" style=3D"color: =
+blue; text-decoration: =
+underline;">zoe.agnew@xeniaestates.com</a>&gt;<br><b>Cc:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:ot@inhomemedia.io" style=3D"color: blue; text-decoration: =
+underline;">ot@inhomemedia.io</a><br><b>Subject:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span>Re: Digital =
+Displays</span><o:p></o:p></div></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div><div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;">Hi =
+Zoe,<o:p></o:p></div><div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif;">&nbsp;<o:p></o:p></div></div><div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">We will train you and or other members of your team on s/w =
+we have built to provide access to the tech platform and support but you =
+will essentially be self-sufficient in posting info to the screens. I =
+just need to discuss commercials with Paul, but we can look to plan to =
+have dates for training asap.<o:p></o:p></div></div><div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">Best<o:p></o:p></div></div><div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">Tony<o:p></o:p></div></div></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div><div><div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;">On Fri, Nov 1, 2024 at =
+11:02<span style=3D"font-family: Arial, sans-serif;">=E2=80=AF</span>AM =
+Zoe Agnew &lt;<a href=3D"mailto:zoe.agnew@xeniaestates.com" =
+style=3D"color: blue; text-decoration: =
+underline;">zoe.agnew@xeniaestates.com</a>&gt; =
+wrote:<o:p></o:p></div></div><blockquote style=3D"border-width: medium =
+medium medium 1pt; border-style: none none none solid; border-color: =
+currentcolor currentcolor currentcolor rgb(204, 204, 204); border-image: =
+none; padding: 0cm 0cm 0cm 6pt; margin: 5pt 0cm 5pt =
+4.8pt;"><div><div><div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif;">Hi Anthony,<o:p></o:p></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;">Thank you for your =
+email.<o:p></o:p></div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif;">&nbsp;<o:p></o:p></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">Paul has asked me to deal with this in his =
+absence.<o:p></o:p></div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif;">&nbsp;<o:p></o:p></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">With regards the plan of action to make us self sufficient, =
+what does this entail and would there be anything I can assist with =
+whilst Paul is away?<o:p></o:p></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;">Kind =
+regards<o:p></o:p></div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif;">&nbsp;<o:p></o:p></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">Zoe<o:p></o:p></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif;">&nbsp;<o:p></o:p></div><div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span =
+id=3D"cid:image001.png@01DB3A9C.4FF977E0">&lt;image001.png&gt;</span><o:p>=
+</o:p></div></div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif;">&nbsp;<o:p></o:p></div><div><div><table =
+class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+width=3D"100%" style=3D"width: 706.609375px; border-collapse: =
+collapse;"><tbody><tr><td valign=3D"top" style=3D"padding: 0cm; =
+border-color: currentcolor currentcolor rgb(0, 56, 168);"><table =
+class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+style=3D"border-collapse: collapse;"><tbody><tr><td valign=3D"top" =
+style=3D"border-width: medium medium 6pt; border-style: none none solid; =
+border-image: none; padding: 0cm; border-color: currentcolor rgb(180, =
+180, 180) currentcolor currentcolor;"><table class=3D"MsoNormalTable" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"600" =
+style=3D"width: 450pt; border-collapse: collapse;"><tbody><tr><td =
+valign=3D"top" style=3D"padding: 0cm;"><table class=3D"MsoNormalTable" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" =
+style=3D"width: 600px; border-collapse: collapse;"><tbody><tr><td =
+valign=3D"top" style=3D"padding: 0cm;"><table class=3D"MsoNormalTable" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" =
+style=3D"width: 599.71875px; border-collapse: collapse;"><tbody><tr><td =
+valign=3D"top" style=3D"padding: 0cm;"><table class=3D"MsoNormalTable" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse:=
+ collapse;"><tbody><tr><td valign=3D"top" style=3D"padding: 0cm 22.5pt =
+0cm 0cm;"><table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" style=3D"border-collapse: collapse;"><tbody><tr><td =
+valign=3D"top" style=3D"border-width: medium 1pt medium medium; =
+border-style: none solid none none; border-color: currentcolor =
+windowtext currentcolor currentcolor; border-image: none; padding: 0cm =
+27.75pt 0cm 0cm;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse: =
+collapse;"><tbody><tr><td valign=3D"top" style=3D"padding: 11.25pt 0cm =
+0cm;"><div style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: 1pt;"><span =
+id=3D"cid:image002.png@01DB3A9C.4FF977E0">&lt;image002.png&gt;</span></spa=
+n><o:p></o:p></div></td></tr></tbody></table></td><td valign=3D"top" =
+style=3D"padding: 0cm 0cm 0cm 18.75pt;"><table class=3D"MsoNormalTable" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse:=
+ collapse;"><tbody><tr><td valign=3D"bottom" style=3D"padding: =
+0cm;"><table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" style=3D"border-collapse: collapse;"><tbody><tr><td =
+valign=3D"top" style=3D"padding: 0cm;"><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;"><b><span =
+style=3D"font-family: Calibri, sans-serif; color: rgb(8, 32, =
+64);">Zoe&nbsp;Agnew</span></b><b><span style=3D"font-size: 1pt; =
+font-family: remialcxesans, serif; color: white;">=E2=80=8B</span></b><b><=
+span style=3D"font-size: 1pt; font-family: =
+template-1Gx9Mb68Ee62YGBFvcGvXQ, serif; color: =
+white;">=E2=80=8B</span></b><b><span style=3D"font-size: 1pt; =
+font-family: zone-1, serif; color: white;">=E2=80=8B</span></b><b><span =
+style=3D"font-size: 1pt; font-family: zones-AQ, serif; color: =
+white;">=E2=80=8B</span></b><o:p></o:p></div></td></tr><tr><td =
+valign=3D"top" style=3D"padding: 0cm;"><table class=3D"MsoNormalTable" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse:=
+ collapse;"><tbody><tr><td valign=3D"top" style=3D"padding: 3pt 0cm =
+0cm;"><div style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><b><span style=3D"font-size: 10.5pt; font-family: Calibri, =
+sans-serif; color: rgb(0, 56, =
+168);">Contract&nbsp;and&nbsp;Project&nbsp;Manager</span></b><o:p></o:p></=
+div></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td =
+valign=3D"top" style=3D"padding: 12pt 0cm 0cm;"><table =
+class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+style=3D"border-collapse: collapse;"><tbody><tr><td valign=3D"top" =
+style=3D"padding: 0cm 7.5pt 0cm 0cm;"><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 1pt; color: rgb(8, 32, 64);"><span =
+id=3D"cid:image003.png@01DB3A9C.4FF977E0">&lt;image003.png&gt;</span></spa=
+n><o:p></o:p></div></td><td valign=3D"top" style=3D"padding: 0cm;"><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: 10.5pt; font-family: Calibri, =
+sans-serif; color: rgb(8, 32, 64);">Tel:&nbsp;<a =
+href=3D"tel:0330%20995%208010" target=3D"_blank" style=3D"color: blue; =
+text-decoration: underline;"><span style=3D"color: rgb(8, 32, 64); =
+text-decoration: =
+none;">0330&nbsp;995&nbsp;8010</span></a></span><o:p></o:p></div></td></tr=
+><tr><td valign=3D"top" style=3D"padding: 3.75pt 7.5pt 0cm 0cm;"><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: 1pt; color: rgb(8, 32, =
+64);"><span =
+id=3D"cid:image004.png@01DB3A9C.4FF977E0">&lt;image004.png&gt;</span></spa=
+n><o:p></o:p></div></td><td valign=3D"top" style=3D"padding: 5.25pt 0cm =
+0cm;"><div style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: 10.5pt; font-family: Calibri, =
+sans-serif; color: rgb(8, 32, 64);">Email:&nbsp;<a =
+href=3D"mailto:zoe.agnew@xeniaestates.com" target=3D"_blank" =
+style=3D"color: blue; text-decoration: underline;"><span style=3D"color: =
+rgb(8, 32, 64); text-decoration: =
+none;">zoe.agnew@xeniaestates.com</span></a></span><o:p></o:p></div></td><=
+/tr><tr><td valign=3D"top" style=3D"padding: 3.75pt 7.5pt 0cm 0cm;"><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: 1pt; color: rgb(8, 32, =
+64);"><span =
+id=3D"cid:image005.png@01DB3A9C.4FF977E0">&lt;image005.png&gt;</span></spa=
+n><o:p></o:p></div></td><td valign=3D"top" style=3D"padding: 3.75pt 0cm =
+0cm;"><table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" style=3D"border-collapse: collapse;"><tbody><tr><td =
+valign=3D"top" style=3D"padding: 0.75pt 0cm 0cm;"><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 10.5pt; font-family: Calibri, sans-serif; color: =
+rgb(8, 32, 64);"><a href=3D"http://www.xeniaestates.com/" =
+target=3D"_blank" style=3D"color: blue; text-decoration: =
+underline;">www.xeniaestates.com</a></span><o:p></o:p></div></td></tr></tb=
+ody></table></td></tr></tbody></table></td></tr></tbody></table></td></tr>=
+</tbody></table></td></tr></tbody></table></td><td valign=3D"top" =
+style=3D"padding: 0cm;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse: =
+collapse;"><tbody><tr><td valign=3D"top" style=3D"padding: 0cm 0cm 0cm =
+11.25pt;"><div style=3D"margin: 0cm; font-size: 12pt; font-family: =
+Aptos, sans-serif;"><span style=3D"font-size: 1pt;"><span =
+id=3D"cid:image006.png@01DB3A9C.4FF977E0">&lt;image006.png&gt;</span></spa=
+n><o:p></o:p></div></td></tr></tbody></table></td></tr></tbody></table></t=
+d><td style=3D"padding: 0cm;"><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif;"><span style=3D"font-size: =
+1pt;">&nbsp;</span><o:p></o:p></div></td></tr></tbody></table></td></tr><t=
+r><td style=3D"border-width: medium medium 1pt; border-style: none none =
+solid; border-image: none; padding: 5.25pt 0cm 9.75pt; border-color: =
+currentcolor currentcolor rgb(0, 56, 168);"><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: =
+1pt;">&nbsp;</span><o:p></o:p></div></td></tr></tbody></table></td></tr></=
+tbody></table></td></tr><tr><td valign=3D"top" style=3D"padding: =
+0cm;"><table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" width=3D"100%" style=3D"width: 706.609375px; =
+border-collapse: collapse;"><tbody><tr><td valign=3D"top" =
+style=3D"padding: 0cm;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"1" style=3D"width: 0.75pt; =
+border-collapse: collapse;"><tbody><tr><td valign=3D"top" =
+style=3D"padding: 0cm;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"0" style=3D"border-collapse: =
+collapse;"><tbody><tr><td valign=3D"top" style=3D"padding: 0cm;"><table =
+class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+style=3D"border-collapse: collapse;"><tbody><tr><td valign=3D"top" =
+style=3D"padding: 15.75pt 0cm 0cm;"><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;"><a =
+href=3D"https://www.linkedin.com/company/10104133/admin/feed/posts/" =
+target=3D"_blank" style=3D"color: blue; text-decoration: =
+underline;"><span style=3D"font-size: 1pt; text-decoration: none;"><span =
+id=3D"cid:image007.png@01DB3A9C.4FF977E0">&lt;image007.png&gt;</span></spa=
+n></a><o:p></o:p></div></td></tr></tbody></table></td><td valign=3D"top" =
+style=3D"padding: 0cm;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse: =
+collapse;"><tbody><tr><td valign=3D"top" style=3D"padding: 15.75pt 0cm =
+0cm;"><div style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: 1pt;"><span =
+id=3D"cid:image008.png@01DB3A9C.4FF977E0">&lt;image008.png&gt;</span></spa=
+n><o:p></o:p></div></td></tr></tbody></table></td></tr></tbody></table></t=
+d><td valign=3D"top" style=3D"padding: 0cm;"><table =
+class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+style=3D"border-collapse: collapse;"><tbody><tr><td valign=3D"top" =
+style=3D"padding: 12.75pt 0cm 0cm;"><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 1pt;"><span =
+id=3D"cid:image009.jpg@01DB3A9C.4FF977E0">&lt;image009.jpg&gt;</span></spa=
+n><o:p></o:p></div></td></tr></tbody></table></td></tr></tbody></table></t=
+d><td style=3D"padding: 0cm 0cm 0cm 9pt;"><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: =
+1pt;">&nbsp;</span><o:p></o:p></div></td></tr></tbody></table></td></tr><t=
+r><td valign=3D"top" style=3D"padding: 0cm;"><table =
+class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+width=3D"100%" style=3D"width: 706.609375px; border-collapse: =
+collapse;"><tbody><tr><td valign=3D"top" style=3D"padding: 18.75pt 0cm =
+0cm;"><table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" width=3D"100%" style=3D"width: 706.609375px; =
+border-collapse: collapse;"><tbody><tr><td style=3D"padding: 0cm;"><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+text-align: justify;"><span style=3D"font-size: 7.5pt; font-family: =
+Arial, sans-serif; color: rgb(166, 166, 166);">IMPORTANT NOTICE =E2=80=93 =
+Cyber Crime Alert<span =
+class=3D"Apple-converted-space">&nbsp;</span><br><br>In light of the =
+increased risk posed by cyber fraud and especially those relating to =
+bank account details, please take extra care and always be vigilant in =
+relation to electronic transfer of funds. Please also exercise caution =
+when opening any emails, attachments, or links and when responding to =
+any requests for your bank details or notices of changes to bank details =
+of others. We will NOT accept responsibility if you transfer money into =
+an incorrect bank account. Please further note, our general policy is =
+NOT to accept any changes to bank account details by =
+email.<br>&nbsp;<br>This e-mail contains information which may be =
+legally privileged, proprietary in nature, or otherwise protected by law =
+from disclosure, and is intended only for the use of the recipient named =
+above. If you are not the intended recipient, you are hereby notified =
+that any dissemination or copying of this e-mail may be strictly =
+prohibited. If you have received the e-mail in error, please notify the =
+sender by e-mail immediately. Under the Regulation of Investigatory =
+Powers Act 2000, this company regularly intercepts and monitors E-mails =
+sent to it for the purpose of, for example, ensuring that only =
+legitimate business is being carried on and to ensure the security of =
+information being transmitted.</span><span style=3D"font-size: 10.5pt; =
+font-family: Arial, sans-serif; color: rgb(166, 166, =
+166);"><br>&nbsp;<br></span><span style=3D"font-size: 9pt; font-family: =
+Arial, sans-serif; color: rgb(166, 166, 166); background: white;">Xenia =
+Estates Ltd Company Number 12164345</span><span style=3D"font-size: 9pt; =
+font-family: Arial, sans-serif; color: rgb(166, 166, 166);"><br>Xenia =
+Estates | Marsland House | Marsland Road | Sale | M33 =
+3AQ&nbsp;</span><o:p></o:p></div></td></tr></tbody></table></td></tr></tbo=
+dy></table></td></tr></tbody></table></div><div style=3D"border-width: =
+1pt medium medium; border-style: solid none none; border-image: none; =
+padding: 3pt 0cm 0cm; border-color: currentcolor;"><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;"><b><span =
+lang=3D"EN-US" style=3D"font-size: 11pt; font-family: Calibri, =
+sans-serif;">From:</span></b><span lang=3D"EN-US" style=3D"font-size: =
+11pt; font-family: Calibri, sans-serif;"><span =
+class=3D"Apple-converted-space">&nbsp;</span>Anthony Hughes &lt;<a =
+href=3D"mailto:th@inhomemedia.io" target=3D"_blank" style=3D"color: =
+blue; text-decoration: underline;">th@inhomemedia.io</a>&gt;<span =
+class=3D"Apple-converted-space">&nbsp;</span><br><b>Sent:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span>01 November 2024 =
+10:54<br><b>To:</b><span class=3D"Apple-converted-space">&nbsp;</span>Zoe =
+Agnew &lt;<a href=3D"mailto:zoe.agnew@xeniaestates.com" target=3D"_blank" =
+style=3D"color: blue; text-decoration: =
+underline;">zoe.agnew@xeniaestates.com</a>&gt;<br><b>Cc:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:ot@inhomemedia.io" target=3D"_blank" style=3D"color: =
+blue; text-decoration: =
+underline;">ot@inhomemedia.io</a><br><b>Subject:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span>Re: Digital =
+Displays</span><o:p></o:p></div></div></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;">Hi =
+Zoe,<o:p></o:p></div><div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif;">&nbsp;<o:p></o:p></div></div><div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">We have discussed this internally and now have a plan to =
+progress, I will need to pick up with Paul Wright to close off how we do =
+this and he is away until next Thursday. The plan will be make you fully =
+self sufficient via the platform www have built to push info to the =
+screens.<o:p></o:p></div></div><div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;">Best =
+regards<o:p></o:p></div></div><div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">Tony<o:p></o:p></div></div><div><div><p class=3D"xmsonormal" =
+style=3D"margin: 0cm 0cm 12pt; font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></p><blockquote style=3D"margin-top: 5pt; =
+margin-bottom: 5pt;"><div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif;">On 21 Oct 2024, at 10:52, Zoe Agnew =
+&lt;<a href=3D"mailto:zoe.agnew@xeniaestates.com" target=3D"_blank" =
+style=3D"color: blue; text-decoration: =
+underline;">zoe.agnew@xeniaestates.com</a>&gt; =
+wrote:<o:p></o:p></div></div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif;">&nbsp;<o:p></o:p></div><div><div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;">Good Morning =
+All,<o:p></o:p></div></div><div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;">I hope you are =
+well?<o:p></o:p></div></div><div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;">Here at Xenia, we =
+have a number of your display screens in our properties, which currently =
+either do not display any information for our residents or show =
+incorrect information from a contact =
+perspective.<o:p></o:p></div></div><div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;">Who in your team =
+is best to speak to about :-<o:p></o:p></div></div><div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">a) getting the displays to work<span =
+class=3D"xm-3390882567618598765apple-converted-space">&nbsp;</span><o:p></=
+o:p></div></div><div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif;">&nbsp;b) getting the information on =
+display updated?<o:p></o:p></div></div><div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;">I look forward to =
+speaking with you or a member of your team =
+shortly.<o:p></o:p></div></div><div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;">Many =
+thanks<o:p></o:p></div></div><div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">Zoe<o:p></o:p></div></div><div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div></div><div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">&lt;image001.png&gt;<o:p></o:p></div></div><div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div></div><div><table =
+class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+width=3D"675" style=3D"width: 506.25pt; border-collapse: =
+collapse;"><tbody><tr><td valign=3D"top" style=3D"padding: 0cm; =
+border-color: currentcolor currentcolor windowtext;"><table =
+class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+style=3D"border-collapse: collapse;"><tbody><tr><td valign=3D"top" =
+style=3D"border-width: medium medium 6pt; border-style: none none solid; =
+border-image: none; padding: 0cm; border-color: currentcolor windowtext =
+currentcolor currentcolor;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"600" style=3D"width: 450pt; =
+border-collapse: collapse;"><tbody><tr><td valign=3D"top" =
+style=3D"padding: 0cm;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"600" style=3D"width: 450pt; =
+border-collapse: collapse;"><tbody><tr><td valign=3D"top" =
+style=3D"padding: 0cm;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"600" style=3D"width: 450pt; =
+border-collapse: collapse;"><tbody><tr><td valign=3D"top" =
+style=3D"padding: 0cm;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse: =
+collapse;"><tbody><tr><td valign=3D"top" style=3D"padding: 0cm 22.5pt =
+0cm 0cm;"><table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" style=3D"border-collapse: collapse;"><tbody><tr><td =
+valign=3D"top" style=3D"border-width: medium 1pt medium medium; =
+border-style: none solid none none; border-color: currentcolor =
+windowtext currentcolor currentcolor; border-image: none; padding: 0cm =
+27.75pt 0cm 0cm;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse: =
+collapse;"><tbody><tr><td valign=3D"top" style=3D"padding: 11.25pt 0cm =
+0cm;"><div style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: =
+1pt;">&lt;image318495.png&gt;</span><o:p></o:p></div></td></tr></tbody></t=
+able></td><td valign=3D"top" style=3D"padding: 0cm 0cm 0cm =
+18.75pt;"><table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" style=3D"border-collapse: collapse;"><tbody><tr><td =
+valign=3D"bottom" style=3D"padding: 0cm;"><table class=3D"MsoNormalTable" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse:=
+ collapse;"><tbody><tr><td valign=3D"top" style=3D"padding: 0cm;"><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: =
+1pt;">&lt;image194476.png&gt;</span><o:p></o:p></div></td></tr><tr><td =
+valign=3D"top" style=3D"padding: 0cm;"><table class=3D"MsoNormalTable" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse:=
+ collapse;"><tbody><tr><td valign=3D"top" style=3D"padding: 3pt 0cm =
+0cm;"><div style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><b><span style=3D"font-size: 13.5pt; font-family: Mulish; =
+color: rgb(0, 56, =
+168);">Contract&nbsp;and&nbsp;Project&nbsp;Manager</span></b><b><span =
+style=3D"font-size: 1pt; font-family: remialcxesans, serif; color: =
+white;">=E2=80=8B</span></b><b><span style=3D"font-size: 1pt; =
+font-family: template-1Gx9Mb68Ee62YGBFvcGvXQ, serif; color: =
+white;">=E2=80=8B</span></b><b><span style=3D"font-size: 1pt; =
+font-family: zone-1, serif; color: white;">=E2=80=8B</span></b><b><span =
+style=3D"font-size: 1pt; font-family: zones-AQ, serif; color: =
+white;">=E2=80=8B</span></b><o:p></o:p></div></td></tr></tbody></table></t=
+d></tr></tbody></table></td></tr><tr><td valign=3D"top" style=3D"padding: =
+12pt 0cm 0cm;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse: =
+collapse;"><tbody><tr><td valign=3D"top" style=3D"padding: 0cm 7.5pt 0cm =
+0cm;"><div style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: =
+1pt;">&lt;image485506.png&gt;</span><o:p></o:p></div></td><td =
+valign=3D"top" style=3D"padding: 0cm;"><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: =
+1pt;">&lt;image105521.png&gt;</span><o:p></o:p></div></td></tr><tr><td =
+valign=3D"top" style=3D"padding: 3.75pt 7.5pt 0cm 0cm;"><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: =
+1pt;">&lt;image586524.png&gt;</span><o:p></o:p></div></td><td =
+valign=3D"top" style=3D"padding: 5.25pt 0cm 0cm;"><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: =
+1pt;">&lt;image720384.png&gt;</span><o:p></o:p></div></td></tr><tr><td =
+valign=3D"top" style=3D"padding: 3.75pt 7.5pt 0cm 0cm;"><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: =
+1pt;">&lt;image539332.png&gt;</span><o:p></o:p></div></td><td =
+valign=3D"top" style=3D"padding: 3.75pt 0cm 0cm;"><table =
+class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+style=3D"border-collapse: collapse;"><tbody><tr><td valign=3D"top" =
+style=3D"padding: 0.75pt 0cm 0cm;"><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif;"><b><span style=3D"font-size: =
+10.5pt; font-family: Mulish; color: rgb(8, 32, 64);"><a =
+href=3D"http://www.xeniaestates.com/" target=3D"_blank" style=3D"color: =
+blue; text-decoration: =
+underline;">www.xeniaestates.com</a></span></b><o:p></o:p></div></td></tr>=
+</tbody></table></td></tr></tbody></table></td></tr></tbody></table></td><=
+/tr></tbody></table></td></tr></tbody></table></td><td valign=3D"top" =
+style=3D"padding: 0cm;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse: =
+collapse;"><tbody><tr><td valign=3D"top" style=3D"padding: 0cm 0cm 0cm =
+11.25pt;"><div style=3D"margin: 0cm; font-size: 12pt; font-family: =
+Aptos, sans-serif;"><span style=3D"font-size: =
+1pt;">&lt;image627123.png&gt;</span><o:p></o:p></div></td></tr></tbody></t=
+able></td></tr></tbody></table></td><td style=3D"padding: 0cm;"><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: =
+1pt;">&nbsp;</span><o:p></o:p></div></td></tr></tbody></table></td></tr><t=
+r><td style=3D"border-width: medium medium 1pt; border-style: none none =
+solid; border-image: none; padding: 5.25pt 0cm 9.75pt; border-color: =
+currentcolor currentcolor rgb(0, 56, 168);"><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: =
+1pt;">&nbsp;</span><o:p></o:p></div></td></tr></tbody></table></td></tr></=
+tbody></table></td></tr><tr><td valign=3D"top" style=3D"padding: =
+0cm;"><table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" width=3D"675" style=3D"width: 506.25pt; =
+border-collapse: collapse;"><tbody><tr><td valign=3D"top" =
+style=3D"padding: 0cm;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"1" style=3D"width: 0.75pt; =
+border-collapse: collapse;"><tbody><tr><td valign=3D"top" =
+style=3D"padding: 0cm;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"0" style=3D"border-collapse: =
+collapse;"><tbody><tr><td valign=3D"top" style=3D"padding: 0cm;"><table =
+class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+style=3D"border-collapse: collapse;"><tbody><tr><td valign=3D"top" =
+style=3D"padding: 15.75pt 0cm 0cm;"><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 1pt;"><a =
+href=3D"https://www.linkedin.com/company/10104133/admin/feed/posts/" =
+target=3D"_blank" style=3D"color: blue; text-decoration: =
+underline;"><span style=3D"text-decoration: =
+none;">&lt;image350727.png&gt;</span></a></span><o:p></o:p></div></td></tr=
+></tbody></table></td><td valign=3D"top" style=3D"padding: 0cm;"><table =
+class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+style=3D"border-collapse: collapse;"><tbody><tr><td valign=3D"top" =
+style=3D"padding: 15.75pt 0cm 0cm;"><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: =
+1pt;">&lt;image571060.png&gt;</span><o:p></o:p></div></td></tr></tbody></t=
+able></td></tr></tbody></table></td><td valign=3D"top" style=3D"padding: =
+0cm;"><table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" style=3D"border-collapse: collapse;"><tbody><tr><td =
+valign=3D"top" style=3D"padding: 12.75pt 0cm 0cm;"><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: =
+1pt;">&lt;image076601.jpg&gt;</span><o:p></o:p></div></td></tr></tbody></t=
+able></td></tr></tbody></table></td><td style=3D"padding: 0cm 0cm 0cm =
+9pt;"><div style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: =
+1pt;">&nbsp;</span><o:p></o:p></div></td></tr></tbody></table></td></tr><t=
+r><td valign=3D"top" style=3D"padding: 0cm;"><table =
+class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+width=3D"675" style=3D"width: 506.25pt; border-collapse: =
+collapse;"><tbody><tr><td valign=3D"top" style=3D"padding: 18.75pt 0cm =
+0cm;"><table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" width=3D"675" style=3D"width: 506.25pt; =
+border-collapse: collapse;"><tbody><tr><td style=3D"padding: 0cm;"><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+text-align: justify;"><span style=3D"font-size: 7.5pt; font-family: =
+Arial, sans-serif; color: rgb(166, 166, 166);">IMPORTANT NOTICE =E2=80=93 =
+Cyber Crime Alert<span =
+class=3D"xm-3390882567618598765apple-converted-space">&nbsp;</span><br><br=
+>In light of the increased risk posed by cyber fraud and especially =
+those relating to bank account details, please take extra care and =
+always be vigilant in relation to electronic transfer of funds. Please =
+also exercise caution when opening any emails, attachments, or links and =
+when responding to any requests for your bank details or notices of =
+changes to bank details of others. We will NOT accept responsibility if =
+you transfer money into an incorrect bank account. Please further note, =
+our general policy is NOT to accept any changes to bank account details =
+by email.<br>&nbsp;<br>This e-mail contains information which may be =
+legally privileged, proprietary in nature, or otherwise protected by law =
+from disclosure, and is intended only for the use of the recipient named =
+above. If you are not the intended recipient, you are hereby notified =
+that any dissemination or copying of this e-mail may be strictly =
+prohibited. If you have received the e-mail in error, please notify the =
+sender by e-mail immediately. Under the Regulation of Investigatory =
+Powers Act 2000, this company regularly intercepts and monitors E-mails =
+sent to it for the purpose of, for example, ensuring that only =
+legitimate business is being carried on and to ensure the security of =
+information being transmitted.</span><span style=3D"font-size: 10.5pt; =
+font-family: Arial, sans-serif; color: rgb(166, 166, =
+166);"><br>&nbsp;<br></span><span style=3D"font-size: 9pt; font-family: =
+Arial, sans-serif; color: rgb(166, 166, 166); background: white;">Xenia =
+Estates Ltd Company Number 12164345</span><span style=3D"font-size: 9pt; =
+font-family: Arial, sans-serif; color: rgb(166, 166, 166);"><br>Xenia =
+Estates | Marsland House | Marsland Road | Sale | M33 =
+3AQ&nbsp;</span><o:p></o:p></div></td></tr></tbody></table></td></tr></tbo=
+dy></table></td></tr></tbody></table></div></div></blockquote></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;">&nbsp;<o:p></o:p></div></div></div></div></div></blockquote><=
+/div></div></div></div></div></blockquote></div><br></div></body></html>=
+
+--Apple-Mail=_BDB639CA-77DE-4418-AEE3-6F015E866AC7--

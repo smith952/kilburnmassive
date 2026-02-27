@@ -1,0 +1,531 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:3c47:b0:9e7:98c:9732 with SMTP id i7csp4617ejg;
+        Fri, 10 Nov 2023 07:19:51 -0800 (PST)
+X-Received: by 2002:adf:ea92:0:b0:32d:93aa:3d63 with SMTP id s18-20020adfea92000000b0032d93aa3d63mr6612720wrm.69.1699629591712;
+        Fri, 10 Nov 2023 07:19:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1699629591; cv=none;
+        d=google.com; s=arc-20160816;
+        b=AsjZb/t5PV7PKgR1gMRdQITvkpgDpi3WfWBspMjMcsZ8YxTK34hCqXQPg4TfCOB/Nt
+         FdbvlBV4EGKKJ8hWAc8eSBP36AYKHTFDHcw1IznLGqKzj2RqFPB8jq6b8DHbYYYx/0tV
+         xqwqvzRN+ASaGnrSuH0YAgu68HCq7Pj4bTraQx/sYgsQNXhAR+XnQe2YIc8wdy9ah/mP
+         l/XfsmG7O8aBVbPRKsLMlG5BN6QFPTLxK9EFnywKivRw5wHfmv3J9gHHWB9MTtjznrpY
+         8n7Ns7az3tNHINcA0yrUAmYa2JdCzQqO4x1W6qdnKkJn/u37rIFhciiR+ZxiDBne/xdQ
+         3u7Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:dkim-signature;
+        bh=ya4jxNZmgaqfA3uJijRmttgPz6eB+65Z4NKTKwe7obA=;
+        fh=4AJfnc7X9C0D7YxSnHH21XzD4Ru4lKJPuYCTrrr4lUM=;
+        b=Pe67Yn+qFmgKn0EmL4HPHQDB6H92pkCScViYWFzAQ7s2tsbXxRIEQBGClxylTjXfjy
+         D4tJc+jB0NVcezh36q3Z61LX5ljqInQD1XcSJZT2bqwAi2794navqKXS7jx+Afk2aIxs
+         ykqVSvWoeYNwggUBzXaZFXquoZPCLAolGdebpeyWvLhL9rU2OX36HwmJfVPFAXQ93w3t
+         /3EB4lzIdbNjZzMYpLOrnvpoDw8xOe6T7YTjBMhHwP5Zx41ty1lKMcwmwNgnK6Oepj/B
+         LKlYkIrqRClg3l1cL9ItFChEPEngQ52WOyE8Qn/xF238zh7r8MkLW0bj2YqdY8SbG8bn
+         86dA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=rUaILXQE;
+       spf=neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+Return-Path: <th@inhomemedia.io>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id e39-20020a5d5967000000b0032fde699037sor2193511wri.0.2023.11.10.07.19.51
+        for <ot@inhomemedia.io>
+        (Google Transport Security);
+        Fri, 10 Nov 2023 07:19:51 -0800 (PST)
+Received-SPF: neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=rUaILXQE;
+       spf=neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1699629591; x=1700234391; darn=inhomemedia.io;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ya4jxNZmgaqfA3uJijRmttgPz6eB+65Z4NKTKwe7obA=;
+        b=rUaILXQEi7BJfKFTgY55xAuPVYkVKX0SWjyGoPwVtHZF8h0IJtN2661uePxUQb437S
+         Utc5lcJzIZazBt+VgeKvwK4YMUg/GnxsUZhn0m0sJNvsHt2AL4u405uGlWKDGg9EA29L
+         ER1OpKtCCCqPPdfiETPcCaVrL5zxMVfdYoU7Gbgge9Di1ywSZnaL4f249gHmz9R5n26m
+         tmIGaLxOE5pXoIMPyzSkMqKY8acm7b1kZwQlfdAEUPPNE5jl7Yksvw77r5FYzy+8yer4
+         OqnKkZRsVNwyz3jXYAy5OKPZCIl+f2HouNeeGq5iVoqjOw/vLtRJjP58jGxnAbTN+Py2
+         JiGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699629591; x=1700234391;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ya4jxNZmgaqfA3uJijRmttgPz6eB+65Z4NKTKwe7obA=;
+        b=Or4R8/DheMumCeBxsIwOF135yciyjQPD9rNAfHCKVUWXTrjLRj/ocBshGlr12q3pQp
+         64mpdVE6xrTudy4HFScTDyUY6asFzx5/F0Lgx/a4ZB3+g3LtR7ZRsrcZ8SVX6eLo22V9
+         7tBu1giiyAo+yBSYqOwMmyImSpAcvJmVNpH9QGHqbqrlWPAwpavu1YQO6fcVSIvrOfxk
+         by1jG1+IDMe8rGTfNCXYCKDVLbWaCROVOKXidklDRewgvJhq8SBjbGOS0vNWYCA65CC2
+         gigYp1TYawKRC0O4/9OE8DSlMG1fPZ3tbfcfsB7slN3WXnAGX3lIJkimi+bbtLRLRbHl
+         RWRQ==
+X-Gm-Message-State: AOJu0YwIxQDdztKpo3VoTNRhcJE266/ewMvYn+NegzieMtDVoGCn3a7w
+	ipoK00eSgC8JX6vWDEwtk/v2
+X-Google-Smtp-Source: AGHT+IFhz3wLAPNlJP6PViTt9+jLW8QtNY8tbvDXQbPs6N1BtsPFaGP5n1ExNpU8amCBx4BJ8SYTlA==
+X-Received: by 2002:a05:6000:70d:b0:32d:81fe:7104 with SMTP id bs13-20020a056000070d00b0032d81fe7104mr11997162wrb.63.1699629591084;
+        Fri, 10 Nov 2023 07:19:51 -0800 (PST)
+Return-Path: <th@inhomemedia.io>
+Received: from smtpclient.apple ([185.201.60.17])
+        by smtp.gmail.com with ESMTPSA id p5-20020adfe605000000b0032db8f7f378sm2111127wrm.71.2023.11.10.07.19.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Nov 2023 07:19:50 -0800 (PST)
+Content-Type: multipart/alternative; boundary=Apple-Mail-49A4AF3B-A840-4DAE-88EA-66AF3AEB02AE
+Content-Transfer-Encoding: 7bit
+From: Anthony Hughes <th@inhomemedia.io>
+Mime-Version: 1.0 (1.0)
+Subject: Re: Meeting venue for tomorrow
+Date: Fri, 10 Nov 2023 15:19:39 +0000
+Message-Id: <4929847E-A8F6-4058-BEA8-C19A1537703A@inhomemedia.io>
+References: <LO4P265MB6480C32C9209A3F541EB8E35BFAEA@LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM>
+Cc: Owen Thomas <ot@inhomemedia.io>, stephen@inhomemedia.io
+In-Reply-To: <LO4P265MB6480C32C9209A3F541EB8E35BFAEA@LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM>
+To: David Moulton <david.moulton@erismedia.co.uk>
+X-Mailer: iPhone Mail (20G81)
+
+
+--Apple-Mail-49A4AF3B-A840-4DAE-88EA-66AF3AEB02AE
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Great. Thanks<br><br><div dir=3D"ltr">Sent f=
+rom my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On 10 Nov 2=
+023, at 15:10, David Moulton &lt;david.moulton@erismedia.co.uk&gt; wrote:<br=
+><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF=
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+
+<div>
+<div>
+<div dir=3D"ltr">
+<div dir=3D"ltr">Thanks Tony.&nbsp;</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">I=E2=80=99ll go back to James Ackrill accordingly. He=E2=80=
+=99ll probably give the Dwellant CEO a kick as well.&nbsp;</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Thanks</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Dave</div>
+</div>
+</div>
+<div id=3D"ms-outlook-mobile-signature">
+<div><br>
+</div>
+<div style=3D"direction: ltr;" dir=3D"ltr">Sent from my iPhone 14</div>
+</div>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" sty=
+le=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Anthony Hughes &lt;th@i=
+nhomemedia.io&gt;<br>
+<b>Sent:</b> Friday, November 10, 2023 3:07:02 PM<br>
+<b>To:</b> David Moulton &lt;david.moulton@erismedia.co.uk&gt;<br>
+<b>Cc:</b> Owen Thomas &lt;ot@inhomemedia.io&gt;; stephen@inhomemedia.io &lt=
+;stephen@inhomemedia.io&gt;<br>
+<b>Subject:</b> Re: Meeting venue for tomorrow</font>
+<div>&nbsp;</div>
+</div>
+<div dir=3D"auto">Hi Dave,
+<div><br>
+</div>
+<div>This hasn=E2=80=99t progressed passed initial discussions yet, Dwellant=
+ MD has been unresponsive. I have just given him a push and will follow up w=
+ith a call when I am off the train in 10 hours.</div>
+<div><br>
+</div>
+<div>Best&nbsp;</div>
+<div><br>
+</div>
+<div>Tony<br>
+<br>
+<div dir=3D"ltr">Sent from my iPhone</div>
+<div dir=3D"ltr"><br>
+<blockquote type=3D"cite">On 10 Nov 2023, at 14:48, David Moulton &lt;david.=
+moulton@erismedia.co.uk&gt; wrote:<br>
+<br>
+</blockquote>
+</div>
+<blockquote type=3D"cite">
+<div dir=3D"ltr">=EF=BB=BF
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div dir=3D"ltr">Hi Owen,</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">I've just been asked by the CEO of Centrick if we've done t=
+he Dwellant integration yet?</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Hopefully, all done?</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Thanks</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Dave</div>
+<div id=3D"x_ms-outlook-mobile-signature">
+<div><br>
+</div>
+<div dir=3D"ltr" style=3D"direction:ltr">Sent from my iPhone 14</div>
+</div>
+<div id=3D"x_mail-editor-reference-message-container" class=3D"x_ms-outlook-=
+mobile-reference-message">
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif"><=
+b>From:</b> Owen Thomas &lt;ot@inhomemedia.io&gt;<br>
+<b>Sent:</b> Thursday, November 9, 2023 22:03<br>
+<b>To:</b> David Moulton &lt;david.moulton@erismedia.co.uk&gt;<br>
+<b>Cc:</b> Anthony Hughes &lt;th@inhomemedia.io&gt;; Charlotte Humphries &lt=
+;charlotte.humphries@erismedia.co.uk&gt;; Emily Mills &lt;emily.mills@erisme=
+dia.co.uk&gt;; Jasmine Kalton &lt;jasmine.kalton@erismedia.co.uk&gt;; stephe=
+n@inhomemedia.io &lt;stephen@inhomemedia.io&gt;<br>
+<b>Subject:</b> Re: Meeting venue for tomorrow
+<div>&nbsp;</div>
+</font></div>
+<div dir=3D"auto">Thanks Dave, looking forward to catching up wherever works=
+ best.&nbsp;</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto"><br>
+</div>
+<div><br>
+<div class=3D"x_gmail_quote">
+<div dir=3D"ltr" class=3D"x_gmail_attr">On Thu, 9 Nov 2023 at 21:00, David M=
+oulton &lt;<a href=3D"mailto:david.moulton@erismedia.co.uk">david.moulton@er=
+ismedia.co.uk</a>&gt; wrote:<br>
+</div>
+<blockquote class=3D"x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; borde=
+r-left-width:1px; border-left-style:solid; padding-left:1ex; border-left-col=
+or:rgb(204,204,204)">
+<div lang=3D"EN-GB" style=3D"">
+<div class=3D"x_m_-5792672099971423877WordSection1">
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt">Evening guys,<u></u>=
+<u></u></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt"><u></u>&nbsp;<u></u>=
+</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt">Hope you're well?<u>=
+</u><u></u></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt"><u></u>&nbsp;<u></u>=
+</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt">Just a heads up that=
+ our office has a problem with the drains and are currently out of action!<u=
+></u><u></u></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt"><u></u>&nbsp;<u></u>=
+</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt">They may be fixed fi=
+rst thing tomorrow. Failing that, I am working on a hotel meeting room or si=
+milar.<u></u><u></u></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt"><u></u>&nbsp;<u></u>=
+</span></p>
+<p class=3D"x_MsoNormal"><b><span style=3D"font-size:11pt">Watch this space.=
+<u></u><u></u></span></b></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt"><u></u>&nbsp;<u></u>=
+</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt">If our office reopen=
+s, the address is:<u></u><u></u></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt"><u></u>&nbsp;<u></u>=
+</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt">Prospect Place<u></u=
+><u></u></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt">Moorside Road<u></u>=
+<u></u></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt">Winnall<u></u><u></u=
+></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt">Winchester<u></u><u>=
+</u></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt">SO23 7RX<u></u><u></=
+u></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt"><u></u>&nbsp;<u></u>=
+</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt">Will let you know as=
+ soon as I have news.<u></u><u></u></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt"><u></u>&nbsp;<u></u>=
+</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt">Best<u></u><u></u></=
+span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt"><br>
+Dave<u></u><u></u></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt"><u></u>&nbsp;<u></u>=
+</span></p>
+<div>
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 3.75pt 0cm 0cm">
+<div align=3D"center">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-coll=
+apse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm 0.75pt 0cm 0cm">
+<p class=3D"x_MsoNormal" style=3D"margin:0.75pt"><span style=3D"font-size:11=
+pt; font-family:Calibri,sans-serif"></span></p>
+<div>&lt;image001.png&gt;</div>
+<u style=3D"font-family:Calibri,sans-serif"></u><u style=3D"font-family:Cali=
+bri,sans-serif"></u>
+<p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+<td valign=3D"top" style=3D"padding:0cm 4.5pt 0cm 0.75pt">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-coll=
+apse:collapse">
+<tbody>
+<tr>
+<td nowrap=3D"" style=3D"padding:0cm 0.75pt 0cm 0cm">
+<p class=3D"x_MsoNormal" style=3D"margin:0.75pt; line-height:13.5pt"><b><spa=
+n style=3D"font-size:10pt; font-family:Arial,sans-serif; color:black">David M=
+oulton</span></b><span style=3D"font-size:11pt; font-family:Calibri,sans-ser=
+if"><u style=3D"font-family:Calibri,sans-serif"></u><u style=3D"font-family:=
+Calibri,sans-serif"></u></span></p>
+<p class=3D"x_MsoNormal" style=3D"margin:0.75pt; line-height:14.25pt"><span s=
+tyle=3D"font-size:10pt; font-family:Arial,sans-serif; color:black">Managing D=
+irector</span><span style=3D"font-size:11pt; font-family:Calibri,sans-serif"=
+><u style=3D"font-family:Calibri,sans-serif"></u><u style=3D"font-family:Cal=
+ibri,sans-serif"></u></span></p>
+<p class=3D"x_MsoNormal" style=3D"margin:0.75pt; line-height:14.25pt"><span s=
+tyle=3D"font-size:10pt; font-family:Arial,sans-serif; color:black">Eris Medi=
+a Solutions Limited</span><span style=3D"font-size:11pt; font-family:Calibri=
+,sans-serif"><u style=3D"font-family:Calibri,sans-serif"></u><u style=3D"fon=
+t-family:Calibri,sans-serif"></u></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style=3D"border-width:medium 1pt medium medium; border-style:none solid n=
+one none; padding:0.75pt 0cm 0cm; border-color:currentcolor rgb(63,41,237) c=
+urrentcolor currentcolor">
+</td>
+<td valign=3D"top" style=3D"padding:0cm 0.75pt 0cm 4.5pt">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-coll=
+apse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm 0.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-coll=
+apse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0.75pt 3.75pt 0.75pt 0cm">
+<p class=3D"x_MsoNormal" style=3D"margin:0.75pt"><span style=3D"font-size:11=
+pt; font-family:Calibri,sans-serif"></span></p>
+<div>&lt;image002.png&gt;</div>
+<u style=3D"font-family:Calibri,sans-serif"></u><u style=3D"font-family:Cali=
+bri,sans-serif"></u>
+<p></p>
+</td>
+<td nowrap=3D"" style=3D"padding:0.75pt 0cm">
+<p class=3D"x_MsoNormal" style=3D"margin:0.75pt; line-height:13.5pt"><span s=
+tyle=3D"font-size:10pt; font-family:Arial,sans-serif; color:rgb(0,0,1)"><a h=
+ref=3D"tel:08000698228" title=3D"tel:08000698228" target=3D"_blank" style=3D=
+"font-family:Arial,sans-serif"><span style=3D"font-family:Arial,sans-serif; c=
+olor:black">0800
+ 069 8228</span></a></span><span style=3D"font-size:11pt; font-family:Calibr=
+i,sans-serif"><u style=3D"font-family:Calibri,sans-serif"></u><u style=3D"fo=
+nt-family:Calibri,sans-serif"></u></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0.75pt 3.75pt 0.75pt 0cm">
+<p class=3D"x_MsoNormal" style=3D"margin:0.75pt"><span style=3D"font-size:11=
+pt; font-family:Calibri,sans-serif"></span></p>
+<div>&lt;image003.png&gt;</div>
+<u style=3D"font-family:Calibri,sans-serif"></u><u style=3D"font-family:Cali=
+bri,sans-serif"></u>
+<p></p>
+</td>
+<td nowrap=3D"" style=3D"padding:0.75pt 0cm">
+<p class=3D"x_MsoNormal" style=3D"margin:0.75pt; line-height:13.5pt"><span s=
+tyle=3D"font-size:10pt; font-family:Arial,sans-serif; color:rgb(0,0,1)"><a h=
+ref=3D"tel:07747443561" title=3D"tel:07747443561" target=3D"_blank" style=3D=
+"font-family:Arial,sans-serif"><span style=3D"font-family:Arial,sans-serif; c=
+olor:black">07747
+ 443 561</span></a></span><span style=3D"font-size:11pt; font-family:Calibri=
+,sans-serif"><u style=3D"font-family:Calibri,sans-serif"></u><u style=3D"fon=
+t-family:Calibri,sans-serif"></u></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0.75pt 3.75pt 0.75pt 0cm">
+<p class=3D"x_MsoNormal" style=3D"margin:0.75pt"><span style=3D"font-size:11=
+pt; font-family:Calibri,sans-serif"></span></p>
+<div>&lt;image004.png&gt;</div>
+<u style=3D"font-family:Calibri,sans-serif"></u><u style=3D"font-family:Cali=
+bri,sans-serif"></u>
+<p></p>
+</td>
+<td nowrap=3D"" style=3D"padding:0.75pt 0cm">
+<p class=3D"x_MsoNormal" style=3D"margin:0.75pt; line-height:13.5pt"><span s=
+tyle=3D"font-size:10pt; font-family:Arial,sans-serif; color:black"><a href=3D=
+"https://www.google.com/maps/search/1,+Winnall+Valley+Road,+Winchester,+SO23=
++0LD?entry=3Dgmail&amp;source=3Dg" style=3D"font-family:Arial,sans-serif">1,=
+
+ Winnall Valley Road, Winchester, SO23 0LD</a></span><span style=3D"font-siz=
+e:11pt; font-family:Calibri,sans-serif"><u style=3D"font-family:Calibri,sans=
+-serif"></u><u style=3D"font-family:Calibri,sans-serif"></u></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0.75pt 3.75pt 0.75pt 0cm">
+<p class=3D"x_MsoNormal" style=3D"margin:0.75pt"><span style=3D"font-size:11=
+pt; font-family:Calibri,sans-serif"></span></p>
+<div>&lt;image005.png&gt;</div>
+<u style=3D"font-family:Calibri,sans-serif"></u><u style=3D"font-family:Cali=
+bri,sans-serif"></u>
+<p></p>
+</td>
+<td nowrap=3D"" style=3D"padding:0.75pt 0cm">
+<p class=3D"x_MsoNormal" style=3D"margin:0.75pt; line-height:13.5pt"><b><spa=
+n style=3D"font-size:10pt; font-family:Arial,sans-serif; color:rgb(63,41,236=
+)"><a href=3D"https://www.erismedia.co.uk" title=3D"https://www.erismedia.co=
+.uk/" target=3D"_blank" style=3D"font-family:Arial,sans-serif"><span style=3D=
+"font-family:Arial,sans-serif; color:rgb(63,41,237)">erismedia.co.uk</span><=
+/a></span></b><span style=3D"font-size:11pt; font-family:Calibri,sans-serif"=
+><u style=3D"font-family:Calibri,sans-serif"></u><u style=3D"font-family:Cal=
+ibri,sans-serif"></u></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan=3D"4" style=3D"border-width:medium medium 1pt; border-style:none=
+ none solid; padding:0cm 0.75pt 3.75pt 0cm; border-color:currentcolor curren=
+tcolor rgb(63,41,237)">
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0cm"></td>
+<td style=3D"padding:0cm"></td>
+<td style=3D"padding:0cm"></td>
+<td style=3D"padding:0cm"></td>
+</tr>
+</tbody>
+</table>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:11pt; font-family:Calibri,=
+sans-serif; display:none"><u style=3D"font-family:Calibri,sans-serif"></u>&n=
+bsp;<u style=3D"font-family:Calibri,sans-serif"></u></span></p>
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"max-width:4=
+50pt; border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:4.5pt 0.75pt 0cm 0cm">
+<p class=3D"x_MsoNormal" style=3D"margin-right:0.75pt; margin-bottom:12pt; m=
+argin-left:0.75pt; line-height:10.5pt">
+<span style=3D"font-size:7.5pt; font-family:Arial,sans-serif; color:rgb(136,=
+136,136)">This email and any files transmitted with it are confidential and i=
+ntended solely for the use of the individual or entity to whom they are addr=
+essed. If you have received this
+ email in error please notify the system manager. This message contains conf=
+idential information and is intended only for the individual named. If you a=
+re not the named addressee you should not disseminate, distribute or copy th=
+is e-mail. Please notify the
+ sender immediately by e-mail if you have received this e-mail by mistake an=
+d delete this e-mail from your system. If you are not the intended recipient=
+ you are notified that disclosing, copying, distributing or taking any actio=
+n in reliance on the contents
+ of this information is strictly prohibited.<br>
+<br>
+WARNING: Although the company has taken reasonable precautions to ensure no v=
+iruses are present in this email, the company cannot accept responsibility f=
+or any loss or damage arising from the use of this email or attachments.<br>=
+
+<br>
+Eris Media Solutions Limited is a company registered in England &amp; Wales<=
+br>
+Registered number: 010605270. Registered office address: Burlington House, B=
+otleigh Grange Business Park, Hedge End, Southampton, SO30 2AF&nbsp;</span><=
+span style=3D"font-size:11pt; font-family:Calibri,sans-serif"><u style=3D"fo=
+nt-family:Calibri,sans-serif"></u><u style=3D"font-family:Calibri,sans-serif=
+"></u></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class=3D"x_MsoNormal"><u></u>&nbsp;<u></u></p>
+</div>
+<br>
+<br>
+<p style=3D"font-family:Verdana; font-size:10pt; color:rgb(102,102,102)"><b s=
+tyle=3D"font-family:Verdana">Disclaimer</b></p>
+<p style=3D"font-family:Verdana; font-size:8pt; color:rgb(102,102,102)">The i=
+nformation contained in this communication from the sender is confidential. I=
+t is intended solely for use by the recipient and others authorized to recei=
+ve it. If you are not the recipient,
+ you are hereby notified that any disclosure, copying, distribution or takin=
+g action in relation of the contents of this information is strictly prohibi=
+ted and may be unlawful.<br>
+<br>
+This email has been scanned for viruses and malware, and may have been autom=
+atically archived by Mimecast, a leader in email security and cyber resilien=
+ce. Mimecast integrates email defenses with brand protection, security aware=
+ness training, web security,
+ compliance and other essential capabilities. Mimecast helps protect large a=
+nd small organizations from malicious activity, human error and technology f=
+ailure; and to lead the movement toward building a more resilient world. To f=
+ind out more, visit our website.</p>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
+<br>
+<br>
+<p style=3D"font-family:Verdana; font-size:10pt; color:#666666"><b>Disclaime=
+r</b></p>
+<p style=3D"font-family:Verdana; font-size:8pt; color:#666666">The informati=
+on contained in this communication from the sender is confidential. It is in=
+tended solely for use by the recipient and others authorized to receive it. I=
+f you are not the recipient, you
+ are hereby notified that any disclosure, copying, distribution or taking ac=
+tion in relation of the contents of this information is strictly prohibited a=
+nd may be unlawful.<br>
+<br>
+This email has been scanned for viruses and malware, and may have been autom=
+atically archived by Mimecast, a leader in email security and cyber resilien=
+ce. Mimecast integrates email defenses with brand protection, security aware=
+ness training, web security,
+ compliance and other essential capabilities. Mimecast helps protect large a=
+nd small organizations from malicious activity, human error and technology f=
+ailure; and to lead the movement toward building a more resilient world. To f=
+ind out more, visit our website.</p>
+</div>
+</blockquote>
+</div>
+</div>
+
+
+<br><br><p style=3D"font-family: Verdana; font-size:10pt; color:#666666;"><b=
+>Disclaimer</b></p><p style=3D"font-family: Verdana; font-size:8pt; color:#6=
+66666;">The information contained in this communication from the sender is c=
+onfidential. It is intended solely for use by the recipient and others autho=
+rized to receive it. If you are not the recipient, you are hereby notified t=
+hat any disclosure, copying, distribution or taking action in relation of th=
+e contents of this information is strictly prohibited and may be unlawful.<b=
+r><br>This email has been scanned for viruses and malware, and may have been=
+ automatically archived by Mimecast, a leader in email security and cyber re=
+silience. Mimecast integrates email defenses with brand protection, security=
+ awareness training, web security, compliance and other essential capabiliti=
+es. Mimecast helps protect large and small organizations from malicious acti=
+vity, human error and technology failure; and to lead the movement toward bu=
+ilding a more resilient world. To find out more, visit our website.</p>
+</div></blockquote></body></html>=
+
+--Apple-Mail-49A4AF3B-A840-4DAE-88EA-66AF3AEB02AE--

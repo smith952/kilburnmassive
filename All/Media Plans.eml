@@ -1,0 +1,1465 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:5918:b0:9b2:b64f:20e5 with SMTP id h24csp127211ejq;
+        Tue, 10 Oct 2023 05:21:49 -0700 (PDT)
+X-Received: by 2002:a81:6ec2:0:b0:5a1:db6a:6459 with SMTP id j185-20020a816ec2000000b005a1db6a6459mr18066652ywc.40.1696940509365;
+        Tue, 10 Oct 2023 05:21:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1696940509; cv=none;
+        d=google.com; s=arc-20160816;
+        b=tfyFeGP/KDjGzMJuYzIyq4bXfplKi35yPMhNA9rJPdG3qBHrOleGrxYdMc8O4Xlnsv
+         bKKI42Bi1rQ8FVRbVRI49IyDZmbYL7z0xvg/BIHWdoTZfSXaB2K54Lznc2Jwg+yRdSS3
+         /9+YwZmh0n3WQ8EprqTuf4W+uqZgcLxtOUbJWzENkYLCRpwwqFTwdp5+iUv9lwnqtVCy
+         jKagEnyiEUEHXXKMI0mvH56vECw6QHd4QwM+gQ4mBlUwD/lloo2madZIRHuSGxlHHHRY
+         vbtgaY07KYz/yZg114fTo7ad2P5ok2YpXGrFUILJR6NM0ttvzUopWuZJYTgJi1ulfesH
+         oLLg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=6msjW1Fr2yVF7l1GZ39Nqhy9jdoCWQGDsf5VctRoJ2U=;
+        fh=PPC1HqqdMuvCicfndAtvqlbv4AGpwjpAql224GPSQGU=;
+        b=cqJl6EqvAKtvbopwkYKroABYbERRagerLE7Ij98kG761T3MSPxBZqFutnT4sXVlsIV
+         703bYlUQn+tyFlcI8htQGdCU1RwHSzonz/Cixlts6h63yWA+joLiiB728J+oTuAO3mcn
+         /ylAiWfrhsyiMf8dTCnbb1FDojnBtf2zu3ODRSeEkrWwMfWyJugVJGHj21gNZ6my0oZN
+         riF87MzePvCNJzB1U2k13GT83D0sBjJhoz5M5V2OosK1Aw6halLSbtnlUMkx7NLZUTCC
+         dfZ7obAat1b0IeuRA+8ocfJvVjJKUoPk+h2uG8wvHa0UK+c6H5Zsy6bFPdAw3Ui7vFuJ
+         47fw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=pauHB6Or;
+       spf=neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) smtp.mailfrom=stephen@inhomemedia.io
+Return-Path: <stephen@inhomemedia.io>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id cs15-20020a05690c0ecf00b005a4fe8d8f45sor3131135ywb.0.2023.10.10.05.21.48
+        for <ot@inhomemedia.io>
+        (Google Transport Security);
+        Tue, 10 Oct 2023 05:21:49 -0700 (PDT)
+Received-SPF: neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=pauHB6Or;
+       spf=neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) smtp.mailfrom=stephen@inhomemedia.io
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1696940508; x=1697545308; darn=inhomemedia.io;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6msjW1Fr2yVF7l1GZ39Nqhy9jdoCWQGDsf5VctRoJ2U=;
+        b=pauHB6OrppPZWTiICEPXcBZzwrByAveaNV3lvq1lLjjPpPa8taDTEHGqEYZaMEDYJR
+         KAnqBplTn31anZLHwJG9kgrqGishO2oq+TkNoikC+WIh32zQQ8CGsekBpkCF1BeiMOaK
+         g6VVvSvLbqFmacQHMtAt1bzZmVUWphr/xXzyyA/c6nmzSoWMwlYLs11ilGGTrxMPp/7b
+         Zswr/CS1x9gf8IykyfC9wogGUKRdbA+qZhxDbC4FXMfr79wvm4FuoH0BwVyYX8AZGx49
+         7u/JKBNp/KDMAkWHqjLyowMLkImhobdoZqzwzNJvz8PWeXhfMkPKFtyqT3NzczohranY
+         jcUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696940508; x=1697545308;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6msjW1Fr2yVF7l1GZ39Nqhy9jdoCWQGDsf5VctRoJ2U=;
+        b=e/5PP+SIuyOfGxDKit9qGK0125Ndex1lexSxi2+97GSjbTtsZJaBXAxrFL2PwMnBXJ
+         xq2XDWxGLM2qIA3llJ+rCJA/BTxpC39M8n1SFFw+i4KF0O7Dp6RmVwAbwcXXkkbh7VHs
+         274dvi8Gs9qia/YWowOp9wqJGDdelXdOMlL/6iDtTcIS29EdhBsnAFF+3N+ALOOOvNeL
+         Y2EtN5pveUSwLYR5CXowIAIEfxL55pp7DJ1DJzvzxIMJzZ8ffydm960Q1/4UkPeYtOr5
+         q7yrZNfdKZRZVxFWkWNeonucy34CRpmsWxE211bVqnRChEan5d9mtXxAVmIbZ25CEVJB
+         BnSg==
+X-Gm-Message-State: AOJu0Yzo0nI0oSPCReYEq8Eh5b/QFJd1OpHlF1Zf6PiSr02eRh5YsG0V
+	N5VWv6oB5D+pVNDJ6Q2M0I5ueefCsaP9bpYNLfAz+m3JLaol5/SGfQVjXmWy
+X-Google-Smtp-Source: AGHT+IFkiOlBhQdsO2N9b7SdwT0lGPa+NtWCqb1ywO3gTPneFqdULchjYmwlSTblYuWFZvK1wZ/8v51a9NgDgMRxMM4=
+X-Received: by 2002:a81:5212:0:b0:5a7:a818:c398 with SMTP id
+ g18-20020a815212000000b005a7a818c398mr3123749ywb.4.1696940508101; Tue, 10 Oct
+ 2023 05:21:48 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAMr_NGG_x84PjGorUoDF-Z8wN8EFxjqUarmK32WByhdnj2hP-Q@mail.gmail.com>
+ <LO2P265MB345391E9ACA1218F749AE994BFF1A@LO2P265MB3453.GBRP265.PROD.OUTLOOK.COM>
+ <CAGJh6Dpnyg4waB4iFBFE_v_MxmKhpgFYU+Y637Ww7Tvt2u4KdA@mail.gmail.com>
+ <CAMr_NGHDoA7o6-pcjBW0MwYRuTckMg36Da7B1VVLvkBCQRDDsQ@mail.gmail.com>
+ <321B987C-E50E-48BB-8DE5-6B9D3216EA26@erismedia.co.uk> <CAMr_NGHTwE3-J3fvSpmkr=ziEVFoyWHu+0+sazG=nMd0X5Rv+w@mail.gmail.com>
+In-Reply-To: <CAMr_NGHTwE3-J3fvSpmkr=ziEVFoyWHu+0+sazG=nMd0X5Rv+w@mail.gmail.com>
+From: Stephen Gale <stephen@inhomemedia.io>
+Date: Tue, 10 Oct 2023 13:21:36 +0100
+Message-ID: <CAPsP-GYfnotXbFw3U=8Yu953dJN5pmtMcOc2i_XY0mCGVzDkww@mail.gmail.com>
+Subject: Re: Media Plans
+To: Owen Thomas <ot@inhomemedia.io>
+Content-Type: multipart/alternative; boundary="00000000000030d6aa06075bc05f"
+
+--00000000000030d6aa06075bc05f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks Owen.
+
+Below is an example of what needs to be clearer from a Media perspective.
+To be honest, I have no idea what this means in terms of number of sites
+currently installed and what is in the pipeline etc. It's all a bit
+confusing and we need to start putting a Media Sales hat on in terms of how
+we manage the inventory and what the pipeline is across the business. I
+would like to suggest a weekly meeting with Tony to discuss Business
+Development and how we can contribute from a Media Sales perspective.
+
+It would be great to know the following:
+
+Current Inventory
+- Total number of buildings installed
+- By location
+- Total number of screens
+- Total number of Apartments
+- Split by utility partner
+
+Pipeline
+- Approved and awaiting installation (total number in pipeline)
+- Priority installations
+- Planned installs by week commencing
+- Sites awaiting approval
+
+The below summary does not make much sense to me.
+Approvals 22
+Closed Lost 13
+Installation 7
+MA Confirmation 42
+Marketing Closed/Won 26
+Non-Eris Deal 37
+On Hold 1
+Stock Selection 386
+Survey 7
+Grand Total 541
+
+On Tue, Oct 10, 2023 at 12:18=E2=80=AFPM Owen Thomas <ot@inhomemedia.io> wr=
+ote:
+
+>
+>
+> ---------- Forwarded message ---------
+> From: Charlotte Humphries <charlotte.humphries@erismedia.co.uk>
+> Date: Mon, Sep 18, 2023 at 2:48=E2=80=AFPM
+> Subject: Re: Media Plans
+> To: Anthony Hughes <th@inhomemedia.io>
+> Cc: David Moulton <david.moulton@erismedia.co.uk>, Eris Screens <
+> screens@erismedia.co.uk>, Jimmy Acton <jimmy@fullcomms.co.uk>, Owen
+> Thomas <ot@inhomemedia.io>
+>
+>
+> Good afternoon Tony et all,
+>
+>
+>
+> I hope you are all doing well.
+>
+>
+>
+> I=E2=80=99ve created a shared spreadsheet containing all available IHM di=
+gital
+> display screens deals data, which we=E2=80=99ll update once a week on Fri=
+days and
+> notify you once completed. Please see this link: [image: xlsx icon] In
+> Home Media Eris Digital Display Screens Deals.xlsx
+> <https://erismedia.sharepoint.com/:x:/g/EUM_4VV0UtFMi0ukqcIZeVAB4g3xoEjie=
+0h7B6ajeqf9NQ?e=3DyXSqw6>
+>
+>
+>
+> In the first tab you=E2=80=99ll find a breakdown containing the total num=
+ber of
+> deals, screens, blocks, apartments, and estimated number of residents
+> (based on 2.5 residents per apartment) by deal stage, region, and town.
+> Please note, the number of screens, blocks and contactor columns are not
+> populated until deals are put into the Validation stage.
+>
+>
+>
+> Then in the second tab you=E2=80=99ll find a table containing the raw dea=
+ls data,
+> including all available references, dates, counts, deal stages, notes etc=
+.
+> When you would like to progress any deals, please provide us with the dea=
+l
+> IDs and we will progress these from the Stock Selection stage into
+> Validation.
+>
+>
+>
+> Tony - Please can you supply me with any upcoming install and survey date=
+s
+> you have available, as well as any data we=E2=80=99re missing which you h=
+ave to
+> hand on the Non-Eris schemes? I=E2=80=99ll then update our database with =
+this data
+> and update the shared spreadsheet.
+>
+>
+>
+> Lastly, regarding the 4th low pen schemes. I have separated any screens
+> deals based in London or Manchester and highlighted those where we do not
+> have an existing 4th Utility deal in place, please see attached.
+>
+>
+>
+> If there is any additional data you would like me to include or amend, or
+> if you have any questions at all, please do not hesitate to ask.
+>
+>
+>
+> Kindest regards,
+>
+>
+>
+> [image: Image]
+>
+> *Charlotte Humphries*
+>
+> CRM & Data Executive
+>
+> Eris Media Solutions Limited
+>
+> [image: Image]
+>
+> 0800 069 8228 <08000698228>
+>
+> [image: Image]
+>
+> 01962 679 266 <01962679266>
+>
+> [image: Image]
+>
+> 1, Winnall Valley Road, Winchester, SO23 0LD
+>
+> [image: Image]
+>
+> *erismedia.co.uk <https://www.erismedia.co.uk/>*
+>
+> This email and any files transmitted with it are confidential and intende=
+d
+> solely for the use of the individual or entity to whom they are addressed=
+.
+> If you have received this email in error please notify the system manager=
+.
+> This message contains confidential information and is intended only for t=
+he
+> individual named. If you are not the named addressee you should not
+> disseminate, distribute or copy this e-mail. Please notify the sender
+> immediately by e-mail if you have received this e-mail by mistake and
+> delete this e-mail from your system. If you are not the intended recipien=
+t
+> you are notified that disclosing, copying, distributing or taking any
+> action in reliance on the contents of this information is strictly
+> prohibited.
+>
+> WARNING: Although the company has taken reasonable precautions to ensure
+> no viruses are present in this email, the company cannot accept
+> responsibility for any loss or damage arising from the use of this email =
+or
+> attachments.
+>
+> Eris Media Solutions Limited is a company registered in England & Wales
+> Registered number: 010605270. Registered office address: Burlington House=
+,
+> Botleigh Grange Business Park, Hedge End, Southampton, SO30 2AF
+>
+>
+>
+>
+>
+>
+>
+> *From: *Owen Thomas <ot@inhomemedia.io>
+> *Date: *Tuesday, 12 September 2023 at 12:52
+> *To: *Anthony Hughes <th@inhomemedia.io>
+> *Cc: *Charlotte Humphries <charlotte.humphries@erismedia.co.uk>, David
+> Moulton <david.moulton@erismedia.co.uk>, Eris Screens <
+> screens@erismedia.co.uk>, Jimmy Acton <jimmy@fullcomms.co.uk>
+> *Subject: *Re: Media Plans
+>
+>
+>
+> Dave/Tony,
+>
+>
+>
+> Thanks for this.
+>
+>
+>
+> Catch up later this week.
+>
+>
+>
+> Owen
+>
+>
+>
+>
+>
+> On Tue, 12 Sep 2023 at 12:49, Anthony Hughes <th@inhomemedia.io> wrote:
+>
+> Hi Dave,
+>
+>
+>
+> that's fine, for me, what would also be useful so we can have a full
+> instal list for October if Lottie could highlight central london and
+> central Manchester buildings in the data set  we have where there is low
+> pen for 4th including number of apartments I will put a survey list for
+> September/install October as part of the process.
+>
+>
+>
+> Owen, there are a number of showcase buildings and they have images onlin=
+e
+> so that should be straightforward, I can highlight these in the data set.
+> In terms of the non 4thu Eris buildings +30 units my suggestion is we hav=
+e
+> a target list for these from November onwards to install. I could pull a
+> target list together with Lottie's help and again add this to our data se=
+t
+> for build in November/December.
+>
+>
+>
+> Happy to meet Stephen, let's look to get a date in the diary, Hogg screen=
+s
+> will be circa 75 of the 279 live screens so circa 25%
+>
+>
+>
+> Lets pull the draft data together and look to review this week.
+>
+>
+>
+> Tony
+>
+>
+>
+> On Tue, Sep 12, 2023 at 12:31=E2=80=AFPM David Moulton <
+> david.moulton@erismedia.co.uk> wrote:
+>
+> Hi Owen,
+>
+>
+>
+> Thanks for your email.
+>
+>
+>
+> I have just spoken to Lottie on the data requirement below.
+>
+>
+>
+> Tony =E2=80=93 can Lottie and Jasmine send over the latest version of eve=
+nts from
+> our HubSpot and you confirm if all present and correct? The forecast to e=
+nd
+> Oct might need some input from your good self.
+>
+>
+>
+> Lottie can then do the regional/location analysis and number of flats,
+> people etc.
+>
+>
+>
+> Thanks
+>
+>
+>
+> Dave
+>
+>
+>
+> p.s. I can=E2=80=99t open the link!
+>
+>
+>
+> *Error! Filename not specified.*
+>
+> *David Moulton*
+>
+> Managing Director
+>
+> Eris Media Solutions Limited
+>
+> *Error! Filename not specified.*
+>
+> 0800 069 8228 <08000698228>
+>
+> *Error! Filename not specified.*
+>
+> 07747 443 561 <07747443561>
+>
+> *Error! Filename not specified.*
+>
+> 1, Winnall Valley Road, Winchester, SO23 0LD
+> <https://www.google.com/maps/search/1,+Winnall+Valley+Road,+Winchester,+S=
+O23+0LD?entry=3Dgmail&source=3Dg>
+>
+> *Error! Filename not specified.*
+>
+> *erismedia.co.uk <https://www.erismedia.co.uk/>*
+>
+>
+>
+> This email and any files transmitted with it are confidential and intende=
+d
+> solely for the use of the individual or entity to whom they are addressed=
+.
+> If you have received this email in error please notify the system manager=
+.
+> This message contains confidential information and is intended only for t=
+he
+> individual named. If you are not the named addressee you should not
+> disseminate, distribute or copy this e-mail. Please notify the sender
+> immediately by e-mail if you have received this e-mail by mistake and
+> delete this e-mail from your system. If you are not the intended recipien=
+t
+> you are notified that disclosing, copying, distributing or taking any
+> action in reliance on the contents of this information is strictly
+> prohibited.
+>
+> WARNING: Although the company has taken reasonable precautions to ensure
+> no viruses are present in this email, the company cannot accept
+> responsibility for any loss or damage arising from the use of this email =
+or
+> attachments.
+>
+> Eris Media Solutions Limited is a company registered in England & Wales
+> Registered number: 010605270. Registered office address: Burlington House=
+,
+> Botleigh Grange Business Park, Hedge End, Southampton, SO30 2AF
+>
+>
+>
+>
+>
+> *From: *Owen Thomas <ot@inhomemedia.io>
+> *Date: *Tuesday, 12 September 2023 at 11:52
+> *To: *Anthony Hughes <th@inhomemedia.io>, Jimmy Acton <
+> jimmy@fullcomms.co.uk>, David Moulton <david.moulton@erismedia.co.uk>
+> *Subject: *Media Plans
+>
+> Hi Guys,
+>
+>
+>
+> Just thought I would summarise where we are at with the media roll-out an=
+d
+> what we need to action, in terms of being in a position to 'go to market'=
+.
+>
+>
+>
+> Stephen doesn=E2=80=99t really understand the spreadsheet shared last Fri=
+day (and
+> probably not much use from a media perspective), so we are going to focus
+> more on a headline data slide which represents our media network.
+>
+>
+>
+> Something like slide 11 on our deck:
+>
+>
+>
+>
+> https://docs.google.com/presentation/d/1VDU6-mh5cu6wzh6FH0ww5BKjxlIp-XChy=
+oM8GUwD-VY/edit#slide=3Did.g26dddf4c649_0_0
+> :
+>
+>
+>
+>
+>
+> Can I get some help with the following:
+>
+>
+>
+> 1.         All buildings installed as of October 30th - live sites (Eris
+> and 4th combined)
+>
+> 2.         Broken down by region:
+>
+> =C2=B7      London (inc Greater London boroughs)
+>
+> =C2=B7      Birmingham/Midlands
+>
+> =C2=B7      Greater Manchester
+>
+> =C2=B7      South East (not London)
+>
+> =C2=B7      Yorkshire?
+>
+> =C2=B7      And then by other major conurbations: Liverpool, Bristol, Lee=
+ds,
+> Cardiff,Newcastle
+>
+> 3.         Total buildings
+>
+> 4.         Total screens
+>
+> 5.         Number of apartments
+>
+> 6.         Total estimated residents across all apartment blocks
+>
+> 7.         Audience demographics (I can sort this part)
+>
+> 8.         Identify 'showcase' buildings (Central London and Manchester)
+> which we can photo and include in the deck (I can arrange a photographer =
+if
+> we don't have library shots)
+>
+>
+>
+>
+>
+> This will give us a total reach and from that we can work out
+> impacts/footfall and media rates etc, and then we can start formal
+> negotiations...
+>
+>
+>
+> Other items I will work on in meantime:
+>
+>
+>
+> 1.    Roll-out plan for November and beyond- Agree on priority sites
+> criteria
+>
+> 2.    Agree on loop length (maximum 60 secs with 50/50 advertising and
+> content) 6x5 sec ads
+>
+> 3.    Screen sizes. We will roll out 55" as standard, but going forward w=
+e
+> may install 46=E2=80=99=E2=80=99 in smaller locations. They are all in pr=
+oportion, so it
+> doesn=E2=80=99t matter from an impact or creative perspective on media va=
+lue =E2=80=93 but
+> will reduce our costs slightly.
+>
+>
+>
+>
+>
+> Stephen is a bit nervous about the old Hogg screens and whether they are
+> fit for purpose, in terms of sales. I know we are looking at phasing them
+> out and could be used as a 'value add'. Not sure how compatible they are
+> with the CMS, as managing and uploading content will be crucial. The
+> creative spec should be the same across the estate.
+>
+>
+>
+> How many of the 273 screens will be Hogg?
+>
+>
+>
+> I think once I get this info into the media deck we move onto more
+> strategic decisions around Sales management, Marketing, Ops, Content
+> Management, scalable tech etc. Tony I see myself and you getting in front
+> of Stephen late September to agree some of these items.
+>
+>
+>
+> Thanks,
+>
+> O
+>
+>
+>
+>
+>
+> *Disclaimer*
+>
+> The information contained in this communication from the sender is
+> confidential. It is intended solely for use by the recipient and others
+> authorized to receive it. If you are not the recipient, you are hereby
+> notified that any disclosure, copying, distribution or taking action in
+> relation of the contents of this information is strictly prohibited and m=
+ay
+> be unlawful.
+>
+> This email has been scanned for viruses and malware, and may have been
+> automatically archived by Mimecast, a leader in email security and cyber
+> resilience. Mimecast integrates email defenses with brand protection,
+> security awareness training, web security, compliance and other essential
+> capabilities. Mimecast helps protect large and small organizations from
+> malicious activity, human error and technology failure; and to lead the
+> movement toward building a more resilient world. To find out more, visit
+> our website.
+>
+>
+>
+> *Disclaimer*
+>
+> The information contained in this communication from the sender is
+> confidential. It is intended solely for use by the recipient and others
+> authorized to receive it. If you are not the recipient, you are hereby
+> notified that any disclosure, copying, distribution or taking action in
+> relation of the contents of this information is strictly prohibited and m=
+ay
+> be unlawful.
+>
+> This email has been scanned for viruses and malware, and may have been
+> automatically archived by Mimecast, a leader in email security and cyber
+> resilience. Mimecast integrates email defenses with brand protection,
+> security awareness training, web security, compliance and other essential
+> capabilities. Mimecast helps protect large and small organizations from
+> malicious activity, human error and technology failure; and to lead the
+> movement toward building a more resilient world. To find out more, visit
+> our website.
+>
+
+--00000000000030d6aa06075bc05f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Thanks Owen.<div><br></div><div>Below is =
+an example of what needs to be clearer from a Media perspective. To be hone=
+st, I have no idea what this means in terms of number of sites currently in=
+stalled and what is in the pipeline etc. It&#39;s all a bit confusing and w=
+e need to start putting a Media Sales hat on in terms of how we manage the =
+inventory and what the pipeline is across the business. I would like to sug=
+gest a weekly meeting with Tony to discuss Business Development and how we =
+can contribute from a Media Sales perspective.=C2=A0</div><div><br></div><d=
+iv>It would be great to know the following:</div><div><br></div><div>Curren=
+t Inventory</div><div>- Total number of buildings installed</div><div>- By =
+location</div><div>- Total number of screens</div><div>- Total number of Ap=
+artments</div><div>- Split by utility partner</div><div><br></div><div>Pipe=
+line</div><div>- Approved and awaiting installation (total number in pipeli=
+ne)</div><div>- Priority installations</div><div>- Planned installs by week=
+ commencing</div><div>- Sites awaiting approval</div><div><br></div><div>Th=
+e below summary does not make much sense to me.</div><div><div style=3D"col=
+or:rgb(0,0,0);font-size:medium"><table width=3D"278" style=3D"border-collap=
+se:collapse;width:209pt"><colgroup><col width=3D"178" style=3D"width:134pt"=
+><col width=3D"100" style=3D"width:75pt"></colgroup><tbody><tr height=3D"20=
+" style=3D"height:15pt"><td width=3D"178" height=3D"20" class=3D"gmail-xl20=
+" style=3D"padding-top:1px;padding-right:1px;padding-left:1px;font-size:11p=
+t;font-family:Calibri,sans-serif;vertical-align:bottom;border:none;width:13=
+4pt;height:15pt">Approvals</td><td width=3D"100" class=3D"gmail-xl20" style=
+=3D"padding-top:1px;padding-right:1px;padding-left:1px;font-size:11pt;font-=
+family:Calibri,sans-serif;vertical-align:bottom;border:none;width:75pt">22<=
+/td></tr><tr height=3D"20" style=3D"height:15pt"><td height=3D"20" class=3D=
+"gmail-xl20" style=3D"padding-top:1px;padding-right:1px;padding-left:1px;fo=
+nt-size:11pt;font-family:Calibri,sans-serif;vertical-align:bottom;border:no=
+ne;height:15pt">Closed Lost</td><td class=3D"gmail-xl20" style=3D"padding-t=
+op:1px;padding-right:1px;padding-left:1px;font-size:11pt;font-family:Calibr=
+i,sans-serif;vertical-align:bottom;border:none">13</td></tr><tr height=3D"2=
+0" style=3D"height:15pt"><td height=3D"20" class=3D"gmail-xl20" style=3D"pa=
+dding-top:1px;padding-right:1px;padding-left:1px;font-size:11pt;font-family=
+:Calibri,sans-serif;vertical-align:bottom;border:none;height:15pt">Installa=
+tion</td><td class=3D"gmail-xl20" style=3D"padding-top:1px;padding-right:1p=
+x;padding-left:1px;font-size:11pt;font-family:Calibri,sans-serif;vertical-a=
+lign:bottom;border:none">7</td></tr><tr height=3D"20" style=3D"height:15pt"=
+><td height=3D"20" class=3D"gmail-xl20" style=3D"padding-top:1px;padding-ri=
+ght:1px;padding-left:1px;font-size:11pt;font-family:Calibri,sans-serif;vert=
+ical-align:bottom;border:none;height:15pt">MA Confirmation</td><td class=3D=
+"gmail-xl20" style=3D"padding-top:1px;padding-right:1px;padding-left:1px;fo=
+nt-size:11pt;font-family:Calibri,sans-serif;vertical-align:bottom;border:no=
+ne">42</td></tr><tr height=3D"20" style=3D"height:15pt"><td height=3D"20" c=
+lass=3D"gmail-xl20" style=3D"padding-top:1px;padding-right:1px;padding-left=
+:1px;font-size:11pt;font-family:Calibri,sans-serif;vertical-align:bottom;bo=
+rder:none;height:15pt">Marketing Closed/Won</td><td class=3D"gmail-xl20" st=
+yle=3D"padding-top:1px;padding-right:1px;padding-left:1px;font-size:11pt;fo=
+nt-family:Calibri,sans-serif;vertical-align:bottom;border:none">26</td></tr=
+><tr height=3D"20" style=3D"height:15pt"><td height=3D"20" class=3D"gmail-x=
+l20" style=3D"padding-top:1px;padding-right:1px;padding-left:1px;font-size:=
+11pt;font-family:Calibri,sans-serif;vertical-align:bottom;border:none;heigh=
+t:15pt">Non-Eris Deal</td><td class=3D"gmail-xl20" style=3D"padding-top:1px=
+;padding-right:1px;padding-left:1px;font-size:11pt;font-family:Calibri,sans=
+-serif;vertical-align:bottom;border:none">37</td></tr><tr height=3D"20" sty=
+le=3D"height:15pt"><td height=3D"20" class=3D"gmail-xl20" style=3D"padding-=
+top:1px;padding-right:1px;padding-left:1px;font-size:11pt;font-family:Calib=
+ri,sans-serif;vertical-align:bottom;border:none;height:15pt">On Hold</td><t=
+d class=3D"gmail-xl20" style=3D"padding-top:1px;padding-right:1px;padding-l=
+eft:1px;font-size:11pt;font-family:Calibri,sans-serif;vertical-align:bottom=
+;border:none">1</td></tr><tr height=3D"20" style=3D"height:15pt"><td height=
+=3D"20" class=3D"gmail-xl20" style=3D"padding-top:1px;padding-right:1px;pad=
+ding-left:1px;font-size:11pt;font-family:Calibri,sans-serif;vertical-align:=
+bottom;border:none;height:15pt">Stock Selection</td><td class=3D"gmail-xl20=
+" style=3D"padding-top:1px;padding-right:1px;padding-left:1px;font-size:11p=
+t;font-family:Calibri,sans-serif;vertical-align:bottom;border:none">386</td=
+></tr><tr height=3D"20" style=3D"height:15pt"><td height=3D"20" class=3D"gm=
+ail-xl20" style=3D"padding-top:1px;padding-right:1px;padding-left:1px;font-=
+size:11pt;font-family:Calibri,sans-serif;vertical-align:bottom;border:none;=
+height:15pt">Survey</td><td class=3D"gmail-xl20" style=3D"padding-top:1px;p=
+adding-right:1px;padding-left:1px;font-size:11pt;font-family:Calibri,sans-s=
+erif;vertical-align:bottom;border:none">7</td></tr><tr height=3D"20" style=
+=3D"height:15pt"><td height=3D"20" class=3D"gmail-xl20" style=3D"padding-to=
+p:1px;padding-right:1px;padding-left:1px;font-size:11pt;font-weight:700;fon=
+t-family:Calibri,sans-serif;vertical-align:bottom;border:none;height:15pt;b=
+ackground:rgb(217,225,242)">Grand Total</td><td class=3D"gmail-xl20" style=
+=3D"padding-top:1px;padding-right:1px;padding-left:1px;font-size:11pt;font-=
+weight:700;font-family:Calibri,sans-serif;vertical-align:bottom;border:none=
+;background:rgb(217,225,242)">541</td></tr></tbody></table></div></div></di=
+v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
+">On Tue, Oct 10, 2023 at 12:18=E2=80=AFPM Owen Thomas &lt;<a href=3D"mailt=
+o:ot@inhomemedia.io" target=3D"_blank">ot@inhomemedia.io</a>&gt; wrote:<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><b=
+r><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">----=
+------ Forwarded message ---------<br>From: <strong class=3D"gmail_senderna=
+me" dir=3D"auto">Charlotte Humphries</strong> <span dir=3D"auto">&lt;<a hre=
+f=3D"mailto:charlotte.humphries@erismedia.co.uk" target=3D"_blank">charlott=
+e.humphries@erismedia.co.uk</a>&gt;</span><br>Date: Mon, Sep 18, 2023 at 2:=
+48=E2=80=AFPM<br>Subject: Re: Media Plans<br>To: Anthony Hughes &lt;<a href=
+=3D"mailto:th@inhomemedia.io" target=3D"_blank">th@inhomemedia.io</a>&gt;<b=
+r>Cc: David Moulton &lt;<a href=3D"mailto:david.moulton@erismedia.co.uk" ta=
+rget=3D"_blank">david.moulton@erismedia.co.uk</a>&gt;, Eris Screens &lt;<a =
+href=3D"mailto:screens@erismedia.co.uk" target=3D"_blank">screens@erismedia=
+.co.uk</a>&gt;, Jimmy Acton &lt;<a href=3D"mailto:jimmy@fullcomms.co.uk" ta=
+rget=3D"_blank">jimmy@fullcomms.co.uk</a>&gt;, Owen Thomas &lt;<a href=3D"m=
+ailto:ot@inhomemedia.io" target=3D"_blank">ot@inhomemedia.io</a>&gt;<br></d=
+iv><br><br><div>
+
+
+
+<div lang=3D"EN-GB">
+<div>
+<p class=3D"MsoNormal"><span>Good afternoon Tony et all,<u></u><u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span>I hope you are all doing well.<u></u><u></u></=
+span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span>I=E2=80=99ve created a shared spreadsheet cont=
+aining all available IHM digital display screens deals data, which we=E2=80=
+=99ll update once a week on Fridays and notify you once completed. Please s=
+ee this link:
+<a href=3D"https://erismedia.sharepoint.com/:x:/g/EUM_4VV0UtFMi0ukqcIZeVAB4=
+g3xoEjie0h7B6ajeqf9NQ?e=3DyXSqw6" target=3D"_blank">
+<span><img border=3D"0" width=3D"16" height=3D"16" style=3D"width: 0.1666in=
+; height: 0.1666in;" id=3D"m_5821344328003185074m_6267500598049275309m_-546=
+4357218200854940Picture_x0020_9" alt=3D"xlsx icon">=C2=A0In Home Media Eris=
+ Digital Display Screens Deals.xlsx</span></a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span>In the first tab you=E2=80=99ll find a breakdo=
+wn containing the total number of deals, screens, blocks, apartments, and e=
+stimated number of residents (based on 2.5 residents per apartment) by deal=
+ stage,
+ region, and town. Please note, the number of screens, blocks and contactor=
+ columns are not populated until deals are put into the Validation stage.
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span>Then in the second tab you=E2=80=99ll find a t=
+able containing the raw deals data, including all available references, dat=
+es, counts, deal stages, notes etc. When you would like to progress any dea=
+ls, please
+ provide us with the deal IDs and we will progress these from the Stock Sel=
+ection stage into Validation.
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span>Tony - Please can you supply me with any upcom=
+ing install and survey dates you have available, as well as any data we=E2=
+=80=99re missing which you have to hand on the Non-Eris schemes? I=E2=80=99=
+ll then update our
+ database with this data and update the shared spreadsheet. <u></u><u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span>Lastly, regarding the 4<sup>th</sup> low pen s=
+chemes. I have separated any screens deals based in London or Manchester an=
+d highlighted those where we do not have an existing 4<sup>th</sup> Utility
+ deal in place, please see attached.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span>If there is any additional data you would like=
+ me to include or amend, or if you have any questions at all, please do not=
+ hesitate to ask.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Kindest regards,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm 0.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 3.75pt 0cm 0cm">
+<div align=3D"center">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm 0.75pt 0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt"><img border=3D"0" width=3D"1=
+29" height=3D"123" style=3D"width: 1.3437in; height: 1.2812in;" id=3D"m_582=
+1344328003185074m_6267500598049275309m_-5464357218200854940Picture_x0020_5"=
+ alt=3D"Image"><u></u><u></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+<td valign=3D"top" style=3D"padding:0cm 4.5pt 0cm 0.75pt">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td nowrap style=3D"padding:0cm 0.75pt 0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt;line-height:13.5pt"><b><span =
+style=3D"font-size:10pt;font-family:Arial,sans-serif;color:black">Charlotte=
+ Humphries</span></b><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin:0.75pt;line-height:14.25pt"><span st=
+yle=3D"font-size:10pt;font-family:Arial,sans-serif;color:black">CRM &amp; D=
+ata Executive</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin:0.75pt;line-height:14.25pt"><span st=
+yle=3D"font-size:10pt;font-family:Arial,sans-serif;color:black">Eris Media =
+Solutions Limited</span><u></u><u></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style=3D"border-top:none;border-bottom:none;border-left:none;border-rig=
+ht:1pt solid rgb(63,41,237);padding:0.75pt 0cm 0cm">
+</td>
+<td valign=3D"top" style=3D"padding:0cm 0.75pt 0cm 4.5pt">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm 0.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0.75pt 3.75pt 0.75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt"><img border=3D"0" width=3D"2=
+0" height=3D"20" style=3D"width: 0.2083in; height: 0.2083in;" id=3D"m_58213=
+44328003185074m_6267500598049275309m_-5464357218200854940Picture_x0020_4" a=
+lt=3D"Image"><u></u><u></u></p>
+</td>
+<td nowrap style=3D"padding:0.75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt;line-height:13.5pt"><span sty=
+le=3D"font-size:10pt;font-family:Arial,sans-serif;color:rgb(0,0,1)"><a href=
+=3D"tel:08000698228" title=3D"tel:08000698228" target=3D"_blank"><span styl=
+e=3D"color:black;text-decoration:none">0800 069
+ 8228</span></a></span><u></u><u></u></p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0.75pt 3.75pt 0.75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt"><img border=3D"0" width=3D"2=
+0" height=3D"20" style=3D"width: 0.2083in; height: 0.2083in;" id=3D"m_58213=
+44328003185074m_6267500598049275309m_-5464357218200854940Picture_x0020_3" a=
+lt=3D"Image"><u></u><u></u></p>
+</td>
+<td nowrap style=3D"padding:0.75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt;line-height:13.5pt"><span sty=
+le=3D"font-size:10pt;font-family:Arial,sans-serif;color:rgb(0,0,1)"><a href=
+=3D"tel:01962679266" title=3D"tel:01962679266" target=3D"_blank"><span styl=
+e=3D"color:black;text-decoration:none">01962 679
+ 266</span></a></span><u></u><u></u></p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0.75pt 3.75pt 0.75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt"><img border=3D"0" width=3D"2=
+0" height=3D"20" style=3D"width: 0.2083in; height: 0.2083in;" id=3D"m_58213=
+44328003185074m_6267500598049275309m_-5464357218200854940Picture_x0020_2" a=
+lt=3D"Image"><u></u><u></u></p>
+</td>
+<td nowrap style=3D"padding:0.75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt;line-height:13.5pt"><span sty=
+le=3D"font-size:10pt;font-family:Arial,sans-serif;color:black">1, Winnall V=
+alley Road, Winchester, SO23 0LD</span><u></u><u></u></p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0.75pt 3.75pt 0.75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt"><img border=3D"0" width=3D"2=
+0" height=3D"20" style=3D"width: 0.2083in; height: 0.2083in;" id=3D"m_58213=
+44328003185074m_6267500598049275309m_-5464357218200854940Picture_x0020_1" a=
+lt=3D"Image"><u></u><u></u></p>
+</td>
+<td nowrap style=3D"padding:0.75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt;line-height:13.5pt"><b><span =
+style=3D"font-size:10pt;font-family:Arial,sans-serif;color:rgb(63,41,236)">=
+<a href=3D"https://www.erismedia.co.uk/" title=3D"https://www.erismedia.co.=
+uk/" target=3D"_blank"><span style=3D"color:rgb(63,41,237);text-decoration:=
+none">erismedia.co.uk</span></a></span></b><u></u><u></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan=3D"4" style=3D"border-top:none;border-right:none;border-left:no=
+ne;border-bottom:1pt solid rgb(63,41,237);padding:0cm 0.75pt 3.75pt 0cm">
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0cm"></td>
+<td style=3D"padding:0cm"></td>
+<td style=3D"padding:0cm"></td>
+<td style=3D"padding:0cm"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0cm 0.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"max-width:=
+450pt;border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:4.5pt 0.75pt 0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt;line-height:10.5pt"><span sty=
+le=3D"font-size:7.5pt;font-family:Arial,sans-serif;color:rgb(136,136,136)">=
+This email and any files transmitted with it are confidential and intended =
+solely for the use of the individual or entity
+ to whom they are addressed. If you have received this email in error pleas=
+e notify the system manager. This message contains confidential information=
+ and is intended only for the individual named. If you are not the named ad=
+dressee you should not disseminate,
+ distribute or copy this e-mail. Please notify the sender immediately by e-=
+mail if you have received this e-mail by mistake and delete this e-mail fro=
+m your system. If you are not the intended recipient you are notified that =
+disclosing, copying, distributing
+ or taking any action in reliance on the contents of this information is st=
+rictly prohibited.<br>
+<br>
+WARNING: Although the company has taken reasonable precautions to ensure no=
+ viruses are present in this email, the company cannot accept responsibilit=
+y for any loss or damage arising from the use of this email or attachments.=
+<br>
+<br>
+Eris Media Solutions Limited is a company registered in England &amp; Wales=
+<br>
+Registered number: 010605270. Registered office address: Burlington House, =
+Botleigh Grange Business Park, Hedge End, Southampton, SO30 2AF</span><u></=
+u><u></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
+top:1pt solid rgb(181,196,223);padding:3pt 0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:12pt;color:black">From: =
+</span></b><span style=3D"font-size:12pt;color:black">Owen Thomas &lt;<a hr=
+ef=3D"mailto:ot@inhomemedia.io" target=3D"_blank">ot@inhomemedia.io</a>&gt;=
+<br>
+<b>Date: </b>Tuesday, 12 September 2023 at 12:52<br>
+<b>To: </b>Anthony Hughes &lt;<a href=3D"mailto:th@inhomemedia.io" target=
+=3D"_blank">th@inhomemedia.io</a>&gt;<br>
+<b>Cc: </b>Charlotte Humphries &lt;<a href=3D"mailto:charlotte.humphries@er=
+ismedia.co.uk" target=3D"_blank">charlotte.humphries@erismedia.co.uk</a>&gt=
+;, David Moulton &lt;<a href=3D"mailto:david.moulton@erismedia.co.uk" targe=
+t=3D"_blank">david.moulton@erismedia.co.uk</a>&gt;, Eris Screens &lt;<a hre=
+f=3D"mailto:screens@erismedia.co.uk" target=3D"_blank">screens@erismedia.co=
+.uk</a>&gt;, Jimmy Acton &lt;<a href=3D"mailto:jimmy@fullcomms.co.uk" targe=
+t=3D"_blank">jimmy@fullcomms.co.uk</a>&gt;<br>
+<b>Subject: </b>Re: Media Plans<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Dave/Tony,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Thanks for this.=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Catch up later this week.=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Owen<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Tue, 12 Sep 2023 at 12:49, Anthony Hughes &lt;<a =
+href=3D"mailto:th@inhomemedia.io" target=3D"_blank">th@inhomemedia.io</a>&g=
+t; wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;b=
+order-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin-left:4=
+.8pt;margin-right:0cm">
+<div>
+<div>
+<p class=3D"MsoNormal">Hi Dave,<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">that&#39;s fine, for me, what would also be useful s=
+o we can have a full instal list for October if Lottie could highlight=C2=
+=A0central london and central Manchester buildings in the data set =C2=A0we=
+ have where there is low pen for 4th including number
+ of apartments=C2=A0I will put a survey list for September/install October =
+as part of the process.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Owen, there are a number of showcase buildings and t=
+hey have images online so that should be straightforward, I can highlight t=
+hese in the=C2=A0data set. In terms of the non 4thu Eris buildings=C2=A0+30=
+ units my suggestion is we have a target list
+ for these from November onwards to install. I could pull a target list tog=
+ether=C2=A0with Lottie&#39;s help and again=C2=A0add this to our data set f=
+or build in November/December.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Happy=C2=A0to meet Stephen, let&#39;s look to get a =
+date in the diary, Hogg screens will be circa 75 of the 279 live screens so=
+ circa 25%<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Lets pull the draft data together and look to review=
+ this week.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Tony<u></u><u></u></p>
+</div>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Tue, Sep 12, 2023 at 12:31=E2=80=AFPM David Moult=
+on &lt;<a href=3D"mailto:david.moulton@erismedia.co.uk" target=3D"_blank">d=
+avid.moulton@erismedia.co.uk</a>&gt; wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;b=
+order-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin-left:4=
+.8pt;margin-right:0cm">
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Hi Owen,<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Thanks for your email.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">I have just spoken to Lottie on the data requirement=
+ below.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Tony =E2=80=93 can Lottie and Jasmine send over the =
+latest version of events from our HubSpot and you confirm if all present an=
+d correct? The forecast to end Oct might need some input from
+ your good self.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Lottie can then do the regional/location analysis an=
+d number of flats, people etc.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Thanks<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Dave<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">p.s. I can=E2=80=99t open the link!<u></u><u></u></p=
+>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 3.75pt 0cm 0cm">
+<div align=3D"center">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm 0.75pt 0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt"><b>Error! Filename not speci=
+fied.</b><u></u><u></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+<td valign=3D"top" style=3D"padding:0cm 4.5pt 0cm 0.75pt">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td nowrap style=3D"padding:0cm 0.75pt 0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt;line-height:13.5pt"><b><span =
+style=3D"font-size:10pt;font-family:Arial,sans-serif;color:black">David Mou=
+lton</span></b><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin:0.75pt;line-height:14.25pt"><span st=
+yle=3D"font-size:10pt;font-family:Arial,sans-serif;color:black">Managing Di=
+rector</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin:0.75pt;line-height:14.25pt"><span st=
+yle=3D"font-size:10pt;font-family:Arial,sans-serif;color:black">Eris Media =
+Solutions Limited</span><u></u><u></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style=3D"border-top:none currentcolor;border-bottom:none currentcolor;b=
+order-left:none currentcolor;border-right:1pt solid rgb(63,41,237);padding:=
+0.75pt 0cm 0cm">
+</td>
+<td valign=3D"top" style=3D"padding:0cm 0.75pt 0cm 4.5pt">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm 0.75pt 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-col=
+lapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0.75pt 3.75pt 0.75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt"><b>Error! Filename not speci=
+fied.</b><u></u><u></u></p>
+</td>
+<td nowrap style=3D"padding:0.75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt;line-height:13.5pt"><span sty=
+le=3D"font-size:10pt;font-family:Arial,sans-serif;color:rgb(0,0,1)"><a href=
+=3D"tel:08000698228" title=3D"tel:08000698228" target=3D"_blank"><span styl=
+e=3D"color:black">0800 069 8228</span></a></span><u></u><u></u></p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0.75pt 3.75pt 0.75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt"><b>Error! Filename not speci=
+fied.</b><u></u><u></u></p>
+</td>
+<td nowrap style=3D"padding:0.75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt;line-height:13.5pt"><span sty=
+le=3D"font-size:10pt;font-family:Arial,sans-serif;color:rgb(0,0,1)"><a href=
+=3D"tel:07747443561" title=3D"tel:07747443561" target=3D"_blank"><span styl=
+e=3D"color:black">07747 443 561</span></a></span><u></u><u></u></p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0.75pt 3.75pt 0.75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt"><b>Error! Filename not speci=
+fied.</b><u></u><u></u></p>
+</td>
+<td nowrap style=3D"padding:0.75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt;line-height:13.5pt"><span sty=
+le=3D"font-size:10pt;font-family:Arial,sans-serif;color:black"><a href=3D"h=
+ttps://www.google.com/maps/search/1,+Winnall+Valley+Road,+Winchester,+SO23+=
+0LD?entry=3Dgmail&amp;source=3Dg" target=3D"_blank">1, Winnall Valley Road,=
+ Winchester, SO23
+ 0LD</a></span><u></u><u></u></p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0.75pt 3.75pt 0.75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt"><b>Error! Filename not speci=
+fied.</b><u></u><u></u></p>
+</td>
+<td nowrap style=3D"padding:0.75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:0.75pt;line-height:13.5pt"><b><span =
+style=3D"font-size:10pt;font-family:Arial,sans-serif;color:rgb(63,41,236)">=
+<a href=3D"https://www.erismedia.co.uk/" title=3D"https://www.erismedia.co.=
+uk/" target=3D"_blank"><span style=3D"color:rgb(63,41,237)">erismedia.co.uk=
+</span></a></span></b><u></u><u></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan=3D"4" style=3D"border-top:none currentcolor;border-right:none c=
+urrentcolor;border-left:none currentcolor;border-bottom:1pt solid rgb(63,41=
+,237);padding:0cm 0.75pt 3.75pt 0cm">
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0cm"></td>
+<td style=3D"padding:0cm"></td>
+<td style=3D"padding:0cm"></td>
+<td style=3D"padding:0cm"></td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"max-width:=
+450pt;border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:4.5pt 0.75pt 0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin-right:0.75pt;margin-bottom:12pt;marg=
+in-left:0.75pt;line-height:10.5pt">
+<span style=3D"font-size:7.5pt;font-family:Arial,sans-serif;color:rgb(136,1=
+36,136)">This email and any files transmitted with it are confidential and =
+intended solely for the use of the individual or entity to whom they are ad=
+dressed. If you have received this email
+ in error please notify the system manager. This message contains confident=
+ial information and is intended only for the individual named. If you are n=
+ot the named addressee you should not disseminate, distribute or copy this =
+e-mail. Please notify the sender
+ immediately by e-mail if you have received this e-mail by mistake and dele=
+te this e-mail from your system. If you are not the intended recipient you =
+are notified that disclosing, copying, distributing or taking any action in=
+ reliance on the contents of this
+ information is strictly prohibited.<br>
+<br>
+WARNING: Although the company has taken reasonable precautions to ensure no=
+ viruses are present in this email, the company cannot accept responsibilit=
+y for any loss or damage arising from the use of this email or attachments.=
+<br>
+<br>
+Eris Media Solutions Limited is a company registered in England &amp; Wales=
+<br>
+Registered number: 010605270. Registered office address: Burlington House, =
+Botleigh Grange Business Park, Hedge End, Southampton, SO30 2AF=C2=A0</span=
+><u></u><u></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div id=3D"m_5821344328003185074m_6267500598049275309m_-5464357218200854940=
+m_2780810127023408581m_-7414127147001179602mail-editor-reference-message-co=
+ntainer">
+<div>
+<div style=3D"border-right:none currentcolor;border-bottom:none currentcolo=
+r;border-left:none currentcolor;border-top:1pt solid currentcolor;padding:3=
+pt 0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><b><span style=3D"font-=
+size:12pt;color:black">From:
+</span></b><span style=3D"font-size:12pt;color:black">Owen Thomas &lt;<a hr=
+ef=3D"mailto:ot@inhomemedia.io" target=3D"_blank">ot@inhomemedia.io</a>&gt;=
+<br>
+<b>Date: </b>Tuesday, 12 September 2023 at 11:52<br>
+<b>To: </b>Anthony Hughes &lt;<a href=3D"mailto:th@inhomemedia.io" target=
+=3D"_blank">th@inhomemedia.io</a>&gt;, Jimmy Acton &lt;<a href=3D"mailto:ji=
+mmy@fullcomms.co.uk" target=3D"_blank">jimmy@fullcomms.co.uk</a>&gt;, David=
+ Moulton &lt;<a href=3D"mailto:david.moulton@erismedia.co.uk" target=3D"_bl=
+ank">david.moulton@erismedia.co.uk</a>&gt;<br>
+<b>Subject: </b>Media Plans</span><u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">Hi Guys=
+,</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">=C2=A0<=
+/span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">Just th=
+ought I would summarise where we are at with the media roll-out and what we=
+ need to action, in terms of being in a position to
+ &#39;go to market&#39;.</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">=C2=A0<=
+/span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">Stephen=
+ doesn=E2=80=99t really understand the spreadsheet shared last Friday (and =
+probably not much use from a media perspective), so we are
+ going to focus more on a headline data slide which represents our media ne=
+twork.=C2=A0</span><u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">Somethi=
+ng like slide 11 on our deck:=C2=A0</span><u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal"><a href=3D"https://docs.google.com/presentation/d/1V=
+DU6-mh5cu6wzh6FH0ww5BKjxlIp-XChyoM8GUwD-VY/edit#slide=3Did.g26dddf4c649_0_0=
+" target=3D"_blank">https://docs.google.com/presentation/d/1VDU6-mh5cu6wzh6=
+FH0ww5BKjxlIp-XChyoM8GUwD-VY/edit#slide=3Did.g26dddf4c649_0_0</a><span styl=
+e=3D"font-family:Arial,sans-serif">:</span><u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">=C2=A0<=
+/span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">Can I g=
+et some help with the following:</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">=C2=A0<=
+/span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">1.=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 All buildings installed as of=
+ October 30th - live sites (Eris and 4<sup>th</sup>=C2=A0combined)</span><u=
+></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">2.=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Broken down by region:</span>=
+<u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-left:36pt">
+<span style=3D"font-family:Arial,sans-serif">=C2=B7=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 London (inc Greater London boroughs)</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-left:36pt">
+<span style=3D"font-family:Arial,sans-serif">=C2=B7=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Birmingham/Midlands</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-left:36pt">
+<span style=3D"font-family:Arial,sans-serif">=C2=B7=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Greater Manchester</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-left:36pt">
+<span style=3D"font-family:Arial,sans-serif">=C2=B7=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 South East (not London)</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-left:36pt">
+<span style=3D"font-family:Arial,sans-serif">=C2=B7=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Yorkshire?</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-left:36pt">
+<span style=3D"font-family:Arial,sans-serif">=C2=B7=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 And then by other major conurbations: Liverpool, Bristol, Leeds, Car=
+diff,Newcastle=C2=A0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">3.=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Total buildings</span><u></u>=
+<u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">4.=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Total screens</span><u></u><u=
+></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">5.=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Number of apartments</span><u=
+></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">6.=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Total estimated residents acr=
+oss all apartment blocks</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">7.=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Audience demographics (I can =
+sort this part)</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">8.=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Identify &#39;showcase&#39; b=
+uildings (Central London and Manchester) which we can photo and include in =
+the deck (I can arrange=C2=A0a
+ photographer if we don&#39;t=C2=A0have library shots)</span><u></u><u></u>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">=C2=A0<=
+/span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">=C2=A0<=
+/span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">This wi=
+ll give us a total reach and from that we can work out impacts/footfall and=
+ media rates etc, and then we can start formal negotiations...</span><u></u=
+><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">=C2=A0<=
+/span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">Other i=
+tems I will work on in meantime:</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">=C2=A0<=
+/span><u></u><u></u></p>
+<p style=3D"margin-right:0cm;margin-bottom:0cm;margin-left:36pt">
+<span style=3D"font-family:Arial,sans-serif">1.=C2=A0=C2=A0=C2=A0 Roll-out =
+plan for November and beyond- Agree on priority sites criteria</span><u></u=
+><u></u></p>
+<p style=3D"margin-right:0cm;margin-bottom:0cm;margin-left:36pt">
+<span style=3D"font-family:Arial,sans-serif">2.=C2=A0=C2=A0=C2=A0 Agree on =
+loop length (maximum 60 secs with 50/50 advertising and content) 6x5 sec ad=
+s</span><u></u><u></u></p>
+<p style=3D"margin-right:0cm;margin-bottom:0cm;margin-left:36pt">
+<span style=3D"font-family:Arial,sans-serif">3.=C2=A0=C2=A0=C2=A0 Screen si=
+zes. We will roll out 55&quot; as standard, but going forward we may instal=
+l 46=E2=80=99=E2=80=99 in smaller locations. They are all in proportion, so=
+ it doesn=E2=80=99t matter from an impact or creative perspective on media =
+value
+ =E2=80=93 but will reduce our costs slightly.</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">=C2=A0<=
+/span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">=C2=A0<=
+/span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">Stephen=
+ is a bit nervous about the old Hogg screens and whether they are fit for p=
+urpose, in terms of sales. I know we are looking at
+ phasing them out and could be used as a &#39;value add&#39;. Not sure how =
+compatible they are with the CMS, as managing and uploading content will be=
+ crucial. The creative spec should be the same across the estate.</span><u>=
+</u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">=C2=A0<=
+/span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">How man=
+y of the 273 screens will be Hogg?</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">=C2=A0<=
+/span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">I think=
+ once I get this info into the media deck we move onto more strategic decis=
+ions around Sales management, Marketing, Ops, Content
+ Management, scalable tech etc. Tony I see myself and you getting in front =
+of Stephen late September to agree some of these items.</span><u></u><u></u=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">=C2=A0<=
+/span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">Thanks,=
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif">O</span=
+><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"font-variant-numeric:normal;font-variant-ea=
+st-asian:normal;font-variant-alternates:normal;font-kerning:auto;font-featu=
+re-settings:normal;font-stretch:normal">
+<span style=3D"font-size:12pt">=C2=A0</span><u></u><u></u></p>
+</div>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><u></u>=C2=A0<u></u></p=
+>
+<p><b><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:rg=
+b(102,102,102)">Disclaimer</span></b><span style=3D"font-size:10pt;font-fam=
+ily:Verdana,sans-serif;color:rgb(102,102,102)"><u></u><u></u></span></p>
+<p><span style=3D"font-size:8pt;font-family:Verdana,sans-serif;color:rgb(10=
+2,102,102)">The information contained in this communication from the sender=
+ is confidential. It is intended solely for use by the recipient and others=
+ authorized to receive it. If you are not
+ the recipient, you are hereby notified that any disclosure, copying, distr=
+ibution or taking action in relation of the contents of this information is=
+ strictly prohibited and may be unlawful.<br>
+<br>
+This email has been scanned for viruses and malware, and may have been auto=
+matically archived by Mimecast, a leader in email security and cyber resili=
+ence. Mimecast integrates email defenses with brand protection, security aw=
+areness training, web security,
+ compliance and other essential capabilities. Mimecast helps protect large =
+and small organizations from malicious activity, human error and technology=
+ failure; and to lead the movement toward building a more resilient world. =
+To find out more, visit our website.<u></u><u></u></span></p>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+
+
+<br><br><p style=3D"font-family:Verdana;font-size:10pt;color:rgb(102,102,10=
+2)"><b>Disclaimer</b></p><p style=3D"font-family:Verdana;font-size:8pt;colo=
+r:rgb(102,102,102)">The information contained in this communication from th=
+e sender is confidential. It is intended solely for use by the recipient an=
+d others authorized to receive it. If you are not the recipient, you are he=
+reby notified that any disclosure, copying, distribution or taking action i=
+n relation of the contents of this information is strictly prohibited and m=
+ay be unlawful.<br><br>This email has been scanned for viruses and malware,=
+ and may have been automatically archived by Mimecast, a leader in email se=
+curity and cyber resilience. Mimecast integrates email defenses with brand =
+protection, security awareness training, web security, compliance and other=
+ essential capabilities. Mimecast helps protect large and small organizatio=
+ns from malicious activity, human error and technology failure; and to lead=
+ the movement toward building a more resilient world. To find out more, vis=
+it our website.</p></div>
+</div></div></div>
+</blockquote></div>
+
+--00000000000030d6aa06075bc05f--

@@ -1,0 +1,1157 @@
+Received: from LO2P123MB6127.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:25b::8)
+ by LO3P123MB2762.GBRP123.PROD.OUTLOOK.COM with HTTPS; Fri, 12 Jan 2024
+ 13:39:21 +0000
+Received: from CWLP123CA0050.GBRP123.PROD.OUTLOOK.COM (2603:10a6:401:59::14)
+ by LO2P123MB6127.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:25b::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.21; Fri, 12 Jan
+ 2024 13:39:19 +0000
+Received: from CW2PEPF000056BC.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:401:59:cafe::8f) by CWLP123CA0050.outlook.office365.com
+ (2603:10a6:401:59::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.21 via Frontend
+ Transport; Fri, 12 Jan 2024 13:39:19 +0000
+Received: from eu-smtp-inbound-delivery-1.mimecast.com (91.220.42.227) by
+ CW2PEPF000056BC.mail.protection.outlook.com (10.167.240.7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7181.14 via Frontend Transport; Fri, 12 Jan 2024 13:39:19 +0000
+Received: from GBR01-LO4-obe.outbound.protection.outlook.com
+ (mail-lo4gbr01on2076.outbound.protection.outlook.com [40.107.122.76]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ uk-mta-129-pfD-jIHKPw2-ldUMds4g2Q-1; Fri, 12 Jan 2024 13:39:15 +0000
+Received: from LO6P265MB6379.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:2db::6)
+ by LO2P265MB7170.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:32d::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.21; Fri, 12 Jan
+ 2024 13:39:12 +0000
+Received: from LO6P265MB6379.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::7c0f:f7ec:9469:dcde]) by LO6P265MB6379.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::7c0f:f7ec:9469:dcde%3]) with mapi id 15.20.7181.019; Fri, 12 Jan 2024
+ 13:39:12 +0000
+From: "enterprise.centre@hmrc.gov.uk" <enterprise.centre@hmrc.gov.uk>
+To: Abba Atkin <AbbaAtkin@steeleraymond.co.uk>
+Subject: SEIS Advance Assurance
+Thread-Topic: SEIS Advance Assurance
+Thread-Index: AdpFXLkvFPfmeoX3TkWegdb1v/FWrA==
+Sender: "mariya.khan@hmrc.gov.uk" <mariya.khan@hmrc.gov.uk>
+Date: Fri, 12 Jan 2024 13:39:12 +0000
+Message-ID: <LO6P265MB6379DADBF7368AAC3636AB35A36F2@LO6P265MB6379.GBRP265.PROD.OUTLOOK.COM>
+Accept-Language: en-GB, en-US
+X-MS-Exchange-Organization-AuthSource: CW2PEPF000056BC.GBRP265.PROD.OUTLOOK.COM
+X-MS-Has-Attach: yes
+X-MS-Exchange-Organization-Network-Message-Id: c9702873-d609-48f8-a373-08dc1373e0ef
+X-MS-TNEF-Correlator: 
+X-MS-Exchange-Organization-RecordReviewCfmType: 0
+msip_labels: MSIP_Label_f9af038e-07b4-4369-a678-c835687cb272_Enabled=true;
+ MSIP_Label_f9af038e-07b4-4369-a678-c835687cb272_SetDate=2024-01-12T13:39:10Z;
+ MSIP_Label_f9af038e-07b4-4369-a678-c835687cb272_Method=Standard;
+ MSIP_Label_f9af038e-07b4-4369-a678-c835687cb272_Name=OFFICIAL;
+ MSIP_Label_f9af038e-07b4-4369-a678-c835687cb272_SiteId=ac52f73c-fd1a-4a9a-8e7a-4a248f3139e1;
+ MSIP_Label_f9af038e-07b4-4369-a678-c835687cb272_ActionId=8d368c55-7305-42bf-89ca-51b7b84fc873;
+ MSIP_Label_f9af038e-07b4-4369-a678-c835687cb272_ContentBits=2
+received-spf: SoftFail (protection.outlook.com: domain of transitioning
+ hmrc.gov.uk discourages use of 91.220.42.227 as permitted sender)
+x-ms-exchange-organization-originalserveripaddress: 10.167.240.7
+x-ms-exchange-organization-originalclientipaddress: 91.220.42.227
+x-ms-publictraffictype: Email
+authentication-results: spf=softfail (sender IP is 91.220.42.227)
+ smtp.mailfrom=hmrc.gov.uk; dkim=fail (body hash did not verify)
+ header.d=hmrc.gov.uk;dmarc=fail action=oreject
+ header.from=hmrc.gov.uk;compauth=none reason=451
+x-ms-office365-filtering-correlation-id: c9702873-d609-48f8-a373-08dc1373e0ef
+x-ms-traffictypediagnostic: LO6P265MB6379:EE_|LO2P265MB7170:EE_|CW2PEPF000056BC:EE_|LO2P123MB6127:EE_|LO3P123MB2762:EE_
+x-forefront-antispam-report: CIP:91.220.42.227;CTRY:GB;LANG:en;SCL:-1;SRV:;IPV:CAL;SFV:NSPM;H:eu-smtp-inbound-delivery-1.mimecast.com;PTR:eu-smtp-delivery-1.mimecast.com;CAT:NONE;SFS:;DIR:INB
+x-microsoft-antispam: BCL:0
+x-ms-exchange-crosstenant-network-message-id: c9702873-d609-48f8-a373-08dc1373e0ef
+x-ms-exchange-crosstenant-originalarrivaltime: 12 Jan 2024 13:39:19.5267 (UTC)
+x-ms-exchange-crosstenant-fromentityheader: Internet
+x-ms-exchange-crosstenant-id: d20ad858-3a26-4ab7-b783-7b01c259b0d7
+x-ms-exchange-transport-crosstenantheadersstamped: LO2P123MB6127
+x-ms-exchange-transport-endtoendlatency: 00:00:01.6627385
+x-ms-exchange-processed-by-bccfoldering: 15.20.7181.020
+x-ms-exchange-crosstenant-authas: Anonymous
+x-ms-exchange-crosstenant-authsource: CW2PEPF000056BC.GBRP265.PROD.OUTLOOK.COM
+x-eopattributedmessage: 0
+x-forefront-antispam-report-untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LO6P265MB6379.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(376002)(396003)(366004)(346002)(136003)(39860400002)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(4743002)(66574015)(26005)(83380400001)(7696005)(71200400001)(9686003)(7846003)(6916009)(3480700007)(7116003)(41300700001)(5660300002)(64756008)(52536014)(10310500001)(2906002)(478600001)(10290500003)(8676002)(8936002)(66446008)(66476007)(66946007)(316002)(76116006)(66556008)(38070700009)(33656002)(99936003)(38100700002)(82960400001)(166002)(122000001)(6506007)(55016003);DIR:OUT;SFP:1101
+x-microsoft-antispam-untrusted: BCL:0
+x-microsoft-antispam-message-info-original: VBXiJtQrBQzi7HcBdbl5aWWMpQfM7iHF7Um7vPg8O1mO+tOjno7uZvsJsuaFAU0JJUC7XRAmNvTCVW9IIFytQ8jtWIEUx6oHHtQiznQy6KsCSz3ZYvhc0tcaTFVXwbAN/x107hXRirRSk2w7zbYOzvEsduyl853rhg0Vd+a2EtulVP826VwaKdTRBvredn9bFagdqr/PVLCjtG14H2gI8/QRgaW4OS3gpG3DKjAbkYb2EezA3LSASxe1bmwCm+TgBKnyFCWkFyzzTiZPTvk4zVxjphSrC53ceNKdJv+sp18iY0Z+7J1i5hLVCAuYYOgxwEzIrKSLka7XVXBupj+62/hUGgtjXJzqzzpurlIS3s8rJez0faKShis0dTCbJapfbKh97oQRxPxSvUetuhqNCKtNPJuvaQ+1ChVtG9Hjr3JWrDOXOTfvzfZJbYTRhQMCMDHb9s3FanWRgBx+rzovGxaMPNI46sZ1gjNoxg09g2hgOWCZKPl8VwOqnixMpJ/6lUsgr2fUf5Ek2bF1zujWsqb+sfsxa+Nnn4JLTgy1kGFI7DQbGDXOVhhSSb3thBRBqRZgzezw/cg+diL6csuqhBJoREMdFld+fXyMj22fdPzgq9OtmNhLnc3P79d63UcDst/u0aPkIs1fSgJcP0czSQ==
+x-ms-exchange-transport-crosstenantheadersstripped: CW2PEPF000056BC.GBRP265.PROD.OUTLOOK.COM
+x-ms-office365-filtering-correlation-id-prvs: 592696d6-f9bb-43f9-f58f-08dc1373dcc7
+authentication-results-original: relay.mimecast.com;	dkim=pass
+ header.d=hmrc.gov.uk header.s=selector1 header.b=Mjc4jYRO;	arc=pass
+ ("microsoft.com:s=arcselector9901:i=1");	dmarc=pass (policy=reject)
+ header.from=hmrc.gov.uk;	spf=pass (relay.mimecast.com: domain of
+ mariya.khan@hmrc.gov.uk designates 40.107.122.76 as permitted sender)
+ smtp.mailfrom=mariya.khan@hmrc.gov.uk
+x-eoptenantattributedmessage: d20ad858-3a26-4ab7-b783-7b01c259b0d7:0
+x-mc-unique: pfD-jIHKPw2-ldUMds4g2Q-1
+arc-seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=G2QDDuNAnhlPlH8Cz99xj3vdnqJ+YmPW9CX7HLvzg3Y2PFGYyTuHy7vORocEJz6M4ZBmJdaDmUnN24jjkcKvwsFr5oz6jKFrqpMe6jN5u+PlmAHm4wS+yim/Poc/zrustzNJ/MVNKPc4HTJNDiy1GY2YO9UqqrX7rDF81m3CnYdnyRVjKGxb51l9Q/cGFAB8GHX9f1tpe6w0vga4MK6xkzuUDp+rhjZSUTCrp2ySKsauq3JeILL5H+cIv2NdFYVLVhyhH4z/6RtwSpxmKX/l+NSjVI52XjNyh/CqI6wD7mEGWHw5CC5Fnpmv1FMsbvi1+t/LlS9sGAVwDPPosWAOMg==
+arc-message-signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yYtOKDF+P5WuxlYWdFrspFKcUk/TRZvRDViKu9tcTLg=;
+ b=boLHJg8Vh63cd9O0G1uqGcbidcUaVBsX7f69hAwVTLE3aBFY9PLzMBT/rAOK1LLwL8hBFc8hfo2e5TPtiZqzFFz3NAHPlAcoeWMGD5JLoXJ9nkG9LxJMD7QoMgAG0Yk8WvLrh08nYsiMpoqDGaTEMCvE3RkSTPRygQrIwLvX4ten8QpTWSpaVJR207aQkT9LT9BLnhZvIDfTuPd82G7+ZrrQiSjsb1ctSzNStlq3YaW+YvLpc5LBE8Tkm5qbfK4W4m+0RyGByi9IoyFReBgNbB0G1RjGDISIx1NPMzPHdsALkVyInjDER4yeTj4AqdM+yYXgXrCfTT/kMeMOpmE2YA==
+arc-authentication-results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=hmrc.gov.uk; dmarc=pass action=none header.from=hmrc.gov.uk;
+ dkim=pass header.d=hmrc.gov.uk; arc=none
+x-mimecast-spam-score: -127
+dkim-signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hmrc.gov.uk;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yYtOKDF+P5WuxlYWdFrspFKcUk/TRZvRDViKu9tcTLg=;
+ b=Mjc4jYRO/xBy18NaypnXSSBKIoX9a1HSZ/mjFXjcDYZuZhjkOj9yb1zXiLY3bSU0kTTZxprGLZ0MDjFrJTM5/QvMgQzPBkSmH13DpNoTOcaZ/u3ilhnJoEcSvMHqQGeTl53zsh0JATG9PNtPazXnPIDsU1KNeP+dsoNXDvhUBDA=
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-ms-exchange-messagesentrepresentingtype: 2
+X-Microsoft-Antispam-Mailbox-Delivery: ucf:0;jmr:0;auth:0;dest:I;ENG:(910001)(944506478)(944626604)(920097)(930097)(140003)
+X-Microsoft-Antispam-Message-Info: =?Windows-1252?Q?luDd3beWLSuCwnnHjloFgpqBv2ypceT+lEBouYFYfiqOaHe3a0X53355?=
+ =?Windows-1252?Q?HEcdjHNa6BnQjaEwaY5IE+wkWtxgISTwoEfpP1APOp7p7ZRh5NIcXSyG?=
+ =?Windows-1252?Q?YbLfqOZDUALI6AaikgO5rMvQaKLb2oc53/V3yeDbtrojFWrgWUsWYM7A?=
+ =?Windows-1252?Q?De1J1IxYXzj/g+JzUAfd2prn5tpPHLVb+GzIYoC+Y5iof/omk4+/Ckoa?=
+ =?Windows-1252?Q?LoFGlvjB5br/wnzdtUy6WevPLAu0rU0aXAiFauwwLVrTr4pDduRrOLOS?=
+ =?Windows-1252?Q?M8MJxUfVI5m7l7p4wu/KuARkjPN0tAv5zedT5x2YNCoNHJs14iWSoLRP?=
+ =?Windows-1252?Q?CN1Po8Xp5FwUexRd7m6ryG+UZ8ShLZG2JF72MJ2+pNPxe5BLn9B5g51l?=
+ =?Windows-1252?Q?7C2LgwJ6IzaaSLDGqD2L2ZrtVWZlVwgRpENefXFaEdZZt6RXJaR5qQFb?=
+ =?Windows-1252?Q?+KgqKvgtPo4F3jiiDwrKf9BPlRtU9ZsQa7S97qh0JgPNaWUHzUqS9jZZ?=
+ =?Windows-1252?Q?XKWb0oDsLKpmgF4MHjyUJSiuATv+ZMzPy37Av5UKUArLEzpRXP0FrlGB?=
+ =?Windows-1252?Q?EuXG5JBU6p1s5LIGX5/SdFkEhSGBjI69UI2E3XXxh7LfpcoHeTqU2W42?=
+ =?Windows-1252?Q?HI+kPXtNVK9QWFb/2I6a/EigtNu2CwqZBusWPHC1X8xEDOk1wyOrn9RF?=
+ =?Windows-1252?Q?K1BGoh+H8hnwXcYRDkY1rKPP8nLAWr2/PsgOIVlR01TevBxEp9F34YvX?=
+ =?Windows-1252?Q?rO5gUjk65xaKm+YvPe6xBj6Zf72h8JG2qtask1TdWed4RUZcRKVQVdoz?=
+ =?Windows-1252?Q?IBSYhdbRTDo42jCB8GFaYGcc53KnvpueU78j9/pZVtbWaVzegAMchfLJ?=
+ =?Windows-1252?Q?j0+xJ5PZLPaDVKvH8b2+MS/ImTfvREnCrM4pPqF4bnjChGMVD8rwYrOd?=
+ =?Windows-1252?Q?tRLf7ZvROkuC8ac4Wd6y3ObSoktcCSGNoHZYIuO9Cgj7kIm+3mK6Jt27?=
+ =?Windows-1252?Q?xWMIqwEJoYfErPqijqX0nX2o6R6WBtbOdJauDk/ksiGsgdbXQtnXidB8?=
+ =?Windows-1252?Q?YXqyyju7sbp6wHumTOTACOEGsT35TxgqDFacDgm/PKmQuPXZqOvpUyCN?=
+ =?Windows-1252?Q?rsyR7zgSF+7z3jGHfv1FFXySByR+E3XTLeD0ssoUYmW7owGeVMKQXMeM?=
+ =?Windows-1252?Q?dq+zTAWyh4TnYbxjkQjvNahyMi8K4YwKhwHxkFUZNjNPNompcHV2aMBc?=
+ =?Windows-1252?Q?zMxL1uLh/dysVuwnJ9+CEn5gs7iB0Hn7YLh+Pt1Ays4KpCP4ULCLNrX+?=
+ =?Windows-1252?Q?BnXCslx+1F/Oe3dWR+b/iUeaBn/zY3q6FP2ai9Jd9FeNDtr8Wbrl+KPf?=
+ =?Windows-1252?Q?pdMCna2+Eu50WvZOyVMo6tCuQeeSScdItPUOQWCAgySNx/n06he768MK?=
+ =?Windows-1252?Q?Nf9IANBcWC0jRQaIjhZaQFhTjgs9Vb/YpgDFxpewTrPC2rNQh32B9gAI?=
+ =?Windows-1252?Q?itEZb/HJai91ry04FSEtGOJS55dav2sEr/ZaSJDkh4Pn43ZGeTbAjseZ?=
+ =?Windows-1252?Q?RG2S84WjP+tGclJ722hv0DhGmsnbs/cvMFseW/iu9P/WxDMtANrMHEHv?=
+ =?Windows-1252?Q?T32/FpyluuMSCHgLx3P9xzs9+Id1/DKKng5nd6+gG3ITd9MX6mwLnMLb?=
+ =?Windows-1252?Q?tGmxB4R2HgsY+Gb5qEl1wp8oc7AcdnCchURW5S/qdnKEUr50TqnF4HHZ?=
+ =?Windows-1252?Q?aJu/2ABZca0K+ZTGQ0OeaFM3Nn+Wa46VU3UwQJsCJ+w4iKaKcsl7rFYb?=
+ =?Windows-1252?Q?G+WODcz/ndXkeh/QzpJPJ0tbW+uMgJTEp3IsQ+p3V1Qh9Ab4g8HQJ7WE?=
+ =?Windows-1252?Q?B1N7Na6eofP7EPUNThp1+CAL+I+wvq39Yj7AaKwmToA2iWDny36/HKNx?=
+ =?Windows-1252?Q?dEJrZA9V4M0IaZYXyf81MlwtISXLEQK+Om/Tq+D99UbHAFAXW8bx1in+?=
+ =?Windows-1252?Q?p0r43gh8WimVtziukrfvfjXr/bEhNOuuc6SyHzKUbEVMvvzMDm2E1kD5?=
+ =?Windows-1252?Q?y9hKKCwB43m3jg6/iEXodOV9jdP51B2DYb6E9c3WQCMiYBVYsXjpBuxa?=
+ =?Windows-1252?Q?7MB3JGlr6pyqASZ6WoJOOOaBx92qfXnCRLsi5vGnG/bEfi/CrS/0lrrs?=
+ =?Windows-1252?Q?pLZkMJ0v9lHu40Qs5utMzLS14qicor5FbdPtOvpnf8z96LwZMpvplw?=
+ =?Windows-1252?Q?=3D=3D?=
+MIME-Version: 1.0
+Content-Language: en-US
+Content-Type: multipart/related;
+	boundary="_005_LO6P265MB6379DADBF7368AAC3636AB35A36F2LO6P265MB6379GBRP_";
+	type="multipart/alternative"
+
+--_005_LO6P265MB6379DADBF7368AAC3636AB35A36F2LO6P265MB6379GBRP_
+Content-Type: multipart/alternative;
+	boundary="_000_LO6P265MB6379DADBF7368AAC3636AB35A36F2LO6P265MB6379GBRP_"
+
+--_000_LO6P265MB6379DADBF7368AAC3636AB35A36F2LO6P265MB6379GBRP_
+Content-Type: text/plain; charset=WINDOWS-1252
+Content-Transfer-Encoding: quoted-printable
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Our Ref         WMBC/I&R/9315000945/VCRT
+
+Your Ref
+
+
+
+
+
+Seed Enterprise Investment Scheme (SEIS) Advance Assurance
+
+
+
+Company: In Home Media Ltd
+
+Date requested: 21/12/2023
+
+Proposed investment amount: =A3250,000
+
+Class of Shares: Ordinary
+
+
+
+On the basis of the information you have provided, we believe we will be ab=
+le to authorise the company to issue compliance certificates under Section =
+257EC(1) of the Income Tax Act (ITA) 2007 in respect of Ordinary Shares iss=
+ued to individuals, following receipt of a properly completed form SEIS1. T=
+his provisional authorisation relates to the proposed investment amount abo=
+ve.
+
+
+
+This assurance is based on the legislation which is in place on the date of=
+ this notice. If the legislation changes and takes effect on or before the =
+date of any share issue, the assurances we have given may no longer apply.
+
+
+
+You have told us that you believe you meet the legislative requirements.  H=
+MRC may not be bound by the assurance given where you have provided incorre=
+ct information, or your circumstances change before the share issue date.  =
+Further information is provided in our Venture Capital Schemes Manual at VC=
+M60240<https://www.gov.uk/hmrc-internal-manuals/venture-capital-schemes-man=
+ual/vcm60240>.
+
+
+
+
+
+Further information
+
+Once you have issued the shares, you must complete a compliance statement (=
+SEIS1). You can find compliance statements on our website<https://www.gov.u=
+k/guidance/venture-capital-schemes-apply-to-use-the-seed-enterprise-investm=
+ent-scheme#apply-with-a-compliance-statement>.
+
+
+
+Please read the instructions on the form carefully and submit it to us with=
+in the time limits. You can only submit your compliance statement when you =
+have carried out your qualifying business activity for 4 months or spent at=
+ least 70% of the funds raised.
+
+
+
+We cannot guarantee that any particular investor will get relief under the =
+SEIS. For more information about this, go to www.gov.uk<http://www.gov.uk/>=
+ and search for =91tax relief for investors=92.  Alternatively, a direct li=
+nk is available here<https://www.gov.uk/guidance/venture-capital-schemes-ta=
+x-relief-for-investors>.
+
+
+
+Further information about the SEIS can be found in our Venture Capital Sche=
+mes Manual at VCM30000.<https://www.gov.uk/hmrc-internal-manuals/venture-ca=
+pital-schemes-manual/vcm30000>
+
+
+
+
+
+Investors
+
+The assurance given is only in respect of the SEIS. It is not an endorsemen=
+t of the company. Investors are advised to conduct their own due diligence =
+before investing.
+
+
+
+Further information on the advance assurance process can be found in our Ve=
+nture Capital Schemes Manual at VCM60050<https://www.gov.uk/hmrc-internal-m=
+anuals/venture-capital-schemes-manual/vcm60050>.
+
+
+
+
+
+Venture Capital Reliefs Team
+HM Revenue and Customs
+
+
+
+
+
+
+
+
+
+Venture Capital Reliefs Team
+
+WMBC
+
+HMRC
+
+BX9 1QL
+
+Email: enterprise.centre@hmrc.gov.uk<mailto:enterprise.centre@hmrc.gov.uk>
+
+
+If you receive a suspicious email, please forward to phishing@hmrc.gov.uk<m=
+ailto:phishing@hmrc.gov.uk> or refer to the GOV.UK<http://GOV.UK> site Avoi=
+d and report internet scams and phishing - GOV.UK<https://www.gov.uk/report=
+-suspicious-emails-websites-phishing> for further information.
+
+
+
+The forms and processes for the venture capital reliefs changed on 12th Oct=
+ober 2018 to streamline the application process and improve customer servic=
+e. Detailed information is published in the October Agent Update and in the=
+ Venture Capital Manual, both on www.gov.uk<http://www.gov.uk/>.
+
+
+
+
+
+OFFICIAL
+
+
+
+
+
+
+OFFICIAL
+
+
+The information in this e-mail and any attachments is confidential and may =
+be subject to legal professional privilege. Unless you are the intended rec=
+ipient or his/her representative you are not authorised to, and must not, r=
+ead, copy, distribute, use or retain this message or any part of it. If you=
+ are not the intended recipient, please notify the sender immediately.
+
+HM Revenue & Customs computer systems will be monitored and communications =
+carried on them recorded, to secure the effective operation of the system a=
+nd for lawful purposes.
+
+The Commissioners for HM Revenue and Customs are not liable for any persona=
+l views of the sender.
+
+This e-mail may have been intercepted and its information altered.
+
+
+--_000_LO6P265MB6379DADBF7368AAC3636AB35A36F2LO6P265MB6379GBRP_
+Content-Type: text/html; charset="Windows-1252"
+Content-ID: <790FA0C002D7A949BA765444175DD9E7@GBRP123.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:dt=3D"uuid:C2F4101=
+0-65B3-11d1-A29F-00AA00C14882" xmlns:m=3D"http://schemas.microsoft.com/offi=
+ce/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+=09{font-family:"Cambria Math";
+=09panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+=09{font-family:Calibri;
+=09panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+=09{font-family:"Segoe UI";
+=09panose-1:2 11 5 2 4 2 4 2 2 3;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+=09{margin:0cm;
+=09font-size:11.0pt;
+=09font-family:"Calibri",sans-serif;
+=09mso-fareast-language:EN-US;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+=09{mso-style-link:"Footer Char";
+=09margin:0cm;
+=09font-size:11.0pt;
+=09font-family:"Arial",sans-serif;}
+span.MsoCommentReference
+=09{mso-style-priority:99;}
+a:link, span.MsoHyperlink
+=09{mso-style-priority:99;
+=09color:#0563C1;
+=09text-decoration:underline;}
+span.FooterChar
+=09{mso-style-name:"Footer Char";
+=09mso-style-link:Footer;
+=09font-family:"Arial",sans-serif;
+=09mso-fareast-language:EN-GB;}
+span.EmailStyle27
+=09{mso-style-type:personal-compose;
+=09font-family:"Calibri",sans-serif;
+=09color:windowtext;}
+.MsoChpDefault
+=09{mso-style-type:export-only;
+=09font-size:10.0pt;
+=09font-family:"Calibri",sans-serif;
+=09mso-fareast-language:EN-US;}
+@page WordSection1
+=09{size:612.0pt 792.0pt;
+=09margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+=09{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-GB" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" align=3D"left" width=3D"696" style=3D"width:522.0pt;border-collapse:=
+collapse;margin-left:-1.6pt;margin-right:-2.9pt">
+<tbody>
+<tr style=3D"page-break-inside:avoid;height:43.4pt;mso-height-rule:exactly"=
+>
+<td width=3D"211" valign=3D"bottom" style=3D"width:157.95pt;padding:0cm 0cm=
+ 7.65pt 0cm;height:43.4pt;mso-height-rule:exactly">
+<p class=3D"MsoNormal" style=3D"mso-element:frame;mso-element-frame-hspace:=
+.65pt;mso-element-wrap:around;mso-element-anchor-vertical:paragraph;mso-ele=
+ment-anchor-horizontal:column;mso-height-rule:exactly">
+<span style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;mso=
+-fareast-language:EN-GB"><img width=3D"171" height=3D"42" style=3D"width:1.=
+7847in;height:.4375in" id=3D"Picture_x0020_1" src=3D"cid:image001.jpg@01D47=
+1EE.62B018D0"></span><span style=3D"font-size:9.0pt;font-family:&quot;Arial=
+&quot;,sans-serif;mso-fareast-language:EN-GB"><o:p></o:p></span></p>
+</td>
+<td width=3D"485" valign=3D"bottom" style=3D"width:364.05pt;padding:0cm 0cm=
+ 7.65pt 0cm;height:43.4pt;mso-height-rule:exactly">
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:EN-GB"><o:p>&nbsp;</o:p></span></=
+p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<o:p></o:p></p>
+<p class=3D"MsoFooter"><b><span style=3D"color:black">Our Ref</span></b><sp=
+an style=3D"color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; W=
+MBC/I&amp;R/9315000945/VCRT<o:p></o:p></span></p>
+<p class=3D"MsoFooter"><b><span style=3D"color:black">Your Ref</span></b><s=
+pan style=3D"color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b><o:p></o:p></b></span></p>
+<p class=3D"MsoFooter"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;background:white"><span style=3D"font-family:&quot;S=
+egoe UI&quot;,sans-serif;color:#242424">&nbsp;</span><span style=3D"font-si=
+ze:10.5pt;font-family:&quot;Segoe UI&quot;,sans-serif;color:#242424"><o:p><=
+/o:p></span></p>
+<table class=3D"MsoTableGrid" border=3D"1" cellspacing=3D"0" cellpadding=3D=
+"0" width=3D"100%" style=3D"width:100.0%;border-collapse:collapse;border:no=
+ne">
+<tbody>
+<tr>
+<td width=3D"100%" valign=3D"top" style=3D"width:100.0%;border:solid window=
+text 1.0pt;padding:0cm 5.4pt 0cm 5.4pt">
+<p align=3D"center" style=3D"margin:0cm;text-align:center"><a name=3D"_Hlk1=
+22445760"><b><span style=3D"font-size:13.0pt;font-family:&quot;Arial&quot;,=
+sans-serif;color:#242424;mso-fareast-language:EN-US">Seed Enterprise Invest=
+ment Scheme (SEIS) Advance Assurance<o:p></o:p></span></b></a></p>
+<p style=3D"margin:0cm"><span style=3D"mso-bookmark:_Hlk122445760"><b><span=
+ style=3D"font-family:&quot;Segoe UI&quot;,sans-serif;color:#242424;mso-far=
+east-language:EN-US"><o:p>&nbsp;</o:p></span></b></span></p>
+<p style=3D"margin:0cm"><span style=3D"mso-bookmark:_Hlk122445760"><b><span=
+ style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#242424;mso-fareas=
+t-language:EN-US">Company: In Home Media Ltd<o:p></o:p></span></b></span></=
+p>
+<p style=3D"margin:0cm"><span style=3D"mso-bookmark:_Hlk122445760"><b><span=
+ style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#242424;mso-fareas=
+t-language:EN-US">Date requested: 21/12/2023<o:p></o:p></span></b></span></=
+p>
+<p style=3D"margin:0cm"><span style=3D"mso-bookmark:_Hlk122445760"><b><span=
+ style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#242424;mso-fareas=
+t-language:EN-US">Proposed investment amount: =A3250,000<o:p></o:p></span><=
+/b></span></p>
+<p style=3D"margin:0cm"><span style=3D"mso-bookmark:_Hlk122445760"><b><span=
+ style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#242424;mso-fareas=
+t-language:EN-US">Class of Shares: Ordinary
+<o:p></o:p></span></b></span></p>
+<p style=3D"margin:0cm"><span style=3D"mso-bookmark:_Hlk122445760"><span st=
+yle=3D"font-family:&quot;Arial&quot;,sans-serif;color:#242424;mso-fareast-l=
+anguage:EN-US"><o:p>&nbsp;</o:p></span></span></p>
+<p style=3D"margin:0cm;background:white"><span style=3D"mso-bookmark:_Hlk12=
+2445760"><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#242=
+424;mso-fareast-language:EN-US">On the basis of the information you have pr=
+ovided, we believe we will&nbsp;be able to authorise
+ the company to issue compliance certificates under Section 257EC(1) of the=
+ Income Tax Act (ITA) 2007 in respect of Ordinary Shares issued to individu=
+als, following receipt of a properly completed form SEIS1. This provisional=
+ authorisation relates to the proposed
+ investment amount above.</span></span><span style=3D"mso-bookmark:_Hlk1224=
+45760"><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:red;ms=
+o-fareast-language:EN-US"><o:p></o:p></span></span></p>
+<p style=3D"margin:0cm;background:white"><span style=3D"mso-bookmark:_Hlk12=
+2445760"><b><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#=
+242424;mso-fareast-language:EN-US"><o:p>&nbsp;</o:p></span></b></span></p>
+<p style=3D"margin:0cm;background:white"><span style=3D"mso-bookmark:_Hlk12=
+2445760"><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#242=
+424;mso-fareast-language:EN-US">This assurance is&nbsp;based on the legisla=
+tion which is in place on the date of this notice. If
+ the legislation changes and takes effect on or before the&nbsp;date of any=
+ share issue, the assurances&nbsp;we have given may no longer apply.<o:p></=
+o:p></span></span></p>
+<p style=3D"margin:0cm;background:white"><span style=3D"mso-bookmark:_Hlk12=
+2445760"><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#242=
+424;mso-fareast-language:EN-US"><o:p>&nbsp;</o:p></span></span></p>
+<p style=3D"margin:0cm;background:white"><span style=3D"mso-bookmark:_Hlk12=
+2445760"><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:blac=
+k;mso-fareast-language:EN-US">You have told us that you believe you meet th=
+e legislative requirements.&nbsp; HMRC may not be bound
+ by the assurance given where you have provided incorrect information, or y=
+our circumstances change before the share issue date.&nbsp; Further informa=
+tion is provided in our Venture Capital Schemes Manual at
+</span></span><span style=3D"mso-bookmark:_Hlk122445760"></span><a href=3D"=
+https://www.gov.uk/hmrc-internal-manuals/venture-capital-schemes-manual/vcm=
+60240"><span style=3D"mso-bookmark:_Hlk122445760"><span style=3D"font-famil=
+y:&quot;Arial&quot;,sans-serif;mso-fareast-language:EN-US">VCM60240</span><=
+/span><span style=3D"mso-bookmark:_Hlk122445760"></span></a><span style=3D"=
+mso-bookmark:_Hlk122445760"><span style=3D"font-family:&quot;Arial&quot;,sa=
+ns-serif;color:black;mso-fareast-language:EN-US">.
+<o:p></o:p></span></span></p>
+<span style=3D"mso-bookmark:_Hlk122445760"></span>
+<p style=3D"margin:0cm;background:white"><span style=3D"mso-bookmark:_Hlk12=
+2445760"><span style=3D"font-family:&quot;Segoe UI&quot;,sans-serif;color:#=
+242424;mso-fareast-language:EN-US"><o:p>&nbsp;</o:p></span></span></p>
+</td>
+<span style=3D"mso-bookmark:_Hlk122445760"></span>
+</tr>
+</tbody>
+</table>
+<span style=3D"mso-bookmark:_Hlk122445760"></span>
+<p style=3D"margin:0cm;background:white"><span style=3D"font-family:&quot;S=
+egoe UI&quot;,sans-serif;color:#242424">&nbsp;<o:p></o:p></span></p>
+<table class=3D"MsoTableGrid" border=3D"1" cellspacing=3D"0" cellpadding=3D=
+"0" width=3D"100%" style=3D"width:100.0%;border-collapse:collapse;border:no=
+ne">
+<tbody>
+<tr>
+<td width=3D"100%" valign=3D"top" style=3D"width:100.0%;border:solid window=
+text 1.0pt;padding:0cm 5.4pt 0cm 5.4pt">
+<p align=3D"center" style=3D"margin:0cm;text-align:center;background:white"=
+><b><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#242424;m=
+so-fareast-language:EN-US">Further information<o:p></o:p></span></b></p>
+<p style=3D"margin:0cm;background:white"><span style=3D"font-family:&quot;A=
+rial&quot;,sans-serif;color:#242424;mso-fareast-language:EN-US">Once you ha=
+ve issued the shares, you must complete a compliance statement (SEIS1). You=
+ can find compliance statements on our
+</span><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:black;=
+mso-fareast-language:EN-US"><a href=3D"https://www.gov.uk/guidance/venture-=
+capital-schemes-apply-to-use-the-seed-enterprise-investment-scheme#apply-wi=
+th-a-compliance-statement">website</a></span><span style=3D"font-family:&qu=
+ot;Arial&quot;,sans-serif;color:#242424;mso-fareast-language:EN-US">.
+<o:p></o:p></span></p>
+<p style=3D"margin:0cm;background:white"><span style=3D"font-family:&quot;A=
+rial&quot;,sans-serif;color:#242424;mso-fareast-language:EN-US"><o:p>&nbsp;=
+</o:p></span></p>
+<p style=3D"margin:0cm;background:white"><span style=3D"font-family:&quot;A=
+rial&quot;,sans-serif;color:#242424;mso-fareast-language:EN-US">Please read=
+ the instructions on the form carefully and submit it to us within the time=
+ limits.
+</span><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#0B0C0=
+C;background:white;mso-fareast-language:EN-US">You can only submit your com=
+pliance statement when you have carried out your qualifying business activi=
+ty for 4 months or spent at least 70% of the
+ funds raised. </span><span style=3D"font-family:&quot;Arial&quot;,sans-ser=
+if;color:#242424;mso-fareast-language:EN-US"><o:p></o:p></span></p>
+<p style=3D"margin:0cm;background:white"><span style=3D"font-family:&quot;A=
+rial&quot;,sans-serif;color:#242424;mso-fareast-language:EN-US"><o:p>&nbsp;=
+</o:p></span></p>
+<p style=3D"margin:0cm;background:white"><span style=3D"font-family:&quot;A=
+rial&quot;,sans-serif;color:#242424;mso-fareast-language:EN-US">We cannot g=
+uarantee that any particular investor will get relief under the SEIS. For m=
+ore information about this, go to&nbsp;<a href=3D"http://www.gov.uk/">www.g=
+ov.uk</a>&nbsp;and
+ search for =91tax relief for investors=92.&nbsp; Alternatively, a direct l=
+ink is available
+</span><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:black;=
+mso-fareast-language:EN-US"><a href=3D"https://www.gov.uk/guidance/venture-=
+capital-schemes-tax-relief-for-investors">here</a></span><span style=3D"fon=
+t-family:&quot;Arial&quot;,sans-serif;color:#242424;mso-fareast-language:EN=
+-US">.<o:p></o:p></span></p>
+<p style=3D"margin:0cm;background:white"><span style=3D"font-family:&quot;A=
+rial&quot;,sans-serif;color:#242424;mso-fareast-language:EN-US"><o:p>&nbsp;=
+</o:p></span></p>
+<p style=3D"margin:0cm;background:white"><span style=3D"font-family:&quot;A=
+rial&quot;,sans-serif;color:#242424;mso-fareast-language:EN-US">Further inf=
+ormation about the SEIS can be found in our Venture Capital Schemes Manual =
+at
+</span><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:black;=
+mso-fareast-language:EN-US"><a href=3D"https://www.gov.uk/hmrc-internal-man=
+uals/venture-capital-schemes-manual/vcm30000">VCM30000.</a></span><span sty=
+le=3D"font-family:&quot;Arial&quot;,sans-serif;color:#242424;mso-fareast-la=
+nguage:EN-US"><o:p></o:p></span></p>
+<p style=3D"margin:0cm;background:white"><span style=3D"font-family:&quot;S=
+egoe UI&quot;,sans-serif;color:#242424;mso-fareast-language:EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p style=3D"margin:0cm;background:white"><span style=3D"font-size:10.5pt;fo=
+nt-family:&quot;Segoe UI&quot;,sans-serif;color:#242424"><o:p>&nbsp;</o:p><=
+/span></p>
+<table class=3D"MsoTableGrid" border=3D"1" cellspacing=3D"0" cellpadding=3D=
+"0" width=3D"100%" style=3D"width:100.0%;border-collapse:collapse;border:no=
+ne">
+<tbody>
+<tr>
+<td width=3D"100%" valign=3D"top" style=3D"width:100.0%;border:solid window=
+text 1.0pt;padding:0cm 5.4pt 0cm 5.4pt">
+<p align=3D"center" style=3D"margin:0cm;text-align:center;background:white"=
+><b><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#242424;m=
+so-fareast-language:EN-US">Investors<o:p></o:p></span></b></p>
+<p style=3D"margin:0cm;background:white"><span style=3D"font-family:&quot;A=
+rial&quot;,sans-serif;color:#242424;mso-fareast-language:EN-US">The assuran=
+ce given is only in respect of the SEIS. It is not an endorsement of the co=
+mpany. Investors are advised to conduct their
+ own due diligence before investing.<o:p></o:p></span></p>
+<p style=3D"margin:0cm;background:white"><b><span style=3D"font-family:&quo=
+t;Arial&quot;,sans-serif;color:#242424;mso-fareast-language:EN-US"><o:p>&nb=
+sp;</o:p></span></b></p>
+<p style=3D"margin:0cm;background:white"><span style=3D"font-family:&quot;A=
+rial&quot;,sans-serif;color:#242424;mso-fareast-language:EN-US">Further inf=
+ormation on the advance assurance process can be found in our Venture Capit=
+al Schemes Manual at
+</span><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:black;=
+mso-fareast-language:EN-US"><a href=3D"https://www.gov.uk/hmrc-internal-man=
+uals/venture-capital-schemes-manual/vcm60050">VCM60050</a></span><span styl=
+e=3D"font-family:&quot;Arial&quot;,sans-serif;color:#242424;mso-fareast-lan=
+guage:EN-US">.</span><span style=3D"font-family:&quot;Segoe UI&quot;,sans-s=
+erif;color:#242424;mso-fareast-language:EN-US">&nbsp;
+<b><o:p></o:p></b></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p style=3D"margin:0cm;background:white"><span class=3D"MsoCommentReference=
+"><span style=3D"font-size:8.0pt;mso-fareast-language:EN-US"><o:p>&nbsp;</o=
+:p></span></span></p>
+<p style=3D"margin:0cm;background:white"><span class=3D"MsoCommentReference=
+"><span style=3D"font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif;m=
+so-fareast-language:EN-US"><o:p>&nbsp;</o:p></span></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Arial&quot;,sans=
+-serif">Venture Capital Reliefs Team<br>
+</span></b><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#2=
+42424">HM Revenue and Customs &nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"98%" style=3D"width:98.2%">
+<tbody>
+<tr>
+<td width=3D"249" valign=3D"top" style=3D"width:187.0pt;border:solid #E0E0E=
+0 1.0pt;background:white;padding:10.5pt 10.5pt 10.5pt 10.5pt">
+<p class=3D"MsoNormal" style=3D"line-height:15.0pt;vertical-align:baseline"=
+><span style=3D"font-size:12.0pt;color:black;mso-fareast-language:EN-GB"><i=
+mg border=3D"0" width=3D"219" height=3D"132" style=3D"width:2.2777in;height=
+:1.375in" id=3D"Picture_x0020_2" src=3D"cid:image002.png@01D9BB0F.A9A1FF50"=
+ alt=3D"hmrc logo "><o:p></o:p></span></p>
+</td>
+<td width=3D"405" valign=3D"top" style=3D"width:304.0pt;border:solid #E0E0E=
+0 1.0pt;background:white;padding:10.5pt 10.5pt 10.5pt 10.5pt">
+<p class=3D"MsoNormal" style=3D"line-height:15.0pt;vertical-align:baseline"=
+><b><span style=3D"font-size:12.0pt;color:black;border:none windowtext 1.0p=
+t;padding:0cm;mso-fareast-language:EN-GB">Venture Capital Reliefs Team</spa=
+n></b><span style=3D"font-size:12.0pt;color:black;mso-fareast-language:EN-G=
+B"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"line-height:15.0pt;vertical-align:baseline"=
+><b><span style=3D"font-size:12.0pt;color:black;border:none windowtext 1.0p=
+t;padding:0cm;mso-fareast-language:EN-GB">WMBC<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"line-height:15.0pt;vertical-align:baseline"=
+><b><span style=3D"font-size:12.0pt;color:black;border:none windowtext 1.0p=
+t;padding:0cm;mso-fareast-language:EN-GB">HMRC<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"line-height:15.0pt;vertical-align:baseline"=
+><b><span style=3D"font-size:12.0pt;color:black;border:none windowtext 1.0p=
+t;padding:0cm;mso-fareast-language:EN-GB">BX9
+</span></b><b><span style=3D"font-size:12.0pt;color:black;mso-fareast-langu=
+age:EN-GB">1QL</span></b><span style=3D"font-size:12.0pt;color:black;mso-fa=
+reast-language:EN-GB"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"line-height:15.0pt;vertical-align:baseline"=
+><b><span style=3D"font-size:12.0pt;color:black;border:none windowtext 1.0p=
+t;padding:0cm;mso-fareast-language:EN-GB">Email:
+</span></b><span style=3D"color:black"><a href=3D"mailto:enterprise.centre@=
+hmrc.gov.uk"><b><span style=3D"font-size:12.0pt;border:none windowtext 1.0p=
+t;padding:0cm;mso-fareast-language:EN-GB">enterprise.centre@hmrc.gov.uk</sp=
+an></b></a></span><span style=3D"font-size:12.0pt;color:black;mso-fareast-l=
+anguage:EN-GB"><br>
+&nbsp;<o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal" style=3D"margin-left:37.5pt;vertical-align:baseline"=
+><b><span lang=3D"EN" style=3D"font-size:12.0pt;border:none windowtext 1.0p=
+t;padding:0cm;mso-fareast-language:EN-GB">If you receive a suspicious email=
+, please forward to
+</span></b><a href=3D"mailto:phishing@hmrc.gov.uk"><b><span lang=3D"EN" sty=
+le=3D"font-size:12.0pt;border:none windowtext 1.0pt;padding:0cm;mso-fareast=
+-language:EN-GB">phishing@hmrc.gov.uk</span></b></a><b><span style=3D"font-=
+size:12.0pt;border:none windowtext 1.0pt;padding:0cm;mso-fareast-language:E=
+N-GB">
+<span lang=3D"EN">or refer to the <a href=3D"http://GOV.UK">
+GOV.UK</a> site </span></span></b><a href=3D"https://www.gov.uk/report-susp=
+icious-emails-websites-phishing" target=3D"_blank"><b><span lang=3D"EN" sty=
+le=3D"font-size:12.0pt;color:#0085E5;border:none windowtext 1.0pt;padding:0=
+cm;mso-fareast-language:EN-GB;text-decoration:none">Avoid
+ and report internet scams and phishing - GOV.UK</span></b></a><b><span lan=
+g=3D"EN" style=3D"font-size:12.0pt;border:none windowtext 1.0pt;padding:0cm=
+;mso-fareast-language:EN-GB"> for further information.</span></b><span lang=
+=3D"EN" style=3D"font-size:12.0pt;mso-fareast-language:EN-GB"><o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-GB"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"mso-fareast-language:EN-GB">The forms and processes for the vent=
+ure capital reliefs changed on 12<sup>th</sup> October 2018 to streamline t=
+he application process and improve customer
+ service. Detailed information is published in the October Agent Update and=
+ in the Venture Capital Manual, both on
+</span></b><a href=3D"http://www.gov.uk/"><b><span style=3D"color:windowtex=
+t;mso-fareast-language:EN-GB;text-decoration:none">www.gov.uk</span></b></a=
+><b><span style=3D"mso-fareast-language:EN-GB">.&nbsp;
+</span></b><b><o:p></o:p></b></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-GB"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-GB"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt;color:black;mso-fareast-language:EN-GB">OFFICIAL</=
+span><span style=3D"mso-fareast-language:EN-GB"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-GB"><o:p>&nbs=
+p;</o:p></span></p>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<br>
+<p class=3D"msipfooterb49bf632" align=3D"Center" style=3D"margin:0"><span s=
+tyle=3D"font-size:10.0pt;font-family:Calibri;color:#000000">OFFICIAL</span>=
+</p>
+</div>
+<br>
+The information in this e-mail and any attachments is confidential and may =
+be subject to legal professional privilege. Unless you are the intended rec=
+ipient or his/her representative you are not authorised to, and must not, r=
+ead, copy, distribute, use or retain
+ this message or any part of it. If you are not the intended recipient, ple=
+ase notify the sender immediately.<br>
+<br>
+HM Revenue &amp; Customs computer systems will be monitored and communicati=
+ons carried on them recorded, to secure the effective operation of the syst=
+em and for lawful purposes.<br>
+<br>
+The Commissioners for HM Revenue and Customs are not liable for any persona=
+l views of the sender.<br>
+<br>
+This e-mail may have been intercepted and its information altered.<br>
+</body>
+</html>
+
+--_000_LO6P265MB6379DADBF7368AAC3636AB35A36F2LO6P265MB6379GBRP_--
+
+--_005_LO6P265MB6379DADBF7368AAC3636AB35A36F2LO6P265MB6379GBRP_
+Content-Type: image/jpeg; name="image001.jpg"
+Content-Description: image001.jpg
+Content-Disposition: inline; filename="image001.jpg"; size=6833;
+	creation-date="Fri, 12 Jan 2024 13:39:12 GMT";
+	modification-date="Fri, 12 Jan 2024 16:52:34 GMT"
+Content-ID: <image001.jpg@01D471EE.62B018D0>
+Content-Transfer-Encoding: base64
+
+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
+--_005_LO6P265MB6379DADBF7368AAC3636AB35A36F2LO6P265MB6379GBRP_
+Content-Type: image/png; name="image002.png"
+Content-Description: image002.png
+Content-Disposition: inline; filename="image002.png"; size=13674;
+	creation-date="Fri, 12 Jan 2024 13:39:12 GMT";
+	modification-date="Fri, 12 Jan 2024 16:52:34 GMT"
+Content-ID: <image002.png@01D9BB0F.A9A1FF50>
+Content-Transfer-Encoding: base64
+
+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
+--_005_LO6P265MB6379DADBF7368AAC3636AB35A36F2LO6P265MB6379GBRP_--
+

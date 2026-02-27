@@ -1,0 +1,167 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:4106:b0:a51:dd26:8489 with SMTP id j6csp1165530ejk;
+        Wed, 17 Apr 2024 09:24:52 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFWS7J8t4HiOjN+Q/EBMSrmElIEIPReGYqY9rqKBU8ivyijE08+fR8n3AjPrryv02JvtVm4
+X-Received: by 2002:a17:903:40c7:b0:1e7:7832:386c with SMTP id t7-20020a17090340c700b001e77832386cmr10599980pld.52.1713371092006;
+        Wed, 17 Apr 2024 09:24:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1713371091; cv=none;
+        d=google.com; s=arc-20160816;
+        b=RkeuA3QHht1P76lytynKp3Z7vX6dLqsPU35Lk9ZhpguQoWTQ7EbnxjFewVB6A1z7VT
+         tzWblZnIyGqvMoCMRV1h/ldSj8Bi9FrYAF7lFMaZoOqM3i7vXfOmWqEq0WmcRSKAax99
+         +0UVmh22YodWSlV2ew14q8kMbUUCP2OHSUh3k2Vtd3W5NYIB5jVdcdwWJg4zCd/qNEjH
+         PAbHYHdzK+s1CuL0hIH56unX88RnNeniYne3Vlgkez5oIgQSkrNibN23W2v7TtsGyoAJ
+         AhetNAi/ZTTTyLpLEywjS1EJsImqAl8Qu9jb9m2Wex5FL9Q1siFDw05igLg1NcmvyuNW
+         ThCw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:in-reply-to:references:message-id:date:subject:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=1q3n5BjAdM2J1BGfmWVBG/O0PffwOd7xsWOqHn985Kk=;
+        fh=PPC1HqqdMuvCicfndAtvqlbv4AGpwjpAql224GPSQGU=;
+        b=phxY2HDkvjpYax3Llfj5yE1w7qiKyxNlFP/R669+7N4MbfEzvpxD4W+ZgJ18XgBFX8
+         Ogl3UZqpsJH9yt0+xjrngLGs8j+urZnHApt9AKaGtXuteL3I6K0kUkuSTeg2LkNPtofy
+         yC5piGE1+jhW/QtTH57AeFjJ1paKQcdPCJSkaVs4qOGKWUmZOecbuMaXQ9dSqH0BVy5V
+         ZND+WlTguV4Bw93TmfeI2dt94uIYQKOhuZZQx1KZHtPM6FKGrDgjC8PiwtlPlSdT1Isf
+         1QfEaUmjGcm1hy+MRErxav5S7ZmLFltO21erlhsDj4+FVeRzwxOvxv5tC2ecTnzuMXyG
+         vDpg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=PcwpM3wl;
+       spf=neutral (google.com: 2a00:1450:4864:20::329 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+Return-Path: <th@inhomemedia.io>
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com. [2a00:1450:4864:20::329])
+        by mx.google.com with ESMTPS id h11-20020a170902f54b00b001e47d98b4e1si11884818plf.591.2024.04.17.09.24.51
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Apr 2024 09:24:51 -0700 (PDT)
+Received-SPF: neutral (google.com: 2a00:1450:4864:20::329 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) client-ip=2a00:1450:4864:20::329;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=PcwpM3wl;
+       spf=neutral (google.com: 2a00:1450:4864:20::329 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-418c979ddd2so4474295e9.3
+        for <ot@inhomemedia.io>; Wed, 17 Apr 2024 09:24:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1713371088; x=1713975888; darn=inhomemedia.io;
+        h=to:in-reply-to:references:message-id:date:subject:mime-version:from
+         :content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1q3n5BjAdM2J1BGfmWVBG/O0PffwOd7xsWOqHn985Kk=;
+        b=PcwpM3wltolKJFJon/Vq6vMRv2uAyqctTthbSfPylA5cBSs+n4GhrSmr6wOUnfEhwY
+         0PhkMxbTKrFDQ3EkNKOR3I6BTMFm2hryAQUTCUPWY0FJ6Iw37buiTJUIHckxvPq1o/lC
+         4BYY2xQOlmPL/MHPAa3qzkuKTms6+gPyiqctvG3ooMyaEXXL99d2ygqljDnmas0j32wN
+         oY1DVhoGST0VfRBrt7GD/TPUS45h2UdLdB4tGzxWPBq1flAUDft/oyHgVtlGiFIDpc/v
+         dMcKTeHe0F8eY8GfP/kILTujHnOCtIEKh9F5gE6r4s0N2J+Ed62NTPXRrBST68zzoQDf
+         SBfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713371088; x=1713975888;
+        h=to:in-reply-to:references:message-id:date:subject:mime-version:from
+         :content-transfer-encoding:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=1q3n5BjAdM2J1BGfmWVBG/O0PffwOd7xsWOqHn985Kk=;
+        b=Nq1JRXVoZd0p64YvBU6Gn25M1WPTqz8vQhvJpPhwRXOhr+t81+r6azUcsr1zav5+Cc
+         JzVgddHnl0VLtpWpEHJhwdZdHYR4rMWI33PfCByVCkEZbDgqusi2+7Ir5MeKigWiDBVK
+         +tffnKqdDbibYqLI3a1A8tbd+yND6SX14dR8AY3/nusZLX+GSJbOAH/D4G0OXrlkZ/5w
+         eRAlFiTIffmvbXPI44J6MLxnM2a2yMQIH0qiU48xpULUvz2rsdqZyiP4K2u46iJI/etI
+         9UGfCEG/s1Yw9lfLgQmCzC9UaCM/eSCKhqGi57IxOKUqewHwrtusjnSSavQiEiMaepgU
+         BhDA==
+X-Gm-Message-State: AOJu0YzWC4JsytTsFTEvkdjFPVqLv7bxe+VyroFBUpyFHEN7sn6IK1oT
+	gbCSCn7VGKk5LIrwF/mUI6UsZEB6TOS3VyrGwPUywj4WHiss7Z7qfa5MSBwX6oLYIN2WRcyxTSH
+	wCw==
+X-Received: by 2002:a05:600c:4ed1:b0:418:d2c5:5c65 with SMTP id g17-20020a05600c4ed100b00418d2c55c65mr74251wmq.37.1713371088307;
+        Wed, 17 Apr 2024 09:24:48 -0700 (PDT)
+Return-Path: <th@inhomemedia.io>
+Received: from smtpclient.apple ([82.132.186.146])
+        by smtp.gmail.com with ESMTPSA id l23-20020a1c7917000000b00418729383a4sm3217894wme.46.2024.04.17.09.24.47
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Apr 2024 09:24:48 -0700 (PDT)
+Content-Type: multipart/alternative; boundary=Apple-Mail-8F1C6F31-156A-4175-B1DD-318BA4F3F023
+Content-Transfer-Encoding: 7bit
+From: Anthony Hughes <th@inhomemedia.io>
+Mime-Version: 1.0 (1.0)
+Subject: Re: IHM - 4th Utility non-performing screens
+Date: Wed, 17 Apr 2024 17:24:37 +0100
+Message-Id: <76752BE6-5D60-4ED3-B694-E17709D46E76@inhomemedia.io>
+References: <CAMr_NGG5jdaJoQaP1EEgLP2QacNM9XhcOh82QDWEbMb-nWzj_Q@mail.gmail.com>
+In-Reply-To: <CAMr_NGG5jdaJoQaP1EEgLP2QacNM9XhcOh82QDWEbMb-nWzj_Q@mail.gmail.com>
+To: Owen Thomas <ot@inhomemedia.io>
+X-Mailer: iPhone Mail (21E236)
+
+
+--Apple-Mail-8F1C6F31-156A-4175-B1DD-318BA4F3F023
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Hi Owen,<div><br></div><div>Why don=E2=80=99=
+t we talk through in the morning my view is we need to move out asap. Agree n=
+eed a bigger conversation with Eris especially in the short term.</div><div>=
+<br></div><div>Tony<br id=3D"lineBreakAtBeginningOfSignature"><div dir=3D"lt=
+r">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">O=
+n 17 Apr 2024, at 16:54, Owen Thomas &lt;ot@inhomemedia.io&gt; wrote:<br><br=
+></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div=
+ dir=3D"ltr">Hi Tony - see&nbsp;below &amp; attached. Basically a list of sc=
+reens in Eris buildings where there&nbsp;is no commercial&nbsp;value&nbsp;+ w=
+e are not being paid by 4th.<div><br></div><div>Initially I asked Stephen to=
+ create&nbsp;this spreadsheet to demonstrate&nbsp;how these screens have no v=
+alue and 4thU are no longer paying us. I have some thoughts on how we can pa=
+use Eris costs, using the attached to help prove our point.</div><div><br></=
+div><div>We could even argue we have been paying Eris when not getting paid f=
+rom 4th for several&nbsp;months.</div><div><br></div><div>Be good to flag th=
+is with Dave asap.</div><div><br></div><div>Also maybe we should look to agr=
+ee portfolio&nbsp;commission deals&nbsp;with Eris too - rather&nbsp;than the=
+ flat fee =C2=A350/screen deal. Bigger conversation needed on this.</div><di=
+v><br></div><div>Thanks,</div><div>O</div><div><br></div><div><br><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">---------- Forwar=
+ded message ---------<br>From: <strong class=3D"gmail_sendername" dir=3D"aut=
+o">Stephen Gale</strong> <span dir=3D"auto">&lt;<a href=3D"mailto:stephen@in=
+homemedia.io">stephen@inhomemedia.io</a>&gt;</span><br>Date: Wed, Apr 17, 20=
+24 at 3:51=E2=80=AFPM<br>Subject: IHM - 4th Utility non-performing screens<b=
+r>To: Owen Thomas &lt;<a href=3D"mailto:ot@inhomemedia.io">ot@inhomemedia.io=
+</a>&gt;<br></div><br><br><div dir=3D"ltr">I have attached a spreadsheet sho=
+wing all installed schemes which do not meet with our criteria and offer no v=
+alue going forward. The summary table at the bottom is pretty shocking and h=
+ighlights the cost to the business without the =C2=A375 per month coming fro=
+m 4th. Some of these screens are not connected, so we are not being charged t=
+he full amount currently.<div><br></div><div>Let's chat through.<br clear=3D=
+"all"><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmai=
+l_signature"><div dir=3D"ltr"><p style=3D"line-height:1.38;margin-top:0pt;ma=
+rgin-bottom:0pt"><font color=3D"#1a2234" face=3D"Poppins, sans-serif"><span s=
+tyle=3D"font-size:13.3333px">Stephen Gale</span></font></p><p dir=3D"ltr" st=
+yle=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><=
+br></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:=
+0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-family:Poppins,san=
+s-serif;color:rgb(26,34,52);background-color:transparent;vertical-align:base=
+line">T: 07837 52186</span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line=
+-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt=
+;font-family:Poppins,sans-serif;color:rgb(26,34,52);background-color:transpa=
+rent;vertical-align:baseline">A: Balfour House,&nbsp;</span><span style=3D"f=
+ont-family:Poppins,sans-serif;color:rgb(26,34,52);background-color:transpare=
+nt;vertical-align:baseline;font-size:13.3333px">46-54 Great Titchfield Stree=
+t, London W1W 7QE</span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-he=
+ight:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"background-color:=
+transparent;color:rgb(26,34,52);font-family:Poppins,sans-serif;font-size:10p=
+t">E: Stephen</span><a href=3D"mailto:dave@inhomemedia.io" style=3D"color:rg=
+b(17,85,204);background-color:transparent;font-family:Poppins,sans-serif;fon=
+t-size:10pt" target=3D"_blank">@inhomemedia.io</a></p><p dir=3D"ltr" style=3D=
+"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span s=
+tyle=3D"font-size:10pt;font-family:Poppins,sans-serif;color:rgb(26,34,52);ba=
+ckground-color:transparent;vertical-align:baseline">W:&nbsp;<a href=3D"http:=
+//inhomemedia.io/" style=3D"color:rgb(17,85,204)" target=3D"_blank">inhomeme=
+dia.io</a></span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.=
+38;margin-top:0pt;margin-bottom:0pt"><br><br></p><p dir=3D"ltr" style=3D"col=
+or:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><a href=3D"=
+https://inhomemedia.io/" style=3D"color:rgb(17,85,204)" target=3D"_blank"><s=
+pan style=3D"font-size:11pt;font-family:Arial,sans-serif;background-color:tr=
+ansparent;vertical-align:baseline"><span style=3D"border:medium;display:inli=
+ne-block;overflow:hidden;width:520px;height:29px"><img src=3D"https://lh7-us=
+.googleusercontent.com/G4ff92Jazz4nl6U3XO4bw1HjizO0hBsjZS3iCZQOXffuUv-6C9ZOT=
+q4IW15iyu5kB0duaGS4BIdTk6vBLe2by2YwpWZWU0ghiZa-ur3pLUYBvT5gmflP-8PDQuJOrK3hW=
+MiULmn98KuWeYwc8vZo5pQ" width=3D"520" height=3D"29" style=3D"margin-left:0px=
+;margin-top:0px" data-unique-identifier=3D""></span></span></a></p></div></d=
+iv></div></div></div>
+</div></div></div>
+<div>&lt;IHM non-performing screens.xlsx&gt;</div></div></blockquote></div><=
+/body></html>=
+
+--Apple-Mail-8F1C6F31-156A-4175-B1DD-318BA4F3F023--

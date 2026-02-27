@@ -1,0 +1,1468 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:a1d6:b0:a86:9644:f083 with SMTP id bx22csp2171060ejb;
+        Mon, 2 Sep 2024 13:38:16 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF2anVOzAsp7YQvtFFzP9wZFw9efgUqosrQ3lHsn3kokE3XTCirRIFYCOmjYm3Do5nsSIza
+X-Received: by 2002:a05:6a21:1743:b0:1c4:9cec:ea0a with SMTP id adf61e73a8af0-1cecdfdee54mr10828135637.37.1725309495967;
+        Mon, 02 Sep 2024 13:38:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1725309495; cv=none;
+        d=google.com; s=arc-20160816;
+        b=HB3MruizwbgTmHhwvi119U9lsux4NeL2DtTkJAL9j5fr8WOz4O7D3HxnalGp1+SPVa
+         +T2UywkSWAhvZJTcmV4XKelERtH/aRU6S5LH7fVX3DpXbNYwrlRDAtFkXY3gMrym+qov
+         20T5obNTR1N4//BqerLPMSz1fxctnrUbpfYjLvPeB2VBZ1UHc0OlkKcAmobJHEbHrUY5
+         Oz3q7/dY4BcD84ZhkWiq2kXTFHgY3oULmyuVmfylGdhh2WW3rTu5C3wr6TXLLb2ljFSw
+         k6s2pI03mOtSRqP8r+dqNRlKMNt/8Ut04CTKJnQsjZpSdRHLgxh7cB9HDh077oas+ZfP
+         HaxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=date:to:references:message-id:subject:mime-version:from
+         :dkim-signature;
+        bh=i6Ab5RpOP4ezu58DUJsGYy6cSaV6oOV/YNL5xDLDTUY=;
+        fh=PPC1HqqdMuvCicfndAtvqlbv4AGpwjpAql224GPSQGU=;
+        b=aw63PoTHwKjhn3NDDY6NAdAGwP8fz7aV+QU72nSg4uDve4JToZDpyShaTDCgbJfqa1
+         wVqSoUhXGJIQWWT8rRbwHH/J7RR2bxl4gV2+EDSDKtslq+ssssURkYAybwtw4ZGGbnHV
+         G09GUn4kxBUeeQl2AATeRjRmPN9c0p5LH5tTJHmzDCj5chkJkehEYFBd7JvJxlG9uBJt
+         NNJjZDBus6nCm58/Yw4NhmtIX81aIXTRyJGZcpA+PbXmKRJmgHsxuSsNf039y6O3cRuV
+         VMfGM/0qnTy1qdhpgh8hJOnuIzZ9HmFeOPwk4926e7JH1l12mkXmHVJpZs9ejTuv1W5U
+         jUPA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=XbBTLOGE;
+       spf=neutral (google.com: 2a00:1450:4864:20::333 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io;
+       dara=pass header.i=@inhomemedia.io
+Return-Path: <th@inhomemedia.io>
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com. [2a00:1450:4864:20::333])
+        by mx.google.com with ESMTPS id d9443c01a7336-2056ede5315si41172785ad.206.2024.09.02.13.38.14
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Sep 2024 13:38:15 -0700 (PDT)
+Received-SPF: neutral (google.com: 2a00:1450:4864:20::333 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) client-ip=2a00:1450:4864:20::333;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=XbBTLOGE;
+       spf=neutral (google.com: 2a00:1450:4864:20::333 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io;
+       dara=pass header.i=@inhomemedia.io
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-428e1915e18so38478925e9.1
+        for <ot@inhomemedia.io>; Mon, 02 Sep 2024 13:38:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1725309491; x=1725914291; darn=inhomemedia.io;
+        h=date:to:references:message-id:subject:mime-version:from:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=i6Ab5RpOP4ezu58DUJsGYy6cSaV6oOV/YNL5xDLDTUY=;
+        b=XbBTLOGEbF4q/5rZ85ikJTRoWR3XHYmu+0A1tpRiT2MTKVC6bYGOdrZcZfz6NC7QBA
+         5a3M3zgRepBBXiz1IvWSKEjJrFiydX7hLCfym4JOQm8JqboUiz8GMX7prfuPP5NlPbf6
+         3cMpcg+wRDG5tXROxgG7VWu7s4Y8WrHkNCW0n6Nc9rTlmzBVwBZNn+anPxRJ4t6IbVH6
+         qKpNCz3lXZiqOFvCE+xTp4ECRKLFRuRdRCs9SuJTdiEZdnEOVUop4DC9EuoiuApf4aHb
+         +A9vFOeKs1L8lG1XS6aG5H74ViQFyXCA5D2w0iTlrQOa5ti8EvMhLMAhhR74jwxFn7YZ
+         OIJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725309491; x=1725914291;
+        h=date:to:references:message-id:subject:mime-version:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=i6Ab5RpOP4ezu58DUJsGYy6cSaV6oOV/YNL5xDLDTUY=;
+        b=Bf2mkIQiqp1iatF5GBsJwsjlGSNqGnbuTJC7OKYGpCYa/3KvTV5DRbV6pIkQ4wAHZR
+         EqNZyTgw+qxW7xhvi51SxRMkAt2x4jhk9HU9icbBPAHlAPaS7omAcVB4q2kRbqXZJQvo
+         Z62YcJ+VjHiS+OlcPrPqEYthLADqE2r/YJ3HsXCe9jf821jc0P85Bib7tC7FKukxDTpH
+         hL8zALk2yw0+qeebNK7moaT8A9OyYYUZBvrsgfP0WswmQGAWUwk2GGteT+OnhhlJ5ZGD
+         YMJe+7zeMzsy0N2WRKNZvxCYm3UsfZ8lKFKejO8OPP6WXikxXvpQ2euKjzzXO36eNvsu
+         ah4w==
+X-Gm-Message-State: AOJu0Yw2tMjGjZOv7gCEQaNgQ42yhllqfJwqKNthr1zvWQG34LTvrlmx
+	VSub/uhpCB9zKBSOlRM7lFTyNuiQySJLYOTNhgNXY++yyMDGadXX9R1171+2icH6958pjpO7ZQx
+	M7g==
+X-Received: by 2002:a05:600c:4e06:b0:426:6e86:f82 with SMTP id 5b1f17b1804b1-42c7b5b4c2emr54736495e9.22.1725309490474;
+        Mon, 02 Sep 2024 13:38:10 -0700 (PDT)
+Return-Path: <th@inhomemedia.io>
+Received: from smtpclient.apple (host81-132-1-91.range81-132.btcentralplus.com. [81.132.1.91])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42bb6df0a4dsm147378055e9.12.2024.09.02.13.38.09
+        for <ot@inhomemedia.io>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 02 Sep 2024 13:38:10 -0700 (PDT)
+From: Anthony Hughes <th@inhomemedia.io>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_F880323B-CF1E-467D-BA21-2A26E7FF30A8"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.700.6.1.1\))
+Subject: Fwd: IHM Plan
+Message-Id: <E28E23F1-947D-42DA-9453-83EC30C054CF@inhomemedia.io>
+References: <LO4P265MB6480D6DD02BDDB58D44B1321BF962@LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM>
+To: Owen Thomas <ot@inhomemedia.io>
+Date: Mon, 2 Sep 2024 21:37:59 +0100
+X-Mailer: Apple Mail (2.3731.700.6.1.1)
+
+
+--Apple-Mail=_F880323B-CF1E-467D-BA21-2A26E7FF30A8
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+Draft
+Hi Dave,
+
+It is disappointing that further to my original email of the 22nd July =
+and subsequent discussions we are still not in a position to move =
+forward as proposed, another 2 week delay further impacts the plan we =
+have put in place to move the business forward to  generate value for =
+shareholders from growing the business.
+
+We have continued to keep opportunities warm but that is now =
+increasingly difficult, I look fotward to your update once you have had =
+your discussions.
+
+Best regards
+
+Tony
+
+
+> Begin forwarded message:
+>=20
+> From: David Moulton <david.moulton@erismedia.co.uk>
+> Subject: Re: IHM Plan
+> Date: 29 August 2024 at 18:11:13 BST
+> To: Anthony Hughes <th@inhomemedia.io>
+>=20
+> Hi Tony,
+> =20
+> Thanks for your email and update.
+> =20
+> I have a board meeting with James in the next couple of weeks, where =
+we will discuss and revert.
+> =20
+> Be in touch soonest.
+> =20
+> Best
+> =20
+> Dave
+> =20
+=EF=BF=BC=09
+> David Moulton
+> Managing Director
+> Eris Media Solutions Limited
+=EF=BF=BC=09
+> 0800 069 8228 <tel:08000698228>
+=EF=BF=BC=09
+> 07747 443 561 <tel:07747443561>
+=EF=BF=BC=09
+> 1, Winnall Valley Road, Winchester, SO23 0LD
+=EF=BF=BC=09
+> erismedia.co.uk <https://www.erismedia.co.uk/>
+> This email and any files transmitted with it are confidential and =
+intended solely for the use of the individual or entity to whom they are =
+addressed. If you have received this email in error please notify the =
+system manager. This message contains confidential information and is =
+intended only for the individual named. If you are not the named =
+addressee you should not disseminate, distribute or copy this e-mail. =
+Please notify the sender immediately by e-mail if you have received this =
+e-mail by mistake and delete this e-mail from your system. If you are =
+not the intended recipient you are notified that disclosing, copying, =
+distributing or taking any action in reliance on the contents of this =
+information is strictly prohibited.
+>=20
+> WARNING: Although the company has taken reasonable precautions to =
+ensure no viruses are present in this email, the company cannot accept =
+responsibility for any loss or damage arising from the use of this email =
+or attachments.
+>=20
+> Eris Media Solutions Limited is a company registered in England & =
+Wales
+> Registered number: 010605270. Registered office address: Burlington =
+House, Botleigh Grange Business Park, Hedge End, Southampton, SO30 2AF
+> =20
+> =20
+> From: Anthony Hughes <th@inhomemedia.io <mailto:th@inhomemedia.io>>
+> Date: Tuesday, 20 August 2024 at 08:25
+> To: David Moulton <david.moulton@erismedia.co.uk =
+<mailto:david.moulton@erismedia.co.uk>>
+> Subject: IHM Plan
+>=20
+> Hi Dave,=20
+> =20
+> Further to our discussion please see below in terms of moving forward =
+and numbers attached.
+> =20
+> New proposed Structure
+>=20
+> Dave Moulton & James Tuttiet to retain 12.5% each and 33% of any =
+dividends moving forward.
+>=20
+> Amend shareholders agreement/Articles to move to a majority decision =
+making process.
+>=20
+> Dave Evans and Stephen Gale brought in as shareholders diluting Owen =
+and Tony.
+> =20
+> Owen and Tony to use remaining equity to raise growth funding.
+>=20
+> IHM to approach 4th utility to take ownership of the current screens =
+in non Eris buildings.=20
+> =20
+> The existing screens in Eris buildings are owned by 4th Utility and it =
+is up to Eris to negotiate fees directly with 4th Utility for the =
+screens to remain in situ, or to be removed. IHM can support the removal =
+of the screens if required. We have previously quoted 4th Utility for =
+this.
+>=20
+> Eris outstanding invoices to be written off. Our view is that the =
+agreement of =C2=A350/screen was invalidated by Eris being unable to =
+deliver on the guaranteed portal fees of =C2=A31/apartment per month - =
+plus the end of the 4th Utility arrangement and their unwillingness to =
+pay any additional fees for access to Eris buildings.=20
+> =20
+> IHM paid Eris =C2=A329,160 from October 23- Jan 24 - without being =
+able to recover any costs from 4th Utility during this period. Any =
+further liability will put the business at risk.
+> =20
+> Personal loans with Tony and Owen to be written off. We have been =
+working without taking any money for several months now and believe it =
+is only fair to remove this personal liability as we strive to re-launch =
+the business and attract new investment.
+> =20
+> Update on the business:
+> =20
+> The current status of the company is remarkably encouraging =
+considering the challenges we have faced over the past 6 months. We have =
+a strong brand/website and go-to-market customer SaaS platform and =
+recurring revenue =3D =C2=A3200k+ committed, with the potential of =
+upselling utility providers in the buildings (est =C2=A3500k annually) - =
+see below breakdown and revenue and attached model:
+> =20
+> =20
+> =20
+> IHM pending contracts=20
+> =20
+> Freeholder / MA: Kings Chelsea Estates
+> Site: Kings Chelsea
+> Tenure: Residential
+> Units: 289
+> Annual software revenue: =C2=A35,202
+> Annual advertising revenue: =C2=A36,000
+> Forecast start date: Sept/Oct 2024
+> Status: Approved STC
+> =20
+> Freeholder / MA:  Xenia Estates
+> Sites: Phase 1 - existing 10 sites with screens in-situ
+> Tenure: Residential
+> Units: 1518
+> Annual software revenue: =C2=A327,324
+> Annual advertising revenue: =C2=A340,000=20
+> Forecast start date: Nov 2024-Jan 2025?
+> Status: Agreed in principle
+> =20
+> Freeholder / MA:  Xenia Estates
+> Sites: Phase 2 - new X sites
+> Units: 7,000
+> Annual software revenue: =C2=A3126,000
+> Annual advertising revenue: =C2=A3372,000
+> Forecast start date: Apr-June 2025?
+> Status: Agreed in principle=20
+> =20
+> Freeholder / MA:  JTRE / Rhodium
+> Site: Triptych Bankside
+> Tenure: Residential and Commercial
+> Units: 169 resi and 85,000 sq ft office buildings
+> Annual software revenue: =C2=A310,056
+> Annual advertising revenue: =C2=A315,000=20
+> Forecast start date: Nov 2024
+> Status: Proposal for Triptych sent. Other Rhodium sites identified.
+> =20
+> Freeholder / MA: Various (via G-Network)
+> Sites: Various X sites
+> Tenure: Residential
+> Units:
+> Annual software revenue:=20
+> Annual advertising (agency/direct) revenue:=20
+> Annual ISP ad revenue:
+> Forecast start date:=20
+> Status: Agreed in principle with G-Network, subject to MA approval
+> =20
+> =20
+> I hope you can see the value in the business we have built to date. We =
+really want to avoid a hiatus and the above plan protects the =C2=A3250k =
+investment made to date.
+> =20
+> =20
+> Best regards
+> =20
+> Tony
+> =20
+> =20
+> =20
+> =20
+> =20
+> =20
+> =20
+> =20
+> =20
+> =20
+>=20
+>=20
+> Disclaimer
+>=20
+> The information contained in this communication from the sender is =
+confidential. It is intended solely for use by the recipient and others =
+authorized to receive it. If you are not the recipient, you are hereby =
+notified that any disclosure, copying, distribution or taking action in =
+relation of the contents of this information is strictly prohibited and =
+may be unlawful.
+>=20
+> This email has been scanned for viruses and malware, and may have been =
+automatically archived by Mimecast, a leader in email security and cyber =
+resilience. Mimecast integrates email defenses with brand protection, =
+security awareness training, web security, compliance and other =
+essential capabilities. Mimecast helps protect large and small =
+organizations from malicious activity, human error and technology =
+failure; and to lead the movement toward building a more resilient =
+world. To find out more, visit our website.
+>=20
+
+
+--Apple-Mail=_F880323B-CF1E-467D-BA21-2A26E7FF30A8
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="Apple-Mail=_5C8AEEB1-8881-4461-9FC9-690118EBB3FA"
+
+
+--Apple-Mail=_5C8AEEB1-8881-4461-9FC9-690118EBB3FA
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;">Draft<div>Hi =
+Dave,</div><div><br></div><div>It is disappointing that further to my =
+original email of the 22nd July and subsequent discussions we are still =
+not in a position to move forward as proposed, another 2 week delay =
+further impacts the plan we have put in place to move the business =
+forward to &nbsp;generate value for shareholders from growing the =
+business.</div><div><br></div><div>We have continued to keep =
+opportunities warm but that is now increasingly difficult, I look =
+fotward to your update once you have had your =
+discussions.</div><div><br></div><div>Best =
+regards</div><div><br></div><div>Tony</div><div><br><div><br><blockquote =
+type=3D"cite"><div>Begin forwarded message:</div><br =
+class=3D"Apple-interchange-newline"><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px;"><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif; color:rgba(0, 0, 0, 1.0);"><b>From: </b></span><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif;">David Moulton =
+&lt;david.moulton@erismedia.co.uk&gt;<br></span></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px;"><span style=3D"font-family: -webkit-system-font, =
+Helvetica Neue, Helvetica, sans-serif; color:rgba(0, 0, 0, =
+1.0);"><b>Subject: </b></span><span style=3D"font-family: =
+-webkit-system-font, Helvetica Neue, Helvetica, sans-serif;"><b>Re: IHM =
+Plan</b><br></span></div><div style=3D"margin-top: 0px; margin-right: =
+0px; margin-bottom: 0px; margin-left: 0px;"><span style=3D"font-family: =
+-webkit-system-font, Helvetica Neue, Helvetica, sans-serif; =
+color:rgba(0, 0, 0, 1.0);"><b>Date: </b></span><span style=3D"font-family:=
+ -webkit-system-font, Helvetica Neue, Helvetica, sans-serif;">29 August =
+2024 at 18:11:13 BST<br></span></div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px;"><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif; color:rgba(0, 0, 0, 1.0);"><b>To: </b></span><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif;">Anthony Hughes =
+&lt;th@inhomemedia.io&gt;<br></span></div><br><div><meta =
+charset=3D"UTF-8"><div class=3D"WordSection1" style=3D"page: =
+WordSection1; caret-color: rgb(0, 0, 0); font-family: Helvetica; =
+font-size: 12px; font-style: normal; font-variant-caps: normal; =
+font-weight: 400; letter-spacing: normal; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
+none;"><div style=3D"margin: 0cm; font-size: 10pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: 11pt;">Hi =
+Tony,<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: 10pt; =
+font-family: Aptos, sans-serif;"><span style=3D"font-size: =
+11pt;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 11pt;">Thanks for your email and =
+update.<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+10pt; font-family: Aptos, sans-serif;"><span style=3D"font-size: =
+11pt;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 11pt;">I have a board meeting with James in the next =
+couple of weeks, where we will discuss and =
+revert.<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+10pt; font-family: Aptos, sans-serif;"><span style=3D"font-size: =
+11pt;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 11pt;">Be in touch =
+soonest.<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+10pt; font-family: Aptos, sans-serif;"><span style=3D"font-size: =
+11pt;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 11pt;">Best<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 10pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: =
+11pt;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 11pt;">Dave<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 10pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: =
+11pt;"><o:p>&nbsp;</o:p></span></div><div><table class=3D"MsoNormalTable" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse:=
+ collapse;"><tbody><tr><td style=3D"padding: 0cm 0.75pt 0cm 0cm;"><table =
+class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0"><tbody><tr><td valign=3D"top" style=3D"padding: 0cm =
+3.75pt 0cm 0cm;"><div align=3D"center"><table class=3D"MsoNormalTable" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse:=
+ collapse;"><tbody><tr><td style=3D"padding: 0cm 0.75pt 0cm 0cm;"><div =
+style=3D"margin: 0.75pt; font-size: 10pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: 12pt;"><img width=3D"98" =
+height=3D"118" id=3D"Picture_x0020_5" alt=3D"image001.png" style=3D"width:=
+ 1.302in; height: 1.2291in;" =
+src=3D"cid:image001.png@01DAFA3E.BCE4AB70"><o:p></o:p></span></div></td></=
+tr></tbody></table></div></td><td valign=3D"top" style=3D"padding: 0cm =
+4.5pt 0cm 0.75pt;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse: =
+collapse;"><tbody><tr><td nowrap=3D"" style=3D"padding: 0cm 0.75pt 0cm =
+0cm;"><div style=3D"margin: 0.75pt; font-size: 10pt; font-family: Aptos, =
+sans-serif; line-height: 13.5pt;"><b><span style=3D"font-family: Arial, =
+sans-serif;">David Moulton</span></b><span style=3D"font-size: =
+12pt;"><o:p></o:p></span></div><div style=3D"margin: 0.75pt; font-size: =
+10pt; font-family: Aptos, sans-serif; line-height: 14.25pt;"><span =
+style=3D"font-family: Arial, sans-serif;">Managing Director</span><span =
+style=3D"font-size: 12pt;"><o:p></o:p></span></div><div style=3D"margin: =
+0.75pt; font-size: 10pt; font-family: Aptos, sans-serif; line-height: =
+14.25pt;"><span style=3D"font-family: Arial, sans-serif;">Eris Media =
+Solutions Limited</span><span style=3D"font-size: =
+12pt;"><o:p></o:p></span></div></td></tr></tbody></table></td><td =
+style=3D"border-width: medium 1pt medium medium; border-style: none =
+solid none none; border-color: currentcolor windowtext currentcolor =
+currentcolor; border-image: none; padding: 0.75pt 0cm 0cm;"></td><td =
+valign=3D"top" style=3D"padding: 0cm 0.75pt 0cm 4.5pt;"><table =
+class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+style=3D"border-collapse: collapse;"><tbody><tr><td style=3D"padding: =
+0cm 0.75pt 0cm 0cm;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse: =
+collapse;"><tbody><tr><td style=3D"padding: 0.75pt 3.75pt 0.75pt =
+0cm;"><div style=3D"margin: 0.75pt; font-size: 10pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: 12pt;"><img height=3D"20" =
+id=3D"Picture_x0020_4" alt=3D"image002.png" style=3D"width: 0.2083in; =
+height: 0.2083in;" =
+src=3D"cid:image002.png@01DAFA3E.BCE4AB70"><o:p></o:p></span></div></td><t=
+d nowrap=3D"" style=3D"padding: 0.75pt 0cm;"><div style=3D"margin: =
+0.75pt; font-size: 10pt; font-family: Aptos, sans-serif; line-height: =
+13.5pt;"><span style=3D"font-family: Arial, sans-serif; color: rgb(0, 0, =
+1);"><a href=3D"tel:08000698228" target=3D"_blank" =
+title=3D"tel:08000698228"><span style=3D"">0800 069 =
+8228</span></a></span><span style=3D"font-size: =
+12pt;"><o:p></o:p></span></div></td></tr><tr><td style=3D"padding: =
+0.75pt 3.75pt 0.75pt 0cm;"><div style=3D"margin: 0.75pt; font-size: =
+10pt; font-family: Aptos, sans-serif;"><span style=3D"font-size: =
+12pt;"><img border=3D"0" height=3D"20" id=3D"Picture_x0020_3" =
+alt=3D"image003.png" style=3D"width: 0.2083in; height: 0.2083in;" =
+src=3D"cid:image003.png@01DAFA3E.BCE4AB70"><o:p></o:p></span></div></td><t=
+d nowrap=3D"" style=3D"padding: 0.75pt 0cm;"><div style=3D"margin: =
+0.75pt; font-size: 10pt; font-family: Aptos, sans-serif; line-height: =
+13.5pt;"><span style=3D"font-family: Arial, sans-serif; color: rgb(0, 0, =
+1);"><a href=3D"tel:07747443561" target=3D"_blank" =
+title=3D"tel:07747443561"><span style=3D"">07747 443 =
+561</span></a></span><span style=3D"font-size: =
+12pt;"><o:p></o:p></span></div></td></tr><tr><td style=3D"padding: =
+0.75pt 3.75pt 0.75pt 0cm;"><div style=3D"margin: 0.75pt; font-size: =
+10pt; font-family: Aptos, sans-serif;"><span style=3D"font-size: =
+12pt;"><img border=3D"0" height=3D"20" id=3D"Picture_x0020_2" =
+alt=3D"image004.png" style=3D"width: 0.2083in; height: 0.2083in;" =
+src=3D"cid:image004.png@01DAFA3E.BCE4AB70"><o:p></o:p></span></div></td><t=
+d nowrap=3D"" style=3D"padding: 0.75pt 0cm;"><div style=3D"margin: =
+0.75pt; font-size: 10pt; font-family: Aptos, sans-serif; line-height: =
+13.5pt;"><span style=3D"font-family: Arial, sans-serif;">1, Winnall =
+Valley Road, Winchester, SO23 0LD</span><span style=3D"font-size: =
+12pt;"><o:p></o:p></span></div></td></tr><tr><td style=3D"padding: =
+0.75pt 3.75pt 0.75pt 0cm;"><div style=3D"margin: 0.75pt; font-size: =
+10pt; font-family: Aptos, sans-serif;"><span style=3D"font-size: =
+12pt;"><img border=3D"0" height=3D"20" id=3D"Picture_x0020_1" =
+alt=3D"image005.png" style=3D"width: 0.2083in; height: 0.2083in;" =
+src=3D"cid:image005.png@01DAFA3E.BCE4AB70"><o:p></o:p></span></div></td><t=
+d nowrap=3D"" style=3D"padding: 0.75pt 0cm;"><div style=3D"margin: =
+0.75pt; font-size: 10pt; font-family: Aptos, sans-serif; line-height: =
+13.5pt;"><b><span style=3D"font-family: Arial, sans-serif; color: =
+rgb(63, 41, 236);"><a href=3D"https://www.erismedia.co.uk/" =
+target=3D"_blank" title=3D"https://www.erismedia.co.uk/"><span =
+style=3D"color: rgb(63, 41, =
+237);">erismedia.co.uk</span></a></span></b><span style=3D"font-size: =
+12pt;"><o:p></o:p></span></div></td></tr></tbody></table></td></tr></tbody=
+></table></td></tr><tr><td colspan=3D"4" style=3D"border-width: medium =
+medium 1pt; border-style: none none solid; border-color: currentcolor =
+currentcolor windowtext; border-image: none; padding: 0cm 0.75pt 3.75pt =
+0cm;"></td></tr><tr><td style=3D"padding: 0cm;"></td><td style=3D"padding:=
+ 0cm;"></td><td style=3D"padding: 0cm;"></td><td style=3D"padding: =
+0cm;"></td></tr></tbody></table></td></tr><tr><td style=3D"padding: 0cm =
+0.75pt 0cm 0cm;"><table class=3D"MsoNormalTable" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" style=3D"max-width: 450pt; =
+border-collapse: collapse;"><tbody><tr><td style=3D"padding: 4.5pt =
+0.75pt 0cm 0cm;"><div style=3D"margin: 0.75pt; font-size: 10pt; =
+font-family: Aptos, sans-serif; line-height: 10.5pt;"><span =
+style=3D"font-size: 7.5pt; font-family: Arial, sans-serif; color: =
+rgb(136, 136, 136);">This email and any files transmitted with it are =
+confidential and intended solely for the use of the individual or entity =
+to whom they are addressed. If you have received this email in error =
+please notify the system manager. This message contains confidential =
+information and is intended only for the individual named. If you are =
+not the named addressee you should not disseminate, distribute or copy =
+this e-mail. Please notify the sender immediately by e-mail if you have =
+received this e-mail by mistake and delete this e-mail from your system. =
+If you are not the intended recipient you are notified that disclosing, =
+copying, distributing or taking any action in reliance on the contents =
+of this information is strictly prohibited.<br><br>WARNING: Although the =
+company has taken reasonable precautions to ensure no viruses are =
+present in this email, the company cannot accept responsibility for any =
+loss or damage arising from the use of this email or =
+attachments.<br><br>Eris Media Solutions Limited is a company registered =
+in England &amp; Wales<br>Registered number: 010605270. Registered =
+office address: Burlington House, Botleigh Grange Business Park, Hedge =
+End, Southampton, SO30 2AF</span><span style=3D"font-size: =
+12pt;"><o:p></o:p></span></div></td></tr></tbody></table></td></tr></tbody=
+></table></div><div style=3D"margin: 0cm; font-size: 10pt; font-family: =
+Aptos, sans-serif;"><span style=3D"font-size: =
+11pt;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 11pt;"><o:p>&nbsp;</o:p></span></div><div =
+id=3D"mail-editor-reference-message-container"><div><div><div =
+style=3D"border-width: 1pt medium medium; border-style: solid none none; =
+border-color: rgb(181, 196, 223) currentcolor currentcolor; =
+border-image: none; padding: 3pt 0cm 0cm;"><p class=3D"MsoNormal" =
+style=3D"margin: 0cm 0cm 12pt; font-size: 10pt; font-family: Aptos, =
+sans-serif;"><b><span style=3D"font-size: 12pt;">From:<span =
+class=3D"Apple-converted-space">&nbsp;</span></span></b><span =
+style=3D"font-size: 12pt;">Anthony Hughes &lt;<a =
+href=3D"mailto:th@inhomemedia.io">th@inhomemedia.io</a>&gt;<br><b>Date:<sp=
+an class=3D"Apple-converted-space">&nbsp;</span></b>Tuesday, 20 August =
+2024 at 08:25<br><b>To:<span =
+class=3D"Apple-converted-space">&nbsp;</span></b>David Moulton &lt;<a =
+href=3D"mailto:david.moulton@erismedia.co.uk">david.moulton@erismedia.co.u=
+k</a>&gt;<br><b>Subject:<span =
+class=3D"Apple-converted-space">&nbsp;</span></b>IHM =
+Plan<o:p></o:p></span></p></div><div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 12pt;">Hi Dave,<span =
+class=3D"Apple-converted-space">&nbsp;</span><o:p></o:p></span></div><div>=
+<div style=3D"margin: 0cm; font-size: 10pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: =
+12pt;"><o:p>&nbsp;</o:p></span></div></div><div><div style=3D"margin: =
+0cm; font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 12pt;">Further to our discussion please see below in =
+terms of moving forward and numbers =
+attached.<o:p></o:p></span></div></div><div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: 12pt;"><o:p>&nbsp;</o:p></span></div></div><div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica Neue&quot;;">New =
+proposed Structure</span></b><span style=3D"font-size: 10pt; =
+font-family: &quot;Helvetica Neue&quot;;"><br><br>Dave Moulton &amp; =
+James Tuttiet to retain 12.5% each and 33% of any dividends moving =
+forward.<br><br>Amend shareholders agreement/Articles to move to a =
+majority decision making process.<br><br>Dave Evans and Stephen Gale =
+brought in as shareholders diluting Owen and =
+Tony.<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Owen and Tony to use remaining equity to raise growth =
+funding.<br><br>IHM to approach 4th utility to take ownership of the =
+current screens in non Eris buildings.&nbsp;<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">&nbsp;<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">The existing screens in Eris buildings are owned by 4th =
+Utility and it is up to Eris to negotiate fees directly with 4th Utility =
+for the screens to remain in situ, or to be removed. IHM can support the =
+removal of the screens if required. We have previously quoted 4th =
+Utility<span class=3D"xgmail-apple-converted-space">&nbsp;for =
+this.</span><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><br>Eris outstanding invoices to be written off. Our view =
+is that the agreement of =C2=A350/screen was invalidated by Eris being =
+unable to deliver on the guaranteed portal fees of =C2=A31/apartment per =
+month - plus the end of the 4th Utility arrangement and their =
+unwillingness to pay any additional fees for access to Eris =
+buildings.&nbsp;<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span class=3D"xgmail-apple-converted-space"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica Neue&quot;;">IHM =
+paid Eris =C2=A329,160 from October 23- Jan 24 - without being able to =
+recover any costs from 4th Utility during this period. Any further =
+liability will put the business at risk.</span></span><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Personal loans with Tony and Owen to be written off. We =
+have been working without taking any money for several months&nbsp;now =
+and believe&nbsp;it is only fair to remove this personal =
+liability&nbsp;as we strive to re-launch the business and attract new =
+investment.<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">&nbsp;<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Update on the business:</span></b><span style=3D"font-size: =
+10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">The current status of the company is remarkably encouraging =
+considering the&nbsp;challenges we have faced&nbsp;over the past 6 =
+months. We have a strong brand/website and go-to-market customer SaaS =
+platform and recurring revenue =3D =C2=A3200k+ committed, with the =
+potential of upselling utility providers in the buildings (est =C2=A3500k =
+annually) - see below breakdown and revenue and attached =
+model:<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: normal; =
+min-height: 15px;"><span style=3D"font-size: 10pt; font-family: =
+&quot;Helvetica Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal; min-height: =
+15px;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal; min-height: 15px;"><span style=3D"font-size: 10pt; font-family: =
+&quot;Helvetica Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+class=3D"xgmail-s1"><b><u><span style=3D"font-size: 10pt; font-family: =
+&quot;Helvetica Neue&quot;;">IHM pending =
+contracts&nbsp;</span></u></b></span><span style=3D"font-size: 10pt; =
+font-family: &quot;Helvetica Neue&quot;;"><o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal; min-height: =
+15px;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Freeholder / MA: Kings Chelsea Estates</span></b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Site: Kings Chelsea</span></b><span style=3D"font-size: =
+10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Tenure: Residential<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Units: 289<o:p></o:p></span></div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual software revenue: =
+=C2=A35,202<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual advertising revenue: =
+=C2=A36,000<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Forecast start date: Sept/Oct =
+2024<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Status: Approved STC<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal; min-height: =
+15px;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Freeholder / MA:&nbsp; Xenia Estates</span></b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Sites: Phase 1 - existing 10 sites with screens =
+in-situ</span></b><span style=3D"font-size: 10pt; font-family: =
+&quot;Helvetica Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin:=
+ 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Tenure: Residential<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Units: 1518<o:p></o:p></span></div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual software revenue: =
+=C2=A327,324<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual advertising revenue: =
+=C2=A340,000&nbsp;<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Forecast start date: Nov 2024-Jan =
+2025?<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Status: Agreed in principle<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal; min-height: =
+15px;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Freeholder / MA:&nbsp; Xenia Estates</span></b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Sites: Phase 2 - new X sites</span></b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Units: 7,000<o:p></o:p></span></div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual software revenue: =
+=C2=A3126,000<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual advertising =
+revenue:&nbsp;=C2=A3372,000<o:p></o:p></span></div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Forecast start date: Apr-June =
+2025?<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: 12pt; =
+font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Status: Agreed in =
+principle&nbsp;<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal; min-height: 15px;"><span style=3D"font-size: 10pt; font-family: =
+&quot;Helvetica Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Freeholder / MA:&nbsp; JTRE / Rhodium</span></b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Site: Triptych Bankside</span></b><span style=3D"font-size: =
+10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Tenure: Residential and =
+Commercial<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Units:&nbsp;169 resi and 85,000 sq ft office =
+buildings<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual software revenue: =
+=C2=A310,056<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual advertising revenue: =
+=C2=A315,000&nbsp;<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Forecast start date: Nov 2024<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Status: Proposal for Triptych sent. Other Rhodium sites =
+identified.<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: normal; =
+min-height: 15px;"><span style=3D"font-size: 10pt; font-family: =
+&quot;Helvetica Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Freeholder / MA: Various (via G-Network)</span></b><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><b><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Sites: Various X sites</span></b><span style=3D"font-size: =
+10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Tenure: Residential<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Units:<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual software revenue:&nbsp;<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual advertising (agency/direct) =
+revenue:&nbsp;<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Annual ISP ad revenue:<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Forecast start date:&nbsp;<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Status: Agreed in principle with G-Network, subject to MA =
+approval<o:p></o:p></span></div><div style=3D"margin: 0cm; font-size: =
+12pt; font-family: Aptos, sans-serif; font-variant-numeric: normal; =
+font-variant-east-asian: normal; font-variant-alternates: normal; =
+font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">I hope you can see the value in the business we have built =
+to date. We really want to avoid a hiatus and the above plan protects =
+the =C2=A3250k investment made to date.<o:p></o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Best regards<o:p></o:p></span></div><div style=3D"margin: =
+0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;">Tony<o:p></o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div></div></div><div><div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, =
+sans-serif;"><span style=3D"font-size: 10pt; font-family: =
+&quot;Helvetica Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div =
+style=3D"margin: 0cm; font-size: 12pt; font-family: Aptos, sans-serif; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+font-variant-alternates: normal; font-kerning: auto; =
+font-feature-settings: normal; font-stretch: normal;"><span =
+style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 12pt; font-family: Aptos, sans-serif; font-variant-numeric: =
+normal; font-variant-east-asian: normal; font-variant-alternates: =
+normal; font-kerning: auto; font-feature-settings: normal; font-stretch: =
+normal;"><span style=3D"font-size: 10pt; font-family: &quot;Helvetica =
+Neue&quot;;"><o:p>&nbsp;</o:p></span></div><div style=3D"margin: 0cm; =
+font-size: 10pt; font-family: Aptos, sans-serif;"><span =
+style=3D"font-size: =
+12pt;"><o:p>&nbsp;</o:p></span></div></div></div></div></div></div></div><=
+br style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; =
+font-size: 12px; font-style: normal; font-variant-caps: normal; =
+font-weight: 400; letter-spacing: normal; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
+none;"><br style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; =
+font-size: 12px; font-style: normal; font-variant-caps: normal; =
+font-weight: 400; letter-spacing: normal; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
+none;"><p style=3D"font-style: normal; font-variant-caps: normal; =
+font-weight: 400; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+text-decoration: none; font-family: Verdana; font-size: 10pt; color: =
+rgb(102, 102, 102);"><b>Disclaimer</b></p><p style=3D"font-style: =
+normal; font-variant-caps: normal; font-weight: 400; letter-spacing: =
+normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-stroke-width: 0px; text-decoration: none; font-family: =
+Verdana; font-size: 8pt; color: rgb(102, 102, 102);">The information =
+contained in this communication from the sender is confidential. It is =
+intended solely for use by the recipient and others authorized to =
+receive it. If you are not the recipient, you are hereby notified that =
+any disclosure, copying, distribution or taking action in relation of =
+the contents of this information is strictly prohibited and may be =
+unlawful.<br><br>This email has been scanned for viruses and malware, =
+and may have been automatically archived by Mimecast, a leader in email =
+security and cyber resilience. Mimecast integrates email defenses with =
+brand protection, security awareness training, web security, compliance =
+and other essential capabilities. Mimecast helps protect large and small =
+organizations from malicious activity, human error and technology =
+failure; and to lead the movement toward building a more resilient =
+world. To find out more, visit our =
+website.</p></div></blockquote></div><br></div></body></html>=
+
+--Apple-Mail=_5C8AEEB1-8881-4461-9FC9-690118EBB3FA
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename=image001.png
+Content-Type: image/png;
+	x-unix-mode=0644;
+	name="image001.png"
+Content-Id: <image001.png@01DAFA3E.BCE4AB70>
+
+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
+AA==
+--Apple-Mail=_5C8AEEB1-8881-4461-9FC9-690118EBB3FA
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename=image002.png
+Content-Type: image/png;
+	x-unix-mode=0644;
+	name="image002.png"
+Content-Id: <image002.png@01DAFA3E.BCE4AB70>
+
+iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAEgElEQVR4AeXBPW7j6AEA0BeGfb4m
+QLplu1WYbjpTJzB9gqVOYLtKOlknsH0CaU5gzQnMOcGw25bbpQnAvUEGoIHPHOtfsixg3vvLxa//
+8zNJ/GQSP5nU+8uRI8M/ESz3FR1qNN5J6n2UuESJYDuFoQW+YIHOkaSOJ0OFawSHK1FihjmmaB0o
+dbiACW68nwoV5piitafUYSrcIziNChWmuLOH1H4CZih9jAkuMUZjB4nd5fiG0sfK8YzSDhK7yfGM
+zHkIeEJlS4nt5XhGcH5mqGwhsZ0czwjO1wyVDRKbBTwjOK3O7mbIrZHa7AnB6cxxiw4BBS6Qo7DZ
+E/6FzhKp9W5QOJ0aY1GHBRaiApeoELyVYYYrSyRWyzBxWp9FmeVq3GKEznIlCkv8Nfv7v61wj09O
+p8VYL+B3/Aef8KteK/ov/oFPlivw6Aep5TJUTuuzqETQK1FiojfGXO9Pq2WoMPdKYrmJ03sQTayW
+2d7EDxJvBVROa45Or0DmODKUXkm8VTm9R9G19TrRLza79Erird+cVo1GL0NpvUaU2az0SmIoIHda
+X0WlzVpRbrOA0ovEUOH0LkQPuLVai1YvQ7Cd3IvEUO70ClSiB1yh81YtKmzvwovE0IWPMcOdaIER
+GkNfRBe2l3uRGAo+zgRPCHoNxqIOC1Fpe8GLxFDuY5UIomvRQlQi2E3uu8R5eUCrl6MSTUW/2V3w
+XeJ8NJiK7kVztHoZSntKnIcOY3R6NyhEU9HEARLvp0WNznodRmj0ckxEU7R6GSoHSA11CA5T4xEL
+vYB7VN7qMEKjFzBD0GtwJ5rZX+O71FCDwu46LDBFa6jDLXLkogZjNKIn5HodxqIbFPbX+S411NpN
+i0fM0RkKCGjR4QrfEPCAKTq9gBkK0RiNXoaJ/TVepIb+sL05xt7KMEGpN0KDFiME1KIMT8hFYyz0
+Ap4Q7K/1IjVUY2KzFmNDBa5RGpphhA6NoRIzBNEYc9E9cof56kVqqEaHYL1WlOEZmeVyzHAlynCP
+UtThFnPRDJXD1V6k3lqgsl4QBWTWK3GPKW4wMdTiCo1ohsrhWjRepN76gsp6OQI6NLZzgwrB0AOm
+6EQzVI5j4ZXUWwu0yKyXo9arUdgsiGpMUYsCnpE7nkevpJb7jIn1CtR6X1HYzgKPqA2VmCE4ngVa
+r6SWe8A1gtUuRDUmVmvwGQu0hjLco3R8j36QWq7DIyZWK0QNalGDP1GjQeetgBtcIzi+OWo/SK12
+h0vkVsvRoMPIdnJco0TwPjpMLZFab4xvVpvgymY5Slwi9/6maC2RWq/BFBPLlXjGIzq9gBx/Q47C
+aS3wYIXUZnf4BZXlChTOQ4OxNRLbuUXjvHW4QmeNxHY6jNA4Tx1GaG2Q2F6HEWrnpcEIjS0kdtNh
+hAfnocYIjS2l9nOLr5gh+BhT3NlRan8L1LhH5XRqjNHaQ+owHcZ4xD0K76fGFLUDpI6jwQgZrlEh
+OI45PqN2BKnjanGLWxS4RI7C9ho0+IIanSNKvZ8atShHQIZM1KLVq72z1Ok0zsD/AXcdH9rGYMYl
+AAAAAElFTkSuQmCCAAA=
+--Apple-Mail=_5C8AEEB1-8881-4461-9FC9-690118EBB3FA
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename=image003.png
+Content-Type: image/png;
+	x-unix-mode=0644;
+	name="image003.png"
+Content-Id: <image003.png@01DAFA3E.BCE4AB70>
+
+iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAC9ElEQVR4AeXB0XHaZgAA4K//6b3/
+BuW1T9EGhgmsTlB5goQJMBPEngAygckEyBNE3UAZoHfaoPWduTOKwQiQbA6+77erP/91SYILE1yY
+RP9SpBjgE6LNHlGjQKkniX5kuEaGqJ2hpgW+Y4FaRxLdGSDHZ0THy5BhhjmmqBwpcbyICb7oT44c
+c0xROVDiODm+InofOXJMcesAicNEzJD5GBNc4walPQT7S/EDmY+VYonMHoL9pFhi4DREPCDXUtBe
+iiWi0zNDroWgnRRLRKdrhtwOid0ilojaqTDGwvFSzJBqZ4YSpS2C3R4QtVNjhIVulBih0t4Doi2C
+t33BUHsLVLpVY6q9AWa2SGw3wMR+fnqR4ofDjXHnWWU/GYYo/CLYboLocNFxouPMbJDYbIBcdwo8
+2u0TMt0YIMfcmsRmE926QaWd/3Rngrk1wWsRuW5VPsYAmTXBa7nzcm1N8NrfzktmTdAUkTovEZmV
+oGnoPKVWgqbUebqyEjRdOU+plaApOk/RStCUOl+pJ8HliJ4EFya4MMGFCZpq56v0JGgqna/ak6Cp
+cp5KK0HTT+epshI0FfoRfaxHK4mmAjWibs3wj91+14/CSuK1BXLdypD5GBVKK4nXviPXrxEKpFgi
+6s/CmuC1BSr9maPwrMRYv+6tCTb7pj+197NAZU2w2R1q/cgx9GyAif7c+0Visxr3mOhexBI1ov7M
+UfhFYrtbXCN1mBJTh1s4XI2pDRJvu8EP7V15UeNWN67tZ4rKBsHbSky1N0SuWyly7S1wZ4vEbrf4
+A7l2ZrjCIyqHi7hCjqidEjfekGhnjBSpdnLk3leNv1B7Q9BOjRFKp6nGCJUdgvZqjFA4LSVGKLUQ
+7KfGCHdOQ4ERSi0lDjPGI2aIPsYUt/aUONwCBb4i934K3KBygMRxatzgHl8x1J8CUxSOkOhGiREG
++IwcUTfm+IZCBxLdqjDGGENcI8VQeyVKfEeBWocS/SlQeJEiYoCBFxUqzwo9S7yf0gn4H0GApiwA
+OdejAAAAAElFTkSuQmCCAAA=
+--Apple-Mail=_5C8AEEB1-8881-4461-9FC9-690118EBB3FA
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename=image004.png
+Content-Type: image/png;
+	x-unix-mode=0644;
+	name="image004.png"
+Content-Id: <image004.png@01DAFA3E.BCE4AB70>
+
+iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAEk0lEQVR4AeXBIXMb6QEA0NeNwMGP
+ZOZYF17RbVmKLLMWWWFXdCt2LBYKlAWLbKNCKahz6GTUFnnzC7JhhRvWgs4szLHLjDTzeb2yrV2t
+E8/kvd8d/eH/viaJr0ziKzPy+DJkSPE9gt3eokaB0iMZeRwTnGCCYD9jTWtcYY3aQEaGkyLHKwSH
+m2CCJVZYoHKgkcMFzHHq8eTIscIClZ5GDpPjHMHnkSPHAmd6GOknYImJL2OOE0xR6iDRXYZ3mPiy
+MlxjooNENxmukXoaAn5Bbk+J/WW4RvD0LJHbQ2I/Ga4RPF1L5B4w8rCAawT91VjjCiUqUUCGE0yQ
+6m+JEqU7PEufv/aAf+I7/dT4G/6Kn/Ef1Jo+osK/cYkPyBD082e8wUc7PEufv3aPU/yknwJ/wr/w
+0f5KvME3eKG7gO/wsx1G7pZirp8VpppS5DhChmCjQIk3KG3UmOE9lrqbYIzCLc/S56/d4RwvdLfC
+VBTwd6wwRopvRCle4CeM8R7/tVHiAya6G+PSLc/S56/tkGKluxJ/EWV4hxf2k+IH/A+ljRIpMt0E
+fEDphsRuc/1MRRmuEXQTsEQumqHS3dwtibaAXHcrlDYCfkGwW40CtbudI7VRY6G7FBM3jLTl+lmI
+TpFqKzFDIcowx0RTwBLHNlY4R9DNCda2Em0/6q5EJXqlbYU/otBU4iUutI2Rita6m7gh0RSQ6a4Q
+TRA0VZi53wyFtlx0pbuAia1E01g/70WZtkvUHrbQdiSq9JPZSjRl+qlEv9dW2k/hfqV+jmwlmo4c
+LtVW+rIyW4mm4HCltsx+gscRbCWaMv1kog/afrSfibZaNNZf5pPEML4XrbXlyNwv4FzblSjTX/BJ
+YhgTUYVC2zUyu6W4RtBUYy06caCRYQTkWNlYYKwp4B1WuEJt4wQ5grZL1DZSjB1oZDhzrGwUWGOi
+LUfuYRXORHMDSDTV+kuRi2ao9TcVZcgdpvRJoql0mHMEGxUu9bNGITp3uNoniabKYQLmojOUuqkx
+E+UYO0xpK9H0weFOkYlmulmgshFw7nCVrURTYRhLUYEL+ylxIZojONxbW4mmArXDZTgVLVB72FQ0
+xqlhFLYSbWvDmCO1UWPqfguUoqVhVChtJdquDCNgKVpjbbcKF6IzpIaxdkOibY3KMMaYiGaotU1R
+20gxN5xLNyR2e2M4SwQbFRaa1ihES8NZo3JDYrcL1IYRMBddoLRRYyo6xdhwLt2S2K3GpeGcYiya
+2pihthEwN5wVCrck7naG0nCWohIvsRItEQyjxsIOiftNDSfFmWgtGmNiOAtUdkjcr8TCcObINAUs
+DWeNC3d4lj5/7QEFUmSG8QO+xa/I8Q98axglXuKjO4zsZ4YMmcMFnOLUsGq8RO0eif3UOEbpaapx
+jMoDEvurcYzC01LiGKU9JLqpcYwLT0OBY5T2NNLPDG+xRPBlLHCmo5H+1ihwjtznU2CKSg8jh6kx
+xSXOMfZ4CixQOMDIMEocI8Ur5AiGscIbFAYwMqwKM8wwxgkyjO2vRIkrFKgNaOTxFChEGQJSpKIK
+lY3CIxv5fEpPwG+pBx9nHH3wXwAAAABJRU5ErkJgggAA
+--Apple-Mail=_5C8AEEB1-8881-4461-9FC9-690118EBB3FA
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename=image005.png
+Content-Type: image/png;
+	x-unix-mode=0644;
+	name="image005.png"
+Content-Id: <image005.png@01DAFA3E.BCE4AB70>
+
+iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAEWElEQVR4AeXBMXLb2AEA0LdYFCl/
+s3WwZSojJzB4AnFPEKBLJ7HKpKJ4AsknAHwC0912hMtURm6AHCAzSJcynqFmvmhRJCgStjJ+76e3
+f/q3H0niB5P4waSmlyNHhjcI9vuEAS06E0lNY44rzBGMU9i1xkesMbiQ1OVkKHGN4HxzzFGjwQq9
+M6XOF7DEjemUKNFghd4Lpc5T4g7Bt1GixAq3XiD1MgE15r6PJa5QoXOCxOlyfMbc95Vjg7kTJE6T
+Y4PM6xDwAaWREuPl2CB4fWqURkiMk2OD4PWqUToicVzABsHrVyN3QOq4Dwi+jQEt/mnrDXJkxvuA
+P2OwR+qwGxSm12GFtf0KLFE4LkON3+yRel6GpendY+GwFi1usXTcHAVaX0k8b4lgWhUWxrtFZZza
+Hqn9MpSmVaERBdzgGsHWgDUWGGw1uMLcYRlKNB5J7Lc0rQqNKGCDJYIooMRnZKLKOEtfSTwVUJpO
+hUYUsEHueRlq0YDGcRnmHkk8VZpOhUYUsEHuuAKF6KNxrjySeOovprFCIwrYIDdeIRqMM/dIYldA
+7vJa3IoCNsi9XGecgLkHiV2FaaxEARvkzpMbL/cgsSt3eR1a0R1yWw16461FmfHeepDa9dbltaKA
+0tY9FrZqlA5boxNdGS/3ILEruIxe9B9RLnonqtB4XodKlGNuvOBBYlfufBV+ddw1gqhC66kOMwyi
+2ulyXyQuq0Jjq/NUL7rBBkFU2dVhhkFUI3e64IvE5VRoRL2tN6IevSjHB1GPta0BMwyiGqUzJC6j
+QiMKyG3NEUSVXQVy0SdbAYOoRulMifPdoxEFbJCJbkQtKgyiuagTZbZqlC4gsWtwmhYLUcAGuV1L
+5KIGv6J32Bw1SufrfJHY1TnNShSwQW6/DXK7MluD/e5QuozBF4ldvfE6tKI75J4XsMGNrTvRWpS7
+vM6D1K5/Ge+jKKB0XMAdlgi27tGLrlxe70FiV2u8XpQ7TbDVYSUqULi8Tx4kdrUYjNM7T4cZBtGd
+abQeJJ5aG6cQDU7TYYZBVCN3eT06DxJPfTTOH0UdeuN0mGEQ1ShNY+2RxFNr9I6bI4gWjuswwyCq
+UZrOO48k9nvvuIAb0RqV560xwyCqUZrOGr1HUvvd4xrBYddYo7PVoMU1cls93qO1q0ZpWu98JbXf
+gHdYOizgA2bobfVYOKxGaVoNWl9JPO8WneMyfEbhuAwblKY1YGWPn7Nf/uaAf+CvjvsDShT4CT3+
+KyqwRIPM9P6O3+2ROqzDCkvjFChQ+37WuPeMxHG3aPx/6FA5IDHOAp3XbcBvGByQGGfADJ3XacAM
+vSMS4w2YofW6dJihM0LiNANmuPc6tJihM1LqZRb4hBrB97HCrROlXm6NFncofTstKvReIHWeARXe
+4Q6F6bRYoXWG1GV0mCHDNUoEl9HgPVoXkLqsHgssUOAKOQrjdejwES0GF5SaTotWlCMgQybq0dtq
+TSz17XRegf8BD+QSUcaU7H0AAAAASUVORK5CYIIAAA==
+--Apple-Mail=_5C8AEEB1-8881-4461-9FC9-690118EBB3FA--
+
+--Apple-Mail=_F880323B-CF1E-467D-BA21-2A26E7FF30A8--

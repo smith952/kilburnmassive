@@ -1,0 +1,452 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:6c8a:b0:a59:31b2:e81d with SMTP id s10csp241068ejr;
+        Wed, 1 May 2024 00:44:15 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHCAg2ToWXHYdTdvkQdSP/kjcKCapYH6TSzxbBTGK/XnJwZtFViAcq6gbzmK+FL/bGBPDYF
+X-Received: by 2002:a05:6122:3109:b0:4dc:d7aa:ccf9 with SMTP id cg9-20020a056122310900b004dcd7aaccf9mr1899481vkb.12.1714549454541;
+        Wed, 01 May 2024 00:44:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1714549454; cv=none;
+        d=google.com; s=arc-20160816;
+        b=heSFZxvqU7lLQWFTpLjkWlxhuzUWCL5EKpWYPZ4s5fl5bJDiNoc5igsrYquADOaKWh
+         ZNg6QErXx0HySSqLrcMQ7adfNYySoSawJUmrZSCiZfcQM/VukdWrp6NVrzmlzLDBDKqd
+         G+N7UYKc6CcsCJjbfT6JIu99VOjmfBgsDp7Y5L81I4AE1CSUhF3qJCgDk4t/aOgBmQQ8
+         RtQUKs7zefdiyMOXI2XFj/ko9RoiSN49jmUzT7cfEh/3gJ/jzyyY8Q9HIXFTy4NbH6Fs
+         nOCCaJ4XmGVovxpASq8374Pn1HINjd7MGAyqC16BjYrqz1bDS9ETb9WvRq5azoLieH9F
+         qcfg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=eTncJPeoCdAs4EAbmk7s3IRfbfaSYWcEDLDviGFjDlc=;
+        fh=PPC1HqqdMuvCicfndAtvqlbv4AGpwjpAql224GPSQGU=;
+        b=WX0yclQledHDs20IRWTzVw/dj22RlSxOUo8Wi8/hdvNX2aFteWg9CQ73Hyi+/HhH3Q
+         Ddx8NpUjwbMx8fcl0VCASZClpiEsSE2VB4Xs6glv6REO3Qcg5R86HUHgGef64hCRMNXp
+         BIr9fSMi5GIep770/ipc1gAoTlXn6TiQOnblxu2iDvsYCZ3/l75368JP1Wp3j0oWtzYS
+         nD0+8hudrv0cWqCutuQovPTLGijVov7jIcUO4hl8rEs/UUI+Y4VoVufN9xuqLxt+w12h
+         +ygQRxYT3w/0OUP5CE8WOFuuFo21QAg2cdDpx3K+PrU+/rdDNDzly+kot0HjPuYkaQCT
+         fAXw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=k28ce7Ye;
+       spf=neutral (google.com: 2607:f8b0:4864:20::b2d is neither permitted nor denied by best guess record for domain of accounts@inhomemedia.io) smtp.mailfrom=accounts@inhomemedia.io
+Return-Path: <accounts@inhomemedia.io>
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com. [2607:f8b0:4864:20::b2d])
+        by mx.google.com with ESMTPS id eg5-20020a056122488500b004def1fa54d8si1230924vkb.241.2024.05.01.00.44.14
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 May 2024 00:44:14 -0700 (PDT)
+Received-SPF: neutral (google.com: 2607:f8b0:4864:20::b2d is neither permitted nor denied by best guess record for domain of accounts@inhomemedia.io) client-ip=2607:f8b0:4864:20::b2d;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=k28ce7Ye;
+       spf=neutral (google.com: 2607:f8b0:4864:20::b2d is neither permitted nor denied by best guess record for domain of accounts@inhomemedia.io) smtp.mailfrom=accounts@inhomemedia.io
+Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-de5a2af3b36so1236466276.2
+        for <ot@inhomemedia.io>; Wed, 01 May 2024 00:44:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1714549454; x=1715154254; darn=inhomemedia.io;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eTncJPeoCdAs4EAbmk7s3IRfbfaSYWcEDLDviGFjDlc=;
+        b=k28ce7YeQbFNAU/X6a3frLIYcl0L9c7pNA0Tz23RGKiihijRPbxH2EzmXDzBGa1hLJ
+         3RhIBRBMHmkXajj3wVIBldPXTLFWha6sfW93zTRG8vmlgZrr5EZWnA3oPJXvzOrcSWsS
+         ioD3ShkQonnl+I7Rjs+r924SsQDidU0B6IF/fB7b3v/4T83ZtAC5dTpJ4MKLQyy9CkRm
+         lI1X+udzy4Hi3bf7arwscIv8Kx8rUZkHQ1jQx2xcZ8P0rthMfkMd6DoOZCIMaXGjIBv/
+         L5PCyn7qqMa5NqPA6QU7mJ1mD/4xEh6EOW4R43svgHt3rRlvpSFGqmihSkVbOvJ2iT5U
+         fQ/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714549454; x=1715154254;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eTncJPeoCdAs4EAbmk7s3IRfbfaSYWcEDLDviGFjDlc=;
+        b=GI1C8aDaJvGzBQ+r8oCD1n1lVe6yaTt2NPbPRhZw7fMVVJ21/GagNCrwCQNtZi78Zm
+         FkBhCTk3uw2BBYKE6hHp2O6Zg9A1ICaxpt+5XfCJpjVmbxAvuvFnum1wvYboORM1SFTu
+         mHnSZQiEVYw0HHlq9UCx5dWis2VKF+h+Kt6kPnK1FS8KIYiBwCVkzqulK1M9k9jFnRLJ
+         0IBrVn09hLyQWwyIpfM4y3cXFgCUNL35c0MS9zhQoI4KniJpLrExACuGb+gTQA07AmaP
+         N08Vds7vzXDduGzvtKNHPqf/mZjyn31VE2+pll/3AT5JHlFsHlxyZ91hhxrXRv4R0sD1
+         b2kA==
+X-Gm-Message-State: AOJu0YyTcaw+/MyuIf5F7f4ZtU85iDTbAFEQu7gWPFvK1h5u7PyUmxsp
+	LG6xAZshJNKFOeQyoBG1jHK1rMeCkhxL2DAnG9AIWf9lDLOCe5TiqmgmMT28uU2Oygxhxshn4TU
+	B8wCwb0ir/I8PoXxa5CrcHKr3Yq5maLUSQzXrFcL+SEGmjt9PtXNebA==
+X-Received: by 2002:a25:dc08:0:b0:de5:a260:51bc with SMTP id
+ y8-20020a25dc08000000b00de5a26051bcmr1551055ybe.5.1714549453641; Wed, 01 May
+ 2024 00:44:13 -0700 (PDT)
+MIME-Version: 1.0
+References: <56AB5293-33AC-0541-88D5-902BDD622CA6@hxcore.ol>
+ <BFC65E60-7FE1-E441-AE87-504DD1B29C33@hxcore.ol> <CAMr_NGHdD32OStXsw7fco-=jYk4Rj07M2pwrvUvgCEbpRX-ugw@mail.gmail.com>
+In-Reply-To: <CAMr_NGHdD32OStXsw7fco-=jYk4Rj07M2pwrvUvgCEbpRX-ugw@mail.gmail.com>
+From: Accounts Team <accounts@inhomemedia.io>
+Date: Wed, 1 May 2024 08:43:37 +0100
+Message-ID: <CAKPSSFd=9B0G-8Eyt3vwBc-8dspERXAaxXcWNb082_LMrvf4aA@mail.gmail.com>
+Subject: Re: Signed documents package
+To: Owen Thomas <ot@inhomemedia.io>
+Content-Type: multipart/alternative; boundary="00000000000022747b06175fa7cc"
+
+--00000000000022747b06175fa7cc
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hey Owen,
+
+Just FYI, I do have the authentication code now. Just let me know pls. when
+you want me to send it to Jacq.
+
+Thanks,
+Ana
+
+A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QA
+
+E: accounts@inhomemedia.io <jane@inhomemedia.io>
+
+W: inhomemedia.io
+
+
+<https://inhomemedia.io/>
+
+
+<https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+Just so you know... this email and any files transmitted with it are
+confidential and intended solely for the use of the individual or entity to
+whom they are addressed. They are the property of In Home Media Ltd. If you
+have received this email in error please notify the system manager. This
+message may contain confidential information and is intended only for the
+individual named. Please notify the sender immediately by e-mail if you
+have received this e-mail by mistake and delete this e-mail from your
+system. In Home Media Ltd  accepts no liability for the content of this
+email, or for the consequences of any actions taken on the basis of the
+information provided unless that information is subsequently confirmed in
+writing. If you are not the intended recipient you are notified that
+disclosing, copying, distributing or taking any action in reliance on the
+contents of this information is strictly prohibited.  In Home Media Ltd , 2=
+nd
+Floor, Balfour House, 46-54 Great Titchfield Street, London,  W1W 7QA.
+Company registration 14606919.
+
+
+On Wed, Apr 17, 2024 at 10:51=E2=80=AFAM Owen Thomas <ot@inhomemedia.io> wr=
+ote:
+
+> Hi Jacqueline,
+>
+> Apologies for radio silence. I took some time off over Easter but back in
+> the game now!
+>
+> Yes please send an invoice over to our finance team (cc=E2=80=99d).
+>
+> I will see if we have had the auth code yet too.
+>
+> I hope you and Jonathan are keeping well.
+>
+> Thanks,
+> Owen
+>
+>
+> On Wed, 17 Apr 2024 at 10:29, jacqueline.hills@jms-consult.com <
+> jacqueline.hills@jms-consult.com> wrote:
+>
+>> Hi Owen,
+>>
+>> Please can you let me know when the new auth code is received at your
+>> offices so I can complete the last filings.
+>>
+>>
+>>
+>> Also can we have a quick chat about invoicing for this work.  Now its
+>> complete I=E2=80=99m conscious that we have not finalised fees.
+>>
+>>
+>>
+>> I=E2=80=99m fairly flexible today if you want to give me a call on my mo=
+bile.
+>>
+>>
+>>
+>> Many thanks
+>>
+>> Kind regards
+>>
+>> Jacqueline
+>>
+>>
+>>
+>> Jacqueline S Hills
+>>
+>> Chief Legal Officer
+>>
+>>
+>>
+>>
+>>
+>> JMS Consulting is a trading name of JMS Consulting Ltd, a limited
+>> liability company registered in England with company registration number
+>> 03686858 and whose registered office is at 2 Swan Lane, London EC4R 3TT
+>> <https://www.google.com/maps/search/2+Swan+Lane,+London+EC4R+3TT?entry=
+=3Dgmail&source=3Dg>.
+>> This email and any attachments is confidential and may be legally
+>> privileged and is intended only for the addressee.  If you receive this
+>> email (including any attachments) in error, please contact the sender of
+>> this email and immediately delete all records of it from your system.  T=
+he
+>> sender of this email cannot guarantee that it is free from any error or
+>> virus and the recipient is responsible for ensuring they have adequate
+>> virus and other security scanning programs to address this.
+>>
+>> This message and any attachments are intended for the persons named as
+>> addressees only and may contain confidential information.  Any informati=
+on
+>> contained herein may also be protected by copyright.  If you receive thi=
+s
+>> in error please notify us, delete it and do not make use or copy it .  Y=
+ou
+>> must not copy, disseminate, or otherwise distribute or publish this mess=
+age
+>> except for the purposes for which this message is intended, without our
+>> consent.  Please note this email has been created in the knowledge that
+>> internet email is not a 100% secure communications medium.  We advise th=
+at
+>> you understand and accept this lack of security when emailing us.
+>>
+>>
+>>
+>>
+>>
+>> *From: *jacqueline.hills@jms-consult.com <
+>> jacqueline.hills@jms-consult.com>
+>> *Date: *Thursday, 29 February 2024 at 12:43
+>> *To: *Owen Thomas <ot@inhomemedia.io>
+>> *Subject: *Signed documents package
+>>
+>> Hi Owen,
+>>
+>> I attach for your records copies of all the signed and dated documents
+>> relating to your recent change of Articles and investment round.
+>>
+>>
+>>
+>> I have circulated the share certificates on docusign for you and Tony to
+>> sign and I can witness.
+>>
+>>
+>>
+>> I have sent the redesignation form SH08, the Written Resolution and the
+>> new Articles to Companies House although they are not yet showing on the
+>> website they should appear soon.
+>>
+>>
+>>
+>> I still need to the companies house auth code to appoint Tony as a
+>> director and to file the increase in share capital.
+>>
+>>
+>>
+>> Let me know if you need anything else.
+>>
+>> Kind regards
+>>
+>> Jacqueline
+>>
+>
+
+--00000000000022747b06175fa7cc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hey=C2=A0Owen,<div><br></div><div>Just FYI, I do have the =
+authentication=C2=A0code now. Just let me know pls. when you want me to sen=
+d it to Jacq.</div><div><br></div><div>Thanks,</div><div>Ana<br clear=3D"al=
+l"><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_=
+signature"><div dir=3D"ltr"><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-h=
+eight:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;=
+font-family:Poppins,sans-serif;color:rgb(26,34,52);vertical-align:baseline"=
+>A: Balfour House,=C2=A0</span><span style=3D"font-family:Poppins,sans-seri=
+f;color:rgb(26,34,52);vertical-align:baseline;font-size:13.3333px">46-54 Gr=
+eat Titchfield Street, London W1W 7QA</span></p><p dir=3D"ltr" style=3D"col=
+or:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span styl=
+e=3D"color:rgb(26,34,52);font-family:Poppins,sans-serif;font-size:10pt">E:=
+=C2=A0</span><a href=3D"mailto:jane@inhomemedia.io" style=3D"color:rgb(17,8=
+5,204);font-family:Poppins,sans-serif;font-size:10pt" target=3D"_blank">acc=
+ounts@inhomemedia.io</a><br></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);li=
+ne-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:1=
+0pt;font-family:Poppins,sans-serif;color:rgb(26,34,52);vertical-align:basel=
+ine">W:=C2=A0<a href=3D"http://inhomemedia.io/" style=3D"color:rgb(17,85,20=
+4)" target=3D"_blank">inhomemedia.io</a></span></p><p dir=3D"ltr" style=3D"=
+color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><br></p=
+><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><a href=3D"https://inhomemedia.io/" style=3D"color:rgb(17=
+,85,204)" target=3D"_blank"><span style=3D"font-size:11pt;font-family:Arial=
+,sans-serif;vertical-align:baseline"><span style=3D"border:medium;display:i=
+nline-block;overflow:hidden;width:520px;height:29px"><img src=3D"https://lh=
+7-us.googleusercontent.com/G4ff92Jazz4nl6U3XO4bw1HjizO0hBsjZS3iCZQOXffuUv-6=
+C9ZOTq4IW15iyu5kB0duaGS4BIdTk6vBLe2by2YwpWZWU0ghiZa-ur3pLUYBvT5gmflP-8PDQuJ=
+OrK3hWMiULmn98KuWeYwc8vZo5pQ" width=3D"520" height=3D"29" style=3D"margin-l=
+eft:0px;margin-top:0px"></span></span></a></p><p dir=3D"ltr" style=3D"color=
+:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><br></p><p d=
+ir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin=
+-bottom:0pt"><a href=3D"https://www.linkedin.com/company/in-home-media/?vie=
+wAsMember=3Dtrue" style=3D"color:rgb(17,85,204);font-family:Poppins,sans-se=
+rif;font-size:13.3333px" target=3D"_blank"><img src=3D"https://lh7-us.googl=
+eusercontent.com/cYdkuaQI6sWib78slCNi_Rz86PtOZ6DcUsNMwbOy-aII_ZEtMyjbiyrSeC=
+okvdKWRcqldt-NzAEylM60R3dg7sPvFvGJFgjTZ85Ao7BrS0HraUMDhHTYQ9iOdBeXX0apBCOe0=
+ySlE2Y3esW4rs6EBV4" width=3D"164" height=3D"24" style=3D"margin-left:0px;ma=
+rgin-top:0px"></a></p><div><span style=3D"color:rgb(34,34,34);font-family:H=
+elvetica,sans-serif;font-size:11px">Just so you know... this email and any =
+files transmitted with it are confidential and intended solely for the use =
+of the individual or entity to whom they are addressed. They are the proper=
+ty of In Home Media Ltd. If you have received this email in error please no=
+tify the system manager. This message may contain confidential information =
+and is intended only for the individual named. Please notify the sender imm=
+ediately by e-mail if you have received this e-mail by mistake and delete t=
+his e-mail from your system.=C2=A0</span><span style=3D"color:rgb(34,34,34)=
+;font-family:Helvetica,sans-serif;font-size:11px">In Home Media Ltd</span><=
+span style=3D"color:rgb(34,34,34);font-family:Times">=C2=A0</span><span sty=
+le=3D"color:rgb(34,34,34);font-family:Helvetica,sans-serif;font-size:11px">=
+=C2=A0accepts no liability for the content of this email, or for the conseq=
+uences of any actions taken on the basis of the information provided unless=
+ that information is subsequently confirmed in writing. If you are not the =
+intended recipient you are notified that disclosing, copying, distributing =
+or taking any action in reliance on the contents of this information is str=
+ictly prohibited.=C2=A0</span><span style=3D"color:rgb(34,34,34);font-famil=
+y:Times">=C2=A0</span><span style=3D"color:rgb(34,34,34);font-family:Helvet=
+ica,sans-serif;font-size:11px">In Home Media Ltd</span><span style=3D"color=
+:rgb(34,34,34);font-family:Times">=C2=A0</span><span style=3D"color:rgb(34,=
+34,34);font-family:Helvetica,sans-serif;font-size:11px">,</span><font face=
+=3D"Helvetica, sans-serif" style=3D"color:rgb(34,34,34)"><span style=3D"fon=
+t-size:11px">=C2=A0</span></font><font color=3D"#222222" face=3D"Times">2nd=
+ Floor, Balfour House, 46-54 Great Titchfield Street,=C2=A0</font><font col=
+or=3D"#222222" face=3D"Times">London,=C2=A0 W1W 7QA</font><span style=3D"co=
+lor:rgb(34,34,34);font-family:Helvetica,sans-serif;font-size:11px">. Compan=
+y registration=C2=A0</span><span style=3D"color:rgb(34,34,34);font-family:T=
+imes">14606919</span><font face=3D"Helvetica, sans-serif" style=3D"color:rg=
+b(34,34,34)"><span style=3D"font-size:11px">.</span></font></div></div></di=
+v></div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
+ss=3D"gmail_attr">On Wed, Apr 17, 2024 at 10:51=E2=80=AFAM Owen Thomas &lt;=
+<a href=3D"mailto:ot@inhomemedia.io">ot@inhomemedia.io</a>&gt; wrote:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">Hi =
+Jacqueline,</div><div dir=3D"auto"><br></div><div dir=3D"auto">Apologies fo=
+r radio silence. I took some time off over Easter but back in the game now!=
+</div><div dir=3D"auto"><br></div><div dir=3D"auto">Yes please send an invo=
+ice over to our finance team (cc=E2=80=99d).=C2=A0</div><div dir=3D"auto"><=
+br></div><div dir=3D"auto">I will see if we have had the auth code yet too.=
+=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">I hope you and Jo=
+nathan are keeping well.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D=
+"auto">Thanks,</div><div dir=3D"auto">Owen</div><div dir=3D"auto"><br></div=
+><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
+On Wed, 17 Apr 2024 at 10:29, <a href=3D"mailto:jacqueline.hills@jms-consul=
+t.com" target=3D"_blank">jacqueline.hills@jms-consult.com</a> &lt;<a href=
+=3D"mailto:jacqueline.hills@jms-consult.com" target=3D"_blank">jacqueline.h=
+ills@jms-consult.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex"><div lang=3D"EN-GB"><div><p class=3D"MsoNormal"><span s=
+tyle=3D"font-size:11pt;font-family:Aptos,sans-serif">Hi Owen,<u style=3D"fo=
+nt-family:Aptos,sans-serif"></u><u style=3D"font-family:Aptos,sans-serif"><=
+/u></span></p><p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-fam=
+ily:Aptos,sans-serif">Please can you let me know when the new auth code is =
+received at your offices so I can complete the last filings.=C2=A0 <u style=
+=3D"font-family:Aptos,sans-serif"></u><u style=3D"font-family:Aptos,sans-se=
+rif"></u></span></p><p class=3D"MsoNormal"><span style=3D"font-size:11pt;fo=
+nt-family:Aptos,sans-serif"><u style=3D"font-family:Aptos,sans-serif"></u>=
+=C2=A0<u style=3D"font-family:Aptos,sans-serif"></u></span></p><p class=3D"=
+MsoNormal"><span style=3D"font-size:11pt;font-family:Aptos,sans-serif">Also=
+ can we have a quick chat about invoicing for this work.=C2=A0 Now its comp=
+lete I=E2=80=99m conscious that we have not finalised fees.<u style=3D"font=
+-family:Aptos,sans-serif"></u><u style=3D"font-family:Aptos,sans-serif"></u=
+></span></p><p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-famil=
+y:Aptos,sans-serif"><u style=3D"font-family:Aptos,sans-serif"></u>=C2=A0<u =
+style=3D"font-family:Aptos,sans-serif"></u></span></p><p class=3D"MsoNormal=
+"><span style=3D"font-size:11pt;font-family:Aptos,sans-serif">I=E2=80=99m f=
+airly flexible today if you want to give me a call on my mobile.<u style=3D=
+"font-family:Aptos,sans-serif"></u><u style=3D"font-family:Aptos,sans-serif=
+"></u></span></p><p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-=
+family:Aptos,sans-serif"><u style=3D"font-family:Aptos,sans-serif"></u>=C2=
+=A0<u style=3D"font-family:Aptos,sans-serif"></u></span></p><p class=3D"Mso=
+Normal"><span style=3D"font-size:11pt;font-family:Aptos,sans-serif">Many th=
+anks<u style=3D"font-family:Aptos,sans-serif"></u><u style=3D"font-family:A=
+ptos,sans-serif"></u></span></p><p class=3D"MsoNormal"><span style=3D"font-=
+size:11pt;font-family:Aptos,sans-serif">Kind regards<u style=3D"font-family=
+:Aptos,sans-serif"></u><u style=3D"font-family:Aptos,sans-serif"></u></span=
+></p><p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Aptos=
+,sans-serif">Jacqueline<u style=3D"font-family:Aptos,sans-serif"></u><u sty=
+le=3D"font-family:Aptos,sans-serif"></u></span></p><p class=3D"MsoNormal"><=
+span style=3D"font-size:11pt;font-family:Aptos,sans-serif"><u style=3D"font=
+-family:Aptos,sans-serif"></u>=C2=A0<u style=3D"font-family:Aptos,sans-seri=
+f"></u></span></p><div><p class=3D"MsoNormal"><span style=3D"font-family:Ar=
+ial,sans-serif;color:rgb(33,33,33)">Jacqueline S Hills</span><span style=3D=
+"font-size:11pt;color:rgb(33,33,33)"><u></u><u></u></span></p><p class=3D"M=
+soNormal"><span style=3D"font-family:Arial,sans-serif;color:rgb(33,33,33)">=
+Chief Legal Officer</span><span style=3D"font-size:11pt;color:rgb(33,33,33)=
+"><u></u><u></u></span></p><p class=3D"MsoNormal"><span style=3D"font-famil=
+y:Arial,sans-serif;color:rgb(33,33,33)">=C2=A0</span><span style=3D"font-si=
+ze:11pt;color:rgb(33,33,33)"><u></u><u></u></span></p><p class=3D"MsoNormal=
+"><span style=3D"font-family:Arial,sans-serif;color:rgb(33,33,33)">=C2=A0</=
+span><span style=3D"font-size:11pt;color:rgb(33,33,33)"><u></u><u></u></spa=
+n></p><p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif;co=
+lor:rgb(33,33,33)">JMS Consulting is a trading name of JMS Consulting Ltd, =
+a limited liability company registered in England with company registration=
+ number 03686858 and whose registered office is at <a href=3D"https://www.g=
+oogle.com/maps/search/2+Swan+Lane,+London+EC4R+3TT?entry=3Dgmail&amp;source=
+=3Dg" style=3D"font-family:Arial,sans-serif" target=3D"_blank">2 Swan Lane,=
+ London EC4R 3TT</a>.=C2=A0 This email and any attachments is confidential =
+and may be legally privileged and is intended only for the addressee.=C2=A0=
+ If you receive this email (including any attachments) in error, please con=
+tact the sender of this email and immediately delete all records of it from=
+ your system.=C2=A0 The sender of this email cannot guarantee that it is fr=
+ee from any error or virus and the recipient is responsible for ensuring th=
+ey have adequate virus and other security scanning programs to address this=
+.=C2=A0=C2=A0</span><span style=3D"font-size:11pt;color:rgb(33,33,33)"><u><=
+/u><u></u></span></p><p class=3D"MsoNormal"><span style=3D"font-family:Aria=
+l,sans-serif;color:rgb(33,33,33)">This message and any attachments are inte=
+nded for the persons named as addressees only and may contain confidential =
+information.=C2=A0 Any information contained herein may also be protected b=
+y copyright.=C2=A0 If you receive this in error please notify us, delete it=
+ and do not make use or copy it .=C2=A0 You must not copy, disseminate, or =
+otherwise distribute or publish this message except for the purposes for wh=
+ich this message is intended, without our consent.=C2=A0 Please note this e=
+mail has been created in the knowledge that internet email is not a 100% se=
+cure communications medium.=C2=A0 We advise that you understand and accept =
+this lack of security when emailing us.=C2=A0</span><span style=3D"font-siz=
+e:11pt;color:rgb(33,33,33)"><u></u><u></u></span></p></div></div></div><div=
+ lang=3D"EN-GB"><div><p class=3D"MsoNormal"><span style=3D"font-size:11pt;f=
+ont-family:Aptos,sans-serif"><u style=3D"font-family:Aptos,sans-serif"></u>=
+=C2=A0<u style=3D"font-family:Aptos,sans-serif"></u></span></p><p class=3D"=
+MsoNormal"><span style=3D"font-size:11pt;font-family:Aptos,sans-serif"><u s=
+tyle=3D"font-family:Aptos,sans-serif"></u>=C2=A0<u style=3D"font-family:Apt=
+os,sans-serif"></u></span></p><div id=3D"m_4416076805210936663m_-6956350847=
+611173348mail-editor-reference-message-container"><div><div style=3D"border=
+-width:1pt medium medium;border-style:solid none none;padding:3pt 0cm 0cm;b=
+order-color:rgb(181,196,223) currentcolor currentcolor"><p class=3D"MsoNorm=
+al" style=3D"margin-bottom:12pt"><b><span style=3D"font-size:12pt;font-fami=
+ly:Aptos,sans-serif;color:black">From: </span></b><span style=3D"font-size:=
+12pt;font-family:Aptos,sans-serif;color:black"><a href=3D"mailto:jacqueline=
+.hills@jms-consult.com" style=3D"font-family:Aptos,sans-serif" target=3D"_b=
+lank">jacqueline.hills@jms-consult.com</a> &lt;<a href=3D"mailto:jacqueline=
+.hills@jms-consult.com" style=3D"font-family:Aptos,sans-serif" target=3D"_b=
+lank">jacqueline.hills@jms-consult.com</a>&gt;<br><b style=3D"font-family:A=
+ptos,sans-serif">Date: </b>Thursday, 29 February 2024 at 12:43<br><b style=
+=3D"font-family:Aptos,sans-serif">To: </b>Owen Thomas &lt;<a href=3D"mailto=
+:ot@inhomemedia.io" style=3D"font-family:Aptos,sans-serif" target=3D"_blank=
+">ot@inhomemedia.io</a>&gt;<br><b style=3D"font-family:Aptos,sans-serif">Su=
+bject: </b>Signed documents package<u style=3D"font-family:Aptos,sans-serif=
+"></u><u style=3D"font-family:Aptos,sans-serif"></u></span></p></div><p cla=
+ss=3D"MsoNormal"><span style=3D"font-size:11pt">Hi Owen,<u></u><u></u></spa=
+n></p><p class=3D"MsoNormal"><span style=3D"font-size:11pt">I attach for yo=
+ur records copies of all the signed and dated documents relating to your re=
+cent change of Articles and investment round.<u></u><u></u></span></p><p cl=
+ass=3D"MsoNormal"><span style=3D"font-size:11pt">=C2=A0<u></u><u></u></span=
+></p><p class=3D"MsoNormal"><span style=3D"font-size:11pt">I have circulate=
+d the share certificates on docusign for you and Tony to sign and I can wit=
+ness.<u></u><u></u></span></p><p class=3D"MsoNormal"><span style=3D"font-si=
+ze:11pt">=C2=A0<u></u><u></u></span></p><p class=3D"MsoNormal"><span style=
+=3D"font-size:11pt">I have sent the redesignation form SH08, the Written Re=
+solution and the new Articles to Companies House although they are not yet =
+showing on the website they should appear soon.<u></u><u></u></span></p><p =
+class=3D"MsoNormal"><span style=3D"font-size:11pt">=C2=A0<u></u><u></u></sp=
+an></p><p class=3D"MsoNormal"><span style=3D"font-size:11pt">I still need t=
+o the companies house auth code to appoint Tony as a director and to file t=
+he increase in share capital.<u></u><u></u></span></p><p class=3D"MsoNormal=
+"><span style=3D"font-size:11pt">=C2=A0<u></u><u></u></span></p><p class=3D=
+"MsoNormal"><span style=3D"font-size:11pt">Let me know if you need anything=
+ else.<u></u><u></u></span></p><p class=3D"MsoNormal"><span style=3D"font-s=
+ize:11pt">Kind regards<u></u><u></u></span></p><p class=3D"MsoNormal"><span=
+ style=3D"font-size:11pt">Jacqueline<u></u><u></u></span></p></div></div></=
+div></div>
+</blockquote></div></div>
+</blockquote></div>
+
+--00000000000022747b06175fa7cc--

@@ -1,0 +1,222 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:37d3:b0:a3b:fbe6:40dd with SMTP id o19csp101460ejc;
+        Fri, 9 Feb 2024 01:55:08 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCWv1NGMiCmrKuyCIfhfbGM9bZ65mDpXjG3kVI59DRcXE95qG177jXjKpUQQ13cXMwVJ+Oa4JI4Tx2yGE187X9f71w==
+X-Google-Smtp-Source: AGHT+IF8wSk3rxWyPVOf6aszQM1VgH4Oclexi2ne0oF3iA4hAxr8O9qLhvU+2zgvmpVjpoTtEMUV
+X-Received: by 2002:a17:906:3b5a:b0:a3b:721a:9162 with SMTP id h26-20020a1709063b5a00b00a3b721a9162mr771492ejf.66.1707472508314;
+        Fri, 09 Feb 2024 01:55:08 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1707472508; cv=none;
+        d=google.com; s=arc-20160816;
+        b=h56FwhXaqM0rydT2Ic/nLqUiP/I8uFKEvDezaHGqwNeOUSxSQvt0XH5T0XPNOkyxf5
+         lvYzZrAOwYKx63nWnp9cxsihv6qhP/o9U4nOtnXF6gKOYsOsO4d3vqsee9HD4c46Z2Kh
+         Uskj/yRJbu5mvT/TmidhX5RKDsUDwzN1j76scYldgty1gDlXQm8UjmPLHjUnVPRzKE5P
+         S6JnNaR0g6rYUnmeEtpRSJvX1e9NBCag31UWM/3GfABDd+HlKEd0KRay/qlhZeyu82ac
+         lwWWK+7H/3rLFyTcSmxjrrcpd3PIEFJvlm1EBSYnkwXFXF12QntoEvWXv9N+nYbN7LjT
+         Za5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=dkim-signature:content-transfer-encoding:to:message-id:thread-topic
+         :subject:from:date:mime-version;
+        bh=2kRoznfkXxJPsNE8rNNtQcq7UID//vvp3TLPXFZzKWU=;
+        fh=Y/Bwezj7DmkkQLEv+U+WDkzBNDLIFP1NcyeL2MyQ07U=;
+        b=cVTv1Uj2coY1DaiIMBIu/HFUnjxQy33TsxVASOVRdd+6CIxbBkDNPPzfqrsCilAJv9
+         hM2juEA0CCivJXXBGcyR5M1otoNnYF+xrOomTunV+zOR4xIyBDORMsOsC9ydnAmRfcll
+         e1ePng7oH10tTs+nOMuaAfUaV6wFNyo9uAHBA426kdhBymh+0Sk5gEIDwMmXLFMygz7G
+         mXIQ49SSGa202IDVoJUYKfnkmwZGmrWxUJXk/h1V9nr0UmfZ1NuMZOJKR1PqxV3ci0GY
+         OQVjhZ9h6kfD6J15FJXJC07W+F0WdpBArLpVsbOi5ZcuuTi1pEiqnRUMx4nxaETstRE7
+         muHA==;
+        darn=inhomemedia.io
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@jms-consult.com header.s=20230208 header.b=Xe6d2qc4;
+       spf=neutral (google.com: 62.128.193.156 is neither permitted nor denied by best guess record for domain of jacqueline.hills@jms-consult.com) smtp.mailfrom=jacqueline.hills@jms-consult.com
+X-Forwarded-Encrypted: i=1; AJvYcCU/nB/TVeBevoVwoP+JSXO/hdvvGk/tXx2mThM3mvTFXYc592zdmoMESX8y+VVK4XNEbBWgMqRwCKReYT/ifsSVz0aN+EJM0wWT2vy6DA0x4F+A5B8=
+Return-Path: <jacqueline.hills@jms-consult.com>
+Received: from mta6.iomartmail.com (mta6.iomartmail.com. [62.128.193.156])
+        by mx.google.com with ESMTPS id he43-20020a1709073dab00b00a3a3cb14a9bsi708433ejc.757.2024.02.09.01.55.08
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 09 Feb 2024 01:55:08 -0800 (PST)
+Received-SPF: neutral (google.com: 62.128.193.156 is neither permitted nor denied by best guess record for domain of jacqueline.hills@jms-consult.com) client-ip=62.128.193.156;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@jms-consult.com header.s=20230208 header.b=Xe6d2qc4;
+       spf=neutral (google.com: 62.128.193.156 is neither permitted nor denied by best guess record for domain of jacqueline.hills@jms-consult.com) smtp.mailfrom=jacqueline.hills@jms-consult.com
+Received: from vs1.iomartmail.com (vs1.iomartmail.com [10.12.10.121])
+	by mta6.iomartmail.com (8.14.7/8.14.7) with ESMTP id 4199t7tH003498;
+	Fri, 9 Feb 2024 09:55:07 GMT
+Received: from vs1.iomartmail.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 7334A46052;
+	Fri,  9 Feb 2024 09:55:07 +0000 (GMT)
+Received: from vs1.iomartmail.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 707F746050;
+	Fri,  9 Feb 2024 09:55:07 +0000 (GMT)
+Received: from asmtp1.iomartmail.com (unknown [10.12.10.248])
+	by vs1.iomartmail.com (Postfix) with ESMTPS;
+	Fri,  9 Feb 2024 09:55:07 +0000 (GMT)
+Received: from Jacquelines-MBP (host86-144-244-228.range86-144.btcentralplus.com [86.144.244.228])
+	(authenticated bits=0)
+	by asmtp1.iomartmail.com (8.14.7/8.14.7) with ESMTP id 4199t6pq024499
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Fri, 9 Feb 2024 09:55:07 GMT
+MIME-Version: 1.0
+Date: Fri, 9 Feb 2024 09:55:06 +0000
+From: "jacqueline.hills@jms-consult.com" <jacqueline.hills@jms-consult.com>
+Subject: Leon Agreement
+Thread-Topic: Leon Agreement
+Message-ID: <3A574584-C8B1-2048-8960-347A57486CEA@hxcore.ol>
+To: Jonathan M Saville <jonathansaville@jms-consult.com>,
+        Owen Thomas <ot@inhomemedia.io>, Anthony Hughes <th@inhomemedia.io>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
+X-Originating-IP: 86.144.244.228
+X-Thinkmail-Auth: jacqueline.hills@jms-consult.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=jms-consult.com; h=
+	mime-version:date:from:subject:message-id:to
+	:content-transfer-encoding:content-type; s=20230208; bh=S6dR53vr
+	rAuU7PJcBOlbAJNtPvJAW0z25W2WqEX1VWk=; b=Xe6d2qc4DfK0fz2lkIwhECar
+	vKmXoETznVRebqo9Hw83422KocHv3AhyfbdGh508xx+hwqofYHOYdsPpeoJ1AJoY
+	HD7QiRfFsNiNPUgOpRW9oCrV8z7qLIBAG6mrhvSBM2xomr/rx7jKzyfATJOktNb7
+	7j8Zzj4fSPCIpUbg5Cm6Uh7NOfg1I5+V71aDBWi+xEZUY/ucUaSQ6OclaJwhFVAW
+	0oqI5YyTt8Fsoxao1FmjyU9fpwjFD4leJnVEjWokygHaZwfpg/PWKWCqb43ukE4m
+	IZGmUsGDu/CwWNsyyixoXweLsd+CDjsC4f3rWwjN5SMcgY7tNkOmSJ9I+Rkmjw==
+X-TM-AS-GCONF: 00
+X-TM-AS-Product-Ver: IMSVA-9.1.0.2090-9.0.0.1002-28180.006
+X-TM-AS-Result: No--21.199-10.0-31-10
+X-imss-scan-details: No--21.199-10.0-31-10
+X-TMASE-Version: IMSVA-9.1.0.2090-9.0.1002-28180.006
+X-TMASE-Result: 10--21.199100-10.000000
+X-TMASE-MatchedRID: W8g/f7Yw4FBEXwnTCGfm3f0peXGEEBlvDvKSaIxu6kpXG3yI9k2vbCpY
+	AmrFxIhiLkTtdgQKNN5Se6rq1H4K1f+z7xWvCPyPzH6d90mb4+KOVGny5q72hiPS9JdK3W4/tAg
+	K4TtXrP1vs7O6BK2XsOJjcZAOpZtURS5eRZNKL9HcFkTd9CjuT/es4f8X5NWomCNknSXswf8PY7
+	Ec0tWek2LVxpISGCsNZ4qJDnM3MZpxfIDwLEi3oTe9MF4SNA1+ByDUuuqcIjDPlmI4N1s8ilVxc
+	/d4wt8XLJ5M83CNnMrCsyZB1bKGqLvBtGFTvsx/CtzGvPCy/m67DVUQPiujJrqln+jYe7ZhG/56
+	/Y/7OpD4G0Niaio+lpg8Up3LLwc2b0esXyL20NA3FbdoTlWtytFBNyU0Q3FErKfoyAyHv5mg5pC
+	87QfQFufOVcxjDhcwWWZjCFLCEBrsOFswfBZcJBoxTJ4LSy1oSRUA+vRNdLw=
+X-TMASE-SNAP-Result: 1.821001.0001-0-1-22:0,33:0,34:0-0
+
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
+hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
+fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta ht=
+tp-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta name=
+=3DGenerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:remialcxesans;
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:template-s8lNf_unEe2QfGBFvc-8xg;
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:zone-1;
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:zones-AQ;
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ligatures:standardcontextual;
+	mso-fareast-language:EN-US;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style></head><body lang=3DEN-GB link=3D"#0563C1" vlink=3D"#954F72" sty=
+le=3D'word-wrap:break-word'><div class=3DWordSection1><p class=3DMsoNormal>=
+<span style=3D'font-size:10.0pt;font-family:"Arial",sans-serif;color:#21212=
+1;mso-ligatures:none;mso-fareast-language:EN-GB'>Hi Owen,<o:p></o:p></span>=
+</p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial=
+",sans-serif;color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'>W=
+hen you speak to Jonathan regarding the loan could you please confirm your =
+understanding of the contributions each party will make.=C2=A0 Please see b=
+elow message from Kelvin received this morning.<o:p></o:p></span></p><p cla=
+ss=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial",sans-ser=
+if;color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'><o:p>&nbsp;=
+</o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-=
+family:"Arial",sans-serif;color:#212121;mso-ligatures:none;mso-fareast-lang=
+uage:EN-GB'>Thanks<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D=
+'font-size:10.0pt;font-family:"Arial",sans-serif;color:#212121;mso-ligature=
+s:none;mso-fareast-language:EN-GB'>Kind regards<o:p></o:p></span></p><p cla=
+ss=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial",sans-ser=
+if;color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'>Jacqueline<=
+o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;f=
+ont-family:"Arial",sans-serif;color:#212121;mso-ligatures:none;mso-fareast-=
+language:EN-GB'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><i><span s=
+tyle=3D'font-size:10.0pt;font-family:"Arial",sans-serif;color:#212121;mso-l=
+igatures:none;mso-fareast-language:EN-GB'>Hi Jacqueline</span></i><i><span =
+style=3D'font-size:10.0pt;color:#212121;mso-ligatures:none;mso-fareast-lang=
+uage:EN-GB'><o:p></o:p></span></i></p><p class=3DMsoNormal><i><span style=
+=3D'font-size:10.0pt;font-family:"Arial",sans-serif;color:#212121;mso-ligat=
+ures:none;mso-fareast-language:EN-GB'>&nbsp;</span></i><i><span style=3D'fo=
+nt-size:10.0pt;color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'=
+><o:p></o:p></span></i></p><p class=3DMsoNormal><i><span style=3D'font-size=
+:10.0pt;font-family:"Arial",sans-serif;color:#212121;mso-ligatures:none;mso=
+-fareast-language:EN-GB'>In relation to your email below, I understand that=
+ the total investment is =C2=A3250k of which Owen and Anthony are each cont=
+ributing =C2=A383,333 (which should be the amount&nbsp;in the loan agreemen=
+ts) and James and David are each contributing =C2=A341,667.</span></i><i><s=
+pan style=3D'font-size:10.0pt;color:#212121;mso-ligatures:none;mso-fareast-=
+language:EN-GB'><o:p></o:p></span></i></p><p class=3DMsoNormal><i><span sty=
+le=3D'font-size:10.0pt;font-family:"Arial",sans-serif;color:#212121;mso-lig=
+atures:none;mso-fareast-language:EN-GB'>&nbsp;</span></i><i><span style=3D'=
+font-size:10.0pt;color:#212121;mso-ligatures:none;mso-fareast-language:EN-G=
+B'><o:p></o:p></span></i></p><p class=3DMsoNormal><i><span style=3D'font-si=
+ze:10.0pt;font-family:"Arial",sans-serif;color:#212121;mso-ligatures:none;m=
+so-fareast-language:EN-GB'>Owen will pay more for each new share otherwise =
+he will effectively be getting a free share. Owen will pay =C2=A31,700.68&n=
+bsp; for each share and the other shareholders will&nbsp;pay =C2=A31,666.67=
+</span></i><i><span style=3D'font-size:10.0pt;color:#212121;mso-ligatures:=
+none;mso-fareast-language:EN-GB'><o:p></o:p></span></i></p><p class=3DMsoNo=
+rmal><i><span style=3D'font-size:10.0pt;font-family:"Arial",sans-serif;colo=
+r:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'>&nbsp;</span></i><=
+i><span style=3D'font-size:10.0pt;color:#212121;mso-ligatures:none;mso-fare=
+ast-language:EN-GB'><o:p></o:p></span></i></p><p class=3DMsoNormal><i><span=
+ style=3D'font-size:10.0pt;font-family:"Arial",sans-serif;color:#212121;mso=
+-ligatures:none;mso-fareast-language:EN-GB'>Best regards</span></i><i><span=
+ style=3D'font-size:10.0pt;color:#212121;mso-ligatures:none;mso-fareast-lan=
+guage:EN-GB'><o:p></o:p></span></i></p><p class=3DMsoNormal><i><span style=
+=3D'font-size:10.0pt;font-family:"Arial",sans-serif;color:#212121;mso-ligat=
+ures:none;mso-fareast-language:EN-GB'>&nbsp;</span></i><i><span style=3D'fo=
+nt-size:10.0pt;color:#212121;mso-ligatures:none;mso-fareast-language:EN-GB'=
+><o:p></o:p></span></i></p><table class=3DMsoNormalTable border=3D0 cellspa=
+cing=3D0 cellpadding=3D0 width=3D"100%" style=3D'width:100.0%'><tr><td vali=
+gn=3Dtop style=3D'padding:0cm 0cm 0cm 0cm'><table class=3DMsoNormalTable bo=
+rder=3D0 cellspacing=3D0 cellpadding=3D0><tr><td valign=3Dtop style=3D'padd=
+ing:0cm 0cm 0cm 0cm'><table class=3DMsoNormalTable border=3D0 cellspacing=
+=3D0 cellpadding=3D0 width=3D0><tr><td valign=3Dtop style=3D'padding:0cm 0c=
+m 0cm 0cm'><table class=3DMsoNormalTable border=3D0 cellspacing=3D0 cellpad=
+ding=3D0 width=3D480 style=3D'width:360.0pt'><tr><td valign=3Dtop style=3D'=
+padding:0cm 0cm 0cm 0cm'><table class=3DMsoNormalTable border=3D0 cellspaci=
+ng=3D0 cellpadding=3D0><tr><td valign=3Dtop style=3D'padding:0cm 0cm 0cm 0c=
+m'><table class=3DMsoNormalTable border=3D0 cellspacing=3D0 cellpadding=3D0=
+><tr><td style=3D'padding:0cm 0cm 0cm 0cm'><p class=3DMsoNormal style=3D'li=
+ne-height:14.0pt'><b><i><span style=3D'font-size:10.0pt;font-family:"Arial"=
+,sans-serif;color:#A4015E;mso-ligatures:none;mso-fareast-language:EN-GB'>Ke=
+lvin&nbsp;Balmont</span></i></b><b><i><span style=3D'font-size:1.0pt;font-f=
+amily:"remialcxesans",serif;color:white;mso-ligatures:none;mso-fareast-lang=
+uage:EN-GB'>=E2=80=8B</span></i></b><b><i><span style=3D'font-size:1.0pt;fo=
+nt-family:"template-s8lNf_unEe2QfGBFvc-8xg",serif;color:white;mso-ligatures=
+:none;mso-fareast-language:EN-GB'>=E2=80=8B</span></i></b><b><i><span style=
+=3D'font-size:1.0pt;font-family:"zone-1",serif;color:white;mso-ligatures:no=
+ne;mso-fareast-language:EN-GB'>=E2=80=8B</span></i></b><b><i><span style=3D=
+'font-size:1.0pt;font-family:"zones-AQ",serif;color:white;mso-ligatures:non=
+e;mso-fareast-language:EN-GB'>=E2=80=8B</span></i></b><i><span style=3D'fon=
+t-size:10.0pt;mso-ligatures:none;mso-fareast-language:EN-GB'><o:p></o:p></s=
+pan></i></p></td></tr></table></td></tr></table></td></tr></table></td></tr=
+></table></td></tr></table></td></tr></table><p class=3DMsoNormal><o:p>&nbs=
+p;</o:p></p></div></body></html>=
+

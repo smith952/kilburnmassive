@@ -1,0 +1,157 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:ad87:b0:a3b:b3eb:9ad7 with SMTP id la7csp257180ejb;
+        Thu, 8 Feb 2024 09:06:46 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFpHxI3p/7Erb6n2NFDco95+7P9EyQUjvUfuwfB4oMw3bokyq0uH9t96LLfU6BQYhCnsVKk
+X-Received: by 2002:a05:6870:7183:b0:219:545e:b5e8 with SMTP id d3-20020a056870718300b00219545eb5e8mr1600210oah.2.1707412005912;
+        Thu, 08 Feb 2024 09:06:45 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1707412005; cv=none;
+        d=google.com; s=arc-20160816;
+        b=W6Tu9khpjrhUdwrSShHDuB0O2MYvdHdCJUx6w2cULV2EAxmO5mpAsaJPAoFgKKcUWd
+         KomIOxuSqXmJK+YsffwebiUsdQ2Z2QivGIBrgPadx6m7tU5ZZEjOdQQ5GhcPfalKyJuu
+         pwAliGtS/GKsHLLXKiriTFKdpeyjtfDucMD96sw4W/vMqJK55zbY4g1gTAhaEZZEZcjr
+         terW3CrB0HRhceqBY6YwJb966mfE26NGYeLCvhac8quGrP0vohZlCF7jIT5OTkYrG9zY
+         0BKoV1Alf1aX0HHlECymfX2vja/L4R/RAluwEght1ozETFzT58WLwIK6YgFVjYr7JQDN
+         Klig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:dkim-signature;
+        bh=iyHJvUVpuRxggGdQ+Rh1sVMa/AmBCuN9YZdIj2nDeVc=;
+        fh=/9ge5FGmLwGNG0JTFIMxqWds9R4TKyDE3FZcBbCeb9I=;
+        b=DmV+f1GixqIbnYdt05GSfzaknOs1tYDiZ6VqZBYEEgcz8XqtKY7EugORFq5121ZO5P
+         tW7ihbjqiRsmemRqw3mAZW/4f0lox6k7vfGvewD9Ke63I9igRAO7W0FxT0TdOSThzYXO
+         tiwLvyhrDFA+Xtp+OIOD/ZO70xfDNeel4Nad3SdJZxmFq7FNhStggcSb09gu0XObH9DO
+         lZoPFkFbQ++PDKmQ/c7Z/qkA8uYF0W79JViEX3IsTdJKVrbDs3TUxhvTqLAX5wSeAXhx
+         RTLIAoUSNL9/YF7CERP9vCBXfQa2vYT7zxYqS9nl5rvD+Habuv9rzhn4ZpEmycBsF5p0
+         +RmA==;
+        darn=inhomemedia.io
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=kD1yCu3o;
+       spf=neutral (google.com: 2607:f8b0:4864:20::629 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+Return-Path: <th@inhomemedia.io>
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com. [2607:f8b0:4864:20::629])
+        by mx.google.com with ESMTPS id z18-20020a05683010d200b006e2c5300cccsi357640oto.329.2024.02.08.09.06.45
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Feb 2024 09:06:45 -0800 (PST)
+Received-SPF: neutral (google.com: 2607:f8b0:4864:20::629 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) client-ip=2607:f8b0:4864:20::629;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=kD1yCu3o;
+       spf=neutral (google.com: 2607:f8b0:4864:20::629 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1d958e0d73dso635325ad.1
+        for <ot@inhomemedia.io>; Thu, 08 Feb 2024 09:06:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1707412005; x=1708016805; darn=inhomemedia.io;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iyHJvUVpuRxggGdQ+Rh1sVMa/AmBCuN9YZdIj2nDeVc=;
+        b=kD1yCu3oIw9+EPAwC8IhIOlIpML6HwBbfR3TKk1WvnYoKWWqOECFNfAt0QxZ+LGsUn
+         +wH5teQ/WEQMB+HL7OeR4qwDOHqkY2cgtaIyNDvp2V8M/uraZNVLr3LL0Rzb2Kkw5Of9
+         sm/fjP8XpAMsI50zGMvAR28rsLLI4nNlMWGk55b09K/m5kTg5uRrJ9uBBcG1aPuVTtik
+         XRYA24l/EDE56L2L/o2IVDWg7dnl7VMbo8HFeQ6BYRYKy3YMC6V+2kgGR0P2nk7BqdKo
+         //Y/1ukRUt8CIvAq5QY+JYsaEpXlJD6k6fxbJT5PbQA5GrSbi0L5RwOXoJp/b7YrNGUD
+         hN9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707412005; x=1708016805;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iyHJvUVpuRxggGdQ+Rh1sVMa/AmBCuN9YZdIj2nDeVc=;
+        b=hmG+F7MiC/o7EP3zGzrx5eVr4v4FTjGZLqAE9TOXzAjXTmyh1sOH6eI9ULD+aHZ+gT
+         XKAbyHtHzTZ2rfxih+OI/wdkEpkRqcSPlUlbSx9SfY707c85/9vk1YcEOJin3em9qtaF
+         bVG3e/rV1YeKhq2oi1iVTuMf82WkWwL9qPa0+fVvzWKiPvMlEikaGMKBvAHQpvl1bFHQ
+         ZiXiRer8kSrw+NE3yV9+vZfWGH1E5563DQ/zIzRTTUGWowqXe+7Tn6Gvy+kPcFlS1isl
+         XOKEVTITSFHGyE4EX5SHaUznWj7HJ+yMWXk+Oo2avjArG4ZKlhEKWjHGkf25gjTdC+Fw
+         gQWg==
+X-Gm-Message-State: AOJu0YyuNkZSMQVBpN9tJWDyC6kyVf3oGG60iSq9DnzK9GTv6AnLLWv5
+	gs5AFpDJ2BvgKbjZRRtiKXtaP+EgekTbzOtbtXXLgCEc179ie5Sy95IGtb2RoQ==
+X-Received: by 2002:a17:902:cec1:b0:1d8:e1c0:1bb8 with SMTP id d1-20020a170902cec100b001d8e1c01bb8mr223546plg.27.1707412004943;
+        Thu, 08 Feb 2024 09:06:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXo6iv1IHPb45jf/pOTjmeWmjpYnqQYInr2jvqagmtZa7mN8+lJXMeVgB2bsoSKAi/L6TOqcUV0v3cLO64HyndF3ny8eg38YgE6L7AiN7Wi
+Return-Path: <th@inhomemedia.io>
+Received: from smtpclient.apple ([137.22.165.234])
+        by smtp.gmail.com with ESMTPSA id h3-20020a170902748300b001d98942d290sm21708pll.124.2024.02.08.09.06.43
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 08 Feb 2024 09:06:44 -0800 (PST)
+From: Anthony Hughes <th@inhomemedia.io>
+Message-Id: <C1120F72-46F2-4193-89A2-27EDF4F20C47@inhomemedia.io>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_24618B40-DB3B-486A-96F8-3B9FABF4DB9F"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.700.6\))
+Subject: Re: Final documents
+Date: Thu, 8 Feb 2024 17:06:30 +0000
+In-Reply-To: <FF9BED0C-7C4C-B348-B659-916136111873@hxcore.ol>
+Cc: Owen Thomas <ot@inhomemedia.io>,
+ Jonathan M Saville <jonathansaville@jms-consult.com>
+To: jacqueline.hills@jms-consult.com
+References: <FF9BED0C-7C4C-B348-B659-916136111873@hxcore.ol>
+X-Mailer: Apple Mail (2.3731.700.6)
+
+
+--Apple-Mail=_24618B40-DB3B-486A-96F8-3B9FABF4DB9F
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
+
+These are good for me.
+
+Best regards
+
+Tony
+
+> On 8 Feb 2024, at 16:58, jacqueline.hills@jms-consult.com wrote:
+>=20
+> Hi Both,
+> I attach the final versions of the Shareholder Agreement and the =
+Articles.  I also attach the latest Loan document which is out with =
+Kelvin for Eris comments.
+> =20
+> If you are happy with the attached I will send to Kelvin and ask that =
+we prepared final engrossed versions ready for signing.
+> =20
+> Kind regards
+> Jacqueline
+> <IHM Shareholders agreement 080224 V9.docx><IHM Articles of =
+Association 6080224 v7.docx><OT Loan Agreement 7th Feb [2][45].docx>
+
+
+--Apple-Mail=_24618B40-DB3B-486A-96F8-3B9FABF4DB9F
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dus-ascii"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;">These are good =
+for me.<div><br></div><div>Best =
+regards</div><div><br></div><div>Tony<br><div><br><blockquote =
+type=3D"cite"><div>On 8 Feb 2024, at 16:58, =
+jacqueline.hills@jms-consult.com wrote:</div><br =
+class=3D"Apple-interchange-newline"><div><meta charset=3D"UTF-8"><div =
+class=3D"WordSection1" style=3D"page: WordSection1; caret-color: rgb(0, =
+0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+text-decoration: none;"><div style=3D"margin: 0cm; font-size: 11pt; =
+font-family: Calibri, sans-serif;">Hi Both,</div><div style=3D"margin: =
+0cm; font-size: 11pt; font-family: Calibri, sans-serif;">I attach the =
+final versions of the Shareholder Agreement and the Articles.&nbsp; I =
+also attach the latest Loan document which is out with Kelvin for Eris =
+comments.</div><div style=3D"margin: 0cm; font-size: 11pt; font-family: =
+Calibri, sans-serif;"><o:p>&nbsp;</o:p></div><div style=3D"margin: 0cm; =
+font-size: 11pt; font-family: Calibri, sans-serif;">If you are happy =
+with the attached I will send to Kelvin and ask that we prepared final =
+engrossed versions ready for signing.</div><div style=3D"margin: 0cm; =
+font-size: 11pt; font-family: Calibri, =
+sans-serif;"><o:p>&nbsp;</o:p></div><div style=3D"margin: 0cm; =
+font-size: 11pt; font-family: Calibri, sans-serif;">Kind =
+regards</div><div style=3D"margin: 0cm; font-size: 11pt; font-family: =
+Calibri, sans-serif;">Jacqueline</div></div><span =
+id=3D"cid:806654A5-A22C-46B9-9AFC-E2C4165AE111">&lt;IHM Shareholders =
+agreement 080224 V9.docx&gt;</span><span =
+id=3D"cid:EF45966D-6468-43BC-A4DD-72574D688019">&lt;IHM Articles of =
+Association 6080224 v7.docx&gt;</span><span =
+id=3D"cid:C6FC2480-24CD-48E8-8BD6-E089CB28CD44">&lt;OT Loan Agreement =
+7th Feb =
+[2][45].docx&gt;</span></div></blockquote></div><br></div></body></html>=
+
+--Apple-Mail=_24618B40-DB3B-486A-96F8-3B9FABF4DB9F--

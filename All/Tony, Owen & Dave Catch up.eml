@@ -1,0 +1,388 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:6d11:b0:99d:787c:24ae with SMTP id m17csp2183470ejr;
+        Mon, 14 Aug 2023 07:25:21 -0700 (PDT)
+X-Received: by 2002:adf:e444:0:b0:318:7bc:e1b5 with SMTP id t4-20020adfe444000000b0031807bce1b5mr6341351wrm.32.1692023121557;
+        Mon, 14 Aug 2023 07:25:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1692023121; cv=none;
+        d=google.com; s=arc-20160816;
+        b=eTYpX+BIz63zqN2LyHUNNfUISx5Yv1CDJAgvmFAGztGerUdh0v0JEOFIiRbb80x5+o
+         Tny7Xc7m4Wnx+qgfoAA3RY8cQF0rbPkiCLQeetkVKhq/iMj9VTR+XdbVDituNC7TnXi5
+         ULRvZGO/rNg1LvqchURMCjVE9kzZ1Tfv9kQrFxuuMrI57+OlQ0TufYPxWzbATulkNtPV
+         jFD0SgeJIVMkjXk+pKq/gG+SPU71ZzWxXMosFnqDqrFZ2Qa84QorxYVLhCWfEFU0E/Xo
+         a6QQcmI6xGb8X+D63NuyOFRWSd+GY5wXoubPdlbQZZ65u1lbeWSGuUcuws1gUmiiowdy
+         OPjw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:dkim-signature;
+        bh=/zWvH3k9B3wwvJZpGqNv3m+1AF8IvQMmT2pji4KnCx0=;
+        fh=p6dslBRjnNAKpU8eZg4xQChHDGDtdXqnWNPXts5VEFQ=;
+        b=VjO+lG62fMqq/0gueEHBNAo/VSusUmf0AtyI/1iObQA5BsiNyq3V8A4k8dyqNl3MNn
+         F4okjgwjTohiC/oUazVQsOSRABsSIXIk+Vjh1vINtu0zQh2fD60W8Ld9ygrX/5jHBHDQ
+         ePo6uFhD8jCmQbaEAv7uHaMRspZIrfl59tEkJCw0WHSqWhPuibA+sd6mPpeAbuIIbBm3
+         bVrJdLLRkUOgP1mathByzjsnWDLAq61U46y84ZNQ2GHlW4pjU1SuMU0fBqtNDWSsZRxk
+         vufY4t12hC8+Go7Fb0jGYUXoPIPcb62Z2ikmGbdq9i8xXhxhm2tsoBCYe9jvSg8akLNK
+         Ot6A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20221208.gappssmtp.com header.s=20221208 header.b=PpAhD1Jt;
+       spf=neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+Return-Path: <th@inhomemedia.io>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id u6-20020adfa186000000b003174d17eec1sor3445412wru.2.2023.08.14.07.25.21
+        for <ot@inhomemedia.io>
+        (Google Transport Security);
+        Mon, 14 Aug 2023 07:25:21 -0700 (PDT)
+Received-SPF: neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20221208.gappssmtp.com header.s=20221208 header.b=PpAhD1Jt;
+       spf=neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20221208.gappssmtp.com; s=20221208; t=1692023120; x=1692627920;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/zWvH3k9B3wwvJZpGqNv3m+1AF8IvQMmT2pji4KnCx0=;
+        b=PpAhD1JtxRJdCmBccoZ3+p6R4Ke/JxAx06c7pktqYCEH3cmzcykKxMgV4Z+gX8AZT8
+         gqzMrxW15Sf5a0UD2ejGzOGIFfYrkVFhP2KVpD2i7Xen1eMj/wp+GQAQQ8eBzM24wm+R
+         cXixAFlqMrwwvFetnbT5OIcIfosqWYOmLRXBJmftdinHAAPKHYl9D/rL7/2Ro48d24yz
+         HEJdu6vw+d8Id+Gw4T9TclPktz6tnCFSf1bz/QzSLU4E/dZn5ncGt1J3u2RYpv8gxfZz
+         5LYZjlj09uVSXRBq2T8v3DhHRby6Ol28j4kd/oJ99+xgXBoKxd14jyd2CVi5sjTRpN/N
+         7+zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692023120; x=1692627920;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/zWvH3k9B3wwvJZpGqNv3m+1AF8IvQMmT2pji4KnCx0=;
+        b=F5Dl1q1/T/q4rYI5VqqF7uxkkBaIu5Dg2urxIc48iVBtlbxa0EL71aIgD6UAd0Zda5
+         O0d1Cy5BN3Ek4io1WUwlNyr1Os4HTNQFvNNk1oAxV4ASfUq635M8hwi7XeX7/0zWgHp8
+         asoRa/nEjLRZ/2QHbNKkfCDAb8/eAA+qGfn88f2MaFvAnzI4PkLUPknyzf8xGdSOKeSb
+         WXhJ5isakG0vYew7+Pj8iO3wwaMj8TZb0BwpMF11fYO7n7XLgJZ4UgSRyK7mP6nm4dOO
+         GuBHlY/F8YI7DPaHYqifqXEwTDqS8TUtc3MG6XM/UE7m94vZIAJ0XkiZRitNBDq5cqiL
+         QhSQ==
+X-Gm-Message-State: AOJu0YwqJNi5wHBrAqO0SVeawVhjoyH0lTOYigfAyBXcvwNnHxvbSWk9
+	lKqRyTfSzByW5P8JP99MQyvHt7uqA0NTjEYote+r
+X-Google-Smtp-Source: AGHT+IEzsQCChPaMcFjtBQp+W0k28hxCxbcXbSFTSW14VC/a74ginFOznOloaHpbn0auK0GJ/37zJw==
+X-Received: by 2002:a5d:4ecf:0:b0:317:5f04:bc00 with SMTP id s15-20020a5d4ecf000000b003175f04bc00mr7158610wrv.27.1692023120459;
+        Mon, 14 Aug 2023 07:25:20 -0700 (PDT)
+Return-Path: <th@inhomemedia.io>
+Received: from smtpclient.apple ([2a00:23c8:1b85:8b01:57e:8f32:75fe:25f6])
+        by smtp.gmail.com with ESMTPSA id g5-20020adfe405000000b0031773a8e5c4sm14574552wrm.37.2023.08.14.07.25.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Aug 2023 07:25:20 -0700 (PDT)
+Content-Type: multipart/alternative; boundary=Apple-Mail-EFC2C5D8-48A1-4A55-B6E9-3B5857F9E472
+Content-Transfer-Encoding: 7bit
+From: Anthony Hughes <th@inhomemedia.io>
+Mime-Version: 1.0 (1.0)
+Subject: Re: Tony, Owen & Dave Catch up
+Date: Mon, 14 Aug 2023 15:25:08 +0100
+Message-Id: <F242AB91-D84B-4985-B2BB-91BFB8C0B8A1@inhomemedia.io>
+References: <CAMr_NGHjJaeLQ_bXPHfRgL6zZayUY27j1eoKab4y6_ugmwzynQ@mail.gmail.com>
+Cc: David Moulton <david.moulton@erismedia.co.uk>
+In-Reply-To: <CAMr_NGHjJaeLQ_bXPHfRgL6zZayUY27j1eoKab4y6_ugmwzynQ@mail.gmail.com>
+To: Owen Thomas <ot@inhomemedia.io>
+X-Mailer: iPhone Mail (20G75)
+
+
+--Apple-Mail-EFC2C5D8-48A1-4A55-B6E9-3B5857F9E472
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Great<br><br><div dir=3D"ltr">Sent from my i=
+Phone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On 14 Aug 2023, at=
+ 14:52, Owen Thomas &lt;ot@inhomemedia.io&gt; wrote:<br><br></blockquote></d=
+iv><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"auto">Hi T=
+ony,</div><div dir=3D"auto"><br></div><div dir=3D"auto">Yes I should have a m=
+edia pack to review tomorrow.&nbsp;</div><div dir=3D"auto"><br></div><div di=
+r=3D"auto">Speak then guys.&nbsp;</div><div dir=3D"auto"><br></div><div dir=3D=
+"auto">Thanks,</div><div dir=3D"auto">Owen</div><div dir=3D"auto"><br></div>=
+<div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Sun, 13 Aug 2023 at 21:43, Anthony Hughes &lt;<a href=3D"mailto:th@inhomeme=
+dia.io">th@inhomemedia.io</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-=
+style:solid;padding-left:1ex;border-left-color:rgb(204,204,204)"><div dir=3D=
+"auto">Hi Owen,<div><br></div><div>Think view is if we can=E2=80=99t box off=
+ what we need on Tuesday, meet Wednesday, do you have a media pack ready for=
+ Ad stuff for us to go through.</div><div><br></div><div>Thanks</div><div><b=
+r></div><div>Tony<br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D=
+"ltr"><br><blockquote type=3D"cite">On 13 Aug 2023, at 11:26, Owen Thomas &l=
+t;<a href=3D"mailto:ot@inhomemedia.io" target=3D"_blank">ot@inhomemedia.io</=
+a>&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D=
+"ltr">=EF=BB=BF</div></blockquote></div></div><div dir=3D"auto"><div><blockq=
+uote type=3D"cite"><div dir=3D"ltr"><div dir=3D"ltr">Hi guys,<div><br></div>=
+<div>Just to confirm we are meeting in person on Wednesday morning?</div><di=
+v><br></div><div>Thanks,</div><div>Owen</div></div><br><div class=3D"gmail_q=
+uote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Aug 13, 2023 at 10:10=E2=
+=80=AFAM David Moulton &lt;<a href=3D"mailto:david.moulton@erismedia.co.uk" t=
+arget=3D"_blank">david.moulton@erismedia.co.uk</a>&gt; wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-w=
+idth:1px;border-left-style:solid;padding-left:1ex;border-left-color:rgb(204,=
+204,204)"><div>
+
+<div>
+<div>
+<div>
+<div dir=3D"ltr">
+<div dir=3D"ltr">Sorry, please ignore my email.&nbsp;</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Getting my days mixed up!!</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Best</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Dave</div>
+</div>
+</div>
+<div id=3D"m_8306552893382842252m_-4304878564030427644ms-outlook-mobile-sign=
+ature">
+<div><br>
+</div>
+<div style=3D"direction:ltr" dir=3D"ltr">Sent from my iPhone 14</div>
+</div>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_8306552893382842252m_-4304878564030427644divRplyFwdMsg" dir=3D"=
+ltr"><font face=3D"Calibri, sans-serif" style=3D"font-size:11pt;font-family:=
+Calibri,sans-serif;color:rgb(0,0,0)"><b style=3D"font-family:Calibri,sans-se=
+rif">From:</b> Anthony Hughes &lt;<a href=3D"mailto:th@inhomemedia.io" targe=
+t=3D"_blank" style=3D"font-family:Calibri,sans-serif">th@inhomemedia.io</a>&=
+gt;<br>
+<b style=3D"font-family:Calibri,sans-serif">Sent:</b> Sunday, August 13, 202=
+3 9:44:59 AM<br>
+<b style=3D"font-family:Calibri,sans-serif">To:</b> David Moulton &lt;<a hre=
+f=3D"mailto:david.moulton@erismedia.co.uk" target=3D"_blank" style=3D"font-f=
+amily:Calibri,sans-serif">david.moulton@erismedia.co.uk</a>&gt;<br>
+<b style=3D"font-family:Calibri,sans-serif">Cc:</b> Owen Thomas &lt;<a href=3D=
+"mailto:ot@inhomemedia.io" target=3D"_blank" style=3D"font-family:Calibri,sa=
+ns-serif">ot@inhomemedia.io</a>&gt;<br>
+<b style=3D"font-family:Calibri,sans-serif">Subject:</b> Re: Tony, Owen &amp=
+; Dave Catch up</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">Fine with me</div>
+<br>
+<div>
+<div dir=3D"ltr">On Sun, Aug 13, 2023 at 10:43=E2=80=AFAM David Moulton &lt;=
+<a href=3D"mailto:david.moulton@erismedia.co.uk" target=3D"_blank">david.mou=
+lton@erismedia.co.uk</a>&gt; wrote:<br>
+</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-l=
+eft-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204)">
+<div>
+<div>
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div>
+<div dir=3D"ltr">
+<div>Me too. Sorry, it defaults to a Teams mtg!</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Tony - we should be finished with James at 1ish - so we cou=
+ld bring this mtg forward to 1:30ish?</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Does that work?</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Best</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Dave</div>
+</div>
+</div>
+<div id=3D"m_8306552893382842252m_-4304878564030427644x_m_708333088806558190=
+4ms-outlook-mobile-signature">
+<div><br>
+</div>
+<div dir=3D"ltr" style=3D"direction:ltr">Sent from my iPhone 14</div>
+</div>
+</div>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_8306552893382842252m_-4304878564030427644x_m_708333088806558190=
+4divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" style=3D"font=
+-size:11pt;font-family:Calibri,sans-serif;color:rgb(0,0,0)"><b style=3D"font=
+-family:Calibri,sans-serif">From:</b> Anthony Hughes &lt;<a href=3D"mailto:t=
+h@inhomemedia.io" target=3D"_blank" style=3D"font-family:Calibri,sans-serif"=
+>th@inhomemedia.io</a>&gt;<br>
+<b style=3D"font-family:Calibri,sans-serif">Sent:</b> Sunday, August 13, 202=
+3 9:38:30 AM<br>
+<b style=3D"font-family:Calibri,sans-serif">To:</b> David Moulton &lt;<a hre=
+f=3D"mailto:david.moulton@erismedia.co.uk" target=3D"_blank" style=3D"font-f=
+amily:Calibri,sans-serif">david.moulton@erismedia.co.uk</a>&gt;<br>
+<b style=3D"font-family:Calibri,sans-serif">Cc:</b> Owen Thomas &lt;<a href=3D=
+"mailto:ot@inhomemedia.io" target=3D"_blank" style=3D"font-family:Calibri,sa=
+ns-serif">ot@inhomemedia.io</a>&gt;<br>
+<b style=3D"font-family:Calibri,sans-serif">Subject:</b> Re: Tony, Owen &amp=
+; Dave Catch up</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">I will be attending the meeting.&nbsp;<br>
+</div>
+<br>
+<div>
+<div dir=3D"ltr">On Fri, Aug 11, 2023 at 6:26=E2=80=AFPM David Moulton &lt;<=
+a href=3D"mailto:david.moulton@erismedia.co.uk" target=3D"_blank">david.moul=
+ton@erismedia.co.uk</a>&gt; wrote:<br>
+</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-l=
+eft-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204)">
+<div>
+<div><br>
+<div style=3D"width:100%"><span style=3D"white-space:nowrap;opacity:0.36;col=
+or:rgb(95,95,95)">__________________________________________________________=
+______________________</span>
+</div>
+<div lang=3D"en-GB" style=3D"font-family:&quot;Segoe UI&quot;,&quot;Helvetic=
+a Neue&quot;,Helvetica,Arial,sans-serif;color:rgb(37,36,36)">
+<div style=3D"margin-top:24px;margin-bottom:20px;font-family:&quot;Segoe UI&=
+quot;,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif"><span style=3D"=
+font-size:24px;font-family:&quot;Segoe UI&quot;,&quot;Helvetica Neue&quot;,H=
+elvetica,Arial,sans-serif;color:rgb(37,36,36)">Microsoft Teams meeting</span=
+>
+</div>
+<div style=3D"margin-bottom:20px;font-family:&quot;Segoe UI&quot;,&quot;Helv=
+etica Neue&quot;,Helvetica,Arial,sans-serif">
+<div style=3D"margin-top:0px;margin-bottom:0px;font-weight:bold;font-family:=
+&quot;Segoe UI&quot;,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif">=
+<span style=3D"font-size:14px;font-family:&quot;Segoe UI&quot;,&quot;Helveti=
+ca Neue&quot;,Helvetica,Arial,sans-serif;color:rgb(37,36,36)">Join on your c=
+omputer, mobile app or room device</span>
+</div>
+<a href=3D"https://teams.microsoft.com/l/meetup-join/19%3ameeting_YTNmMGE5Y2=
+EtMzM5YS00MzU5LWIzZGUtNTViZTBkMjFlZTZh%40thread.v2/0?context=3D%7b%22Tid%22%=
+3a%223a36f15e-d1be-43aa-a418-5a3c7384cc00%22%2c%22Oid%22%3a%22eca2c0a3-88a3-=
+4c1d-b1f2-622eff3c5a94%22%7d" rel=3D"noreferrer noopener" style=3D"font-size=
+:14px;font-family:&quot;Segoe UI Semibold&quot;,&quot;Segoe UI&quot;,&quot;H=
+elvetica Neue&quot;,Helvetica,Arial,sans-serif;text-decoration:underline;col=
+or:rgb(98,100,167)" target=3D"_blank">Click
+ here to join the meeting</a> </div>
+<div style=3D"margin-bottom:20px;margin-top:20px;font-family:&quot;Segoe UI&=
+quot;,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif">
+<div style=3D"margin-bottom:4px;font-family:&quot;Segoe UI&quot;,&quot;Helve=
+tica Neue&quot;,Helvetica,Arial,sans-serif"><span style=3D"font-size:14px;fo=
+nt-family:&quot;Segoe UI&quot;,&quot;Helvetica Neue&quot;,Helvetica,Arial,sa=
+ns-serif;color:rgb(37,36,36)">Meeting ID:
+<span style=3D"font-size:16px;font-family:&quot;Segoe UI&quot;,&quot;Helveti=
+ca Neue&quot;,Helvetica,Arial,sans-serif;color:rgb(37,36,36)">395 351 432 56=
+6</span> </span><br>
+<span style=3D"font-size:14px;font-family:&quot;Segoe UI&quot;,&quot;Helveti=
+ca Neue&quot;,Helvetica,Arial,sans-serif;color:rgb(37,36,36)">Passcode: </sp=
+an><span style=3D"font-size:16px;font-family:&quot;Segoe UI&quot;,&quot;Helv=
+etica Neue&quot;,Helvetica,Arial,sans-serif;color:rgb(37,36,36)">r3HGHc
+</span>
+<div style=3D"font-size:14px;font-family:&quot;Segoe UI&quot;,&quot;Helvetic=
+a Neue&quot;,Helvetica,Arial,sans-serif"><a href=3D"https://www.microsoft.co=
+m/en-us/microsoft-teams/download-app" rel=3D"noreferrer noopener" style=3D"f=
+ont-size:14px;text-decoration:underline;font-family:&quot;Segoe UI&quot;,&qu=
+ot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;color:rgb(98,100,167)" ta=
+rget=3D"_blank">Download
+ Teams</a> | <a href=3D"https://www.microsoft.com/microsoft-teams/join-a-mee=
+ting" rel=3D"noreferrer noopener" style=3D"font-size:14px;text-decoration:un=
+derline;font-family:&quot;Segoe UI&quot;,&quot;Helvetica Neue&quot;,Helvetic=
+a,Arial,sans-serif;color:rgb(98,100,167)" target=3D"_blank">
+Join on the web</a></div>
+</div>
+</div>
+<div style=3D"margin-bottom:24px;margin-top:20px;font-family:&quot;Segoe UI&=
+quot;,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif"><a href=3D"http=
+s://aka.ms/JoinTeamsMeeting" rel=3D"noreferrer noopener" style=3D"font-size:=
+14px;text-decoration:underline;font-family:&quot;Segoe UI&quot;,&quot;Helvet=
+ica Neue&quot;,Helvetica,Arial,sans-serif;color:rgb(98,100,167)" target=3D"_=
+blank">Learn
+ more</a> | <a href=3D"https://teams.microsoft.com/meetingOptions/?organizer=
+Id=3Deca2c0a3-88a3-4c1d-b1f2-622eff3c5a94&amp;tenantId=3D3a36f15e-d1be-43aa-=
+a418-5a3c7384cc00&amp;threadId=3D19_meeting_YTNmMGE5Y2EtMzM5YS00MzU5LWIzZGUt=
+NTViZTBkMjFlZTZh@thread.v2&amp;messageId=3D0&amp;language=3Den-GB" rel=3D"no=
+referrer noopener" style=3D"font-size:14px;text-decoration:underline;font-fa=
+mily:&quot;Segoe UI&quot;,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-se=
+rif;color:rgb(98,100,167)" target=3D"_blank">
+Meeting options</a> </div>
+</div>
+<div style=3D"font-size:14px;margin-bottom:4px;font-family:&quot;Segoe UI&qu=
+ot;,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif">
+</div>
+<div style=3D"font-size:12px"></div>
+<div></div>
+<div style=3D"width:100%"><span style=3D"white-space:nowrap;opacity:0.36;col=
+or:rgb(95,95,95)">__________________________________________________________=
+______________________</span>
+</div>
+<br>
+<br>
+<p style=3D"font-family:Verdana;font-size:10pt;color:rgb(102,102,102)"><b st=
+yle=3D"font-family:Verdana">Disclaimer</b></p>
+<p style=3D"font-family:Verdana;font-size:8pt;color:rgb(102,102,102)">The in=
+formation contained in this communication from the sender is confidential. I=
+t is intended solely for use by the recipient and others authorized to recei=
+ve it. If you are not the recipient,
+ you are hereby notified that any disclosure, copying, distribution or takin=
+g action in relation of the contents of this information is strictly prohibi=
+ted and may be unlawful.<br>
+<br>
+This email has been scanned for viruses and malware, and may have been autom=
+atically archived by Mimecast, a leader in email security and cyber resilien=
+ce. Mimecast integrates email defenses with brand protection, security aware=
+ness training, web security,
+ compliance and other essential capabilities. Mimecast helps protect large a=
+nd small organizations from malicious activity, human error and technology f=
+ailure; and to lead the movement toward building a more resilient world. To f=
+ind out more, visit our website.</p>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+<br>
+<br>
+<p style=3D"font-family:Verdana;font-size:10pt;color:rgb(102,102,102)"><b st=
+yle=3D"font-family:Verdana">Disclaimer</b></p>
+<p style=3D"font-family:Verdana;font-size:8pt;color:rgb(102,102,102)">The in=
+formation contained in this communication from the sender is confidential. I=
+t is intended solely for use by the recipient and others authorized to recei=
+ve it. If you are not the recipient,
+ you are hereby notified that any disclosure, copying, distribution or takin=
+g action in relation of the contents of this information is strictly prohibi=
+ted and may be unlawful.<br>
+<br>
+This email has been scanned for viruses and malware, and may have been autom=
+atically archived by Mimecast, a leader in email security and cyber resilien=
+ce. Mimecast integrates email defenses with brand protection, security aware=
+ness training, web security,
+ compliance and other essential capabilities. Mimecast helps protect large a=
+nd small organizations from malicious activity, human error and technology f=
+ailure; and to lead the movement toward building a more resilient world. To f=
+ind out more, visit our website.</p>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+
+
+<br><br><p style=3D"font-family:Verdana;font-size:10pt;color:rgb(102,102,102=
+)"><b style=3D"font-family:Verdana">Disclaimer</b></p><p style=3D"font-famil=
+y:Verdana;font-size:8pt;color:rgb(102,102,102)">The information contained in=
+ this communication from the sender is confidential. It is intended solely f=
+or use by the recipient and others authorized to receive it. If you are not t=
+he recipient, you are hereby notified that any disclosure, copying, distribu=
+tion or taking action in relation of the contents of this information is str=
+ictly prohibited and may be unlawful.<br><br>This email has been scanned for=
+ viruses and malware, and may have been automatically archived by Mimecast, a=
+ leader in email security and cyber resilience. Mimecast integrates email de=
+fenses with brand protection, security awareness training, web security, com=
+pliance and other essential capabilities. Mimecast helps protect large and s=
+mall organizations from malicious activity, human error and technology failu=
+re; and to lead the movement toward building a more resilient world. To find=
+ out more, visit our website.</p></div>
+</div></blockquote></div>
+</div></blockquote></div></div></blockquote></div></div>
+</div></blockquote></body></html>=
+
+--Apple-Mail-EFC2C5D8-48A1-4A55-B6E9-3B5857F9E472--

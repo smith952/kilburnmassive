@@ -1,0 +1,131 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:1348:b0:a68:ef71:2d9 with SMTP id x8csp130614ejb;
+        Thu, 6 Jun 2024 00:23:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEKjQokZXzTO/u1EUUepqJsPumuwW0N4+7Li5b3LdGbjMqobDY5ZNoXXvcXlIbyJasiobrI
+X-Received: by 2002:a05:6a00:2d10:b0:702:6834:4db4 with SMTP id d2e1a72fcca58-703e5a1327fmr5097328b3a.22.1717658599961;
+        Thu, 06 Jun 2024 00:23:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1717658599; cv=none;
+        d=google.com; s=arc-20160816;
+        b=zwZHDcGaJ69PIFaz8En3E5aXJEodZjfssmULCq6Js5n8ebZOp7dhKI7oVW6z+O5EYX
+         hg+8xrQEkSQ9PYZFAI5v9lJMZgxkF7guEiUMUoJ3sW1Awe6XRoImWjMQLA28tA+bZPVQ
+         a4HtNbpfkW6Rpi2v+/F298XCytKtQD2olBMt2ch6orBK7c6M08MRVyFvlsphVTYG9Fae
+         ZhmaNeR+Uqyf0cbaLGKmrIbrJgWaujJSKc40KNVogb79iYFSNFkB7Vz5yJXSuYQN4mav
+         4/ckU8mN9z4yyPUDhp8nAsgeRh2X/cmEiVpSl6s0lbQsuy7owcf/WsNITtfLIHfSg5QD
+         cCug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=a1KTbKODN+e9CA3GbmBv8lT4MOGd78FW+gE97c7aH8w=;
+        fh=PPC1HqqdMuvCicfndAtvqlbv4AGpwjpAql224GPSQGU=;
+        b=jTcMfLJU8mLZEuzwbnB743tkTLNVaEN8K5zdc+nppHd3NTJkwFsy6Sjzr+QcQd05YW
+         ZFYOVFLBcVbaF9lY8qG4qYx6IrPTYv5p0qRFUS8sTlrVyUzgXSgDp1wszZbolyDRBMrl
+         18KafgIOXarz0Oy0pq6IwwAuzMwE7DomDjrA/U7TWCrlEaqrnBTAPAg0ONELgoGsIt2X
+         NekpQnzSkCuD+rvfLezSpdczG+k6mpWA7RlsOJ51gT+R/QGiCGJDg7C3frJbGoBIBLU/
+         zUAcmb5/RdTia/fYbFnvGMmwns0qWAgrY6HXI3J4fGB3w7mFkEX/2c4jwIuWQEqFtpos
+         /Elw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b="l/N+q+6y";
+       spf=neutral (google.com: 2a00:1450:4864:20::432 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+Return-Path: <th@inhomemedia.io>
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com. [2a00:1450:4864:20::432])
+        by mx.google.com with ESMTPS id d2e1a72fcca58-703fd4c72b4si649049b3a.187.2024.06.06.00.23.19
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Jun 2024 00:23:19 -0700 (PDT)
+Received-SPF: neutral (google.com: 2a00:1450:4864:20::432 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) client-ip=2a00:1450:4864:20::432;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b="l/N+q+6y";
+       spf=neutral (google.com: 2a00:1450:4864:20::432 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-35e0eb3efd0so624853f8f.0
+        for <ot@inhomemedia.io>; Thu, 06 Jun 2024 00:23:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1717658595; x=1718263395; darn=inhomemedia.io;
+        h=to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a1KTbKODN+e9CA3GbmBv8lT4MOGd78FW+gE97c7aH8w=;
+        b=l/N+q+6y+xOTWGJy12DPnfGAli8eJwuemgYB5o+Hqe80YxbmToBN+M104El2Pnjb7v
+         VB3VFB0GGxYLPnuTOlH73oi4bZ8czfA6a79WpOwzStK10CWarjSllCoirMKMbuH9jwt4
+         oJd5lFmzQZzy3izToZsh4TGAFhDA+9uBRF+L/SOOviyLtjgSgXnZWnlh0C5xrlBNEW8v
+         2k70w3065TojLQN6eqMaIh1C9kMedUKN2ZCTJQMMMvR7xcs+OFu3g0l3vrrA6fAFt4zR
+         EsODMHQhA9hMFPwzy+MIL2KZwHdDTi2Iq4IojxkkuHOvGwBmYZYKgAGwxqeoix6449C5
+         O2bA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717658595; x=1718263395;
+        h=to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=a1KTbKODN+e9CA3GbmBv8lT4MOGd78FW+gE97c7aH8w=;
+        b=TYnM7faNjyjPnHg+ZqneaE0h6HpeRw5hVlGAl2+kGLZQR8zeD/TkAPMHf3XIrxGaR8
+         Yfx8Fea5IQFWjagHUQc/N9qKK4CImX4PYUuDDxhP6Ak5HT097hnF7uCxWHtiGBVoMMQO
+         dBGHtaYgOD3apKXtKqgCHbC22h1IAwKv+MtgYEujUAZ5wgrbRILtlNyha7AbabPukO0x
+         O5VcOpDGWjB7waxJDqtBrASmmepo23bHkudENqMRYqtENtpJNr426nq8+p3+k8ntn4uL
+         6hdNnrv6FClpY0a/1b1LM86U4c0YF/yUhWptvJfHvVPYmepF8unWEMROdfHeADWYaZwT
+         vN8w==
+X-Gm-Message-State: AOJu0YwfSlzazsQG+D9FpsKMHnrKXdR52VXh6OO6BTYFhcRi0beqCrQR
+	lLEP08l5Xja5tTAqcUcaGS5lSs3P2/V3V409s6JyTbE9MBX0hDh4F5nDF/HVx8LPnl8VC0W+oor
+	LYA==
+X-Received: by 2002:a05:6000:1250:b0:35d:c98e:9823 with SMTP id ffacd0b85a97d-35e8ef9702dmr3472401f8f.62.1717658595273;
+        Thu, 06 Jun 2024 00:23:15 -0700 (PDT)
+Return-Path: <th@inhomemedia.io>
+Received: from smtpclient.apple ([137.22.165.234])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5e991d4sm768014f8f.66.2024.06.06.00.23.14
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Jun 2024 00:23:14 -0700 (PDT)
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+From: Anthony Hughes <th@inhomemedia.io>
+Mime-Version: 1.0 (1.0)
+Date: Thu, 6 Jun 2024 08:23:03 +0100
+Subject: Draft for Dave
+Message-Id: <C8ED42FA-4A33-495F-B195-0BE19509AA69@inhomemedia.io>
+To: Owen Thomas <ot@inhomemedia.io>
+X-Mailer: iPhone Mail (21F90)
+
+Hi Dave,
+
+It is disappointing to receive the email below and the language you use. We e=
+ntered into an agreement as shareholders to grow the Company and one of the m=
+ain premises of that agreement was the support Eris/E&J could provide to ena=
+ble this.
+
+As it stands today that support/help has been close to non-existent. We have=
+ asked to progress the below on a number of occasions with little to no succ=
+ess.
+
+1. 22 Aviva sites to install screens - since October no progress and no meet=
+ing with Aviva.
+2. Screens in an Aviva building with no permission, no update as to what the=
+ position is with these.
+3. Instructed stock to be requested to pay =C2=A31 per apartment per month, p=
+ushed back.
+4. Introduction to Hyperoptic - not happened.
+5. Introduction to MD=E2=80=99s/CEO=E2=80=99s of MA=E2=80=99s not happened.
+
+We have been looking to grow the Company as a Proptech business against 2/3 w=
+ell funded competitors, we have deals agreed such as Kings Chelsea, Urang an=
+d Xenia with a number of others we are working through.=20
+
+We have invested in developing a managing agent portal and always positioned=
+ that =C2=A3750k was the requirement to grow the business.
+
+The dispute and non payment from 4th utility has caused some major issues in=
+ terms of the cash position of the business. We have reviewed their use of t=
+he screens and they have posted campaigns 20 times? Since February the last o=
+ne being the day before we met Steve Wilson. We have now compiled our positi=
+on and have written to them today to request payment in full plus indicated t=
+heir requirements under the contract.
+
+We are keen to still look to progress and move this opportunity forward coll=
+aboratively and a deal with landmark may be a good way for us to reset and m=
+ove forward.
+
+Let=E2=80=99s look to have the discussion face to face asap and agree a plan=
+ for the next 3 months to show the opportunity deliver on the deals we have c=
+reated and progress.
+
+
+
+Sent from my iPhone=

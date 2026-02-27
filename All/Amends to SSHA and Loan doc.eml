@@ -1,0 +1,443 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:6c8a:b0:a3c:4d99:442a with SMTP id s10csp46641ejr;
+        Mon, 12 Feb 2024 08:51:28 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEV73bLJDFJEoZBMVW7WCK/ZUQod1DbX7DfZQxE3AbXPaPdPEWVLF5fIrCHkPGMEU0fa3l8
+X-Received: by 2002:ac2:5187:0:b0:511:8b4a:69e8 with SMTP id u7-20020ac25187000000b005118b4a69e8mr2687020lfi.26.1707756688218;
+        Mon, 12 Feb 2024 08:51:28 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1707756688; cv=none;
+        d=google.com; s=arc-20160816;
+        b=qwX7CiUmWDIGZOFtxMtmFnTo2d/MpKtq5+V/Nhg/fMZZqGciswQ8rbvBELvQT8LWFO
+         IQyEY0iz4VUmcOGn6teD+CfY5fT613KkrQokr4SS7leFW7SxV9wDolkMjrwPwS+hUtEF
+         8n3Xq2SNe4ZsJ7ZRVfsW6ZIounsb+ezhzg5GuRk2R6d2W9IQ9ATCeXHLwge2ExWciXDV
+         zRlYPuf7aAIanYT+hZ7rXP+omY4OictxjZgxsuc4RMSut54GpRaGSAfMM4mkAj2dxqHN
+         69Mw7QhxyMpMw4fAUz6WO5ALKLU8QCsHqVR2ytarj7Nu89fvDIDQKnwz/FeYDARSlK7S
+         G1tg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=dkim-signature:content-transfer-encoding:cc:to:references
+         :message-id:in-reply-to:thread-topic:subject:from:date:mime-version;
+        bh=38jYXzL7XJg2+/NZKXQZrL34RrxaVf6YoC/av0jaiCw=;
+        fh=QlhWDGYdeC1KyJCbDOUPTaTExJJ1lG1GXDRbTqbIsIs=;
+        b=yMkp82GGeSNleHmHr5ncz9uvRD1SMI8a/YtbNOrq9L3DyiKUKZEBN17xwrA2YWCKpt
+         sj+vyFBVJDJAKBrfhgCEV/peaWfWQo9yCtjnI7F0657XEVP7hCTTjZv+N34pwOqgWVTM
+         eLmPGE4bXwZmYaXfNccQYpP70gK5qrQt/nxWgE6M+fz3bZVP4fisJiCEU5YmEb7IwU2v
+         CvlZ2p1d3lXszifCCSSkLpLQhmXjFX+nFymI51i1F4tT/bXBfM5ji+s8F6QXn1BfcQbL
+         00MoZ4zxkIzMeF/eQfSGpc6bJQ1Ambh3nkQlMhu1jLbsn9AKRmndnnpmFb+2ZTraGrJZ
+         zavg==;
+        darn=inhomemedia.io
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@jms-consult.com header.s=20230208 header.b=ONuNmPG2;
+       spf=neutral (google.com: 62.128.193.156 is neither permitted nor denied by best guess record for domain of jacqueline.hills@jms-consult.com) smtp.mailfrom=jacqueline.hills@jms-consult.com
+Return-Path: <jacqueline.hills@jms-consult.com>
+Received: from mta6.iomartmail.com (mta6.iomartmail.com. [62.128.193.156])
+        by mx.google.com with ESMTPS id lh18-20020a170906f8d200b00a388f94984esi344512ejb.44.2024.02.12.08.51.27
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 12 Feb 2024 08:51:28 -0800 (PST)
+Received-SPF: neutral (google.com: 62.128.193.156 is neither permitted nor denied by best guess record for domain of jacqueline.hills@jms-consult.com) client-ip=62.128.193.156;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@jms-consult.com header.s=20230208 header.b=ONuNmPG2;
+       spf=neutral (google.com: 62.128.193.156 is neither permitted nor denied by best guess record for domain of jacqueline.hills@jms-consult.com) smtp.mailfrom=jacqueline.hills@jms-consult.com
+Received: from vs2.iomartmail.com (vs2.iomartmail.com [10.12.10.123])
+	by mta6.iomartmail.com (8.14.7/8.14.7) with ESMTP id 41CGpRNn015424;
+	Mon, 12 Feb 2024 16:51:27 GMT
+Received: from vs2.iomartmail.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 6B10346050;
+	Mon, 12 Feb 2024 16:51:27 +0000 (GMT)
+Received: from vs2.iomartmail.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 4B4454604C;
+	Mon, 12 Feb 2024 16:51:27 +0000 (GMT)
+Received: from asmtp2.iomartmail.com (unknown [10.12.10.249])
+	by vs2.iomartmail.com (Postfix) with ESMTPS;
+	Mon, 12 Feb 2024 16:51:27 +0000 (GMT)
+Received: from Jacquelines-MBP (host86-144-244-228.range86-144.btcentralplus.com [86.144.244.228])
+	(authenticated bits=0)
+	by asmtp2.iomartmail.com (8.14.7/8.14.7) with ESMTP id 41CGpQYm013434
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Mon, 12 Feb 2024 16:51:26 GMT
+MIME-Version: 1.0
+Date: Mon, 12 Feb 2024 16:51:26 +0000
+From: "jacqueline.hills@jms-consult.com" <jacqueline.hills@jms-consult.com>
+Subject: Re: Amends to SSHA and Loan doc
+Thread-Topic: Re: Amends to SSHA and Loan doc
+In-Reply-To:
+ <CAMr_NGHr2zq33LCBum1TTqBBK4TfEWBTmGtx7NoQxS56o6gUog@mail.gmail.com>
+Message-ID: <F5CF972D-1173-534D-9D24-41ABBF451F79@hxcore.ol>
+References: <2979FE3B-60FA-294A-A80F-2209389F0191@hxcore.ol>
+ <CAMr_NGFcck5aygxC7ViCiC9JzCg5h3zy1g6-FHKJ=H4dtqy72g@mail.gmail.com>
+ <C58B1D95-D903-EF45-956A-4258FEFA581A@hxcore.ol>
+ <2E36C540-ED4A-F346-9991-808A76287E25@hxcore.ol>
+ <CAMr_NGFvZaTT17ibpVzcnf+xBuKzWCE3UWRArPbC_N9DTk4QSQ@mail.gmail.com>,<CAMr_NGHr2zq33LCBum1TTqBBK4TfEWBTmGtx7NoQxS56o6gUog@mail.gmail.com>
+To: Owen Thomas <ot@inhomemedia.io>
+Cc: Anthony Hughes <th@inhomemedia.io>,
+        Jonathan M Saville <jonathansaville@jms-consult.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
+X-Originating-IP: 86.144.244.228
+X-Thinkmail-Auth: jacqueline.hills@jms-consult.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=jms-consult.com; h=
+	mime-version:date:from:subject:in-reply-to:message-id:references
+	:to:cc:content-transfer-encoding:content-type; s=20230208; bh=eb
+	4E8ox6VDqMPmPnoczJQOMvjS5Mj4GBMZB8rpz+ktw=; b=ONuNmPG2jzElz3aPVi
+	wAIeYksW3jmpU7VP0IGRz1OwUdF4F+pAGxyUaT16kHJ2Mq5ng0S3jmuGpv314sY3
+	W8zbSSbmEbWjAGKiiduE2JKYIiCNvJtUg3bDHxL9KhPFjFhbByfNxIEgVm0Ouoil
+	SNi7oOrRpUBObh4BElKuXb7XsJkMORoahxUuW968O979vyYaUEPk8TUB2tvB/LSz
+	S6CBoCNwUmntQ13jixPLItC2jOFrfYEqUKX5t/fWIoaz30AsmNbCDCXm9m1xCI1A
+	RSCtsrI8gLCYEY9ucN0PDue9nrbq4oxuIKRJLqywYzF/rSzFUd9nAc7L4ye0C3Ri
+	f3zw==
+X-TM-AS-GCONF: 00
+X-TM-AS-Product-Ver: IMSVA-9.1.0.2090-9.0.0.1002-28188.001
+X-TM-AS-Result: No--33.255-10.0-31-10
+X-imss-scan-details: No--33.255-10.0-31-10
+X-TMASE-Version: IMSVA-9.1.0.2090-9.0.1002-28188.001
+X-TMASE-Result: 10--33.254900-10.000000
+X-TMASE-MatchedRID: IeZYkn8zfFrvTN8vEvt6gO9VsdrlGzy3Q6/DFZugyt1bYv6Kt+uF2PU7
+	2nYVxvYN4D6lW82JZVEb8xI2OD3Z7eyDy8V8lTWUuW77/y896shLGPRv0WdxQq9TCZ07CotPxUD
+	TxL3vuSBdWwRZWpipqGZhpDhdH8fMb8zosfc6NatitzfafzhYes/I/m8aIlgMBwAOXG+b40q1k/
+	JQVjn50BiZsVhauLEn2QQJvp4Wi4Bq9oJbnOqI2ovptQwz5tsifYraJ2bpuF6XfY/lmJ+9hhWD+
+	nWasooFE3LTih1WlQskddWGDqeAkUUZABEzaC4/+s0+QZYAcN86En2bnefhoH0UJCNOuI22LJbs
+	wLUY6eF43BOQCeFVswh3PdbquvV6oDVEvxCdva/4FqzGb25nhywWc+5xXVg+NWO9z3c712SN1Xl
+	bFhNiP6LFn8LpuyQeAxOvE9DOFI9P8OOzVUX6VMS0rIvRSgE9/f9dFMEJEOzqq06ntg4wySxXwd
+	9S2XGhRRa406V/YwwMKx6ohwl/BjwicShb/20alVHM/F6YkvQW+5e0d/Sm6qaMoAdX7kkNIKWch
+	W3S1bf9F5gpB/8TUlShY+IKaDcmb7A96mLiSaRmNCKOCsW/OqTzJo0CZl8h+auSQfom9kHoKaUq
+	J+yUcvdVW0zmYsMz7IEgdx1rxqAX276JCXv2hBRb44diZThUCe1sPOFCidMOkJQR4QWbsLWQyyh
+	6qcDkmNlB50pVnN3eOnQ50YFawAx5TL3qCTgEEPf7TDUOGor9q7MCmaR50RY6BYxX8S3/0ScSHL
+	OQtKZWxH0q6fO2k8ApOsQZ3Oye4S6tfg/H6fdANB89sV0bJyH5xd1Wn9PCmyiLZetSf8mZMPCnT
+	MzfOtOU6PJlLEni/4rWvpj9UcgD/dHyT/Xh7Q==
+X-TMASE-SNAP-Result: 1.821001.0001-0-1-22:0,33:0,34:0-0
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40"><head><meta http-equiv=3DContent-Type content=
+=3D"text/html; charset=3Dutf-8"><meta name=3DGenerator content=3D"Microsoft=
+ Word 15 (filtered medium)"><!--[if !mso]><style>v\:* {behavior:url(#defaul=
+t#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	mso-ligatures:none;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB link=3Dblue vli=
+nk=3Dpurple style=3D'word-wrap:break-word'><div class=3DWordSection1><p cla=
+ss=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Hi Owen,<o:p></o:=
+p></span></p><p class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US=
+'>I chased him earlier and just tried phoning but. No answer to both I=E2=
+=80=99m afraid.<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'ms=
+o-fareast-language:EN-US'>I=E2=80=99ll keep at them<o:p></o:p></span></p><p=
+ class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Kind regards<=
+o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'mso-fareast-langua=
+ge:EN-US'>Jacqueline<o:p></o:p></span></p><p class=3DMsoNormal><span style=
+=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><div><div><div>=
+<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial",sa=
+ns-serif'>Jacqueline S Hills<o:p></o:p></span></p><p class=3DMsoNormal><spa=
+n style=3D'font-size:10.0pt;font-family:"Arial",sans-serif'>Chief Legal Off=
+icer<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10.=
+0pt;font-family:"Arial",sans-serif'><o:p>&nbsp;</o:p></span></p><p class=3D=
+MsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial",sans-serif'><=
+o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10=
+0pt;font-family:"Arial",sans-serif'>JMS Consulting is a trading name of JM=
+S Consulting Ltd, a limited liability company registered in England with co=
+mpany registration number 03686858 and whose registered office is at 2 Swan=
+ Lane, London EC4R 3TT.&nbsp; This email and any attachments is confidentia=
+l and may be legally privileged and is intended only for the addressee.&nbs=
+p; If you receive this email (including any attachments) in error, please c=
+ontact the sender of this email and immediately delete all records of it fr=
+om your system.&nbsp; The sender of this email cannot guarantee that it is =
+free from any error or virus and the recipient is responsible for ensuring =
+they have adequate virus and other security scanning programs to address th=
+is.&nbsp; <o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-si=
+ze:10.0pt;font-family:"Arial",sans-serif'>This message and any attachments =
+are intended for the persons named as addressees only and may contain confi=
+dential information.&nbsp; Any information contained herein may also be pro=
+tected by copyright.&nbsp; If you receive this in error please notify us, d=
+elete it and do not make use or copy it .&nbsp; You must not copy, dissemin=
+ate, or otherwise distribute or publish this message except for the purpose=
+s for which this message is intended, without our consent.&nbsp; Please not=
+e this email has been created in the knowledge that internet email is not a=
+ 100% secure communications medium.&nbsp; We advise that you understand and=
+ accept this lack of security when emailing us.&nbsp; <o:p></o:p></span></p=
+></div></div></div><p class=3DMsoNormal><span style=3D'mso-fareast-language=
+:EN-US'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span style=3D'mso=
+-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><div style=3D'border:n=
+one;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm 0cm 0cm'><p class=3DMs=
+oNormal style=3D'margin-bottom:12.0pt'><b><span style=3D'font-size:12.0pt;c=
+olor:black'>From: </span></b><span style=3D'font-size:12.0pt;color:black'>O=
+wen Thomas &lt;ot@inhomemedia.io&gt;<br><b>Date: </b>Monday, 12 February 20=
+24 at 16:15<br><b>To: </b>jacqueline.hills@jms-consult.com &lt;jacqueline.h=
+ills@jms-consult.com&gt;<br><b>Cc: </b>Anthony Hughes &lt;th@inhomemedia.io=
+&gt;, Jonathan M Saville &lt;jonathansaville@jms-consult.com&gt;<br><b>Subj=
+ect: </b>Re: Amends to SSHA and Loan doc<o:p></o:p></span></p></div><div id=
+=3Dmail-editor-reference-message-container><div><div><p class=3DMsoNormal>H=
+i Jacqueline.&nbsp;<o:p></o:p></p></div><div><p class=3DMsoNormal><o:p>&nbs=
+p;</o:p></p></div><div><p class=3DMsoNormal>Still nothing received our side=
+&nbsp;<o:p></o:p></p></div><div><p class=3DMsoNormal><o:p>&nbsp;</o:p></p>=
+</div><div><p class=3DMsoNormal>Any chance you can chase Kelvin for an upda=
+te please?<o:p></o:p></p></div><div><p class=3DMsoNormal><o:p>&nbsp;</o:p><=
+/p></div><div><p class=3DMsoNormal>Thanks,<o:p></o:p></p></div><div><p clas=
+s=3DMsoNormal>Owen<o:p></o:p></p></div><div><p class=3DMsoNormal><o:p>&nbsp=
+;</o:p></p></div><div><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></div=
+><div><div><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><p class=3DM=
+soNormal>On Mon, 12 Feb 2024 at 12:11, Owen Thomas &lt;<a href=3D"mailto:ot=
+@inhomemedia.io">ot@inhomemedia.io</a>&gt; wrote:<o:p></o:p></p></div><bloc=
+kquote style=3D'border:none;border-left:solid #CCCCCC 1.0pt;padding:0cm 0cm=
+ 0cm 6.0pt;margin-left:4.8pt;margin-right:0cm'><div><p class=3DMsoNormal>Th=
+anks for update Jacqueline.&nbsp;<o:p></o:p></p></div><div><p class=3DMsoNo=
+rmal><o:p>&nbsp;</o:p></p></div><div><p class=3DMsoNormal>Will keep you pos=
+ted my side.&nbsp;<o:p></o:p></p></div><div><p class=3DMsoNormal><o:p>&nbsp=
+;</o:p></p></div><div><p class=3DMsoNormal>Thanks,<o:p></o:p></p></div><div=
+><p class=3DMsoNormal>Owen<o:p></o:p></p></div><div><p class=3DMsoNormal><o=
+:p>&nbsp;</o:p></p></div><div><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><di=
+v><div><p class=3DMsoNormal>On Mon, 12 Feb 2024 at 12:07, <a href=3D"mailto=
+:jacqueline.hills@jms-consult.com">jacqueline.hills@jms-consult.com</a> &lt=
+;<a href=3D"mailto:jacqueline.hills@jms-consult.com">jacqueline.hills@jms-c=
+onsult.com</a>&gt; wrote:<o:p></o:p></p></div><blockquote style=3D'border:n=
+one;border-left:solid #CCCCCC 1.0pt;padding:0cm 0cm 0cm 6.0pt;margin-left:4=
+8pt;margin-right:0cm'><div><div><p class=3DMsoNormal style=3D'mso-margin-t=
+op-alt:auto;mso-margin-bottom-alt:auto'>HI Owen,<o:p></o:p></p><p class=3DM=
+soNormal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Just =
+by way of an update, I am waiting to hear from Kelvin but I think all docum=
+ents are now agreed and Kelvin will load all into docusign for signature.<o=
+:p></o:p></p><p class=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-marg=
+in-bottom-alt:auto'>Please both look out for the docusign envelope and once=
+ this is completed and the monies can be released we will be able to agree =
+completion and date the documents.<o:p></o:p></p><p class=3DMsoNormal style=
+=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><br>Please can you =
+keep an eye on the bank account and let me know when the monies are receive=
+d.<o:p></o:p></p><p class=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-=
+margin-bottom-alt:auto'>&nbsp;<o:p></o:p></p><p class=3DMsoNormal style=3D'=
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Many thanks<o:p></o:p><=
+/p></div></div><div><div><p class=3DMsoNormal style=3D'mso-margin-top-alt:a=
+uto;mso-margin-bottom-alt:auto'>Kind regards<o:p></o:p></p><p class=3DMsoNo=
+rmal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Jacquelin=
+e<o:p></o:p></p><p class=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-m=
+argin-bottom-alt:auto'>&nbsp;<o:p></o:p></p><div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span style=3D=
+'font-family:"Arial",sans-serif'>Jacqueline S Hills</span><o:p></o:p></p><p=
+ class=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:a=
+uto'><span style=3D'font-family:"Arial",sans-serif'>Chief Legal Officer</sp=
+an><o:p></o:p></p><p class=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso=
+-margin-bottom-alt:auto'><span style=3D'font-family:"Arial",sans-serif'>&nb=
+sp;</span><o:p></o:p></p><p class=3DMsoNormal style=3D'mso-margin-top-alt:a=
+uto;mso-margin-bottom-alt:auto'><span style=3D'font-family:"Arial",sans-ser=
+if'>&nbsp;</span><o:p></o:p></p><p class=3DMsoNormal style=3D'mso-margin-to=
+p-alt:auto;mso-margin-bottom-alt:auto'><span style=3D'font-family:"Arial",s=
+ans-serif'>JMS Consulting is a trading name of JMS Consulting Ltd, a limite=
+d liability company registered in England with company registration number =
+03686858 and whose registered office is at 2 Swan Lane, London EC4R 3TT.&nb=
+sp; This email and any attachments is confidential and may be legally privi=
+leged and is intended only for the addressee.&nbsp; If you receive this ema=
+il (including any attachments) in error, please contact the sender of this =
+email and immediately delete all records of it from your system.&nbsp; The =
+sender of this email cannot guarantee that it is free from any error or vir=
+us and the recipient is responsible for ensuring they have adequate virus a=
+nd other security scanning programs to address this.&nbsp; </span><o:p></o:=
+p></p><p class=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-margin-bott=
+om-alt:auto'><span style=3D'font-family:"Arial",sans-serif'>This message an=
+d any attachments are intended for the persons named as addressees only and=
+ may contain confidential information.&nbsp; Any information contained here=
+in may also be protected by copyright.&nbsp; If you receive this in error p=
+lease notify us, delete it and do not make use or copy it .&nbsp; You must =
+not copy, disseminate, or otherwise distribute or publish this message exce=
+pt for the purposes for which this message is intended, without our consent=
+&nbsp; Please note this email has been created in the knowledge that inter=
+net email is not a 100% secure communications medium.&nbsp; We advise that =
+you understand and accept this lack of security when emailing us.&nbsp; </s=
+pan><o:p></o:p></p></div></div><p class=3DMsoNormal style=3D'mso-margin-top=
+-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p></o:p></p><p class=3DMsoNo=
+rmal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:=
+p></o:p></p><div id=3D"m_-5693174900125241984m_-2145086627939374396m_727976=
+9495827321281mail-editor-reference-message-container"><div><div style=3D'bo=
+rder:none;border-top:solid windowtext 1.0pt;padding:3.0pt 0cm 0cm 0cm;borde=
+r-color:currentcolor currentcolor'><p class=3DMsoNormal style=3D'mso-margin=
+-top-alt:auto;margin-bottom:12.0pt'><b><span style=3D'font-size:12.0pt;colo=
+r:black'>From: </span></b><span style=3D'font-size:12.0pt;color:black'><a h=
+ref=3D"mailto:jacqueline.hills@jms-consult.com">jacqueline.hills@jms-consul=
+t.com</a> &lt;<a href=3D"mailto:jacqueline.hills@jms-consult.com">jacquelin=
+e.hills@jms-consult.com</a>&gt;<br><b>Date: </b>Monday, 12 February 2024 at=
+ 09:29<br><b>To: </b>Owen Thomas &lt;<a href=3D"mailto:ot@inhomemedia.io">o=
+t@inhomemedia.io</a>&gt;<br><b>Cc: </b>Anthony Hughes &lt;<a href=3D"mailto=
+:th@inhomemedia.io">th@inhomemedia.io</a>&gt;, Jonathan M Saville &lt;<a hr=
+ef=3D"mailto:jonathansaville@jms-consult.com">jonathansaville@jms-consult.c=
+om</a>&gt;<br><b>Subject: </b>Re: Amends to SSHA and Loan doc</span><o:p></=
+o:p></p></div><p class=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-mar=
+gin-bottom-alt:auto'>Thanks Owen,<o:p></o:p></p><p class=3DMsoNormal style=
+=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>I=E2=80=99ll go bac=
+k to Kelvin accordingly.<o:p></o:p></p><p class=3DMsoNormal style=3D'mso-ma=
+rgin-top-alt:auto;mso-margin-bottom-alt:auto'>Kind regards<o:p></o:p></p><p=
+ class=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:a=
+uto'>Jacqueline<o:p></o:p></p><p class=3DMsoNormal style=3D'mso-margin-top-=
+alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p></o:p></p><div><div><div><p=
+ class=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:a=
+uto'><span style=3D'font-family:"Arial",sans-serif'>Jacqueline S Hills</spa=
+n><o:p></o:p></p><p class=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-=
+margin-bottom-alt:auto'><span style=3D'font-family:"Arial",sans-serif'>Chie=
+f Legal Officer</span><o:p></o:p></p><p class=3DMsoNormal style=3D'mso-marg=
+in-top-alt:auto;mso-margin-bottom-alt:auto'><span style=3D'font-family:"Ari=
+al",sans-serif'>&nbsp;</span><o:p></o:p></p><p class=3DMsoNormal style=3D'm=
+so-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span style=3D'font-fami=
+ly:"Arial",sans-serif'>&nbsp;</span><o:p></o:p></p><p class=3DMsoNormal sty=
+le=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span style=3D'fo=
+nt-family:"Arial",sans-serif'>JMS Consulting is a trading name of JMS Consu=
+lting Ltd, a limited liability company registered in England with company r=
+egistration number 03686858 and whose registered office is at 2 Swan Lane, =
+London EC4R 3TT.&nbsp; This email and any attachments is confidential and m=
+ay be legally privileged and is intended only for the addressee.&nbsp; If y=
+ou receive this email (including any attachments) in error, please contact =
+the sender of this email and immediately delete all records of it from your=
+ system.&nbsp; The sender of this email cannot guarantee that it is free fr=
+om any error or virus and the recipient is responsible for ensuring they ha=
+ve adequate virus and other security scanning programs to address this.&nbs=
+p; </span><o:p></o:p></p><p class=3DMsoNormal style=3D'mso-margin-top-alt:a=
+uto;mso-margin-bottom-alt:auto'><span style=3D'font-family:"Arial",sans-ser=
+if'>This message and any attachments are intended for the persons named as =
+addressees only and may contain confidential information.&nbsp; Any informa=
+tion contained herein may also be protected by copyright.&nbsp; If you rece=
+ive this in error please notify us, delete it and do not make use or copy i=
+t .&nbsp; You must not copy, disseminate, or otherwise distribute or publis=
+h this message except for the purposes for which this message is intended, =
+without our consent.&nbsp; Please note this email has been created in the k=
+nowledge that internet email is not a 100% secure communications medium.&nb=
+sp; We advise that you understand and accept this lack of security when ema=
+iling us.&nbsp; </span><o:p></o:p></p></div></div></div><p class=3DMsoNorma=
+l style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-margin-b=
+ottom-alt:auto'>&nbsp;<o:p></o:p></p><div style=3D'border:none;border-top:s=
+olid windowtext 1.0pt;padding:3.0pt 0cm 0cm 0cm;border-color:currentcolor c=
+urrentcolor'><p class=3DMsoNormal style=3D'mso-margin-top-alt:auto;margin-b=
+ottom:12.0pt'><b><span style=3D'font-size:12.0pt;color:black'>From: </span>=
+</b><span style=3D'font-size:12.0pt;color:black'>Owen Thomas &lt;<a href=3D=
+"mailto:ot@inhomemedia.io">ot@inhomemedia.io</a>&gt;<br><b>Date: </b>Monday=
+, 12 February 2024 at 08:39<br><b>To: </b><a href=3D"mailto:jacqueline.hill=
+s@jms-consult.com">jacqueline.hills@jms-consult.com</a> &lt;<a href=3D"mail=
+to:jacqueline.hills@jms-consult.com">jacqueline.hills@jms-consult.com</a>&g=
+t;<br><b>Cc: </b>Anthony Hughes &lt;<a href=3D"mailto:th@inhomemedia.io">th=
+@inhomemedia.io</a>&gt;, Jonathan M Saville &lt;<a href=3D"mailto:jonathans=
+aville@jms-consult.com">jonathansaville@jms-consult.com</a>&gt;<br><b>Subje=
+ct: </b>Re: Amends to SSHA and Loan doc</span><o:p></o:p></p></div><div id=
+=3D"m_-5693174900125241984m_-2145086627939374396m_7279769495827321281mail-e=
+ditor-reference-message-container"><div><div><p class=3DMsoNormal style=3D'=
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Hi Jacqueline,<o:p></o:=
+p></p><div><p class=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-margin=
+-bottom-alt:auto'>&nbsp;<o:p></o:p></p></div><div><p class=3DMsoNormal styl=
+e=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Thanks for explain=
+ing this, I am happy to proceed based on Kelvin's workings. I do get your p=
+oint, but at this stage we are just keen to get the deal over the line.<o:p=
+></o:p></p></div><div><p class=3DMsoNormal style=3D'mso-margin-top-alt:auto=
+;mso-margin-bottom-alt:auto'>&nbsp;<o:p></o:p></p></div><div><p class=3DMso=
+Normal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Hope we=
+ are able to circulate and complete today. I am here if you&nbsp;need to sp=
+eak.<o:p></o:p></p></div><div><p class=3DMsoNormal style=3D'mso-margin-top-=
+alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p></o:p></p></div><div><p cla=
+ss=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'=
+><span style=3D'font-size:110.0pt'>Thanks,</span><o:p></o:p></p></div><div>=
+<p class=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt=
+:auto'>Owen<o:p></o:p></p></div><div><p class=3DMsoNormal style=3D'mso-marg=
+in-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p></o:p></p></div></di=
+v><p class=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto'>&nbsp;<o:p></o:p></p><div><div><p class=3DMsoNormal style=3D'mso-m=
+argin-top-alt:auto;mso-margin-bottom-alt:auto'>On Sun, Feb 11, 2024 at 9:56=
+=E2=80=AFAM <a href=3D"mailto:jacqueline.hills@jms-consult.com">jacqueline.=
+hills@jms-consult.com</a> &lt;<a href=3D"mailto:jacqueline.hills@jms-consul=
+t.com">jacqueline.hills@jms-consult.com</a>&gt; wrote:<o:p></o:p></p></div>=
+<blockquote style=3D'border:none;border-left:solid windowtext 1.0pt;padding=
+:0cm 0cm 0cm 6.0pt;margin-left:4.8pt;margin-top:5.0pt;margin-right:0cm;marg=
+in-bottom:5.0pt;border-color:currentcolor currentcolor currentcolor rgb(204=
+,204,204)'><div><div><div><p class=3DMsoNormal style=3D'mso-margin-top-alt:=
+auto;mso-margin-bottom-alt:auto'>Hi Owen,<o:p></o:p></p><p class=3DMsoNorma=
+l style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>I have recei=
+ved the attached from Kelvin, he has drafted the Subscription and Sharehold=
+ers Agreement to show that the subscription price for your 49 shares is the=
+ same as Anthony=E2=80=99s subscription price for 50 shares and the same as=
+ David and James=E2=80=99 50 shares they have.&nbsp; <o:p></o:p></p><p clas=
+s=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>=
+I have queried this with him several times, the =C2=A3250k is to purchase 1=
+49 shares and my calculations are that each share is therefore priced at =
+=C2=A31,677.85;<o:p></o:p></p><p class=3DMsoNormal style=3D'mso-margin-top-=
+alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p></o:p></p><p class=3DMsoNor=
+mal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Thus Owen =
+49 shares - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =C2=A382,214.76<o:p></o:p></p><p cl=
+ass=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto=
+'>Anthony 50 shares - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; =C2=A383,892.50<o:p></o:p></p><p class=3DMsoNormal style=3D'mso-margin=
+-top-alt:auto;mso-margin-bottom-alt:auto'>James =E2=80=93 25 shares&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; =C2=A341,946.25<o:p></o:p></p><p class=3DMsoNormal style=3D'mso-margin=
+-top-alt:auto;mso-margin-bottom-alt:auto'>David =E2=80=93 25 shares-&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; =C2=A341,946.25<o:p></o:p></p><p class=3DMsoNormal style=3D'mso-margi=
+n-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p></o:p></p><p class=3D=
+MsoNormal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Kelv=
+in=E2=80=99s point is you should pay the same price for 49 shares as others=
+ do for 50 this as you didn=E2=80=99t pay for your first share =E2=80=93 th=
+is is not legally correct but it is up to you if you are happy with these c=
+alculations or if you wish me to press the point again.<o:p></o:p></p><p cl=
+ass=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto=
+'>&nbsp;<o:p></o:p></p><p class=3DMsoNormal style=3D'mso-margin-top-alt:aut=
+o;mso-margin-bottom-alt:auto'>Similarly in your Loan agreement Kelvin has c=
+hanged our amendment again so the loan reads that you are purchasing 50 sha=
+res =E2=80=93 I have tried to explain that you are purchasing 49 but that t=
+he loan is secured over 50 shares.&nbsp; Again do you want me to press the =
+point of leave as is.<o:p></o:p></p><p class=3DMsoNormal style=3D'mso-margi=
+n-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p></o:p></p><p class=3D=
+MsoNormal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>On b=
+oth these points you may just want to check with your accountant to see how=
+ he would deal with this in your books.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p></o=
+:p></p><p class=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-margin-bot=
+tom-alt:auto'>Let me know and we should be able to get things circulated to=
+morrow.<o:p></o:p></p><p class=3DMsoNormal style=3D'mso-margin-top-alt:auto=
+;mso-margin-bottom-alt:auto'>Kind regards<o:p></o:p></p><p class=3DMsoNorma=
+l style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span style=
+=3D'font-size:110.0pt'>Jacqueline</span><o:p></o:p></p></div></div></div></=
+blockquote></div></div><p class=3DMsoNormal style=3D'mso-margin-top-alt:aut=
+o;mso-margin-bottom-alt:auto'>&nbsp;<o:p></o:p></p><div class=3DMsoNormal a=
+lign=3Dcenter style=3D'text-align:center'><hr size=3D0 width=3D"100%" align=
+=3Dcenter></div><p class=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-m=
+argin-bottom-alt:auto'>This email has been scanned by iomartcloud.<br><a hr=
+ef=3D"http://www.iomartcloud.com">http://www.iomartcloud.com</a><o:p></o:p>=
+</p><div class=3DMsoNormal align=3Dcenter style=3D'text-align:center'><hr s=
+ize=3D0 width=3D"100%" align=3Dcenter></div></div></div></div></div></div><=
+/blockquote></div></div></blockquote></div></div></div><p class=3DMsoNormal=
+><o:p>&nbsp;</o:p></p><div class=3DMsoNormal align=3Dcenter style=3D'text-a=
+lign:center'><hr size=3D0 width=3D"100%" align=3Dcenter></div><p class=3DMs=
+oNormal>This email has been scanned by iomartcloud.<br><a href=3D"http://ww=
+w.iomartcloud.com">http://www.iomartcloud.com</a><o:p></o:p></p><div class=
+=3DMsoNormal align=3Dcenter style=3D'text-align:center'><hr size=3D0 width=
+=3D"100%" align=3Dcenter></div></div></div></body></html>=
+

@@ -1,0 +1,89 @@
+BEGIN:VCALENDAR
+METHOD:REQUEST
+PRODID:Microsoft Exchange Server 2010
+VERSION:2.0
+BEGIN:VTIMEZONE
+TZID:GMT Standard Time
+BEGIN:STANDARD
+DTSTART:16010101T020000
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0000
+RRULE:FREQ=YEARLY;INTERVAL=1;BYDAY=-1SU;BYMONTH=10
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:16010101T010000
+TZOFFSETFROM:+0000
+TZOFFSETTO:+0100
+RRULE:FREQ=YEARLY;INTERVAL=1;BYDAY=-1SU;BYMONTH=3
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+ORGANIZER;CN=David Moulton:mailto:david.moulton@erismedia.co.uk
+ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;CN=Anthony Hu
+ ghes:mailto:th@inhomemedia.io
+ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;CN=Owen Thoma
+ s:mailto:ot@inhomemedia.io
+DESCRIPTION;LANGUAGE=en-GB:\n______________________________________________
+ __________________________________\nMicrosoft Teams meeting\nJoin on your 
+ computer\, mobile app or room device\nClick here to join the meeting<https
+ ://teams.microsoft.com/l/meetup-join/19%3ameeting_OGY2N2M4OWMtYmE5Yy00YmFk
+ LTg2MjgtNTI1ZGI2NTMyNjk0%40thread.v2/0?context=%7b%22Tid%22%3a%223a36f15e-
+ d1be-43aa-a418-5a3c7384cc00%22%2c%22Oid%22%3a%22eca2c0a3-88a3-4c1d-b1f2-62
+ 2eff3c5a94%22%7d>\nMeeting ID: 349 378 293 631\nPasscode: QSf9bW\nDownload
+  Teams<https://www.microsoft.com/en-us/microsoft-teams/download-app> | Joi
+ n on the web<https://www.microsoft.com/microsoft-teams/join-a-meeting>\nLe
+ arn more<https://aka.ms/JoinTeamsMeeting> | Meeting options<https://teams.
+ microsoft.com/meetingOptions/?organizerId=eca2c0a3-88a3-4c1d-b1f2-622eff3c
+ 5a94&tenantId=3a36f15e-d1be-43aa-a418-5a3c7384cc00&threadId=19_meeting_OGY
+ 2N2M4OWMtYmE5Yy00YmFkLTg2MjgtNTI1ZGI2NTMyNjk0@thread.v2&messageId=0&langua
+ ge=en-GB>\n_______________________________________________________________
+ _________________\n
+RRULE:FREQ=WEEKLY;UNTIL=20231016T140000Z;INTERVAL=1;BYDAY=MO;WKST=MO
+UID:040000008200E00074C5B7101A82E0080000000025B8980621BCD901000000000000000
+ 0100000003F1B402141EEA14AAC084A2B4CA0973C
+SUMMARY;LANGUAGE=en-GB:IHM Progress Meetings
+DTSTART;TZID=GMT Standard Time:20230724T150000
+DTEND;TZID=GMT Standard Time:20230724T160000
+CLASS:PUBLIC
+PRIORITY:5
+DTSTAMP:20230721T221643Z
+TRANSP:OPAQUE
+STATUS:CONFIRMED
+SEQUENCE:0
+LOCATION;LANGUAGE=en-GB:Microsoft Teams Meeting
+X-MICROSOFT-CDO-APPT-SEQUENCE:0
+X-MICROSOFT-CDO-OWNERAPPTID:2121772325
+X-MICROSOFT-CDO-BUSYSTATUS:TENTATIVE
+X-MICROSOFT-CDO-INTENDEDSTATUS:BUSY
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-MICROSOFT-CDO-IMPORTANCE:1
+X-MICROSOFT-CDO-INSTTYPE:1
+X-MICROSOFT-ONLINEMEETINGEXTERNALLINK:
+X-MICROSOFT-ONLINEMEETINGINFORMATION:{"OnlineMeetingChannelId":null\,"Onlin
+ eMeetingProvider":3}
+X-MICROSOFT-SKYPETEAMSMEETINGURL:https://teams.microsoft.com/l/meetup-join/
+ 19%3ameeting_OGY2N2M4OWMtYmE5Yy00YmFkLTg2MjgtNTI1ZGI2NTMyNjk0%40thread.v2/
+ 0?context=%7b%22Tid%22%3a%223a36f15e-d1be-43aa-a418-5a3c7384cc00%22%2c%22O
+ id%22%3a%22eca2c0a3-88a3-4c1d-b1f2-622eff3c5a94%22%7d
+X-MICROSOFT-SCHEDULINGSERVICEUPDATEURL:https://api.scheduler.teams.microsof
+ t.com/teams/3a36f15e-d1be-43aa-a418-5a3c7384cc00/eca2c0a3-88a3-4c1d-b1f2-6
+ 22eff3c5a94/19_meeting_OGY2N2M4OWMtYmE5Yy00YmFkLTg2MjgtNTI1ZGI2NTMyNjk0@th
+ read.v2/0
+X-MICROSOFT-SKYPETEAMSPROPERTIES:{"cid":"19:meeting_OGY2N2M4OWMtYmE5Yy00YmF
+ kLTg2MjgtNTI1ZGI2NTMyNjk0@thread.v2"\,"rid":0\,"mid":0\,"uid":null\,"priva
+ te":true\,"type":0}
+X-MICROSOFT-DONOTFORWARDMEETING:FALSE
+X-MICROSOFT-DISALLOW-COUNTER:FALSE
+X-MICROSOFT-LOCATIONDISPLAYNAME:Microsoft Teams Meeting
+X-MICROSOFT-LOCATIONSOURCE:None
+X-MICROSOFT-LOCATIONS:[{"DisplayName":"Microsoft Teams Meeting"\,"LocationA
+ nnotation":""\,"LocationUri":""\,"LocationStreet":""\,"LocationCity":""\,"
+ LocationState":""\,"LocationCountry":""\,"LocationPostalCode":""\,"Locatio
+ nFullAddress":""}]
+BEGIN:VALARM
+DESCRIPTION:REMINDER
+TRIGGER;RELATED=START:-PT30M
+ACTION:DISPLAY
+END:VALARM
+END:VEVENT
+END:VCALENDAR

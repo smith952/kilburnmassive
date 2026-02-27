@@ -1,0 +1,1345 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:c192:b0:a59:31b2:e81d with SMTP id g18csp100754ejz;
+        Tue, 28 May 2024 09:51:15 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHXSWAGBZwHRxNU0IF5uUfqWoOdXFjUWVnHxgNDk66Fc+dM8czd33a5hdpeAdUBuQfE+dFc
+X-Received: by 2002:a25:bdcb:0:b0:df4:e4fc:16a0 with SMTP id 3f1490d57ef6-df542239ee2mr12409013276.13.1716915074358;
+        Tue, 28 May 2024 09:51:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1716915074; cv=none;
+        d=google.com; s=arc-20160816;
+        b=b7GtBTkgFh6/dRGivPFUQr06lF8016iybdUHlS0FFC/Y5vnCyanVhaVykzMgFwRtiD
+         mo6QaSPh4bZ15xUzuuZc4Y7Er2xNCW6GQhAFV1UHOWEByoZAVLW9X/a273crQRH23R6k
+         pp8ERIgvSWoaChm63yX9bl0xYaj0RSdw9XFD2MZSaPvOvR/FdtZNRieqB8GZAAtrFYeC
+         4bb/X6IylxPF83qvNEJjxP+9WJP/4uB0KGArYZWM+uOvKNDjdhtzMVgBaJddNQjW8hku
+         ib1dIE2o+WHXakEtZLLXdHB4LVyPRo9+KzF7M23rAcCBDsasrHh+hF53NWkZgJYLbgU/
+         HnGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=oZa944TMISgygIua38alpKVW7u9JSA/B7mFyLrgBTzM=;
+        fh=cJizvjUGv87GMziYB/s5CykIhNuntBy7p+i/+sNqYJg=;
+        b=RtFh/Xocnd0iPdcTJTSjS4E4B+1llUsS0FWnBDbYG72j2c3eldRulVCXoXnUbDQEu6
+         5XvrXYEwLgWKB4+u7mmLAmqt5PgOWTwDvObtIgdzwkUoKEHpG1uCrQ4MBBqziWBjZYiz
+         37KxO/kIwzhEJtFsbtHhnMGeHnQr7n9VxSttIPQdN8vHGcOimCLQmB+Z7JGWXmfMAcXK
+         jQqUL6HXe+O0sIbOzWo3u6vxtUirhtRtDoQ0NxmqAXOmlQAJcsGefvJRstnOvldqVuzh
+         LpYSZXL1+fRnfJ0h6AUaHn0vZL6KOs1uedAf//M1XASIb/8i/T00KckqxwtmNmpBkXXQ
+         ilBA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=Q+prMaMx;
+       spf=neutral (google.com: 2001:4860:4864:20::31 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+Return-Path: <th@inhomemedia.io>
+Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com. [2001:4860:4864:20::31])
+        by mx.google.com with ESMTPS id 3f1490d57ef6-df774755399si4628470276.457.2024.05.28.09.51.14
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 May 2024 09:51:14 -0700 (PDT)
+Received-SPF: neutral (google.com: 2001:4860:4864:20::31 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) client-ip=2001:4860:4864:20::31;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=Q+prMaMx;
+       spf=neutral (google.com: 2001:4860:4864:20::31 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-24fc5d260d4so1420646fac.0
+        for <ot@inhomemedia.io>; Tue, 28 May 2024 09:51:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1716915073; x=1717519873; darn=inhomemedia.io;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=oZa944TMISgygIua38alpKVW7u9JSA/B7mFyLrgBTzM=;
+        b=Q+prMaMxwyGsE519ClcrXk5LXS9d+Z/KgKpcpbApYTnQjGxLMhggkA/ktnyRrnQx2i
+         mIjX9hARZ9M7X2za8Oqbd/f0KFlHctwiwhv23ObiyV7fMIWI13C+bL5INDOFoHG8n6w5
+         KhPxWMsH42kPvtlQs84K+LPG8oDiz4kRQc4tHwxkbwchU31f4qeQoKOg6pL21JliTiMk
+         qOb7+WjJdizsL/w0GqUTQhiSwPMYdkTjcavdTrOdkYWU5dMNFVHZeWnesUvbou5NCIHO
+         KPsJDPr3yS36IQzjFV600apOfyMZPbHXS4kkyc4NMa00MsDrBqO2Apq882zKX00RbONY
+         zTFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716915073; x=1717519873;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oZa944TMISgygIua38alpKVW7u9JSA/B7mFyLrgBTzM=;
+        b=q855ZGzp95yE2tSwceMYpbfCHYsG1rlVDrMUTwTmVju9XSq7qMLTEnLgyf7lmj6Rom
+         kKxAJaXwNQfmL9ThRtGrdvGjJqzlJgiA7UORwEj9Oqg3jQECKK1Gaq/a0T7CD1HdV7r9
+         cOQx7anGCMQ+TkhM2wtD2u8xsa1GTdaFqNPe+etzQiSurvujhY6V4l8GthyrYt9F5d02
+         bcjHS53Mwdd+4mfBKcKWWgElHOYb1+NkZ2nY5RMXvzUNkUfqiwO5pBPLwoVrB7agh5Ag
+         N5NfPejDWqrXvB63uR3azthXpZy6uDNWyIVGqcSAlhhbPqB3U/AEPaJg0rmGDRN7S3/Y
+         ripQ==
+X-Gm-Message-State: AOJu0Yy1c50Nm3QM41by2YgUp1dbGP4hdfA6TFFvCWGxg+YhtHg5tX1q
+	dE1CEO3x8sllRU/UJQ+akHc06I06oYb5BFFq5XqIbqEhUKyiHTT1p+YXwNsCi3SQJ1FMvijsEOC
+	RyT6ae+RTAKxTN0L53y4WF57zRwX015UjWqhyBxj0ToKmKf4DdQ==
+X-Received: by 2002:a05:6870:5247:b0:24f:dbc0:e319 with SMTP id
+ 586e51a60fabf-24fdbc0ea3fmr3599625fac.13.1716915073322; Tue, 28 May 2024
+ 09:51:13 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAMr_NGFCcVRRMXgck+-W-4X=cQGGjf+WX0RjrNTEXmyKgYR=wA@mail.gmail.com>
+ <BF35307B-775C-43A8-8E87-CA698A544A41@inhomemedia.io> <CAMr_NGH+Mxnx_s-BbNSqv6A+A7BT91rNJyyejM3xvd43AU_x=Q@mail.gmail.com>
+In-Reply-To: <CAMr_NGH+Mxnx_s-BbNSqv6A+A7BT91rNJyyejM3xvd43AU_x=Q@mail.gmail.com>
+From: Anthony Hughes <th@inhomemedia.io>
+Date: Tue, 28 May 2024 17:51:02 +0100
+Message-ID: <CAGJh6Dq1SMyU7Jf3pP0qAZmt4PsJhYzND-9tb2UnAPJ4E6oKmA@mail.gmail.com>
+Subject: Re: (DRAFT) 4th Utility settlement email content
+To: Owen Thomas <ot@inhomemedia.io>
+Cc: Stephen Gale <stephen@inhomemedia.io>
+Content-Type: multipart/mixed; boundary="0000000000000e44d80619867107"
+
+--0000000000000e44d80619867107
+Content-Type: multipart/alternative; boundary="0000000000000e44d50619867105"
+
+--0000000000000e44d50619867105
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Owen,
+
+attached is the amendment letter.
+
+Tony
+
+On Tue, May 28, 2024 at 5:03=E2=80=AFPM Owen Thomas <ot@inhomemedia.io> wro=
+te:
+
+> So far we have had approx =C2=A360k of invoices from Eris - I have Ana an=
+d her
+> team trying to cross check the Eris statements V what we have invoiced
+> 4thU.
+>
+> I will be able to add an Eris figure to the Steve email hopefully
+> tomorrow, but anything to evidence this agreement would be ideal. I
+> cant see any record of an addendum on my emails. Maybe we ask the lawyers=
+?
+> Jimmy unlikely to help me, but I reckon he was dealing with this.
+>
+> Also I will include the screenshots Janes has shared. Slam dunk
+>
+> On Tue, May 28, 2024 at 1:06=E2=80=AFPM Anthony Hughes <th@inhomemedia.io=
+> wrote:
+>
+>> We can probably get something from Dave re Dodds if required.
+>> Sent from my iPhone
+>>
+>> On 28 May 2024, at 12:51, Owen Thomas <ot@inhomemedia.io> wrote:
+>>
+>> =EF=BB=BF
+>> Hi Tony,
+>>
+>> Ok thanks for the feedback.
+>>
+>> Re Eris is it a =C2=A350 per screen per month? I can see Eris have been
+>> charging us since October so I will have to back-date to then.
+>>
+>> I will try and get the breakdown of what buildings we need to charge
+>> against from Jane. This will probably take a bit of work.
+>>
+>> It would be ideal if we had something in writing from Dodds - I wasn't
+>> privy to these conversations, but let me know if you have anything
+>> concrete here?
+>>
+>> Thanks,
+>> O
+>>
+>> On Tue, May 28, 2024 at 12:37=E2=80=AFPM Anthony Hughes <th@inhomemedia.=
+io>
+>> wrote:
+>>
+>>> Hi Owen,
+>>>
+>>> Few things from me, I would suggest you provide 7 days for payment
+>>> before further action will be taken.
+>>>
+>>> I would definetly include the Eris fee and that we negotiated in good
+>>> faith based on a request from Richard Dodds/Jimmy to place screens in t=
+hese
+>>> buildings. We negotiated wayleaves for all buildings to enable access.
+>>>
+>>> I would suggest a copy of the access in May is included as an attachmen=
+t.
+>>>
+>>> Not for now but all installs were done at 4thu site request based on
+>>> their build requirement.
+>>>
+>>> Thanks
+>>>
+>>> Tony
+>>>
+>>>
+>>> Sent from my iPhone
+>>>
+>>> On 28 May 2024, at 12:22, Owen Thomas <ot@inhomemedia.io> wrote:
+>>>
+>>> =EF=BB=BF
+>>> Yes agree let=E2=80=99s keep that in the locker.
+>>>
+>>> I didn=E2=80=99t mention the Eris charges and us passing that on to 4th=
+U?
+>>>
+>>> Tony what=E2=80=99s your thoughts on the Eris fees? Will Eris come in h=
+ard for
+>>> these?
+>>>
+>>>
+>>>
+>>> On Tue, 28 May 2024 at 12:14, Stephen Gale <stephen@inhomemedia.io>
+>>> wrote:
+>>>
+>>>> Hi Owen,
+>>>>
+>>>> I think that pretty much sums it up.
+>>>>
+>>>> We could offer to pay 4th for the screens in buildings we wish to keep
+>>>> and take this amount off of what is owed, but perhaps have that in res=
+erve
+>>>> as a negotiation point. They are virtually all non-Eris, so we will on=
+ly be
+>>>> liable for the LDSK charge.
+>>>>
+>>>> S
+>>>>
+>>>> Sent from Outlook for Android <https://aka.ms/AAb9ysg>
+>>>> ------------------------------
+>>>> *From:* Owen Thomas <ot@inhomemedia.io>
+>>>> *Sent:* Tuesday, May 28, 2024 11:27:21 AM
+>>>> *To:* Stephen Gale <stephen@inhomemedia.io>; Anthony Hughes <
+>>>> th@inhomemedia.io>
+>>>> *Subject:* (DRAFT) 4th Utility settlement email content
+>>>>
+>>>>
+>>>> Hi Steve,
+>>>>
+>>>>
+>>>> Thanks for your time meeting up last week. It's a shame you no longer
+>>>> see the digital noticeboards having a positive impact on customer numb=
+ers. The
+>>>> information we had previously received from Jimmy was that they did in
+>>>> fact increase numbers, and having since reviewed our software
+>>>> platform, 4th Utility do continue to actively use our software service=
+.
+>>>>
+>>>>
+>>>> Throughout the months of February through to May (and as recently as a
+>>>> week ago), 4th Utility has been regularly using and updating content a=
+nd
+>>>> scheduling for penetration campaigns. However invoices in relation to
+>>>> software fees have not been paid by 4th Utility since January 2024, wh=
+ilst
+>>>> In Home Media has continued to incur these costs from third party supp=
+liers.
+>>>>
+>>>>
+>>>> Can I please ask you to settle all outstanding invoices totalling
+>>>> *=C2=A386,040* by the end of the week?
+>>>>
+>>>>
+>>>> With regards the legacy screens, the cost to remove and make good of a
+>>>> screen =3D =C2=A3700. This cost is far greater than the current value =
+of the 2nd
+>>>> hand screens, so therefore commercially it would not make sense for IH=
+M to
+>>>> take these screens as part of a contra payment against outstanding mon=
+ies
+>>>> owed from 4th Utility.
+>>>>
+>>>>
+>>>> I would be happy to organise the removal and making good (and disposal=
+)
+>>>> of these screens. If you would like a quote please let me know.
+>>>>
+>>>>
+>>>> With regards termination of the service IHM is providing, the contract
+>>>> requires you to serve notice in writing if you wish to terminate the
+>>>> service, see below:
+>>>>
+>>>>
+>>>> Use of software and notice periods
+>>>>
+>>>>
+>>>> Schedule 2 of the Agreement states:
+>>>>
+>>>>
+>>>> Part 2 =E2=80=93 Description of the Software Fees to be paid for the D=
+igital
+>>>> Noticeboards
+>>>>
+>>>> It is agreed that 4th Utility shall pay to the Supplier a monthly fee
+>>>> in arrears of =C2=A375 per month for the provision of the Software (as
+>>>> described in paragraph 1.2 of Schedule 1) on each Digital Noticeboard,
+>>>> per Digital Noticeboard (Software Licence Fee). It is further agreed t=
+hat
+>>>> 4th Utility may de-commission Digital Noticeboards and request that
+>>>> the applicable Software on any Digital Noticeboard is removed, on 60
+>>>> days written notice, and 4th Utility shall cease to be liable to pay
+>>>> the Software Licence Fee from the date of de-commissioning in respect
+>>>> of that Digital Noticeboard.
+>>>>
+>>>>
+>>>>
+>>>> Regards,
+>>>>
+>>>>
+>>>> Owen Thomas
+>>>>
+>>>>
+>>>>
+>>>> *Optional extra wording below:*
+>>>>
+>>>> Finally with regards advertising, 4th Utility has been solely
+>>>> responsible for the selection of sites for Digital Noticeboards and de=
+spite
+>>>> the concerns we expressed it is now very clear that the selection
+>>>> criteria did not factor in the commercial value of sites for advertisi=
+ng.
+>>>> As previously mentioned, many of the sites have insufficient footfall =
+per
+>>>> screen and many are in areas of low advertising demand and/or a long w=
+ay
+>>>> short of =E2=80=98premium=E2=80=99 status, with some even consisting o=
+f general needs
+>>>> social housing.
+>>>>
+>>>> As you will know from your own marketing & advertising background, in
+>>>> order to launch a portfolio of sites for the out-of-home market, it is
+>>>> necessary to build a critical mass of sites that have demonstrable dem=
+and
+>>>> from media buyers in relation to footfall and demographic.
+>>>>
+>>>> We have suggested that a small number of the 4th sites are suitable to
+>>>> be part of a wider In Home Media portfolio that we are in the process
+>>>> of building, with a view to launching to the market later in 2024, but=
+ you
+>>>> have rejected this proposal.
+>>>>
+>>>>
+>>>>
+>>>> We cannot therefore be held responsible in any way for the absence of
+>>>> advertising revenue from the 4th Utility network of Digital Noticeboar=
+ds.
+>>>>
+>>>>
+>>>> Indeed, for essentially the same reasons, the poor selection of sites
+>>>> by 4th Utility has also severely impacted our ability to generate reve=
+nue
+>>>> from our managing agents content management portal, which we have inve=
+sted
+>>>> substantially in over the last year.  Managing agents of these small a=
+nd/or
+>>>> non-premium developments/locations have far more difficulty in recoupi=
+ng
+>>>> those fees from the service charge.
+>>>>
+>>>>
+>>>> (Not sure how relevant this is in relation to the 4th deal, but it
+>>>> certainly impacts on us!)
+>>>>
+>>>>
+>>>> Resource used on network management
+>>>>
+>>>>
+>>>> In Home Media has incurred considerable expense managing the 4th
+>>>> Utility network in addition to the investment on the managing agents
+>>>> portal.  Despite the lack of revenue from advertising and portal fees,=
+ we
+>>>> have still been responsible for managing the network by:
+>>>>
+>>>>
+>>>>
+>>>>    -
+>>>>
+>>>>    Monitoring connectivity via notifications, weekly software reports
+>>>>    and reports of issues from a variety of sources
+>>>>    -
+>>>>
+>>>>    Liaising with software providers
+>>>>    -
+>>>>
+>>>>    Liaising with Eris
+>>>>    -
+>>>>
+>>>>    Conducting site visits to diagnose problems and rectify
+>>>>    -
+>>>>
+>>>>    Training on the MA portal
+>>>>    -
+>>>>
+>>>>    Handling all enquiries/complaints from managing agents and resident=
+s -
+>>>>    many of which pertain to excessive 4th Utility advertising on their=
+ screens
+>>>>    in the absence of other content (again caused by unsuitable sites w=
+ith no
+>>>>    MA budget).
+>>>>
+>>>>
+>>>> We have employed one full time member of staff for this purpose, with
+>>>> other members of the team and external contractors also heavily involv=
+ed.
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+
+--0000000000000e44d50619867105
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Owen,<div><br></div><div>attached is the amendment lett=
+er.</div><div><br></div><div>Tony</div></div><br><div class=3D"gmail_quote"=
+><div dir=3D"ltr" class=3D"gmail_attr">On Tue, May 28, 2024 at 5:03=E2=80=
+=AFPM Owen Thomas &lt;<a href=3D"mailto:ot@inhomemedia.io">ot@inhomemedia.i=
+o</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;border-lef=
+t-color:rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">So far we have =
+had approx =C2=A360k of invoices from Eris - I have Ana and her team trying=
+=C2=A0to cross check the Eris statements V=C2=A0what we have invoiced 4thU.=
+=C2=A0<div><br></div><div>I will be able to add an Eris figure to the Steve=
+ email hopefully tomorrow, but anything=C2=A0to evidence this agreement wou=
+ld be ideal. I cant=C2=A0see any record of an addendum=C2=A0on my emails. M=
+aybe we ask the lawyers? Jimmy unlikely=C2=A0to help me, but I reckon he wa=
+s dealing with this.</div><div><br></div><div>Also I will include the scree=
+nshots Janes has shared. Slam dunk</div></div><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, May 28, 2024 at 1:06=E2=80=
+=AFPM Anthony Hughes &lt;<a href=3D"mailto:th@inhomemedia.io" target=3D"_bl=
+ank">th@inhomemedia.io</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-s=
+tyle:solid;border-left-color:rgb(204,204,204);padding-left:1ex"><div dir=3D=
+"auto">We can probably get something from Dave re Dodds if required.<br id=
+=3D"m_-7649734069243329570m_-7259609591356373585m_8623214591856882750lineBr=
+eakAtBeginningOfSignature"><div dir=3D"ltr">Sent from my iPhone</div><div d=
+ir=3D"ltr"><br><blockquote type=3D"cite">On 28 May 2024, at 12:51, Owen Tho=
+mas &lt;<a href=3D"mailto:ot@inhomemedia.io" target=3D"_blank">ot@inhomemed=
+ia.io</a>&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><d=
+iv dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr">Hi Tony,<div><br></div><div>Ok tha=
+nks for the feedback.</div><div><br></div><div>Re Eris is it a =C2=A350 per=
+ screen per month? I can see Eris have been charging us since October so I =
+will have to back-date to then.</div><div><br></div><div>I will try and get=
+ the breakdown of what buildings=C2=A0we need to charge against from Jane. =
+This will probably take a bit of work.</div><div><br></div><div>It would=C2=
+=A0be ideal if we had something in writing=C2=A0from Dodds - I wasn&#39;t p=
+rivy=C2=A0to these conversations, but let me know if you have anything conc=
+rete=C2=A0here?</div><div><br></div><div>Thanks,</div><div>O</div></div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, M=
+ay 28, 2024 at 12:37=E2=80=AFPM Anthony Hughes &lt;<a href=3D"mailto:th@inh=
+omemedia.io" target=3D"_blank">th@inhomemedia.io</a>&gt; wrote:<br></div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);pad=
+ding-left:1ex"><div dir=3D"auto">Hi Owen,=C2=A0<div><br></div><div>Few thin=
+gs from me, I would suggest you provide 7 days for payment before further a=
+ction will be taken.</div><div><br></div><div>I would definetly include the=
+ Eris fee and that we negotiated in good faith based on a request from Rich=
+ard Dodds/Jimmy to place screens in these buildings. We negotiated wayleave=
+s for all buildings to enable access.</div><div><br></div><div>I would sugg=
+est a copy of the access in May is included as an attachment.</div><div><br=
+></div><div>Not for now but all installs were done at 4thu site request bas=
+ed on their build requirement.</div><div><br></div><div>Thanks</div><div><b=
+r></div><div>Tony</div><div><br></div><div><br id=3D"m_-7649734069243329570=
+m_-7259609591356373585m_8623214591856882750m_557550292079174438lineBreakAtB=
+eginningOfSignature"><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"=
+ltr"><br><blockquote type=3D"cite">On 28 May 2024, at 12:22, Owen Thomas &l=
+t;<a href=3D"mailto:ot@inhomemedia.io" target=3D"_blank">ot@inhomemedia.io<=
+/a>&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=
+=3D"ltr">=EF=BB=BF<div dir=3D"auto">Yes agree let=E2=80=99s keep that in th=
+e locker.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">I didn=
+=E2=80=99t mention the Eris charges and us passing that on to 4thU?</div><d=
+iv dir=3D"auto"><br></div><div dir=3D"auto">Tony what=E2=80=99s your though=
+ts on the Eris fees? Will Eris come in hard for these?</div><div dir=3D"aut=
+o"><br></div><div dir=3D"auto"><br></div><div><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, 28 May 2024 at 12:14, Steph=
+en Gale &lt;<a href=3D"mailto:stephen@inhomemedia.io" target=3D"_blank">ste=
+phen@inhomemedia.io</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-styl=
+e:solid;border-left-color:rgb(204,204,204);padding-left:1ex">
+
+
+
+<div>
+<div dir=3D"auto">Hi Owen,</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">I think that pretty much sums it up.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">We could offer to pay 4th for the screens in buildings we=
+ wish to keep and take this amount off of what is owed, but perhaps have th=
+at in reserve as a negotiation point. They are virtually all non-Eris, so w=
+e will only be liable for the LDSK
+ charge.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">S</div>
+<div><br>
+</div>
+<div id=3D"m_-7649734069243329570m_-7259609591356373585m_862321459185688275=
+0m_557550292079174438m_-4377106216872679264ms-outlook-mobile-signature" dir=
+=3D"auto">Sent from <a href=3D"https://aka.ms/AAb9ysg" target=3D"_blank">
+Outlook for Android</a></div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_-7649734069243329570m_-7259609591356373585m_862321459185688275=
+0m_557550292079174438m_-4377106216872679264divRplyFwdMsg" dir=3D"ltr"><font=
+ face=3D"Calibri, sans-serif" style=3D"font-size:11pt;font-family:Calibri,s=
+ans-serif;color:rgb(0,0,0)"><b style=3D"font-family:Calibri,sans-serif">Fro=
+m:</b> Owen Thomas &lt;<a href=3D"mailto:ot@inhomemedia.io" style=3D"font-f=
+amily:Calibri,sans-serif" target=3D"_blank">ot@inhomemedia.io</a>&gt;<br>
+<b style=3D"font-family:Calibri,sans-serif">Sent:</b> Tuesday, May 28, 2024=
+ 11:27:21 AM<br>
+<b style=3D"font-family:Calibri,sans-serif">To:</b> Stephen Gale &lt;<a hre=
+f=3D"mailto:stephen@inhomemedia.io" style=3D"font-family:Calibri,sans-serif=
+" target=3D"_blank">stephen@inhomemedia.io</a>&gt;; Anthony Hughes &lt;<a h=
+ref=3D"mailto:th@inhomemedia.io" style=3D"font-family:Calibri,sans-serif" t=
+arget=3D"_blank">th@inhomemedia.io</a>&gt;<br>
+<b style=3D"font-family:Calibri,sans-serif">Subject:</b> (DRAFT) 4th Utilit=
+y settlement email content</font>
+<div>=C2=A0</div>
+</div></div><div>
+<div>
+<div dir=3D"ltr"><span id=3D"m_-7649734069243329570m_-7259609591356373585m_=
+8623214591856882750m_557550292079174438m_-4377106216872679264x_gmail-docs-i=
+nternal-guid-d46dc15a-7fff-c00b-aa5d-655600937503"><font face=3D"arial, san=
+s-serif" style=3D"font-family:arial,sans-serif;color:rgb(0,0,0)">
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-family:arial,sans-serif;ba=
+ckground-color:transparent">Hi Steve,</span><br>
+</p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-family:arial,sans-serif;ba=
+ckground-color:transparent"><br>
+</span></p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif"><span style=3D"font-family:arial,sans-serif">Thanks for yo=
+ur time meeting up last week. It&#39;s a shame you no longer see the digita=
+l noticeboards having a positive impact on customer numbers.
+</span><span style=3D"font-family:arial,sans-serif">The information we had =
+</span>previously<span style=3D"font-family:arial,sans-serif"> received fro=
+m Jimmy was that they did in fact increase numbers, and h</span><span style=
+=3D"font-family:arial,sans-serif;background-color:transparent">aving since =
+reviewed our software platform,
+</span><span style=3D"font-family:arial,sans-serif">4th Utility do continue=
+ to actively use our software service.</span></p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif"><span style=3D"font-family:arial,sans-serif"><br>
+</span></p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif"><span style=3D"font-family:arial,sans-serif">Throughout th=
+e months of February through to May (and as recently as a week ago), 4th Ut=
+ility has been regularly using and updating content and scheduling for pene=
+tration campaigns.
+ However i</span><span style=3D"font-family:arial,sans-serif">nvoices in re=
+lation to software fees have not been paid by 4th Utility since January 202=
+4, whilst In Home Media has continued to incur these costs from third party=
+ suppliers.</span></p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif"><span style=3D"font-family:arial,sans-serif"><br>
+</span></p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif"><span style=3D"font-family:arial,sans-serif">Can I please =
+ask you to settle all outstanding invoices totalling
+<b style=3D"font-family:arial,sans-serif"><u style=3D"font-family:arial,san=
+s-serif">=C2=A386,040</u></b> by the end of the week?</span></p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif"><span style=3D"font-family:arial,sans-serif"><br>
+</span></p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif"><span style=3D"font-family:arial,sans-serif">With regards =
+the legacy screens, the cost to remove and make good of a screen =3D =C2=A3=
+700. This cost is far greater than the current value of the 2nd hand screen=
+s, so therefore commercially
+ it would not make sense for IHM to take these screens as part of a contra =
+payment against outstanding monies owed from 4th Utility.</span></p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif"><span style=3D"font-family:arial,sans-serif"><br>
+</span></p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif"><span style=3D"font-family:arial,sans-serif">I would be ha=
+ppy to organise the removal and making good (and disposal) of these screens=
+. If you would like a quote please let me know.</span></p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif"><br>
+</p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif">With regards termination of the service IHM is providing, =
+the contract requires you to serve notice in writing if you wish to termina=
+te the service, see below:</p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif"><br>
+</p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;text-decoration:=
+underline;vertical-align:baseline;font-family:arial,sans-serif;background-c=
+olor:transparent">Use
+ of software and notice periods</span></p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif"><br>
+</p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;font-family:arial,sans-serif;background-color:transparent">Schedule=
+ 2 of the Agreement
+ states:</span></p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif"><br>
+</p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-weight:700;font-style:ital=
+ic;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-=
+alternates:normal;vertical-align:baseline;font-family:arial,sans-serif;back=
+ground-color:transparent">Part
+ 2 =E2=80=93 Description of the Software Fees to be paid for the Digital No=
+ticeboards</span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-style:italic;font-variant-=
+numeric:normal;font-variant-east-asian:normal;font-variant-alternates:norma=
+l;vertical-align:baseline;font-family:arial,sans-serif;background-color:tra=
+nsparent">It is
+ agreed that 4th Utility shall pay to the Supplier a monthly fee in arrears=
+ of =C2=A375 per month
+</span><span style=3D"font-variant-numeric:normal;font-variant-east-asian:n=
+ormal;font-variant-alternates:normal;font-style:italic;vertical-align:basel=
+ine;font-family:arial,sans-serif;background-color:transparent">for the prov=
+ision of the Software (as described in paragraph 1.2 of Schedule
+ 1) on each Digital </span><span style=3D"font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;font-style:italic;=
+vertical-align:baseline;font-family:arial,sans-serif;background-color:trans=
+parent">Noticeboard, per Digital Noticeboard (Software Licence
+ Fee). It is further agreed that 4th Utility </span><span style=3D"font-var=
+iant-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:=
+normal;font-style:italic;vertical-align:baseline;font-family:arial,sans-ser=
+if;background-color:transparent">may de-commission Digital
+ Noticeboards and request that the applicable Software on any </span><span =
+style=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-va=
+riant-alternates:normal;font-style:italic;vertical-align:baseline;font-fami=
+ly:arial,sans-serif;background-color:transparent">Digital
+ Noticeboard is removed, on 60 days written notice, and 4th Utility shall c=
+ease to be
+</span><span style=3D"font-style:italic;font-family:arial,sans-serif;backgr=
+ound-color:transparent">liable to pay the Software Licence Fee from the dat=
+e of
+</span>de-commissioning<span style=3D"font-style:italic;font-family:arial,s=
+ans-serif;background-color:transparent"> in respect of that
+</span><span style=3D"font-style:italic;font-family:arial,sans-serif;backgr=
+ound-color:transparent">Digital Noticeboard.</span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><br>
+</p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><br>
+</p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif">Regards,</p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif"><br>
+</p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif">Owen Thomas=C2=A0</p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif"><br>
+</p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif"><br>
+</p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;font-family:a=
+rial,sans-serif"><b style=3D"font-family:arial,sans-serif">Optional extra w=
+ording below:</b></p>
+<br>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;font-family:arial,sans-serif;background-color:transparent">Finally =
+with regards advertising,
+ 4th Utility has been solely responsible for the selection of sites for Dig=
+ital Noticeboards and despite the concerns we expressed</span><span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-variant=
+-alternates:normal;vertical-align:baseline;font-family:arial,sans-serif;bac=
+kground-color:transparent">
+</span><span style=3D"font-variant-numeric:normal;font-variant-east-asian:n=
+ormal;font-variant-alternates:normal;vertical-align:baseline;font-family:ar=
+ial,sans-serif;background-color:transparent">it is now very clear that the =
+selection criteria did not factor in the commercial value of
+ sites for advertising. As previously mentioned, many of the sites have ins=
+ufficient footfall per screen and many are in areas of low advertising dema=
+nd and/or a long way short of =E2=80=98premium=E2=80=99 status, with some e=
+ven consisting of general needs social housing.</span></p>
+<br>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;font-family:arial,sans-serif;background-color:transparent">As you w=
+ill know from your
+ own marketing &amp; advertising background, in order to launch a portfolio=
+ of sites for the out-of-home market, it is necessary to build a critical m=
+ass of sites that have demonstrable demand from media buyers in relation to=
+ footfall and demographic.</span></p>
+<br>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;font-family:arial,sans-serif;background-color:transparent">We have =
+suggested that
+ a small number of the 4th sites are suitable to be </span><span style=3D"f=
+ont-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alte=
+rnates:normal;text-decoration:underline;vertical-align:baseline;font-family=
+:arial,sans-serif;background-color:transparent">part
+ of</span><span style=3D"font-variant-numeric:normal;font-variant-east-asia=
+n:normal;font-variant-alternates:normal;vertical-align:baseline;font-family=
+:arial,sans-serif;background-color:transparent"> a wider In Home Media port=
+folio that we are in the process of building, with a view to
+ launching to the market later in 2024, but you have rejected this proposal=
+.</span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;font-family:arial,sans-serif;background-color:transparent"><br>
+</span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;font-family:arial,sans-serif;background-color:transparent"><br>
+</span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-weight:400;font-style:norm=
+al;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-alte=
+rnates:normal;font-variant-numeric:normal;font-variant-east-asian:normal;te=
+xt-decoration:none;vertical-align:baseline;white-space:pre-wrap;font-family=
+:arial,sans-serif;background-color:transparent">We cannot therefore
+ be held responsible in any way for the absence of advertising revenue from=
+ the 4th Utility network of Digital Noticeboards.</span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;font-family:arial,sans-serif;background-color:transparent"><b id=3D=
+"m_-7649734069243329570m_-7259609591356373585m_8623214591856882750m_5575502=
+92079174438m_-4377106216872679264x_gmail-docs-internal-guid-e40012b6-7fff-2=
+265-1d29-ae65836e04b0" style=3D"font-weight:normal;font-family:arial,sans-s=
+erif"><br>
+</b></span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-weight:400;font-style:norm=
+al;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-alte=
+rnates:normal;font-variant-numeric:normal;font-variant-east-asian:normal;te=
+xt-decoration:none;vertical-align:baseline;white-space:pre-wrap;font-family=
+:arial,sans-serif;background-color:transparent">Indeed, for essentially
+ the same reasons, the poor selection of sites by 4th Utility has also seve=
+rely impacted our ability to generate revenue from our managing agents cont=
+ent management portal, which we have invested substantially in over the las=
+t year.=C2=A0 Managing agents of these
+ small and/or non-premium developments/locations have far more difficulty i=
+n recouping those fees from the service charge.=C2=A0=C2=A0</span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;font-family:arial,sans-serif;background-color:transparent"><b style=
+=3D"font-weight:normal;font-family:arial,sans-serif"><br>
+</b></span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-weight:400;font-style:norm=
+al;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-alte=
+rnates:normal;font-variant-numeric:normal;font-variant-east-asian:normal;te=
+xt-decoration:none;vertical-align:baseline;white-space:pre-wrap;font-family=
+:arial,sans-serif;background-color:transparent">(Not sure how relevant
+ this is in relation to the 4th deal, but it certainly impacts on us!)</spa=
+n></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;font-family:arial,sans-serif;background-color:transparent"><b style=
+=3D"font-weight:normal;font-family:arial,sans-serif"><br>
+</b></span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-weight:400;font-style:norm=
+al;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-alte=
+rnates:normal;font-variant-numeric:normal;font-variant-east-asian:normal;te=
+xt-decoration:underline;vertical-align:baseline;white-space:pre-wrap;font-f=
+amily:arial,sans-serif;background-color:transparent">Resource used
+ on network management</span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;font-family:arial,sans-serif;background-color:transparent"><b style=
+=3D"font-weight:normal;font-family:arial,sans-serif"><br>
+</b></span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-weight:400;font-style:norm=
+al;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-alte=
+rnates:normal;font-variant-numeric:normal;font-variant-east-asian:normal;te=
+xt-decoration:none;vertical-align:baseline;white-space:pre-wrap;font-family=
+:arial,sans-serif;background-color:transparent">In Home Media has
+ incurred considerable expense managing the 4th Utility network in addition=
+ to the investment on the managing agents portal.=C2=A0 Despite the lack of=
+ revenue from advertising and portal fees, we have still been responsible f=
+or managing the network by:</span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;font-family:arial,sans-serif;background-color:transparent"><b style=
+=3D"font-weight:normal;font-family:arial,sans-serif"><br>
+</b></span></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-family:arial,sans-serif"=
+>
+<li dir=3D"ltr" style=3D"list-style-type:disc;font-weight:400;font-style:no=
+rmal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-al=
+ternates:normal;font-variant-numeric:normal;font-variant-east-asian:normal;=
+text-decoration:none;vertical-align:baseline;white-space:pre-wrap;font-fami=
+ly:arial,sans-serif;background-color:transparent">
+<p dir=3D"ltr" role=3D"presentation" style=3D"line-height:1.38;margin-top:0=
+pt;margin-bottom:0pt;font-family:arial,sans-serif">
+<span style=3D"font-weight:400;font-style:normal;font-variant-ligatures:nor=
+mal;font-variant-caps:normal;font-variant-alternates:normal;font-variant-nu=
+meric:normal;font-variant-east-asian:normal;text-decoration:none;vertical-a=
+lign:baseline;white-space:pre-wrap;font-family:arial,sans-serif;background-=
+color:transparent">Monitoring connectivity via notifications, weekly softwa=
+re reports and reports of issues
+ from a variety of sources=C2=A0</span></p>
+</li><li dir=3D"ltr" style=3D"list-style-type:disc;font-weight:400;font-sty=
+le:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-varia=
+nt-alternates:normal;font-variant-numeric:normal;font-variant-east-asian:no=
+rmal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;font=
+-family:arial,sans-serif;background-color:transparent">
+<p dir=3D"ltr" role=3D"presentation" style=3D"line-height:1.38;margin-top:0=
+pt;margin-bottom:0pt;font-family:arial,sans-serif">
+<span style=3D"font-weight:400;font-style:normal;font-variant-ligatures:nor=
+mal;font-variant-caps:normal;font-variant-alternates:normal;font-variant-nu=
+meric:normal;font-variant-east-asian:normal;text-decoration:none;vertical-a=
+lign:baseline;white-space:pre-wrap;font-family:arial,sans-serif;background-=
+color:transparent">Liaising with software providers</span></p>
+</li><li dir=3D"ltr" style=3D"list-style-type:disc;font-weight:400;font-sty=
+le:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-varia=
+nt-alternates:normal;font-variant-numeric:normal;font-variant-east-asian:no=
+rmal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;font=
+-family:arial,sans-serif;background-color:transparent">
+<p dir=3D"ltr" role=3D"presentation" style=3D"line-height:1.38;margin-top:0=
+pt;margin-bottom:0pt;font-family:arial,sans-serif">
+<span style=3D"font-weight:400;font-style:normal;font-variant-ligatures:nor=
+mal;font-variant-caps:normal;font-variant-alternates:normal;font-variant-nu=
+meric:normal;font-variant-east-asian:normal;text-decoration:none;vertical-a=
+lign:baseline;white-space:pre-wrap;font-family:arial,sans-serif;background-=
+color:transparent">Liaising with Eris</span></p>
+</li><li dir=3D"ltr" style=3D"list-style-type:disc;font-weight:400;font-sty=
+le:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-varia=
+nt-alternates:normal;font-variant-numeric:normal;font-variant-east-asian:no=
+rmal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;font=
+-family:arial,sans-serif;background-color:transparent">
+<p dir=3D"ltr" role=3D"presentation" style=3D"line-height:1.38;margin-top:0=
+pt;margin-bottom:0pt;font-family:arial,sans-serif">
+<span style=3D"font-weight:400;font-style:normal;font-variant-ligatures:nor=
+mal;font-variant-caps:normal;font-variant-alternates:normal;font-variant-nu=
+meric:normal;font-variant-east-asian:normal;text-decoration:none;vertical-a=
+lign:baseline;white-space:pre-wrap;font-family:arial,sans-serif;background-=
+color:transparent">Conducting site visits to diagnose problems and rectify<=
+/span></p>
+</li><li dir=3D"ltr" style=3D"list-style-type:disc;font-weight:400;font-sty=
+le:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-varia=
+nt-alternates:normal;font-variant-numeric:normal;font-variant-east-asian:no=
+rmal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;font=
+-family:arial,sans-serif;background-color:transparent">
+<p dir=3D"ltr" role=3D"presentation" style=3D"line-height:1.38;margin-top:0=
+pt;margin-bottom:0pt;font-family:arial,sans-serif">
+<span style=3D"font-weight:400;font-style:normal;font-variant-ligatures:nor=
+mal;font-variant-caps:normal;font-variant-alternates:normal;font-variant-nu=
+meric:normal;font-variant-east-asian:normal;text-decoration:none;vertical-a=
+lign:baseline;white-space:pre-wrap;font-family:arial,sans-serif;background-=
+color:transparent">Training on the MA portal</span></p>
+</li><li dir=3D"ltr" style=3D"list-style-type:disc;font-weight:400;font-sty=
+le:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-varia=
+nt-alternates:normal;font-variant-numeric:normal;font-variant-east-asian:no=
+rmal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;font=
+-family:arial,sans-serif;background-color:transparent">
+<p dir=3D"ltr" role=3D"presentation" style=3D"line-height:1.38;margin-top:0=
+pt;margin-bottom:0pt;font-family:arial,sans-serif">
+<span style=3D"font-weight:400;font-style:normal;font-variant-ligatures:nor=
+mal;font-variant-caps:normal;font-variant-alternates:normal;font-variant-nu=
+meric:normal;font-variant-east-asian:normal;text-decoration:none;vertical-a=
+lign:baseline;white-space:pre-wrap;font-family:arial,sans-serif;background-=
+color:transparent">Handling all enquiries/complaints from managing agents a=
+nd residents</span><span style=3D"font-weight:400;font-style:normal;font-va=
+riant-ligatures:normal;font-variant-caps:normal;font-variant-alternates:nor=
+mal;font-variant-numeric:normal;font-variant-east-asian:normal;text-decorat=
+ion:none;vertical-align:baseline;white-space:pre-wrap;font-family:arial,san=
+s-serif;background-color:transparent">
+</span><span style=3D"font-weight:400;font-style:normal;font-variant-ligatu=
+res:normal;font-variant-caps:normal;font-variant-alternates:normal;font-var=
+iant-numeric:normal;font-variant-east-asian:normal;text-decoration:none;ver=
+tical-align:baseline;white-space:pre-wrap;font-family:arial,sans-serif;back=
+ground-color:transparent">- many of which pertain to excessive 4th Utility =
+advertising on their screens in
+ the absence of other content (again caused by unsuitable sites with no MA =
+budget).=C2=A0</span></p>
+</li></ul>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;font-family:arial,sans-serif;background-color:transparent"><b style=
+=3D"font-weight:normal;font-family:arial,sans-serif"><br>
+</b></span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-weight:400;font-style:norm=
+al;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-alte=
+rnates:normal;font-variant-numeric:normal;font-variant-east-asian:normal;te=
+xt-decoration:none;vertical-align:baseline;white-space:pre-wrap;font-family=
+:arial,sans-serif;background-color:transparent">We have employed
+ one full time member of staff for this purpose, with other members of the =
+team and external contractors also heavily involved.</span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;font-family:arial,sans-serif;background-color:transparent"><br>
+<br>
+<br>
+</span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;f=
+ont-family:arial,sans-serif"><span style=3D"font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;font-family:arial,sans-serif;background-color:transparent"><br>
+</span></p>
+</font></span><br>
+</div>
+</div>
+</div>
+
+</blockquote></div></div>
+</div></blockquote></div></div></blockquote></div>
+</div></blockquote></div></blockquote></div>
+</blockquote></div>
+
+--0000000000000e44d50619867105--
+--0000000000000e44d80619867107
+Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document; 
+	name="Letter Amendment Agreement.DOCX"
+Content-Disposition: attachment; filename="Letter Amendment Agreement.DOCX"
+Content-Transfer-Encoding: base64
+Content-ID: <f_lwqmw3e20>
+X-Attachment-Id: f_lwqmw3e20
+
+UEsDBBQABgAIAAAAIQCQyAt3kAEAADEHAAATAAgCW0NvbnRlbnRfVHlwZXNdLnhtbCCiBAIooAAC
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC0
+lUlrwzAQhe+F/geja4mV9FBKiZNDl2MbaAu9KtI4EdWGNNn+fcdZTClJHJr4YrBn3nufxjDqD5fW
+ZHOISXtXsF7eZRk46ZV2k4J9frx07lmWUDgljHdQsBUkNhxcX/U/VgFSRmqXCjZFDA+cJzkFK1Lu
+AziqlD5agfQaJzwI+S0mwG+73TsuvUNw2MHKgw36T1CKmcHseUmfNyQRTGLZ46axyiqYCMFoKZDq
+fO7Un5TONiEn5bonTXVIN9TA+N6EqnI4YKt7o9FErSAbiYivwlIXX/iouPJyZkmZH7fZw+nLUkuo
+9ZVbiF5CSjRza/K6YoV2O/59HHKW0Nsva7hGsKPoQ+qdjVObVn4QUUM9w4OzcDM7hkj0lx9Gbd0I
+kXBlIF2eYOPbHA+IJGgDYOvciLCA8XtrFL/MG0FK79F5bONv1NaNEOBUSww75xPmQIlibKCNOWyt
+GyGQVjJsnudvh7XNsUjqXC8iWvHxH8fe7fBK3QknbaA6kazPPh9U14MCtSebry+8wQ8AAAD//wMA
+UEsDBBQABgAIAAAAIQAekRq37wAAAE4CAAALAAgCX3JlbHMvLnJlbHMgogQCKKAAAgAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArJLBasMwDEDv
+g/2D0b1R2sEYo04vY9DbGNkHCFtJTBPb2GrX/v082NgCXelhR8vS05PQenOcRnXglF3wGpZVDYq9
+Cdb5XsNb+7x4AJWFvKUxeNZw4gyb5vZm/cojSSnKg4tZFYrPGgaR+IiYzcAT5SpE9uWnC2kiKc/U
+YySzo55xVdf3mH4zoJkx1dZqSFt7B6o9Rb6GHbrOGX4KZj+xlzMtkI/C3rJdxFTqk7gyjWop9Swa
+bDAvJZyRYqwKGvC80ep6o7+nxYmFLAmhCYkv+3xmXBJa/ueK5hk/Nu8hWbRf4W8bnF1B8wEAAP//
+AwBQSwMEFAAGAAgAAAAhANwdKfO6DgAA0WwAABEAAAB3b3JkL2RvY3VtZW50LnhtbOxd23LjSHJ9
+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
+--0000000000000e44d80619867107--

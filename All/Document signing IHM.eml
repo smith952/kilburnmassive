@@ -1,0 +1,284 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:ee81:b0:a77:c3e9:7948 with SMTP id wt1csp35122ejb;
+        Thu, 18 Jul 2024 07:33:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE/vfk9S4B3TsIj6mMCS2Ry9Gwv0m+8U8VIVw5jN9OtPlyG7wJMMxENOD+JR6gDAtH+v20I
+X-Received: by 2002:a05:6102:9d7:b0:48f:e655:4327 with SMTP id ada2fe7eead31-49159810a38mr5628781137.17.1721313194595;
+        Thu, 18 Jul 2024 07:33:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1721313194; cv=none;
+        d=google.com; s=arc-20160816;
+        b=bWR9KOovq7tgraeIqhN++BAaSWQTBejUrXubtWkbgowS7pivXXnIAFspulkCba/EQB
+         r8LoSUNwdBMGRfh52edhTbHLkkzOHDMEO7VMLYXFO3IcH6DKCO433L1P9i2pzPnwI1pD
+         CUT/t4+B7lhqXo09DqbgOYRJEo9IuBxX1Wrus12wpfc+G/V6/cj+di+VN3/qaTqAZmy2
+         bMHLXfmlq9w/tJ0V2R2iTDf0biJ2tKcmXenuZSca3dS66MpIJhOJGVYuOMCcaNt8b6ng
+         VUZeJHzViQLWWafRZTLuGBKgSlW7CJrwdSbJYKD6lQEo6IavrzSF2w8oic2oWuosqBc4
+         8yGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=n/SNklntZHqTL8amgkT1O5mMze6J9mr+ZUw9W+5c+wo=;
+        fh=UeHNc3Mjnfl1TH+2nbl+/NDjW24/BSP19iAjT3bOiOM=;
+        b=tt2OMC82zTgjwXowwY3VQWKay8jcQIaJQT19Ap6NZbQBIqRznSZUeZ61vZ43N47XOd
+         JRHvRcDts3N6AN4iRmvfoGNzPNO43FTrQGav1878idLYPC+YRKadtr1rc7GIDP4QkXtq
+         YUwcvGhbiAZuOqeVX/oNGmXNIcx3dXPWb96u1FfyxhuxhWh82VaiTx1q7+LDjGfcCD8l
+         7D1ZZa6eKZhLFHSQMewTUzvssK6DOPSGueEQ4+E8EhUKM3EUf45080DNQz4TtrK/T5lj
+         zoFXNHUvFDzAcv6xS6NIcN/ChAazhCUv0aBPICTBsXAU7ZezGlgs/fjSzGedUqHVpgv7
+         WLaQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@keaze-com.20230601.gappssmtp.com header.s=20230601 header.b=qBel1KUS;
+       spf=pass (google.com: domain of ana@keaze.com designates 2607:f8b0:4864:20::1134 as permitted sender) smtp.mailfrom=ana@keaze.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=keaze.com;
+       dara=pass header.i=@inhomemedia.io
+Return-Path: <ana@keaze.com>
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com. [2607:f8b0:4864:20::1134])
+        by mx.google.com with ESMTPS id ada2fe7eead31-491561bb985si1084076137.644.2024.07.18.07.33.14
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Jul 2024 07:33:14 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ana@keaze.com designates 2607:f8b0:4864:20::1134 as permitted sender) client-ip=2607:f8b0:4864:20::1134;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@keaze-com.20230601.gappssmtp.com header.s=20230601 header.b=qBel1KUS;
+       spf=pass (google.com: domain of ana@keaze.com designates 2607:f8b0:4864:20::1134 as permitted sender) smtp.mailfrom=ana@keaze.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=keaze.com;
+       dara=pass header.i=@inhomemedia.io
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-6548ab51aeaso1209187b3.0
+        for <ot@inhomemedia.io>; Thu, 18 Jul 2024 07:33:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=keaze-com.20230601.gappssmtp.com; s=20230601; t=1721313194; x=1721917994; darn=inhomemedia.io;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=n/SNklntZHqTL8amgkT1O5mMze6J9mr+ZUw9W+5c+wo=;
+        b=qBel1KUSTEfdBf9xK1orav3XaO3PrVyDS7fgmoYjN5ozajGvyaWA5V7RBbyCCYehNy
+         tK/ngm2S70mPb86TUiFFgtAwnASm2nn6lzBREOww0LBK7Nz2AqC+4z1XoaCdCFjL0I1Z
+         f829A6gcdU7lX4Zvi97VvAnYoDao7RPWhxeDLPg8CMHKP1kDqnaxhHwmkjrAuXaHbrzH
+         uOcDZWzQD1SQhbu9shTq197TYnI50Iju9ZsDlvidTyHR2Cu83lKYqzsUynSGWGKvOrmX
+         NI+AnoOf3gnU6nCE+5oq7sbN4G4wNiBWyaNbfgy8l9UQbJmzhXHaUzDfl+tBemRuoxPS
+         FGmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721313194; x=1721917994;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=n/SNklntZHqTL8amgkT1O5mMze6J9mr+ZUw9W+5c+wo=;
+        b=ebwaqmBPnd2o3juiabdG6ldTCEQk/g4QfMxVZwkqLO7GLcVQQGNrnoazvhsqK4ZBVD
+         pDICqtH82xryxMHh70AF04E3EHJusvs4mgu1ayvw/vGnp8Ifg/N4t10PsiTaAaqotZ2n
+         euwILsEhxmXXxBllvPI8wxRxq2M2OfpuFKVV3uhmd5uyZBo911uQhKRnJozcxDHxS5Jl
+         bUmX0qkwj87dGvJV8uUIFfHo/gZdYWDuXRjGKZWr7BMQyw1L0EkfnKaKZVHp9R20+YOU
+         EurAlF+CiAINkFiQPXaqK89vHw9S+yThXZBYtJrgf7B8v4rdcWMTKXnBzXCXjV9NCZyI
+         YMMA==
+X-Gm-Message-State: AOJu0YxtGs9ALOvg/VxFnd/lpoXeFEv9hW13jhe0ZEZdtqKX1vksBPBh
+	TrMioWHZCDzzPLCo/ELgWACKdCIkg8Zi0dRGovpd1k2p9b+iOko0mWcyPY2PPBA5czHV9Mf1GMb
+	52zgyVrxOXQ5WgrX3xQv/IfDXofnN0zFVcXPqb17Em5qlXbV0EAI=
+X-Received: by 2002:a25:aba7:0:b0:e05:900d:2449 with SMTP id
+ 3f1490d57ef6-e05fec32418mr1240819276.8.1721313193771; Thu, 18 Jul 2024
+ 07:33:13 -0700 (PDT)
+MIME-Version: 1.0
+References: <BF0249DD-0ECA-8C4F-AE5F-4C6D87C63EE7@hxcore.ol>
+In-Reply-To: <BF0249DD-0ECA-8C4F-AE5F-4C6D87C63EE7@hxcore.ol>
+From: Ana Pavliceanu <ana@keaze.com>
+Date: Thu, 18 Jul 2024 15:32:37 +0100
+Message-ID: <CAPJey9bbo7+g1oXjnLRiC9brd0QTjtVSHNs9KwpD70hELHY=Og@mail.gmail.com>
+Subject: Re: Document signing IHM
+To: "jacqueline.hills@jms-consult.com" <jacqueline.hills@jms-consult.com>
+Cc: Owen Thomas <ot@inhomemedia.io>
+Content-Type: multipart/alternative; boundary="000000000000765bca061d867533"
+
+--000000000000765bca061d867533
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Jacqueline,
+
+All received and signed now. I hope everything is in order but if there are
+any issues, please let me know.
+
+Many thanks,
+Ana
+
+On Thu, Jul 18, 2024 at 3:23=E2=80=AFPM jacqueline.hills@jms-consult.com <
+jacqueline.hills@jms-consult.com> wrote:
+
+> Hi Ana,
+>
+> I have prepared the share certificates for In Home Media and Tony and
+> Owen=E2=80=99s signature needs a witness.  Owen suggested I use you to wi=
+tness the
+> documents so you should son receive a docusign envelope for signature.  I=
+f
+> you have any questions please let me know.
+>
+> Thanks
+>
+> Kind regards
+>
+> Jacqueline
+>
+
+
+--=20
+
+Ana Pavliceanu
+
+Accounting Manager
+
+
+E: ana@keaze.com
+
+London Office:
+
+91 Wimpole Street, London, United Kingdom, W1G 0EF
+
+
+<https://www.facebook.com/KeazeUK/>    <https://twitter.com/keazeuk>
+<https://twitter.com/keazeuk> <https://www.linkedin.com/company/keazeuk/>
+
+
+Just so you know... this email and any files transmitted with it are
+confidential and intended solely for the use of the individual or entity to
+whom they are addressed. They are the property of Property Booking Ltd. If
+you have received this email in error please notify the system manager.
+This message may contain confidential information and is intended only for
+the individual named. Please notify the sender immediately by e-mail if you
+have received this email by mistake and delete this email from your system.
+Property Booking Ltd accepts no liability for the content of this email, or
+for the consequences of any actions taken on the basis of the information
+provided unless that information is subsequently confirmed in writing. If
+you are not the intended recipient you are notified that disclosing,
+copying, distributing or taking any action in reliance on the contents of
+this information is strictly prohibited.  Property Booking Ltd,  2nd Floor,
+Radiant House 36-38 Mortimer Street, London, W1W 7RG. Company registration
+11020692, VAT reg no. 285756943
+
+--000000000000765bca061d867533
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Jacqueline,<div><br></div><div>All received and=C2=A0si=
+gned now. I hope everything is in=C2=A0order but if there are any issues,=
+=C2=A0please let me know.</div><div><br></div><div>Many thanks,</div><div>A=
+na</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
+l_attr">On Thu, Jul 18, 2024 at 3:23=E2=80=AFPM <a href=3D"mailto:jacquelin=
+e.hills@jms-consult.com">jacqueline.hills@jms-consult.com</a> &lt;<a href=
+=3D"mailto:jacqueline.hills@jms-consult.com">jacqueline.hills@jms-consult.c=
+om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+"><div class=3D"msg-7264825784364751733"><div lang=3D"EN-GB" style=3D"overf=
+low-wrap: break-word;"><div class=3D"m_-7264825784364751733WordSection1"><p=
+ class=3D"MsoNormal">Hi Ana,<u></u><u></u></p><p class=3D"MsoNormal">I have=
+ prepared the share certificates for In Home Media and Tony and Owen=E2=80=
+=99s signature needs a witness.=C2=A0 Owen suggested I use you to witness t=
+he documents so you should son receive a docusign envelope for signature.=
+=C2=A0 If you have any questions please let me know.<u></u><u></u></p><p cl=
+ass=3D"MsoNormal">Thanks<u></u><u></u></p><p class=3D"MsoNormal">Kind regar=
+ds<u></u><u></u></p><p class=3D"MsoNormal">Jacqueline<u></u><u></u></p></di=
+v></div>
+</div></blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gm=
+ail_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signatu=
+re"><div dir=3D"ltr"><p dir=3D"ltr" style=3D"color:rgb(80,0,80);line-height=
+:1.2;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-f=
+amily:Arial;color:rgb(32,59,92);background-color:transparent;font-weight:70=
+0;vertical-align:baseline;white-space:pre-wrap"> Ana Pavliceanu</span></p><=
+p dir=3D"ltr" style=3D"color:rgb(80,0,80);line-height:1.2;margin-top:0pt;ma=
+rgin-bottom:0pt"><span style=3D"background-color:transparent;color:rgb(236,=
+103,121);font-family:Arial;font-size:10pt;text-indent:4.5pt;white-space:pre=
+-wrap"> Accounting Manager</span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,=
+0);font-family:Helvetica;font-size:12px;line-height:1.2;text-indent:4.5pt;m=
+argin-top:0pt;margin-bottom:0pt"><br></p><p dir=3D"ltr" style=3D"color:rgb(=
+0,0,0);font-family:Helvetica;font-size:12px;line-height:1.2;text-indent:4.5=
+pt;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-fam=
+ily:Arial;color:rgb(32,59,92);background-color:transparent;font-weight:700;=
+vertical-align:baseline;white-space:pre-wrap">E:</span><span style=3D"font-=
+size:10pt;font-family:Arial;color:rgb(32,59,92);background-color:transparen=
+t;vertical-align:baseline;white-space:pre-wrap"> <a href=3D"mailto:ana@keaz=
+e.com" style=3D"color:rgb(17,85,204)" target=3D"_blank">ana@keaze.com</a></=
+span></p><br style=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:12px=
+"><p dir=3D"ltr" style=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:=
+12px;line-height:1.2;text-indent:4.5pt;margin-top:0pt;margin-bottom:0pt"><s=
+pan style=3D"font-size:10pt;font-family:Arial;color:rgb(32,59,92);backgroun=
+d-color:transparent;font-weight:700;vertical-align:baseline;white-space:pre=
+-wrap">London Office:</span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);fo=
+nt-family:Helvetica;font-size:12px;line-height:1.2;margin-left:4.5pt;margin=
+-top:0pt;margin-bottom:0pt"><span style=3D"color:rgb(32,59,92);font-family:=
+Arial;font-size:small">91 Wimpole Street, London, United Kingdom, W1G 0EF</=
+span><br></p><br style=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:=
+12px"><p dir=3D"ltr" style=3D"color:rgb(0,0,0);font-family:Helvetica;font-s=
+ize:12px;line-height:1.2;margin-left:4.5pt;margin-top:0pt;margin-bottom:0pt=
+"><span style=3D"font-size:10pt;font-family:Arial;color:rgb(32,59,92);backg=
+round-color:transparent;vertical-align:baseline;white-space:pre-wrap"><span=
+ style=3D"border:none;display:inline-block;overflow:hidden;width:134px;heig=
+ht:37px"><img src=3D"https://lh5.googleusercontent.com/sCseZjztXk8Fs4hYZYYv=
+oarHe8A9vcrsnWOfXAl9pGGVYZ9aDCa62d-0nYMchfTSmKfV8S1qtENZV8Yj_cxL26kJp5Ej_6O=
+Z7Sc7dUxOsOIZNvYL-UgyHpk-M02nog" width=3D"134" height=3D"37" style=3D"margi=
+n-left: 0px; margin-top: 0px;"></span></span></p><br style=3D"color:rgb(0,0=
+,0);font-family:Helvetica;font-size:12px"><p dir=3D"ltr" style=3D"color:rgb=
+(0,0,0);font-family:Helvetica;font-size:12px;line-height:1.2;margin-left:4.=
+5pt;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-fa=
+mily:Arial;color:rgb(32,59,92);background-color:transparent;vertical-align:=
+baseline;white-space:pre-wrap"><span style=3D"border:none;display:inline-bl=
+ock;overflow:hidden;width:26px;height:26px"><a href=3D"https://www.facebook=
+.com/KeazeUK/" style=3D"color:rgb(17,85,204)" target=3D"_blank"><img src=3D=
+"https://lh3.googleusercontent.com/Maobg1JE5E178gJ7hsrMsbeyW3Z67DNGpDgH1U11=
+_Xc8FBCWeD_m6wGjXzgfrizXnJP8sCRjVdxD6UFNRzzIXkfwjPJkRNMmBEEjiRrlUxr5WHfy9f-=
+tkQ1qUW8aqg" width=3D"26" height=3D"26" style=3D"margin-left: 0px; margin-t=
+op: 0px;"></a></span></span><span style=3D"font-size:10pt;font-family:Arial=
+;color:rgb(32,59,92);background-color:transparent;vertical-align:baseline;w=
+hite-space:pre-wrap">=C2=A0 </span><span style=3D"font-size:10pt;font-famil=
+y:Arial;color:rgb(32,59,92);background-color:transparent;vertical-align:bas=
+eline;white-space:pre-wrap"><span style=3D"border:none;display:inline-block=
+;overflow:hidden;width:25px;height:25px"><img src=3D"https://lh6.googleuser=
+content.com/jd8ZaEUx-eGRqk6fzFIaTw9kWWfDKUUFvFCJcoN5rYrlOeftkt56wUdRabGdF4F=
+0H7is1gE7exJdSpa8G_PYF2ghNvtmqIArN9Vfe_Y16yr4LYtCwqADePAfHWC7Rw" width=3D"2=
+5" height=3D"25" style=3D"margin-left: 0px; margin-top: 0px;"></span></span=
+><span style=3D"font-size:10pt;font-family:Arial;color:rgb(32,59,92);backgr=
+ound-color:transparent;vertical-align:baseline;white-space:pre-wrap">=C2=A0=
+ </span><span style=3D"font-size:10pt;font-family:Arial;color:rgb(32,59,92)=
+;background-color:transparent;vertical-align:baseline;white-space:pre-wrap"=
+><span style=3D"border:none;display:inline-block;overflow:hidden;width:27px=
+;height:27px"><a href=3D"https://twitter.com/keazeuk" style=3D"color:rgb(17=
+,85,204)" target=3D"_blank"><img src=3D"https://lh4.googleusercontent.com/K=
+ngGpBZs5HBZBcYdRLlxqW_JV7XBvd68rAnZTP4m1b8ZVq4sBBz0mV2Roo9rTUpvzURnhJedT0BJ=
+-PJMnYuH9nu0zLOV1lmq7YS7DkvFrSoxn6xaJPrNi2wkVWDaIA" width=3D"27" height=3D"=
+27" style=3D"margin-left: 0px; margin-top: 0px;"></a></span></span><span st=
+yle=3D"font-size:10pt;font-family:Arial;color:rgb(32,59,92);background-colo=
+r:transparent;vertical-align:baseline;white-space:pre-wrap"><a href=3D"http=
+s://twitter.com/keazeuk" style=3D"color:rgb(17,85,204)" target=3D"_blank">=
+=C2=A0</a> </span><span style=3D"font-size:10pt;font-family:Arial;color:rgb=
+(32,59,92);background-color:transparent;vertical-align:baseline;white-space=
+:pre-wrap"><span style=3D"border:none;display:inline-block;overflow:hidden;=
+width:30px;height:25px"><a href=3D"https://www.linkedin.com/company/keazeuk=
+/" style=3D"color:rgb(17,85,204)" target=3D"_blank"><img src=3D"https://lh6=
+.googleusercontent.com/2_hXw-TLnJmKZ710gWAVg3gVPQwVPaSPMkmS4HA--t97K6LS8Etc=
+SF-TQDJ51ZE6si39nAFjB0pXUM98MhcvKykVHgnKRF1rS6jbZtXNRvEg5LJf0tQ4P1veDVTJlA"=
+ width=3D"30" height=3D"25" style=3D"margin-left: 0px; margin-top: 0px;"></=
+a></span></span></p><br style=3D"color:rgb(0,0,0);font-family:Helvetica;fon=
+t-size:12px"><p dir=3D"ltr" style=3D"color:rgb(0,0,0);font-family:Helvetica=
+;font-size:12px;line-height:1.2;margin-left:4.5pt;margin-top:0pt;margin-bot=
+tom:0pt"><span style=3D"font-size:10pt;font-family:Arial;color:rgb(32,59,92=
+);background-color:transparent;vertical-align:baseline;white-space:pre-wrap=
+"><span style=3D"border:none;display:inline-block;overflow:hidden;width:554=
+px;height:65px"><img src=3D"https://lh3.googleusercontent.com/izb9pLAlfldr7=
+21Sbazcmv3574DBfWnTDvrnuhkw2BmuN5tU7smlMfrLX6MZ1GoryRfSiiHfdHuT8UatKyUM1jnP=
+AoqFqeGPGgv2BeVYY2oeg6ca5-b4HZzLevRhbw" width=3D"554" height=3D"65" style=
+=3D"margin-left: 0px; margin-top: 0px;"></span></span></p><br style=3D"colo=
+r:rgb(0,0,0);font-family:Helvetica;font-size:12px"><p dir=3D"ltr" style=3D"=
+color:rgb(0,0,0);font-family:Helvetica;font-size:12px;line-height:1.2;margi=
+n-left:4.5pt;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:8pt=
+;font-family:Arial;color:rgb(32,59,92);background-color:transparent;vertica=
+l-align:baseline;white-space:pre-wrap">Just so you know... this email and a=
+ny files transmitted with it are confidential and intended solely for the u=
+se of the individual or entity to whom they are addressed. They are the pro=
+perty of Property Booking Ltd. If you have received this email in error ple=
+ase notify the system manager. This message may contain confidential inform=
+ation and is intended only for the individual named. Please notify the send=
+er immediately by e-mail if you have received this email by mistake and del=
+ete this email from your system. Property Booking Ltd accepts no liability =
+for the content of this email, or for the consequences of any actions taken=
+ on the basis of the information provided unless that information is subseq=
+uently confirmed in writing. If you are not the intended recipient you are =
+notified that disclosing, copying, distributing or taking any action in rel=
+iance on the contents of this information is strictly prohibited.=C2=A0 Pro=
+perty Booking Ltd,=C2=A0 2nd Floor, Radiant House 36-38 Mortimer Street, Lo=
+ndon, W1W 7RG. Company registration 11020692, VAT reg no. 285756943</span><=
+/p></div></div>
+
+--000000000000765bca061d867533--

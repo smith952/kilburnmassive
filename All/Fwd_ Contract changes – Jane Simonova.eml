@@ -1,0 +1,724 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:907:ca01:b0:a59:31b2:e81d with SMTP id uk1csp3680123ejc;
+        Tue, 28 May 2024 02:52:51 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEG9BcSKbVh0e8m+6v4d2a8K6fyXAlCkgC74levIg4n2fRJ+eiCeHYmU3lfcjCKBtzVrXsG
+X-Received: by 2002:a05:600c:524b:b0:421:1f78:1564 with SMTP id 5b1f17b1804b1-4211f781774mr6975075e9.9.1716889971132;
+        Tue, 28 May 2024 02:52:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1716889971; cv=none;
+        d=google.com; s=arc-20160816;
+        b=vQTvJThXAGv7x9PEghLdAV33C6FbMsByCgoIoq3ejiM4zyQO/k1R7e6WWhtRiuDGFH
+         vfaQR7hbznYIB3T6PqnI00UZ2H0fJTV+EXPBNVOdTP4serZUPKct+ziPcSZNRsA+LtLL
+         woHOmqdWoXDlneZz3X/gLi2RCrdG/tB8pmvomt/08fqOofz84BZMyHgtTSOwTqS1w4xl
+         FYBRXwXz0oFGwpA7gMBY2tz0TPSI4rh3Fyar8f3yYsR3Z2aNS0pWySY9RbtHzDpH2wjf
+         o+V/RWRfm7cuuXHtTgThLg9Pp6ZQ+TMfZ1uFGGetnlO0+ZlH+GTFvpcbl8ecL4DMaLpX
+         nWqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=QNlhTZ5hFG4Ah6M5dq9qm21+monK3DOOL0D6OdDIxHU=;
+        fh=cJizvjUGv87GMziYB/s5CykIhNuntBy7p+i/+sNqYJg=;
+        b=QSR8d76KKfyDVlFpwFNayNMBd1hmZ5Si6/mxOpxBgEzpNC8pVvgu8ThGJI6FfC7RYO
+         quHhUAOmVyxH3aRSIn7pHtG4tNu+sCPdu0jTT+bKuUOtKOSwRnQRQpcEi185kBk1iv9S
+         VBBq2qh8sr9Kopeb3QPTk0R0H1fh17yWHJZa14eCAhtl0t8zYT1lqY0tijpwJhtZylld
+         ebFuEu5h5HaF7eUZSI932hb6r01Vrwseni94AZ3/4EOoOZtHXLK6nzU/5TlL2zEjVz4f
+         jalTh6dofgtO26FbKuDfLM2ge4IYFxQfhEmT4EU8evRT7twSkiS5lp9/HBMyx8cMoUTF
+         k5DA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@fullcomms-co-uk.20230601.gappssmtp.com header.s=20230601 header.b="A0N4w/WZ";
+       spf=pass (google.com: domain of joanna@fullcomms.co.uk designates 2607:f8b0:4864:20::e32 as permitted sender) smtp.mailfrom=joanna@fullcomms.co.uk
+Return-Path: <joanna@fullcomms.co.uk>
+Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com. [2607:f8b0:4864:20::e32])
+        by mx.google.com with ESMTPS id 5b1f17b1804b1-42100fb7c75si69141705e9.158.2024.05.28.02.52.50
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 May 2024 02:52:50 -0700 (PDT)
+Received-SPF: pass (google.com: domain of joanna@fullcomms.co.uk designates 2607:f8b0:4864:20::e32 as permitted sender) client-ip=2607:f8b0:4864:20::e32;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@fullcomms-co-uk.20230601.gappssmtp.com header.s=20230601 header.b="A0N4w/WZ";
+       spf=pass (google.com: domain of joanna@fullcomms.co.uk designates 2607:f8b0:4864:20::e32 as permitted sender) smtp.mailfrom=joanna@fullcomms.co.uk
+Received: by mail-vs1-xe32.google.com with SMTP id ada2fe7eead31-48a398971c4so192318137.1
+        for <ot@inhomemedia.io>; Tue, 28 May 2024 02:52:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fullcomms-co-uk.20230601.gappssmtp.com; s=20230601; t=1716889969; x=1717494769; darn=inhomemedia.io;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=QNlhTZ5hFG4Ah6M5dq9qm21+monK3DOOL0D6OdDIxHU=;
+        b=A0N4w/WZW9NZahjdo3eaj0ZD6ikscXC2bXBO9XPUMx9X7H0Xd3wgktst1WJlHAXWMa
+         q8ml0KerOY1OdnHaoFSSOjQodG+61Us0spqOeSpIF0smpl+d4Q+VFNnUtIq7gyYea/I5
+         x1xnROy5Wxxhg0v3h1oAKPuigZG81G0fk0xRBy7RYo7LweV9vBrlt+JxRVzt4iWVSmB9
+         sosQwdM7AHfi57rsqIXIsVKcbd/OOShQyyiNgARlp1DdiOX5e9LnzgM7QIPfj8+1Ldhv
+         i70UuZjr2qe6SFcOeF+fn+qEFbhwX8z4anCaVTNCdgihzjooqleyqKgY9o/IISZvCcgO
+         prBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716889969; x=1717494769;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QNlhTZ5hFG4Ah6M5dq9qm21+monK3DOOL0D6OdDIxHU=;
+        b=d3dJA/EPPt+dKMF0cd3lPRgIz1rKyudBqxcAj/SjZlbygWd0snOrd2HP5PpDKJBXKD
+         fC07jpYiAwhfgUVdnUtMUcsX/ap9Jq7Mo7bUnaRgIiWdRypqZcDKvpjzl4tF19ChKS+H
+         BE4PR4pV5c6tZeEKtO8urZBPPStpf8ijpXCckCIpqLirr7C+/m64O9AiLb0MUKIQOxQU
+         6cQEQ0uI+jeb3kk4cJ8n49pnCgSiQa3rm4pkqYwZDVjLmojD66n79nTKKSzAOz6Q9WSl
+         kad+WZ61v71CMddO+dmF+ZgbtZB/5cGgyPrt2OPlccudOEgC2cFlFyHrhoAPxD8xAcyo
+         K65g==
+X-Gm-Message-State: AOJu0Yx/vfifh6oBzKTdVHKFQf9WUrOUr1VgL8rSB/YTDO63EuBeGcZA
+	TFWCCvd7hJMUV8di8cdZuY4NXxtCZqHmLqoRktmE86iKN2bNrcJAdSw5KKuldnKqlO+KjSxQ1l6
+	1Do0qDlinX2MQyDyr+BaNN6NoYbjk6BvV66cW98/+Y2YN4QSM3V0=
+X-Received: by 2002:a67:b609:0:b0:47f:3557:84fb with SMTP id
+ ada2fe7eead31-48a386d2fe1mr10716547137.26.1716889969160; Tue, 28 May 2024
+ 02:52:49 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAD0e6TG8R_53qgi=_U=xRK6De5zH7G_-+QqxMSxgtKHgWyA9kw@mail.gmail.com>
+ <CABh-v2yB2QsAmV3qgBte2i5Yy=wuWY0U2K1vfKTdu2Ly5BFVeQ@mail.gmail.com>
+ <CAPsP-Gbiq4b2oZjXvUAJ4BS6peGNMw8L0ECwEFR0ahxibpt6+Q@mail.gmail.com>
+ <CABh-v2xLRVmtoXRS=qhpVaS+TPmjpQ1J_f25HGun049YcUudnw@mail.gmail.com> <CAMr_NGHMYdX7AWDyJhwHjnTJ4dm-_eh2z1OkWE-5=2By8WkO4w@mail.gmail.com>
+In-Reply-To: <CAMr_NGHMYdX7AWDyJhwHjnTJ4dm-_eh2z1OkWE-5=2By8WkO4w@mail.gmail.com>
+From: Joanna Jakubowska <joanna@fullcomms.co.uk>
+Date: Tue, 28 May 2024 10:52:38 +0100
+Message-ID: <CABh-v2yo1J+tp3gtnSaMG5G-3bOtrFKxVbVkRjQuoHHbu6ak8A@mail.gmail.com>
+Subject: =?UTF-8?Q?Re=3A_Contract_changes_=E2=80=93_Jane_Simonova?=
+To: Owen Thomas <ot@inhomemedia.io>
+Cc: Stephen Gale <stephen@inhomemedia.io>
+Content-Type: multipart/alternative; boundary="000000000000bb0ee50619809869"
+
+--000000000000bb0ee50619809869
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thank you both.
+
+I had given her a call and explained everything.
+
+*Best Regards,*
+*Joanna*
+
+*Joanna Jakubowska*
+*Office Manager and Finance assistant *
+
+M: 07432237035
+
+London Office:
+2nd floor, 46-54 Balfour House, Great Titchfield Street, W1W 7QA
+
+  <https://www.linkedin.com/showcase/4974658/>
+<https://twitter.com/fullcomms> <https://www.instagram.com/full_comms/>
+
+Just so you know... this email and any files transmitted with it are
+confidential and intended solely for the use of the individual or entity to
+whom they are addressed. They are the property of Full Communications Ltd.
+If you have received this email in error please notify the system manager.
+This message may contain confidential information and is intended only for
+the individual named. Please notify the sender immediately by e-mail if you
+have received this e-mail by mistake and delete this e-mail from your
+system. Full Communications Ltd accepts no liability for the content of
+this email, or for the consequences of any actions taken on the basis of
+the information provided unless that information is subsequently confirmed
+in writing. If you are not the intended recipient you are notified that
+disclosing, copying, distributing or taking any action in reliance on the
+contents of this information is strictly prohibited. Full Communications
+Ltd,91 Wimpole Street, London, United Kingdom, W1G 0EF.Company registration
+04736768, VAT reg no. 645717224
+
+
+
+On Tue, 28 May 2024 at 10:23, Owen Thomas <ot@inhomemedia.io> wrote:
+
+> Hi guys,
+>
+> Yes I agree with your responses @Stephen Gale <stephen@inhomemedia.io>
+>
+> I am away this week so cant really get much clarity on point 3 sorry.
+>
+> My advice to Jane would be to treat these as two separate points and not
+> rely on us giving her additional work. She needs to be looking at options
+> for herself outside of our group of companies.
+>
+> Thanks,
+> Owen
+>
+> On Tue, May 28, 2024 at 8:15=E2=80=AFAM Joanna Jakubowska <joanna@fullcom=
+ms.co.uk>
+> wrote:
+>
+>> Hi Stephen,
+>>
+>> Yes my weekend was good thanks and I hope yours was too!
+>>
+>> That's fine, thank you for your reply.
+>>
+>> I will send the answers to Jane.
+>>
+>>
+>> *Best Regards,*
+>> *Joanna*
+>>
+>> *Joanna Jakubowska*
+>> *Office Manager and Finance assistant *
+>>
+>> M: 07432237035
+>>
+>> London Office:
+>> 2nd floor, 46-54 Balfour House, Great Titchfield Street, W1W 7QA
+>>
+>>   <https://www.linkedin.com/showcase/4974658/>
+>> <https://twitter.com/fullcomms> <https://www.instagram.com/full_comms/>
+>>
+>> Just so you know... this email and any files transmitted with it are
+>> confidential and intended solely for the use of the individual or entity=
+ to
+>> whom they are addressed. They are the property of Full Communications Lt=
+d.
+>> If you have received this email in error please notify the system manage=
+r.
+>> This message may contain confidential information and is intended only f=
+or
+>> the individual named. Please notify the sender immediately by e-mail if =
+you
+>> have received this e-mail by mistake and delete this e-mail from your
+>> system. Full Communications Ltd accepts no liability for the content of
+>> this email, or for the consequences of any actions taken on the basis of
+>> the information provided unless that information is subsequently confirm=
+ed
+>> in writing. If you are not the intended recipient you are notified that
+>> disclosing, copying, distributing or taking any action in reliance on th=
+e
+>> contents of this information is strictly prohibited. Full Communications
+>> Ltd,91 Wimpole Street, London, United Kingdom, W1G 0EF.Company
+>> registration 04736768, VAT reg no. 645717224
+>>
+>>
+>>
+>> On Tue, 28 May 2024 at 07:43, Stephen Gale <stephen@inhomemedia.io>
+>> wrote:
+>>
+>>> Hi Joanna,
+>>>
+>>> I hope you had a lovely weekend. I have forwarded this to Owen, but in
+>>> the meantime please see my response below. We need to manage Jane's
+>>> expectations beyond June, as there may not be any further work for her.
+>>> Hopefully, this buys her a bit of time and keeps her options open for
+>>> finding alternative employment.
+>>>
+>>> 1. Will I receive my full salary on 31st May?
+>>> *Yes and unpaid holiday too. *
+>>> 2. Will I start working as a freelancer/contractor from 1st June? What
+>>> is the duration and number of hours per week? Will my salary remain the
+>>> same?
+>>> I n*eed to finalise this with Owen, but I will be flexible and to come
+>>> into the office when needed. I think we will pay her the equivalent to =
+her
+>>> net salary for June.*
+>>> 3. Can I also assist with some work for the sister company?
+>>> *I think Owen will talk to Sandy about this possibility.*
+>>> 4. What will be my notice period in this case?
+>>> *As a consultant, you don't really have a notice period, but I imagine
+>>> we will know more about what's happening as the month progresses.*
+>>> ------------------------------
+>>> *From:* Joanna Jakubowska <joanna@fullcomms.co.uk>
+>>> *Sent:* Friday, May 24, 2024 2:06:56 pm
+>>> *To:* Stephen Gale <stephen@inhomemedia.io>
+>>> *Subject:* Fwd: Contract changes =E2=80=93 Jane Simonova
+>>>
+>>> Hi Stephen,
+>>>
+>>> I hope you're well and looking forward to the long weekend:)
+>>>
+>>> Can you help me to answer some questions from Jane below.
+>>>
+>>>
+>>> *Best Regards,*
+>>> *Joanna*
+>>>
+>>> *Joanna Jakubowska*
+>>> *Office Manager and Finance assistant *
+>>>
+>>> M: 07432237035
+>>>
+>>> London Office:
+>>> 2nd floor, 46-54 Balfour House, Great Titchfield Street, W1W 7QA
+>>>
+>>>   <https://www.linkedin.com/showcase/4974658/>
+>>> <https://twitter.com/fullcomms> <https://www.instagram.com/full_comms/>
+>>>
+>>> Just so you know... this email and any files transmitted with it are
+>>> confidential and intended solely for the use of the individual or entit=
+y to
+>>> whom they are addressed. They are the property of Full Communications L=
+td.
+>>> If you have received this email in error please notify the system manag=
+er.
+>>> This message may contain confidential information and is intended only =
+for
+>>> the individual named. Please notify the sender immediately by e-mail if=
+ you
+>>> have received this e-mail by mistake and delete this e-mail from your
+>>> system. Full Communications Ltd accepts no liability for the content of
+>>> this email, or for the consequences of any actions taken on the basis o=
+f
+>>> the information provided unless that information is subsequently confir=
+med
+>>> in writing. If you are not the intended recipient you are notified that
+>>> disclosing, copying, distributing or taking any action in reliance on t=
+he
+>>> contents of this information is strictly prohibited. Full
+>>> Communications Ltd,91 Wimpole Street, London, United Kingdom, W1G 0EF.C=
+ompany
+>>> registration 04736768, VAT reg no. 645717224
+>>>
+>>>
+>>>
+>>> ---------- Forwarded message ---------
+>>> From: Jane Simonova <jane@inhomemedia.io>
+>>> Date: Fri, 24 May 2024 at 13:28
+>>> Subject: Contract changes =E2=80=93 Jane Simonova
+>>> To: Joanna Jakubowska <joanna@fullcomms.co.uk>
+>>>
+>>>
+>>> Hi Joanna,
+>>>
+>>> Thanks for the meeting yesterday!
+>>>
+>>> As discussed please see my questions below:
+>>>
+>>> 1. Will I receive my full salary on 31st May?
+>>> Yes and unpaid holiday too.
+>>> 2. Will I start working as a freelancer/contractor from 1st June? What
+>>> is the duration and number of hours per week? Will my salary remain the
+>>> same?
+>>> I need to finalise this with Owen, but I will be flexible and to come
+>>> into the office when needed. I think we will pay her the equivalent to =
+her
+>>> net salary for June.
+>>> 3. Can I also assist with some work for the sister company?
+>>> I think Owen will talk to Sandy about this possibility.
+>>> 4. What will be my notice period in this case?
+>>> As a consultant, you don't really have a notice period, but I imagine w=
+e
+>>> will know more about what's happening as the month progresses.
+>>>
+>>>
+>>> Thank you and let me know when I can roughly hear back on it! Have a
+>>> lovely weekend!
+>>>
+>>> Thanks,
+>>> Jane
+>>>
+>>> --
+>>>
+>>> Jane Simonova
+>>>
+>>> Network and Operations Manager
+>>>
+>>>
+>>> A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QA
+>>>
+>>> E: jane@inhomemedia.io
+>>>
+>>> W: inhomemedia.io
+>>>
+>>>
+>>> <https://inhomemedia.io/>
+>>>
+>>>
+>>> <https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+>>>
+>>>
+
+--000000000000bb0ee50619809869
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thank you both.<div><br></div><div>I had given her a call =
+and explained everything.</div><div><br></div><div><div><div dir=3D"ltr" cl=
+ass=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"=
+><div dir=3D"ltr"><div><font color=3D"#000000"><span style=3D"font-size:13.=
+3333px"><b>Best Regards,</b></span></font></div><div><font color=3D"#000000=
+"><span style=3D"font-size:13.3333px"><b>Joanna</b></span></font></div><div=
+><font color=3D"#000000"><span style=3D"font-size:13.3333px"><b><br></b></s=
+pan></font></div><div><font color=3D"#000000"><span style=3D"font-size:13.3=
+333px"><b>Joanna Jakubowska</b></span></font></div><div><font color=3D"#000=
+000"><b>Office Manager and Finance assistant=C2=A0</b></font></div><br><div=
+><font style=3D"color:rgb(0,0,0);font-size:10pt;font-weight:bold">M:</font>=
+<span style=3D"color:rgb(0,0,0);font-size:10pt">=C2=A0<a href=3D"tel:074322=
+37035" style=3D"color:rgb(17,85,204)" target=3D"_blank">07432237035</a></sp=
+an></div></div><div dir=3D"ltr"><br style=3D"color:rgb(34,34,34)"><table ce=
+llpadding=3D"0" cellspacing=3D"0" style=3D"color:rgb(34,34,34);font-family:=
+Times"><tbody><tr><td><img src=3D"https://www.fullcomms.co.uk/e-signature/l=
+ogo.png" style=3D"margin-top:10px"></td></tr></tbody></table><table cellpad=
+ding=3D"0" cellspacing=3D"0" style=3D"color:rgb(34,34,34);font-family:Times=
+"><tbody><tr><td><p style=3D"font-family:Helvetica,sans-serif;font-size:13p=
+x;font-weight:bold;line-height:20px;margin-top:10px">London Office:</p><fon=
+t face=3D"arial black, sans-serif">2nd floor, 46-54 Balfour House, Great Ti=
+tchfield Street, W1W 7QA<br></font></td><td style=3D"padding-left:20px"></t=
+d></tr></tbody></table><table cellpadding=3D"0" cellspacing=3D"0" style=3D"=
+color:rgb(34,34,34);font-family:Times"><tbody><tr><td><br><a href=3D"https:=
+//www.linkedin.com/showcase/4974658/" style=3D"color:rgb(17,85,204)" target=
+=3D"_blank"><img src=3D"https://www.fullcomms.co.uk/e-signature/linkedin.pn=
+g">=C2=A0</a><a href=3D"https://twitter.com/fullcomms" style=3D"color:rgb(1=
+7,85,204)" target=3D"_blank"><img src=3D"https://www.fullcomms.co.uk/e-sign=
+ature/twitter.png">=C2=A0</a><a href=3D"https://www.instagram.com/full_comm=
+s/" style=3D"color:rgb(17,85,204)" target=3D"_blank"><img src=3D"https://ww=
+w.fullcomms.co.uk/e-signature/instagram.png"></a></td></tr><tr><td><br><p><=
+font size=3D"1" style=3D"font-family:Helvetica,sans-serif"><span style=3D"c=
+olor:rgb(0,0,0);font-family:-webkit-standard">Just so you know... this emai=
+l and any files transmitted with it are confidential and intended solely fo=
+r the use of the individual or entity to whom they are addressed. They are =
+the property of Full Communications Ltd. If you have received this email in=
+ error please notify the system manager. This message may contain confident=
+ial information and is intended only for the individual named. Please notif=
+y the sender immediately by e-mail if you have received this e-mail by mist=
+ake and delete this e-mail from your system. Full Communications Ltd accept=
+s no liability for the content of this email, or for the consequences of an=
+y actions taken on the basis of the information provided unless that inform=
+ation is subsequently confirmed in writing. If you are not the intended rec=
+ipient you are notified that disclosing, copying, distributing or taking an=
+y action in reliance on the contents of this infor</span></font><font size=
+=3D"1">mation is strictly prohibited. Full Communications Ltd,91 Wimpole St=
+reet, London, United Kingdom, W1G 0EF.</font><span style=3D"font-family:-we=
+bkit-standard;color:rgb(0,0,0);font-size:x-small">Company registration 0473=
+6768, VAT reg no. 645717224</span></p></td></tr></tbody></table><br><table =
+cellpadding=3D"0" cellspacing=3D"0" style=3D"color:rgb(34,34,34);font-famil=
+y:Times"></table></div></div></div></div><br></div></div><br><div class=3D"=
+gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, 28 May 2024 at 1=
+0:23, Owen Thomas &lt;<a href=3D"mailto:ot@inhomemedia.io">ot@inhomemedia.i=
+o</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+><div dir=3D"ltr">Hi guys,<div><br></div><div>Yes I agree with your respons=
+es=C2=A0<a class=3D"gmail_plusreply" id=3D"m_-5386294376625217471plusReplyC=
+hip-0" href=3D"mailto:stephen@inhomemedia.io" target=3D"_blank">@Stephen Ga=
+le</a>=C2=A0</div><div><br></div><div>I am away this week so cant really ge=
+t much clarity on point 3 sorry.</div><div><br></div><div>My advice to Jane=
+ would be to treat these as two separate points and not rely on us giving h=
+er additional work. She needs to be looking at options for herself outside =
+of our group of companies.</div><div><br></div><div>Thanks,</div><div>Owen<=
+/div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
+ttr">On Tue, May 28, 2024 at 8:15=E2=80=AFAM Joanna Jakubowska &lt;<a href=
+=3D"mailto:joanna@fullcomms.co.uk" target=3D"_blank">joanna@fullcomms.co.uk=
+</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
+0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
+<div dir=3D"ltr">Hi=C2=A0Stephen,<div><br></div><div>Yes my weekend was goo=
+d thanks and I hope yours was too!</div><div><br></div><div>That&#39;s fine=
+, thank you for your reply.</div><div><br></div><div>I will send the answer=
+s to Jane.</div><div><br></div><div><br clear=3D"all"><div><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div><font col=
+or=3D"#000000"><span style=3D"font-size:13.3333px"><b>Best Regards,</b></sp=
+an></font></div><div><font color=3D"#000000"><span style=3D"font-size:13.33=
+33px"><b>Joanna</b></span></font></div><div><font color=3D"#000000"><span s=
+tyle=3D"font-size:13.3333px"><b><br></b></span></font></div><div><font colo=
+r=3D"#000000"><span style=3D"font-size:13.3333px"><b>Joanna Jakubowska</b><=
+/span></font></div><div><font color=3D"#000000"><b>Office Manager and Finan=
+ce assistant=C2=A0</b></font></div><br><div><font style=3D"color:rgb(0,0,0)=
+;font-size:10pt;font-weight:bold">M:</font><span style=3D"color:rgb(0,0,0);=
+font-size:10pt">=C2=A0<a href=3D"tel:07432237035" style=3D"color:rgb(17,85,=
+204)" target=3D"_blank">07432237035</a></span></div></div><div dir=3D"ltr">=
+<br style=3D"color:rgb(34,34,34)"><table cellpadding=3D"0" cellspacing=3D"0=
+" style=3D"color:rgb(34,34,34);font-family:Times"><tbody><tr><td><img src=
+=3D"https://www.fullcomms.co.uk/e-signature/logo.png" style=3D"margin-top: =
+10px;"></td></tr></tbody></table><table cellpadding=3D"0" cellspacing=3D"0"=
+ style=3D"color:rgb(34,34,34);font-family:Times"><tbody><tr><td><p style=3D=
+"font-family:Helvetica,sans-serif;font-size:13px;font-weight:bold;line-heig=
+ht:20px;margin-top:10px">London Office:</p><font face=3D"arial black, sans-=
+serif">2nd floor, 46-54 Balfour House, Great Titchfield Street, W1W 7QA<br>=
+</font></td><td style=3D"padding-left:20px"></td></tr></tbody></table><tabl=
+e cellpadding=3D"0" cellspacing=3D"0" style=3D"color:rgb(34,34,34);font-fam=
+ily:Times"><tbody><tr><td><br><a href=3D"https://www.linkedin.com/showcase/=
+4974658/" style=3D"color:rgb(17,85,204)" target=3D"_blank"><img src=3D"http=
+s://www.fullcomms.co.uk/e-signature/linkedin.png">=C2=A0</a><a href=3D"http=
+s://twitter.com/fullcomms" style=3D"color:rgb(17,85,204)" target=3D"_blank"=
+><img src=3D"https://www.fullcomms.co.uk/e-signature/twitter.png">=C2=A0</a=
+><a href=3D"https://www.instagram.com/full_comms/" style=3D"color:rgb(17,85=
+,204)" target=3D"_blank"><img src=3D"https://www.fullcomms.co.uk/e-signatur=
+e/instagram.png"></a></td></tr><tr><td><br><p><font size=3D"1" style=3D"fon=
+t-family:Helvetica,sans-serif"><span style=3D"color:rgb(0,0,0);font-family:=
+-webkit-standard">Just so you know... this email and any files transmitted =
+with it are confidential and intended solely for the use of the individual =
+or entity to whom they are addressed. They are the property of Full Communi=
+cations Ltd. If you have received this email in error please notify the sys=
+tem manager. This message may contain confidential information and is inten=
+ded only for the individual named. Please notify the sender immediately by =
+e-mail if you have received this e-mail by mistake and delete this e-mail f=
+rom your system. Full Communications Ltd accepts no liability for the conte=
+nt of this email, or for the consequences of any actions taken on the basis=
+ of the information provided unless that information is subsequently confir=
+med in writing. If you are not the intended recipient you are notified that=
+ disclosing, copying, distributing or taking any action in reliance on the =
+contents of this infor</span></font><font size=3D"1">mation is strictly pro=
+hibited. Full Communications Ltd,91 Wimpole Street, London, United Kingdom,=
+ W1G 0EF.</font><span style=3D"font-family:-webkit-standard;color:rgb(0,0,0=
+);font-size:x-small">Company registration 04736768, VAT reg no. 645717224</=
+span></p></td></tr></tbody></table><br><table cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"color:rgb(34,34,34);font-family:Times"></table></div></div>=
+</div></div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
+ class=3D"gmail_attr">On Tue, 28 May 2024 at 07:43, Stephen Gale &lt;<a hre=
+f=3D"mailto:stephen@inhomemedia.io" target=3D"_blank">stephen@inhomemedia.i=
+o</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+><div dir=3D"ltr">
+
+
+
+<div>
+<div><div>Hi Joanna,</div></div><div><br></div><div>I hope you had a lovely=
+ weekend. I have forwarded this to Owen, but in the meantime please see my =
+response below. We need to manage Jane&#39;s expectations beyond June, as t=
+here may not be any further work for her. Hopefully, this buys her a bit of=
+ time and keeps her options open for finding alternative employment.</div><=
+div><br></div><div><div dir=3D"auto">1. Will I receive my full salary on 31=
+st May?<br></div><div><b>Yes and unpaid holiday too.=C2=A0</b></div><div di=
+r=3D"auto">2. Will I start working as a freelancer/contractor from 1st June=
+? What is the duration and number of hours per week? Will my salary remain =
+the same?</div><div dir=3D"auto">I n<b>eed to finalise this with Owen, but =
+I will be flexible and to come into the office when needed. I think we will=
+ pay her the equivalent to her net salary for June.</b><br>3. Can I also as=
+sist with some work for the sister company?</div><div dir=3D"auto"><b>I thi=
+nk Owen will talk to Sandy about this possibility.</b></div><div dir=3D"aut=
+o">4. What will be my notice period in this case?</div><div dir=3D"auto"><b=
+>As a consultant, you don&#39;t really have a notice period, but I imagine =
+we will know more about what&#39;s happening as the month progresses.</b></=
+div></div><div id=3D"m_-5386294376625217471m_9008875994582627395m_375328342=
+8774855972m_-2334128433672949085m_-936552341928235553m_-7055926963227915492=
+mail-editor-reference-message-container" dir=3D"auto">
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_-5386294376625217471m_9008875994582627395m_3753283428774855972=
+m_-2334128433672949085m_-936552341928235553m_-7055926963227915492divRplyFwd=
+Msg" style=3D"font-size:11pt"><strong>From:</strong> Joanna Jakubowska &lt;=
+<a href=3D"mailto:joanna@fullcomms.co.uk" target=3D"_blank">joanna@fullcomm=
+s.co.uk</a>&gt;<br>
+<strong>Sent:</strong> Friday, May 24, 2024 2:06:56 pm<br>
+<strong>To:</strong> Stephen Gale &lt;<a href=3D"mailto:stephen@inhomemedia=
+.io" target=3D"_blank">stephen@inhomemedia.io</a>&gt;<br>
+<strong>Subject:</strong> Fwd: Contract changes =E2=80=93 Jane Simonova<br>
+</div>
+<br>
+<div dir=3D"ltr">Hi Stephen,
+<div><br>
+</div>
+<div>I hope you&#39;re well and looking forward to the long weekend:)</div>
+<div><br>
+</div>
+<div>Can you help me to answer some questions from Jane below.</div>
+<div><br>
+</div>
+<div><br clear=3D"all">
+<div>
+<div dir=3D"ltr" class=3D"gmail_signature">
+<div dir=3D"ltr">
+<div dir=3D"ltr">
+<div><font style=3D"color:rgb(0,0,0)"><span style=3D"font-size:13.3333px"><=
+b>Best Regards,</b></span></font></div>
+<div><font style=3D"color:rgb(0,0,0)"><span style=3D"font-size:13.3333px"><=
+b>Joanna</b></span></font></div>
+<div><font style=3D"color:rgb(0,0,0)"><span style=3D"font-size:13.3333px"><=
+b><br>
+</b></span></font></div>
+<div><font style=3D"color:rgb(0,0,0)"><span style=3D"font-size:13.3333px"><=
+b>Joanna Jakubowska</b></span></font></div>
+<div><font style=3D"color:rgb(0,0,0)"><b>Office Manager and Finance assista=
+nt=C2=A0</b></font></div>
+<br>
+<div><font style=3D"font-size:10pt;font-weight:bold;color:rgb(0,0,0)">M:</f=
+ont><span style=3D"font-size:10pt;color:rgb(0,0,0)">=C2=A0<a href=3D"tel:07=
+432237035" style=3D"color:rgb(17,85,204)" target=3D"_blank">07432237035</a>=
+</span></div>
+</div>
+<div dir=3D"ltr"><br style=3D"color:rgb(34,34,34)">
+<table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family:Times;color=
+:rgb(34,34,34)">
+<tbody>
+<tr>
+<td><img src=3D"https://www.fullcomms.co.uk/e-signature/logo.png" style=3D"=
+margin-top: 10px;"></td>
+</tr>
+</tbody>
+</table>
+<table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family:Times;color=
+:rgb(34,34,34)">
+<tbody>
+<tr>
+<td>
+<p style=3D"font-family:Helvetica,sans-serif;font-size:13px;font-weight:bol=
+d;line-height:20px;margin-top:10px">
+London Office:</p>
+<font face=3D"arial black, sans-serif">2nd floor, 46-54 Balfour House, Grea=
+t Titchfield Street, W1W 7QA<br>
+</font></td>
+<td style=3D"padding-left:20px"></td>
+</tr>
+</tbody>
+</table>
+<table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family:Times;color=
+:rgb(34,34,34)">
+<tbody>
+<tr>
+<td><br>
+<a href=3D"https://www.linkedin.com/showcase/4974658/" style=3D"color:rgb(1=
+7,85,204)" target=3D"_blank"><img src=3D"https://www.fullcomms.co.uk/e-sign=
+ature/linkedin.png">=C2=A0</a><a href=3D"https://twitter.com/fullcomms" sty=
+le=3D"color:rgb(17,85,204)" target=3D"_blank"><img src=3D"https://www.fullc=
+omms.co.uk/e-signature/twitter.png">=C2=A0</a><a href=3D"https://www.instag=
+ram.com/full_comms/" style=3D"color:rgb(17,85,204)" target=3D"_blank"><img =
+src=3D"https://www.fullcomms.co.uk/e-signature/instagram.png"></a></td>
+</tr>
+<tr>
+<td><br>
+<p><font size=3D"1" style=3D"font-family:Helvetica,sans-serif"><span style=
+=3D"font-family:-webkit-standard;color:rgb(0,0,0)">Just so you know... this=
+ email and any files transmitted with it are confidential and intended sole=
+ly for the use of the individual
+ or entity to whom they are addressed. They are the property of Full Commun=
+ications Ltd. If you have received this email in error please notify the sy=
+stem manager. This message may contain confidential information and is inte=
+nded only for the individual named.
+ Please notify the sender immediately by e-mail if you have received this e=
+-mail by mistake and delete this e-mail from your system. Full Communicatio=
+ns Ltd accepts no liability for the content of this email, or for the conse=
+quences of any actions taken on
+ the basis of the information provided unless that information is subsequen=
+tly confirmed in writing. If you are not the intended recipient you are not=
+ified that disclosing, copying, distributing or taking any action in relian=
+ce on the contents of this infor</span></font><font size=3D"1">mation
+ is strictly prohibited. Full Communications Ltd,91 Wimpole Street, London,=
+ United Kingdom, W1G 0EF.</font><span style=3D"font-family:-webkit-standard=
+;font-size:x-small;color:rgb(0,0,0)">Company registration 04736768, VAT reg=
+ no. 645717224</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family:Times;color=
+:rgb(34,34,34)">
+</table>
+</div>
+</div>
+</div>
+</div>
+<br>
+<br>
+<div class=3D"gmail_quote">
+<div dir=3D"ltr" class=3D"gmail_attr">---------- Forwarded message --------=
+-<br>
+From: <strong class=3D"gmail_sendername" dir=3D"auto">Jane Simonova</strong=
+> <span dir=3D"auto">
+&lt;<a href=3D"mailto:jane@inhomemedia.io" target=3D"_blank">jane@inhomemed=
+ia.io</a>&gt;</span><br>
+Date: Fri, 24 May 2024 at 13:28<br>
+Subject: Contract changes =E2=80=93 Jane Simonova<br>
+To: Joanna Jakubowska &lt;<a href=3D"mailto:joanna@fullcomms.co.uk" target=
+=3D"_blank">joanna@fullcomms.co.uk</a>&gt;<br>
+</div>
+<br>
+<br>
+<div dir=3D"auto">
+<div dir=3D"auto">Hi Joanna,<br>
+<br>
+Thanks for the meeting yesterday!<br>
+<br>
+As discussed please see my questions below:<br>
+<br>
+</div>
+<div dir=3D"auto">1. Will I receive my full salary on 31st May?<br>
+</div>
+<div>Yes and unpaid holiday too.=C2=A0</div>
+<div dir=3D"auto">2. Will I start working as a freelancer/contractor from 1=
+st June? What is the duration and number of hours per week? Will my salary =
+remain the same?</div><div dir=3D"auto">I need to finalise this with Owen, =
+but I will be flexible and to come into the office when needed. I think we =
+will pay her the equivalent to her net salary for June.<br>
+3. Can I also assist with some work for the sister company?</div><div dir=
+=3D"auto">I think Owen will talk to Sandy about this possibility.</div><div=
+ dir=3D"auto">
+4. What will be my notice period in this case?</div><div dir=3D"auto">As a =
+consultant, you don&#39;t really have a notice period, but I imagine we wil=
+l know more about what&#39;s happening as the month progresses.<br>
+<br>
+<br>
+Thank you and let me know when I can roughly hear back on it! Have a lovely=
+=C2=A0weekend!<br>
+<br>
+Thanks,<br>
+Jane<br clear=3D"all">
+<div><br>
+</div>
+<span class=3D"gmail_signature_prefix">-- </span><br>
+<div dir=3D"ltr" class=3D"gmail_signature">
+<div dir=3D"ltr">
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;c=
+olor:rgb(0,0,0)">
+<span style=3D"font-size:10pt;font-family:Poppins,sans-serif;vertical-align=
+:baseline;color:rgb(26,34,52)">Jane Simonova</span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;c=
+olor:rgb(0,0,0)">
+<span style=3D"font-size:10pt;font-family:&quot;Times New Roman&quot;,serif=
+;vertical-align:baseline;color:rgb(117,130,131)">Network and Operations Man=
+ager</span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;c=
+olor:rgb(0,0,0)">
+<br>
+</p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;c=
+olor:rgb(0,0,0)">
+<span style=3D"font-size:10pt;font-family:Poppins,sans-serif;vertical-align=
+:baseline;color:rgb(26,34,52)">A: Balfour House,=C2=A0</span><span style=3D=
+"font-family:Poppins,sans-serif;vertical-align:baseline;font-size:13.3333px=
+;color:rgb(26,34,52)">46-54
+ Great Titchfield Street, London W1W 7QA</span></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;c=
+olor:rgb(0,0,0)">
+<span style=3D"font-family:Poppins,sans-serif;font-size:10pt;color:rgb(26,3=
+4,52)">E:=C2=A0</span><a href=3D"mailto:jane@inhomemedia.io" style=3D"font-=
+family:Poppins,sans-serif;font-size:10pt;color:rgb(17,85,204)" target=3D"_b=
+lank">jane@inhomemedia.io</a><br>
+</p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;c=
+olor:rgb(0,0,0)">
+<span style=3D"font-size:10pt;font-family:Poppins,sans-serif;vertical-align=
+:baseline;color:rgb(26,34,52)">W:=C2=A0<a href=3D"http://inhomemedia.io/" s=
+tyle=3D"color:rgb(17,85,204)" target=3D"_blank">inhomemedia.io</a></span></=
+p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;c=
+olor:rgb(0,0,0)">
+<br>
+</p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;c=
+olor:rgb(0,0,0)">
+<a href=3D"https://inhomemedia.io/" style=3D"color:rgb(17,85,204)" target=
+=3D"_blank"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;vert=
+ical-align:baseline"><span style=3D"border:medium;display:inline-block;over=
+flow:hidden;width:520px;height:29px"><img src=3D"https://lh7-us.googleuserc=
+ontent.com/G4ff92Jazz4nl6U3XO4bw1HjizO0hBsjZS3iCZQOXffuUv-6C9ZOTq4IW15iyu5k=
+B0duaGS4BIdTk6vBLe2by2YwpWZWU0ghiZa-ur3pLUYBvT5gmflP-8PDQuJOrK3hWMiULmn98Ku=
+WeYwc8vZo5pQ" width=3D"520" height=3D"29" style=3D"margin-left: 0px; margin=
+-top: 0px;"></span></span></a></p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;c=
+olor:rgb(0,0,0)">
+<br>
+</p>
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;c=
+olor:rgb(0,0,0)">
+<a href=3D"https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dt=
+rue" style=3D"font-family:Poppins,sans-serif;font-size:13.3333px;color:rgb(=
+17,85,204)" target=3D"_blank"><img src=3D"https://lh7-us.googleusercontent.=
+com/cYdkuaQI6sWib78slCNi_Rz86PtOZ6DcUsNMwbOy-aII_ZEtMyjbiyrSeCokvdKWRcqldt-=
+NzAEylM60R3dg7sPvFvGJFgjTZ85Ao7BrS0HraUMDhHTYQ9iOdBeXX0apBCOe0ySlE2Y3esW4rs=
+6EBV4" width=3D"164" height=3D"24" style=3D"margin-left: 0px; margin-top: 0=
+px;"></a><br>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<br>
+</div>
+</div>
+
+</div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+
+--000000000000bb0ee50619809869--

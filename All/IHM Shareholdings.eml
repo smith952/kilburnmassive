@@ -1,0 +1,704 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:1b49:b0:a77:c3e9:7948 with SMTP id p9csp127945ejg;
+        Tue, 16 Jul 2024 02:45:35 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGYE5nV7r0nYP7LLq9iodrBeCQywIk6Wo2qDGJS4/dugZYHlruHtpNoUVpu5XmAkCGp5pjn
+X-Received: by 2002:a17:906:2b87:b0:a72:7603:49ef with SMTP id a640c23a62f3a-a79ea460d52mr110322566b.35.1721123135452;
+        Tue, 16 Jul 2024 02:45:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1721123135; cv=none;
+        d=google.com; s=arc-20160816;
+        b=zt/IULO9MoDpW4TgFkqwPTbeKRZo17zzzCgW9IPjBY7cyESAghKLwesxETSwjNL5yl
+         nUj8yKm6vlGIyI3R+T7uQM0UXw6IBI/LKyc8eiDwMfrxLboSzsPA9gZicIKgW7E5retg
+         FZh0e8PHp/UHUm+ggQeYocXgyYb7li7IWXA4EG7/sYVoS3Fft0B3W9qF53gDOpK8R1f0
+         1vf25lcDYy4yhdVONi72ojXhpmT5Mu0wuNQtOrqinFc2RtCEom6P2X1DQGyfh8yHB0aJ
+         6XISa0ge1zZ5zO97HkhFpgd6h0snKp/gx/8NMKLLZYq7q4W5VNSCzYX2NBPcPnoEuu/O
+         dXvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-language:mime-version:accept-language:in-reply-to
+         :references:message-id:date:thread-index:thread-topic:subject:cc:to
+         :from:dkim-signature;
+        bh=aduCUtoa+fPE7W5SBaHcdiOtj8frnCzu2QVLWKiVPXw=;
+        fh=ttIQwsovH3hLVPH9iMO3mUff37ozjXmetSoz0MfyWiM=;
+        b=pap+TmNAYpHDga8TEQCph8la970qZM9v0jOYBkI9WFUwnmR6zhg23xD4eVsH2eE4MN
+         GXbDyCE2qldYA/h0EVCmUrIo+TiK0UTjvlz5HlYg2WKcxGccIpRnXmoL5k/YLLjIAXFO
+         0GHgmtHhXUdgxvl6IDShldK5IKnMHYDvZQyDcm9xH0qBi9a61/fuDm0x914L8yPvYvmO
+         vs9Tz4glW383DIRkHUTM+HZVaqiSRLVhUSHLkW+xSI66TR7ZEdT7V47S2stH5Dr+tLs0
+         O84baDC4/qZrwjHp3nOVWu83ejyz1v1NwzqNXBPHgaLgrXYFloMjJZzKS2jdoIhFkR02
+         w8LQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@erismedia.co.uk header.s=mimecast20220812 header.b=c3Hg2t8Z;
+       spf=pass (google.com: domain of david.moulton@erismedia.co.uk designates 185.58.85.139 as permitted sender) smtp.mailfrom=david.moulton@erismedia.co.uk;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=erismedia.co.uk
+Return-Path: <david.moulton@erismedia.co.uk>
+Received: from eu-smtp-delivery-139.mimecast.com (eu-smtp-delivery-139.mimecast.com. [185.58.85.139])
+        by mx.google.com with ESMTPS id a640c23a62f3a-a79c5bb1f35si281363066b.228.2024.07.16.02.45.34
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Jul 2024 02:45:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of david.moulton@erismedia.co.uk designates 185.58.85.139 as permitted sender) client-ip=185.58.85.139;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@erismedia.co.uk header.s=mimecast20220812 header.b=c3Hg2t8Z;
+       spf=pass (google.com: domain of david.moulton@erismedia.co.uk designates 185.58.85.139 as permitted sender) smtp.mailfrom=david.moulton@erismedia.co.uk;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=erismedia.co.uk
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=erismedia.co.uk;
+	s=mimecast20220812; t=1721123134;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=aduCUtoa+fPE7W5SBaHcdiOtj8frnCzu2QVLWKiVPXw=;
+	b=c3Hg2t8Z75oOtl4o7UOwHh2eq0RMl/EPvxcJhlqs1tl7hTSg6le9qi1JnTShsddrM/YaL7
+	UvPGbhr8zMRlrXCejqNS5Glmfj87/MYhIYmHgIcsFd628bcijuiJj9Bg0mWAypXGOg0JR6
+	3o9rD7fTNpyYfqkBVScfXqRU1V+mqkqFo7d7d7AwD4nz8qwFNP3EWyTogIcjnc7++4ludk
+	BfBwk4u2/vSSZEYYETj5TeJzwU1yDC3w+TrlcdCKrcT0zmsliYvQyYGb1IqBCe4Tgxd0cK
+	ghu05cZ1asvLuoPxb9HIKn3PXbgXbSyB74O0r2zC7nFug8NN6XNlznkzfhTubg==
+Received: from GBR01-LO4-obe.outbound.protection.outlook.com
+ (mail-lo4gbr01lp2104.outbound.protection.outlook.com [104.47.85.104]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ uk-mta-304-nQRN9MbRMsidS6kiqe9PnQ-1; Tue, 16 Jul 2024 10:45:32 +0100
+X-MC-Unique: nQRN9MbRMsidS6kiqe9PnQ-1
+Received: from LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:2e0::12)
+ by CWXP265MB3030.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:c9::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.14; Tue, 16 Jul
+ 2024 09:45:30 +0000
+Received: from LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::b6d3:c15f:383c:f4f6]) by LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::b6d3:c15f:383c:f4f6%6]) with mapi id 15.20.7784.013; Tue, 16 Jul 2024
+ 09:45:29 +0000
+From: David Moulton <david.moulton@erismedia.co.uk>
+To: Anthony Hughes <th@inhomemedia.io>
+CC: Owen Thomas <ot@inhomemedia.io>, James Tuttiett
+	<JTuttiett@penultcp.co.uk>, "jacqueline.hills@jms-consult.com"
+	<jacqueline.hills@jms-consult.com>, Kelvin Balmont
+	<Kelvin.Balmont@clarkewillmott.com>
+Subject: Re: IHM Shareholdings
+Thread-Topic: IHM Shareholdings
+Thread-Index: AQHazF8dcl81qvoZE0igUWNYgtbz97HjhdsAgBWrBPA=
+Date: Tue, 16 Jul 2024 09:45:29 +0000
+Message-ID: <LO4P265MB64805D8305AACF4FA828A97DBFA22@LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM>
+References: <LO4P265MB64808AB77166269F7780BE1ABFDC2@LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM>
+ <823AF60C-8FFC-4B93-9DC5-746F1949E82E@inhomemedia.io>
+In-Reply-To: <823AF60C-8FFC-4B93-9DC5-746F1949E82E@inhomemedia.io>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: LO4P265MB6480:EE_|CWXP265MB3030:EE_
+x-ms-office365-filtering-correlation-id: e5ce1d56-b4fb-49b9-362e-08dca57c0770
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|366016|38070700018
+x-microsoft-antispam-message-info: =?Windows-1252?Q?5Sh8wx9IJst1BjxT1Xe5G4z3Po5Drutg/0O5ng0H85pIyPx5z48Vcje2?=
+ =?Windows-1252?Q?qDsfwNPOEzlMbR1tQBp2IT+FoL/uIGy2a5/j88piYBtTX9S6XjOfqoEF?=
+ =?Windows-1252?Q?3FrelRsNGdnIyI2M/PK+FL1vrqarjKwBPtd+Znca66MDV//C54cqO1oo?=
+ =?Windows-1252?Q?tXOikw0rw9y7yUEu60qcvIEhr99mxUtGpi0DbhV/4On0KvDXdEvZWeKO?=
+ =?Windows-1252?Q?mdSo1YYtwxS56sL/Z/86eH4O2nTRaEvXYSbAxUzLNQIryIFPbnVyjwzU?=
+ =?Windows-1252?Q?Ehpy54J5NG0lRE/1OViKFq+bwKSQvMUly17u66whBf2ydvXUxS1d53IK?=
+ =?Windows-1252?Q?eepOjbxFlK726qevVZQOydcJUNfI2GCnuoJsAwv/jFub0vaknb34nKok?=
+ =?Windows-1252?Q?UJ1mXdxT4cZxtVvU6tQp62IglP1tmv+uH7Vh2I6B9e2saXFIItmb0Nul?=
+ =?Windows-1252?Q?r0cl4OdGaZmQY1R9Hlw1z/DDkLyvt8IkZIWhAkDOWdaGceNPMKvT7g/b?=
+ =?Windows-1252?Q?mAwSYMJX5d5ge1kNYY8t88lKh6Q7nwG4QrFfJSdKkdkQ18m8FEm+A6NS?=
+ =?Windows-1252?Q?/iLEaOd+Ce6Iq4woIKDAvBLWIttL9SJIpRQ15rWzMsXG2vZTJHI9poOj?=
+ =?Windows-1252?Q?mj3KImIhSj2qEYw6uSWEUNgWQ0FW1hsmhj+OhH73e2HOjpfsUbvQSPR4?=
+ =?Windows-1252?Q?j8jNuIvcRSQZj4sEohGhaENdV5j4+9EQOvThenDC2YB02OKnkYrEN58c?=
+ =?Windows-1252?Q?r3SPN1/9QcJZCeR2bOtKzLEf2ng63qyFSBUGQaDb5sS5vOclQq/GUOzg?=
+ =?Windows-1252?Q?9heL1xlwXlC4SpLtXzC6URRR4VxeAfm8Ni7lfmTlf+P5lzWe+F/RlYef?=
+ =?Windows-1252?Q?UhdWnFD4wBX/lsKtiSzyl2WISfZINN/pez2bJmhFLAMdE2sUACXGtRjP?=
+ =?Windows-1252?Q?qX/8j2QIBknfSRVK+GLhbomZO9el8OiGMZdBI/vJFk6LYsceiB6EvqUD?=
+ =?Windows-1252?Q?f14Pu4wBZS5QpV6IIrULnWbjJC+3h0w0IguzwjeSz7HoosVFy5G/onIZ?=
+ =?Windows-1252?Q?aMGlASge5zMNBj7aTyWTQzkPAWI6NZ79NvpvgZhyyC81GvLQgqtN2qlo?=
+ =?Windows-1252?Q?H3clJvF8k2DfyQ4EzxJfb5YttIbsCSuuxGhENc2d0zuv2GWnHDkhbTO3?=
+ =?Windows-1252?Q?rWTdjdyVfo4JQgj6Zz9nKGIAXQMWvuDxLdCY1Q/jtGudVV7knp+UOq7g?=
+ =?Windows-1252?Q?pRETqTlb3ssSnTxwXkfIRdU+FJclrZyINO4HD8I9lCxGq06ovIuRMX4P?=
+ =?Windows-1252?Q?j9TPUmBxzTYEDmPDaMYJmFjWyf0Z9yOJuGwdbeI2RaxB4V2472XIkFem?=
+ =?Windows-1252?Q?s3yUgrXTWBiKwwIFyujlyEOXGIMlWwhtxDswadpxWTeyVWPwFUultMzB?=
+ =?Windows-1252?Q?1K6l6+7zWW/wbolOBn5PZk0Q9Fj7m+xgPC+MmwE1Tis=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1102
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?Windows-1252?Q?SWCfV+eqLINUHbwcKCY2ht2nTrUlVphJ+B0VXsyT9ik3hctz6TOm6g2X?=
+ =?Windows-1252?Q?Uy3pnMjDHPCVxn3V0sJVW/42n7UrvBuaWDFRTibwkeghaTiZQyBLlH4A?=
+ =?Windows-1252?Q?yw5D4+8G51M6O2NeDUvPPvwxE4McsF4D3InOsYU6OBeHnE+c9psuSwVm?=
+ =?Windows-1252?Q?u41eu9eDTb5BQ2eCiAQbozP7ByI4Ll6QX09Tq73xRQGaRGMO1QG3xRgq?=
+ =?Windows-1252?Q?D8S1+KCpC2fvNztxwZhWfAh7GWy7daWZ3sfEwB1WPs3DfUbVQh/q2v81?=
+ =?Windows-1252?Q?G/q/fhSrHsrXUlRHYEUOY/wJIUAJEe8XYJFaGLP1UXsvotdmxHodZVH+?=
+ =?Windows-1252?Q?K1RII8ljuVUq8FVZki2ejEMzrsb01RLtBAxU4STgkO8QX9QqZZd7T7zt?=
+ =?Windows-1252?Q?XaS+dmaUTepC2YJJ7lUsxjnsQuf/MkAPx5J2Q0EKWcnk3O7vKp6w/yhr?=
+ =?Windows-1252?Q?0WiJPgh9xoJo4df5JGC0efUdF38llYGcDNRIsfuE0tGcAx3uup0C54SI?=
+ =?Windows-1252?Q?esNOuXg9++7Lg6dFZBGPWG4QnCiOyuStqcfcFZdQ3d5cr8n5lgUY7DIv?=
+ =?Windows-1252?Q?maH/8PrfvfU0dGZLLaL6wYMSQZF+T7ppqXh8YXmEAlhLfhA/fsoSrnB2?=
+ =?Windows-1252?Q?xg3u4vr/gPM7OxH6O17o3YJ7Ss6nvxZbB/Q3GNXjHwviHo4UDs0S/1Wp?=
+ =?Windows-1252?Q?7mL/XEsr6UUjp1FazbGfbjM6jY0eepk+sbA/lsC3BWjLIojWYFLZg45z?=
+ =?Windows-1252?Q?Bz4J0YNH9gmQWj8YLC7drwOLLOHeimsfzCyGSg4iefoHr9IVAiHaqAh2?=
+ =?Windows-1252?Q?UKYyFL8vU7heidRr457U007AszzkM4uGzxjM9q83YG2UWEX+MS8sqsY3?=
+ =?Windows-1252?Q?LiDm/Y6uPHxdlA/pUhW5zSqMqtALgv5py0BAx/4n6eea1z1uNCJaAp9X?=
+ =?Windows-1252?Q?ThJjmCYfE7ISU6u1hFCK2HTh214ilJp4xt+iVEyfahFtTEkjaBC/KxgI?=
+ =?Windows-1252?Q?Jue/XcNO3fGJSPeWYWI/cTfnQLug+EAbLD4o28J6myOl2QP2lwoSr7+s?=
+ =?Windows-1252?Q?Rj0yZOpKIzPiqFRe995dx2t3N1PV8sGP75UYsuC1st3GxPhS0jp0+uY2?=
+ =?Windows-1252?Q?c+Q6SxWcmqBx0upTM9xtixh+47pe3OozXkeCXbsoQzRh2lM2Et0Mpido?=
+ =?Windows-1252?Q?Y6N1bQjoLlUWV/EPK6NR8koAXIbdPSmiWGW6HsPQLlIFnC7bZ0TtGQkn?=
+ =?Windows-1252?Q?wN82V3+Qzwqp36eM7FLlOxwdqsLkL75UsLKDmUDe0C71V8l0rhqbSLW2?=
+ =?Windows-1252?Q?kTMpTB3GnNImggMR+HdRyzxlM6FEQesVGbYagO4+N3UfnqIynky0QAfk?=
+ =?Windows-1252?Q?kbuPwXM1qJEuMS03faEzrT1W79C73kCG1Vv6JQz/ez9/zwFf99g86J0m?=
+ =?Windows-1252?Q?gAczieUlFtgWokxDE6g5XvMi3Ygh3P5D+XiiRRp7PtFW2UgrSUGIkX3K?=
+ =?Windows-1252?Q?OZ77cmtagSXgdZ9c21MpXIanSzmwrdAkGvdeFYIdGSOAOBwIDgmgrmaQ?=
+ =?Windows-1252?Q?l0Ku4uaYHByegAXCnTYpdFZ5yTg+SuqbwHn3gKqXzlHnx0VtYI8Hs0Em?=
+ =?Windows-1252?Q?e08HsLXDlaQIqeSIgh8R3/lpK/zeKLm6YYl0NHBGV7njlgJm/B2mmP4A?=
+ =?Windows-1252?Q?LgmZl5Mpm9ZwLajpJh48YwV/VWz4cK83ueHBV2pWsYhqqflqJD9cAutt?=
+ =?Windows-1252?Q?botdxCPmDvnQXLrOmSc=3D?=
+MIME-Version: 1.0
+X-OriginatorOrg: erismedia.co.uk
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: e5ce1d56-b4fb-49b9-362e-08dca57c0770
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jul 2024 09:45:29.8541
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3a36f15e-d1be-43aa-a418-5a3c7384cc00
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: sC7W4MQW1r6fT2r6SOgtb8XsS65zHy/Wl+C+IvxvRgTzJ6NTqepBoWHB/Bdx6YTPGiceBmRFhtxzeM1q+xefyA9QCatM4Gt4JKWdle+lUHM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWXP265MB3030
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: erismedia.co.uk
+Content-Language: en-GB
+Content-Type: multipart/alternative;
+	boundary="_000_LO4P265MB64805D8305AACF4FA828A97DBFA22LO4P265MB6480GBRP_"
+
+--_000_LO4P265MB64805D8305AACF4FA828A97DBFA22LO4P265MB6480GBRP_
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Tony/Owen,
+
+The filings have still not been submitted.
+
+Can this be done today please.
+
+Thanks
+
+Dave
+
+Sent from my iPhone 14
+________________________________
+From: Anthony Hughes <th@inhomemedia.io>
+Sent: Tuesday, July 2, 2024 3:51:20 PM
+To: David Moulton <david.moulton@erismedia.co.uk>
+Cc: Owen Thomas <ot@inhomemedia.io>; James Tuttiett <JTuttiett@penultcp.co.=
+uk>; jacqueline.hills@jms-consult.com <jacqueline.hills@jms-consult.com>; K=
+elvin Balmont <Kelvin.Balmont@clarkewillmott.com>
+Subject: Re: IHM Shareholdings
+
+Hi Dave,
+
+These should be filed by the end of this week. In terms of 4thu Owen has be=
+en leading this discussion and has engaged with them both directly and via =
+emails.
+
+There is an agreement on both sides that it is best to conclude the contrac=
+t termination amicably and the expectation is that this is close to a concl=
+usion but there is a level of detail to be resolved.
+
+Best
+
+Tony
+
+On 2 Jul 2024, at 10:20, David Moulton <david.moulton@erismedia.co.uk> wrot=
+e:
+
+Hi Owen, Tony,
+
+Hope you're well?
+
+Any progress with 4th?
+
+Clarke Willmott have been chasing your solicitor =E2=80=93 as the following=
+ has not been completed.
+
+The following forms have not been filed at Companies House:
+
+
+  *   SH01;
+  *   The appointment of Anthony Hughes as a director;
+  *   PSC register updated to reflect:
+     *   Owen Thomas (ownership of shares =E2=80=93 more than 25% but no mo=
+re than 50%, ownership of voting rights =E2=80=93 more than 25% but no more=
+ than 50%); and
+     *   Anthony Hughes (ownership of shares =E2=80=93 more than 25% but no=
+ more than 50%, ownership of voting rights =E2=80=93 more than 25% but no m=
+ore than 50%).
+
+
+In addition, we have not received our share certificates.
+
+I have copied in both lawyers, as your lawyer is not replying to Kelvin at =
+Clarke Willmott.
+
+Can this be sorted this week please.
+
+Thanks
+
+Dave
+
+<image001.png>
+David Moulton
+Managing Director
+Eris Media Solutions Limited
+<image002.png>
+0800 069 8228<tel:08000698228>
+<image003.png>
+07747 443 561<tel:07747443561>
+<image004.png>
+1, Winnall Valley Road, Winchester, SO23 0LD
+<image005.png>
+erismedia.co.uk<https://www.erismedia.co.uk/>
+This email and any files transmitted with it are confidential and intended =
+solely for the use of the individual or entity to whom they are addressed. =
+If you have received this email in error please notify the system manager. =
+This message contains confidential information and is intended only for the=
+ individual named. If you are not the named addressee you should not dissem=
+inate, distribute or copy this e-mail. Please notify the sender immediately=
+ by e-mail if you have received this e-mail by mistake and delete this e-ma=
+il from your system. If you are not the intended recipient you are notified=
+ that disclosing, copying, distributing or taking any action in reliance on=
+ the contents of this information is strictly prohibited.
+
+WARNING: Although the company has taken reasonable precautions to ensure no=
+ viruses are present in this email, the company cannot accept responsibilit=
+y for any loss or damage arising from the use of this email or attachments.
+
+Eris Media Solutions Limited is a company registered in England & Wales
+Registered number: 010605270. Registered office address: Burlington House, =
+Botleigh Grange Business Park, Hedge End, Southampton, SO30 2AF
+
+
+
+
+Disclaimer
+
+The information contained in this communication from the sender is confiden=
+tial. It is intended solely for use by the recipient and others authorized =
+to receive it. If you are not the recipient, you are hereby notified that a=
+ny disclosure, copying, distribution or taking action in relation of the co=
+ntents of this information is strictly prohibited and may be unlawful.
+
+This email has been scanned for viruses and malware, and may have been auto=
+matically archived by Mimecast, a leader in email security and cyber resili=
+ence. Mimecast integrates email defenses with brand protection, security aw=
+areness training, web security, compliance and other essential capabilities=
+. Mimecast helps protect large and small organizations from malicious activ=
+ity, human error and technology failure; and to lead the movement toward bu=
+ilding a more resilient world. To find out more, visit our website.
+
+Disclaimer
+
+The information contained in this communication from the sender is confiden=
+tial. It is intended solely for use by the recipient and others authorized =
+to receive it. If you are not the recipient, you are hereby notified that a=
+ny disclosure, copying, distribution or taking action in relation of the co=
+ntents of this information is strictly prohibited and may be unlawful.
+
+This email has been scanned for viruses and malware, and may have been auto=
+matically archived by Mimecast, a leader in email security and cyber resili=
+ence. Mimecast integrates email defenses with brand protection, security aw=
+areness training, web security, compliance and other essential capabilities=
+. Mimecast helps protect large and small organizations from malicious activ=
+ity, human error and technology failure; and to lead the movement toward bu=
+ilding a more resilient world. To find out more, visit our website.
+
+--_000_LO4P265MB64805D8305AACF4FA828A97DBFA22LO4P265MB6480GBRP_
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css">.style1 {font-family: "Times New Roman";}</style><=
+/head><body>
+<div>
+<div dir=3D"ltr">
+<div dir=3D"ltr">Hi Tony/Owen,</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">The filings have still not been submitted.&nbsp;<span></sp=
+an><span></span></div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Can this be done today please.&nbsp;</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Thanks</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Dave</div>
+</div>
+</div>
+<div id=3D"ms-outlook-mobile-signature">
+<div><br>
+</div>
+<div style=3D"direction: ltr;" dir=3D"ltr">Sent from my iPhone 14</div>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Anthony Hughes &lt;th=
+@inhomemedia.io&gt;<br>
+<b>Sent:</b> Tuesday, July 2, 2024 3:51:20 PM<br>
+<b>To:</b> David Moulton &lt;david.moulton@erismedia.co.uk&gt;<br>
+<b>Cc:</b> Owen Thomas &lt;ot@inhomemedia.io&gt;; James Tuttiett &lt;JTutti=
+ett@penultcp.co.uk&gt;; jacqueline.hills@jms-consult.com &lt;jacqueline.hil=
+ls@jms-consult.com&gt;; Kelvin Balmont &lt;Kelvin.Balmont@clarkewillmott.co=
+m&gt;<br>
+<b>Subject:</b> Re: IHM Shareholdings</font>
+<div>&nbsp;</div>
+</div>
+<div style=3D"line-break:after-white-space">Hi Dave,
+<div><br>
+</div>
+<div>These should be filed by the end of this week. In terms of 4thu Owen h=
+as been leading this discussion and has engaged with them both directly and=
+ via emails.&nbsp;</div>
+<div><br>
+</div>
+<div>There is an agreement on both sides that it is best to conclude the co=
+ntract termination amicably and the expectation is that this is close to a =
+conclusion but there is a level of detail to be resolved.</div>
+<div><br>
+</div>
+<div>Best</div>
+<div><br>
+</div>
+<div>Tony</div>
+<div>
+<div><br>
+<blockquote type=3D"cite">
+<div>On 2 Jul 2024, at 10:20, David Moulton &lt;david.moulton@erismedia.co.=
+uk&gt; wrote:</div>
+<br class=3D"x_Apple-interchange-newline">
+<div>
+<div class=3D"x_WordSection1" style=3D"font-family:Helvetica; font-size:12p=
+x; font-style:normal; font-variant-caps:normal; font-weight:400; letter-spa=
+cing:normal; text-align:start; text-indent:0px; text-transform:none; white-=
+space:normal; word-spacing:0px; text-decoration:none">
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt">Hi Owen, Tony,</span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt">&nbsp;</span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt">Hope you're well?</span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt">&nbsp;</span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt">Any progress with 4<sup>th</sup>?</span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt">&nbsp;</span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt">Clarke Willmott have been chasing your solicito=
+r =E2=80=93 as the following has not been completed.</span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt">&nbsp;</span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt; color:rgb(33,33,33)">The following forms have n=
+ot been filed at Companies House:</span><span style=3D"font-size:11pt; colo=
+r:rgb(33,33,33)"></span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt; color:rgb(33,33,33)">&nbsp;</span><span style=
+=3D"font-size:11pt; color:rgb(33,33,33)"></span></div>
+<ul type=3D"disc" style=3D"margin-bottom:0cm; margin-top:0cm">
+<li class=3D"x_MsoNormal" style=3D"margin:0cm; font-size:12pt; font-family:=
+Aptos,sans-serif; color:rgb(33,33,33)">
+<span style=3D"font-size:11pt">SH01;&nbsp;</span><span style=3D"font-size:1=
+1pt"></span></li><li class=3D"x_MsoNormal" style=3D"margin:0cm; font-size:1=
+2pt; font-family:Aptos,sans-serif; color:rgb(33,33,33)">
+<span style=3D"font-size:11pt">The appointment of Anthony Hughes as a direc=
+tor;&nbsp;</span><span style=3D"font-size:11pt"></span></li><li class=3D"x_=
+MsoNormal" style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-seri=
+f; color:rgb(33,33,33)">
+<span style=3D"font-size:11pt">PSC register updated to reflect:</span><span=
+ style=3D"font-size:11pt"></span></li><ul type=3D"circle" style=3D"margin-b=
+ottom:0cm; margin-top:0cm">
+<li class=3D"x_MsoNormal" style=3D"margin:0cm; font-size:12pt; font-family:=
+Aptos,sans-serif; color:rgb(33,33,33)">
+<span style=3D"font-size:11pt">Owen Thomas (ownership of shares =E2=80=93 m=
+ore than 25% but no more than 50%, ownership of voting rights =E2=80=93 mor=
+e than 25% but no more than 50%); and&nbsp;</span><span style=3D"font-size:=
+11pt"></span></li><li class=3D"x_MsoNormal" style=3D"margin:0cm; font-size:=
+12pt; font-family:Aptos,sans-serif; color:rgb(33,33,33)">
+<span style=3D"font-size:11pt">Anthony Hughes (ownership of shares =E2=80=
+=93 more than 25% but no more than 50%, ownership of voting rights =E2=80=
+=93 more than 25% but no more than 50%).&nbsp;</span><span style=3D"font-si=
+ze:11pt"></span></li></ul>
+</ul>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt; color:rgb(33,33,33)">&nbsp;</span><span style=
+=3D"font-size:11pt; color:rgb(33,33,33)"></span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt; color:rgb(33,33,33)">In addition, we have not r=
+eceived our share certificates.</span><span style=3D"font-size:11pt; color:=
+rgb(33,33,33)"></span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt">&nbsp;</span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt">I have copied in both lawyers, as your lawyer i=
+s not replying to Kelvin at Clarke Willmott.</span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt">&nbsp;</span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt">Can this be sorted this week please.</span></di=
+v>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt">&nbsp;</span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt">Thanks</span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt">&nbsp;</span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt">Dave</span></div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif"><sp=
+an style=3D"font-size:11pt">&nbsp;</span></div>
+<div>
+<table class=3D"x_MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm 0.75pt 0cm 0cm">
+<table class=3D"x_MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 3.75pt 0cm 0cm">
+<div align=3D"center">
+<table class=3D"x_MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm 0.75pt 0cm 0cm">
+<div style=3D"margin:0.75pt; font-size:12pt; font-family:Aptos,sans-serif">=
+<span><span id=3D"x_cid:image001.png@01DACC67.90CB47B0">&lt;image001.png&gt=
+;</span></span></div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+<td valign=3D"top" style=3D"padding:0cm 4.5pt 0cm 0.75pt">
+<table class=3D"x_MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr>
+<td nowrap=3D"" style=3D"padding:0cm 0.75pt 0cm 0cm">
+<div style=3D"margin:0.75pt; font-size:12pt; font-family:Aptos,sans-serif; =
+line-height:13.5pt">
+<b><span style=3D"font-size:10pt; font-family:Arial,sans-serif">David Moult=
+on</span></b><span></span></div>
+<div style=3D"margin:0.75pt; font-size:12pt; font-family:Aptos,sans-serif; =
+line-height:14.25pt">
+<span style=3D"font-size:10pt; font-family:Arial,sans-serif">Managing Direc=
+tor</span><span></span></div>
+<div style=3D"margin:0.75pt; font-size:12pt; font-family:Aptos,sans-serif; =
+line-height:14.25pt">
+<span style=3D"font-size:10pt; font-family:Arial,sans-serif">Eris Media Sol=
+utions Limited</span><span></span></div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style=3D"border-width:medium 1pt medium medium; border-style:none solid=
+ none none; border-color:currentcolor windowtext currentcolor currentcolor;=
+ padding:0.75pt 0cm 0cm">
+</td>
+<td valign=3D"top" style=3D"padding:0cm 0.75pt 0cm 4.5pt">
+<table class=3D"x_MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm 0.75pt 0cm 0cm">
+<table class=3D"x_MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0.75pt 3.75pt 0.75pt 0cm">
+<div style=3D"margin:0.75pt; font-size:12pt; font-family:Aptos,sans-serif">=
+<span><span id=3D"x_cid:image002.png@01DACC67.90CB47B0">&lt;image002.png&gt=
+;</span></span></div>
+</td>
+<td nowrap=3D"" style=3D"padding:0.75pt 0cm">
+<div style=3D"margin:0.75pt; font-size:12pt; font-family:Aptos,sans-serif; =
+line-height:13.5pt">
+<a href=3D"tel:08000698228" target=3D"_blank" title=3D"tel:08000698228" sty=
+le=3D"color:rgb(70,120,134); text-decoration:underline"><span style=3D"font=
+-size:10pt; font-family:Arial,sans-serif">0800 069 8228</span></a><span></s=
+pan></div>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0.75pt 3.75pt 0.75pt 0cm">
+<div style=3D"margin:0.75pt; font-size:12pt; font-family:Aptos,sans-serif">=
+<span><span id=3D"x_cid:image003.png@01DACC67.90CB47B0">&lt;image003.png&gt=
+;</span></span></div>
+</td>
+<td nowrap=3D"" style=3D"padding:0.75pt 0cm">
+<div style=3D"margin:0.75pt; font-size:12pt; font-family:Aptos,sans-serif; =
+line-height:13.5pt">
+<a href=3D"tel:07747443561" target=3D"_blank" title=3D"tel:07747443561" sty=
+le=3D"color:rgb(70,120,134); text-decoration:underline"><span style=3D"font=
+-size:10pt; font-family:Arial,sans-serif">07747 443 561</span></a><span></s=
+pan></div>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0.75pt 3.75pt 0.75pt 0cm">
+<div style=3D"margin:0.75pt; font-size:12pt; font-family:Aptos,sans-serif">=
+<span><span id=3D"x_cid:image004.png@01DACC67.90CB47B0">&lt;image004.png&gt=
+;</span></span></div>
+</td>
+<td nowrap=3D"" style=3D"padding:0.75pt 0cm">
+<div style=3D"margin:0.75pt; font-size:12pt; font-family:Aptos,sans-serif; =
+line-height:13.5pt">
+<span style=3D"font-size:10pt; font-family:Arial,sans-serif">1, Winnall Val=
+ley Road, Winchester, SO23 0LD</span><span></span></div>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0.75pt 3.75pt 0.75pt 0cm">
+<div style=3D"margin:0.75pt; font-size:12pt; font-family:Aptos,sans-serif">=
+<span><span id=3D"x_cid:image005.png@01DACC67.90CB47B0">&lt;image005.png&gt=
+;</span></span></div>
+</td>
+<td nowrap=3D"" style=3D"padding:0.75pt 0cm">
+<div style=3D"margin:0.75pt; font-size:12pt; font-family:Aptos,sans-serif; =
+line-height:13.5pt">
+<a href=3D"https://www.erismedia.co.uk/" target=3D"_blank" title=3D"https:/=
+/www.erismedia.co.uk/" style=3D"color:rgb(70,120,134); text-decoration:unde=
+rline"><b><span style=3D"font-size:10pt; font-family:Arial,sans-serif; colo=
+r:rgb(63,41,237)">erismedia.co.uk</span></b></a><span></span></div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan=3D"4" style=3D"border-width:medium medium 1pt; border-style:non=
+e none solid; border-color:currentcolor currentcolor windowtext; padding:0c=
+m 0.75pt 3.75pt 0cm">
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0cm"></td>
+<td style=3D"padding:0cm"></td>
+<td style=3D"padding:0cm"></td>
+<td style=3D"padding:0cm"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0cm 0.75pt 0cm 0cm">
+<table class=3D"x_MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0" style=3D"max-width:450pt; border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:4.5pt 0.75pt 0cm 0cm">
+<div style=3D"margin:0.75pt; font-size:12pt; font-family:Aptos,sans-serif; =
+line-height:10.5pt">
+<span style=3D"font-size:7.5pt; font-family:Arial,sans-serif; color:rgb(136=
+,136,136)">This email and any files transmitted with it are confidential an=
+d intended solely for the use of the individual or entity to whom they are =
+addressed. If you have received this
+ email in error please notify the system manager. This message contains con=
+fidential information and is intended only for the individual named. If you=
+ are not the named addressee you should not disseminate, distribute or copy=
+ this e-mail. Please notify the
+ sender immediately by e-mail if you have received this e-mail by mistake a=
+nd delete this e-mail from your system. If you are not the intended recipie=
+nt you are notified that disclosing, copying, distributing or taking any ac=
+tion in reliance on the contents
+ of this information is strictly prohibited.<br>
+<br>
+WARNING: Although the company has taken reasonable precautions to ensure no=
+ viruses are present in this email, the company cannot accept responsibilit=
+y for any loss or damage arising from the use of this email or attachments.=
+<br>
+<br>
+Eris Media Solutions Limited is a company registered in England &amp; Wales=
+<br>
+Registered number: 010605270. Registered office address: Burlington House, =
+Botleigh Grange Business Park, Hedge End, Southampton, SO30 2AF</span><span=
+></span></div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style=3D"margin:0cm; font-size:12pt; font-family:Aptos,sans-serif">&nb=
+sp;</div>
+</div>
+<br style=3D"font-family:Helvetica; font-size:12px; font-style:normal; font=
+-variant-caps:normal; font-weight:400; letter-spacing:normal; text-align:st=
+art; text-indent:0px; text-transform:none; white-space:normal; word-spacing=
+:0px; text-decoration:none">
+<br style=3D"font-family:Helvetica; font-size:12px; font-style:normal; font=
+-variant-caps:normal; font-weight:400; letter-spacing:normal; text-align:st=
+art; text-indent:0px; text-transform:none; white-space:normal; word-spacing=
+:0px; text-decoration:none">
+<p style=3D"font-style:normal; font-variant-caps:normal; font-weight:400; l=
+etter-spacing:normal; orphans:auto; text-align:start; text-indent:0px; text=
+-transform:none; white-space:normal; widows:auto; word-spacing:0px; text-de=
+coration:none; font-family:Verdana; font-size:10pt; color:rgb(102,102,102)"=
+>
+<b>Disclaimer</b></p>
+<p style=3D"font-style:normal; font-variant-caps:normal; font-weight:400; l=
+etter-spacing:normal; orphans:auto; text-align:start; text-indent:0px; text=
+-transform:none; white-space:normal; widows:auto; word-spacing:0px; text-de=
+coration:none; font-family:Verdana; font-size:8pt; color:rgb(102,102,102)">
+The information contained in this communication from the sender is confiden=
+tial. It is intended solely for use by the recipient and others authorized =
+to receive it. If you are not the recipient, you are hereby notified that a=
+ny disclosure, copying, distribution
+ or taking action in relation of the contents of this information is strict=
+ly prohibited and may be unlawful.<br>
+<br>
+This email has been scanned for viruses and malware, and may have been auto=
+matically archived by Mimecast, a leader in email security and cyber resili=
+ence. Mimecast integrates email defenses with brand protection, security aw=
+areness training, web security,
+ compliance and other essential capabilities. Mimecast helps protect large =
+and small organizations from malicious activity, human error and technology=
+ failure; and to lead the movement toward building a more resilient world. =
+To find out more, visit our website.</p>
+</div>
+</blockquote>
+</div>
+<br>
+</div>
+</div>
+
+
+<br><br><p style=3D"font-family: Verdana; font-size:10pt; color:#666666;"><=
+b>Disclaimer</b></p><p style=3D"font-family: Verdana; font-size:8pt; color:=
+#666666;">The information contained in this communication from the sender i=
+s confidential. It is intended solely for use by the recipient and others a=
+uthorized to receive it. If you are not the recipient, you are hereby notif=
+ied that any disclosure, copying, distribution or taking action in relation=
+ of the contents of this information is strictly prohibited and may be unla=
+wful.<br><br>This email has been scanned for viruses and malware, and may h=
+ave been automatically archived by Mimecast, a leader in email security and=
+ cyber resilience. Mimecast integrates email defenses with brand protection=
+, security awareness training, web security, compliance and other essential=
+ capabilities. Mimecast helps protect large and small organizations from ma=
+licious activity, human error and technology failure; and to lead the movem=
+ent toward building a more resilient world. To find out more, visit our web=
+site.</p></body></html>
+
+--_000_LO4P265MB64805D8305AACF4FA828A97DBFA22LO4P265MB6480GBRP_--
+

@@ -1,0 +1,318 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:907:2893:b0:a59:31b2:e81d with SMTP id em19csp376989ejc;
+        Tue, 30 Apr 2024 09:19:00 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHcVjj2T7z1BIo4VepkrUOBSDi/HOruKQi2Et4MU+8Ok0gx90iI3NIpNwmrWOvb7gF9VXU+
+X-Received: by 2002:a17:902:ec8d:b0:1e4:b1a2:b40c with SMTP id x13-20020a170902ec8d00b001e4b1a2b40cmr17692666plg.42.1714493939838;
+        Tue, 30 Apr 2024 09:18:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1714493939; cv=none;
+        d=google.com; s=arc-20160816;
+        b=eq4p4Ze3gS2HjxVUbx5mLxo1Awn9xxQLWS3e6PDRCsEFsnPkcGHDtPKAatjJCmec4q
+         mnRSToolgl6xapnHbeRfYuntsTxu8cslyBOK/KQk6GDIe1JFB8IdhWsvTB3+QMZH/SQ3
+         UIO2ZJADOCO2Lb1ilfGKaTv+74Vgxn8PbW0hU0vrUKu8VjPQwzEkNyR3j/GWU8+3keed
+         Ggm4qHKIi3sao85i17vrAPWwtUEHLzPrvoJ9D6SP0IfhC4vho5HwPos26YY/99RB2Icn
+         p4sdoVAZaFfm08PaB3cEDnUP7o8kFEeQC++JeNZ/dP58coI6zyr6Ge1eO5A1X1Estxsg
+         IUlg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:content-language:accept-language:in-reply-to
+         :references:message-id:date:thread-index:thread-topic:subject:to
+         :from:dkim-signature;
+        bh=+a4WdC5AzakVqfdoKyv9fDFEVhDPU+WXTTnLzvXgRPY=;
+        fh=PPC1HqqdMuvCicfndAtvqlbv4AGpwjpAql224GPSQGU=;
+        b=WE4m9HiaYrgF73ijXK190w0Msi4aZysnqw3sVqR3KvHNt/Gfq6h87I1kBfZj69Go0f
+         XKUQQU3o/qi3fwTtAJTqNuN94uCRql+TUumgh/5StnMYA1tcCwZrAYFoh7DWC3VuUHHW
+         F4AcOjUchQDd4qNAVT59ijkYSQyvSHaYzx9NxzetB7oJUo66jKT33xkK/9wvROawC6Cq
+         4MVqPBWIDDqNXvMLI8OHnozst5Tk8oWCk9OvIn3xjkB1be+jsVe++qI6vAP8OSZBAK6g
+         NBhOaHsH4kNuFMP5RhkkBtG2jgGBqKe2UPU7d3wFkkARQN6PoR4Z1loBBFcGVFrhYtLX
+         lsCg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=0YGAUtl8;
+       spf=neutral (google.com: 2a00:1450:4864:20::42c is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) smtp.mailfrom=stephen@inhomemedia.io
+Return-Path: <stephen@inhomemedia.io>
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com. [2a00:1450:4864:20::42c])
+        by mx.google.com with ESMTPS id c8-20020a170902b68800b001e27ad324d4si21035536pls.155.2024.04.30.09.18.59
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Apr 2024 09:18:59 -0700 (PDT)
+Received-SPF: neutral (google.com: 2a00:1450:4864:20::42c is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) client-ip=2a00:1450:4864:20::42c;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=0YGAUtl8;
+       spf=neutral (google.com: 2a00:1450:4864:20::42c is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) smtp.mailfrom=stephen@inhomemedia.io
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-34801b1bc4aso1093794f8f.0
+        for <ot@inhomemedia.io>; Tue, 30 Apr 2024 09:18:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1714493936; x=1715098736; darn=inhomemedia.io;
+        h=mime-version:content-language:accept-language:in-reply-to
+         :references:message-id:date:thread-index:thread-topic:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+a4WdC5AzakVqfdoKyv9fDFEVhDPU+WXTTnLzvXgRPY=;
+        b=0YGAUtl8kVBa8XKiC1f9SbSqpZIvJxJViKl8BSa+lqJpxDxrI1P62RC6wFvfLBN+Fo
+         e1zjZkj0t7lDnwBzykEXKFmSoO3NriXk2D1CHKrOZVewoi9RYb0s6TaQbQGu77KAuINr
+         a36xLXjxcXNLfQcW6t6hVK0F7MIWvK233xcoOVsx23zCSb7N9056d+Mjxcz3Dlau0VaW
+         PibtXJHzMUmmc4WklapiMNaLPAMzj2OQ5lTolBWlA3j44dTKTC8o1CkooeArsXhbNWO5
+         RsgoiUUmWICXn7+HHMPxozaKTOyWXAq8XNQQz9OUk2FY22SEBVQNHCxTcZnq3uV1pqBU
+         0jOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714493936; x=1715098736;
+        h=mime-version:content-language:accept-language:in-reply-to
+         :references:message-id:date:thread-index:thread-topic:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+a4WdC5AzakVqfdoKyv9fDFEVhDPU+WXTTnLzvXgRPY=;
+        b=orVEsJO/UMLZcWuAAoJOj3TW7fEgoJazi39rIj9ulDfmKrTD5BNdyIvI37RECnRw+7
+         ZyndXH7kfMpkypfvh2g4t33vObkgskxNP7YJlvQM2Ioxa/jVr41zz58NHqKVC7HDYP2S
+         zcpnhEtNdaRGomLPV/lu/5nbu1HDU5RBJdAGB5NIZic6QxpQPsaMooS8QdKCrD6/ZjLF
+         7B05lmz6iqzGqiRzslH0hMMFl7x97jwN+R4lITmd1kC4kkckmE2LTn+wGUsSMVjc5Xjq
+         bT7/GrMt9ya0/mfIFZ/FXMWvydtHlUd3xMbUlRsTCRes/YFMeZax9/OjkMcISidvSVV5
+         w+Zw==
+X-Gm-Message-State: AOJu0YwmptU84mUZYH+YKdpIk6CHM/Xk6Vgru/8x+pIJ/HJ0BqDYwqSE
+	ziIekEqjYHUBJV0Qp7c/mTzAyoEuLzsxnJ4N0RTvbtxaOj8eaOpUdFyMTLxhu6+sNpUIlw7b7X8
+	SPYw=
+X-Received: by 2002:a05:600c:3b04:b0:41a:3150:cc83 with SMTP id m4-20020a05600c3b0400b0041a3150cc83mr10149649wms.2.1714493936088;
+        Tue, 30 Apr 2024 09:18:56 -0700 (PDT)
+Return-Path: <stephen@inhomemedia.io>
+Received: from CWXP265MB2839.GBRP265.PROD.OUTLOOK.COM ([2603:1026:c08:96::5])
+        by smtp.gmail.com with ESMTPSA id fl23-20020a05600c0b9700b0041bc41287cesm14229898wmb.16.2024.04.30.09.18.55
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Apr 2024 09:18:55 -0700 (PDT)
+From: Stephen Gale <stephen@inhomemedia.io>
+To: Owen Thomas <ot@inhomemedia.io>
+Subject: Fwd: Spreadsheet shared with you: "Eris invoices"
+Thread-Topic: Spreadsheet shared with you: "Eris invoices"
+Thread-Index: ATdkYTRj7JeoMQXe+0Zxo2SHFTxRSTY0My0txLvNxkE=
+X-MS-Exchange-MessageSentRepresentingType: 1
+Date: Tue, 30 Apr 2024 16:18:51 +0000
+Message-ID:
+	<CWXP265MB28393B88E86B513456948093F91A2@CWXP265MB2839.GBRP265.PROD.OUTLOOK.COM>
+References: <05fde0ec-fb14-4b69-9ea9-aadbd18c7547@docs-share.google.com>
+ <autogen-java-a981836a-26be-4d43-93dd-d74731947176@google.com>
+In-Reply-To: <autogen-java-a981836a-26be-4d43-93dd-d74731947176@google.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-Exchange-Organization-SCL: -1
+X-MS-TNEF-Correlator:
+X-MS-Exchange-Organization-RecordReviewCfmType: 0
+Content-Type: multipart/alternative;
+	boundary="_000_CWXP265MB28393B88E86B513456948093F91A2CWXP265MB2839GBRP_"
+MIME-Version: 1.0
+
+--_000_CWXP265MB28393B88E86B513456948093F91A2CWXP265MB2839GBRP_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+In summary:
+
+41 Schemes
+120 Screens
+2501 Apartments
+6,200 estimated reach
+=A36,000 Eris monthly invoice.
+
+The estimated reach number is ironic, as it works out at costing =A31 per p=
+erson per month. Which is what we are proposing to charge MA's per apartmen=
+t. This kind of sums up what the issue is without even considering the soci=
+al housing element and random locations.
+
+I reckon a maximum of 3 schemes are of any value.
+
+S
+
+
+Sent from Outlook for Android<https://aka.ms/AAb9ysg>
+________________________________
+From: Accounts Team (via Google Sheets) <drive-shares-dm-noreply@google.com=
+>
+Sent: Tuesday, April 30, 2024 3:30:18 PM
+To: stephen@inhomemedia.io <stephen@inhomemedia.io>
+Subject: Spreadsheet shared with you: "Eris invoices"
+
+Accounts Team shared a spreadsheet
+[Header profile photo]
+Accounts Team (accounts@inhomemedia.io<mailto:accounts@inhomemedia.io>) has=
+ invited you to edit the following spreadsheet:
+<https://docs.google.com/spreadsheets/d/1dNXjqaQmT_OIIfPF-77LArnrKYKK0ja4T-=
+NbwEx_Lqs/edit?usp=3Dsharing_eil_m&ts=3D6631007a>
+[https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_spreadsheet_x=
+64.png]Eris invoices
+Open<https://docs.google.com/spreadsheets/d/1dNXjqaQmT_OIIfPF-77LArnrKYKK0j=
+a4T-NbwEx_Lqs/edit?usp=3Dsharing_eip_m&ts=3D6631007a>
+Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA
+You have received this email because accounts@inhomemedia.io<mailto:account=
+s@inhomemedia.io> shared a spreadsheet with you from Google Sheets.  [Googl=
+e] <https://workspace.google.com/>
+
+--_000_CWXP265MB28393B88E86B513456948093F91A2CWXP265MB2839GBRP_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+</head>
+<body>
+<div dir=3D"auto">In summary:</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">41 Schemes</div>
+<div dir=3D"auto">120 Screens</div>
+<div dir=3D"auto">2501 Apartments</div>
+<div dir=3D"auto">6,200 estimated reach</div>
+<div dir=3D"auto">=A36,000 Eris monthly invoice.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">The estimated reach number is ironic, as it works out at =
+costing =A31 per person per month. Which is what we are proposing to charge=
+ MA's per apartment. This kind of sums up what the issue is without even co=
+nsidering the social housing element
+ and random locations.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">I reckon a maximum of 3 schemes are of any value.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">S</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto" id=3D"ms-outlook-mobile-signature">
+<div><br>
+</div>
+Sent from <a href=3D"https://aka.ms/AAb9ysg">Outlook for Android</a></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Accounts Team (via Go=
+ogle Sheets) &lt;drive-shares-dm-noreply@google.com&gt;<br>
+<b>Sent:</b> Tuesday, April 30, 2024 3:30:18 PM<br>
+<b>To:</b> stephen@inhomemedia.io &lt;stephen@inhomemedia.io&gt;<br>
+<b>Subject:</b> Spreadsheet shared with you: &quot;Eris invoices&quot;</fon=
+t>
+<div>&nbsp;</div>
+</div>
+<div>
+<table role=3D"presentation" style=3D"border-collapse:collapse; width:100%;=
+ background-color:white; text-align:center">
+<tbody>
+<tr>
+<td style=3D"padding:24px 0 16px 0">
+<table role=3D"presentation" style=3D"border-collapse:collapse; font-family=
+:Roboto,Arial,Helvetica,sans-serif; word-wrap:break-word; word-break:break-=
+word; width:90%; margin:auto; max-width:700px; min-width:280px; text-align:=
+left">
+<tbody>
+<tr>
+<td style=3D"padding:0">
+<table role=3D"presentation" style=3D"width:100%; border:1px solid #dadce0;=
+ border-radius:8px; border-spacing:0; table-layout:fixed; border-collapse:s=
+eparate">
+<tbody>
+<tr>
+<td dir=3D"ltr" style=3D"padding:4.5%">
+<div style=3D"margin-bottom:32px; font-family:Google Sans,Roboto,Arial,Helv=
+etica,sans-serif; font-style:normal; font-size:28px; line-height:36px; colo=
+r:#3c4043">
+Accounts Team shared a spreadsheet</div>
+<table role=3D"presentation" style=3D"border-collapse:collapse; font-family=
+:Roboto,Arial,Helvetica,sans-serif; font-size:16px; line-height:24px; color=
+:#202124; letter-spacing:0.1px; table-layout:fixed; width:100%">
+<tbody>
+<tr>
+<td style=3D"padding:0; vertical-align:top; width:50px">
+<div style=3D""><img width=3D"50" height=3D"50" src=3D"https://lh3.googleus=
+ercontent.com/a/ACg8ocJAsUVywscCkBu6W8pSX4MyTXYz_e7Wc2yypj4l6rDXPdn0zA=3Ds6=
+4" alt=3D"Header profile photo" style=3D"border-radius:50%; display:block">=
+</div>
+</td>
+<td style=3D"padding:0; vertical-align:top; padding-left:12px">
+<div style=3D"padding-top:12px">Accounts Team (<a href=3D"mailto:accounts@i=
+nhomemedia.io" style=3D"color:inherit; text-decoration:none">accounts@inhom=
+emedia.io</a>) has invited you to
+<b>edit</b> the following spreadsheet:</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table role=3D"presentation" style=3D"border-spacing:0 4px; table-layout:fi=
+xed; width:100%">
+<tbody>
+<tr style=3D"height:28px">
+</tr>
+<tr>
+<td style=3D"padding:0"><a href=3D"https://docs.google.com/spreadsheets/d/1=
+dNXjqaQmT_OIIfPF-77LArnrKYKK0ja4T-NbwEx_Lqs/edit?usp=3Dsharing_eil_m&amp;ts=
+=3D6631007a" target=3D"_blank" style=3D"color:#3c4043; display:inline-block=
+; max-width:100%; text-decoration:none; vertical-align:top; border:1px soli=
+d #DADCE0; border-radius:16px; white-space:nowrap">
+<div style=3D"line-height:18px; overflow:hidden; text-overflow:ellipsis; pa=
+dding:6px 12px">
+<span style=3D"display:inline-block; vertical-align:top; min-width:26px; wi=
+dth:26px"><img src=3D"https://ssl.gstatic.com/docs/doclist/images/mediatype=
+/icon_1_spreadsheet_x64.png" width=3D"18" height=3D"18" role=3D"presentatio=
+n" style=3D"vertical-align:top"></span><span style=3D"font:500 14px/18px Go=
+ogle Sans,Roboto,Arial,Helvetica,sans-serif; display:inline; letter-spacing=
+:0.2px">Eris
+ invoices</span></div>
+</a></td>
+</tr>
+</tbody>
+</table>
+<table role=3D"presentation" style=3D"border-collapse:collapse">
+<tbody>
+<tr style=3D"height:32px">
+<td></td>
+</tr>
+</tbody>
+</table>
+<div><a href=3D"https://docs.google.com/spreadsheets/d/1dNXjqaQmT_OIIfPF-77=
+LArnrKYKK0ja4T-NbwEx_Lqs/edit?usp=3Dsharing_eip_m&amp;ts=3D6631007a" class=
+=3D"x_material-button x_material-button-filled" target=3D"_blank" tabindex=
+=3D"0" role=3D"button" style=3D"padding:0 24px; font:500 14px/36px Google S=
+ans,Roboto,Arial,Helvetica,sans-serif; border:none; border-radius:18px; box=
+-sizing:border-box; display:inline-block; letter-spacing:.25px; min-height:=
+36px; text-align:center; text-decoration:none; background-color:#1a73e8; co=
+lor:#fff">Open</a></div>
+</td>
+</tr>
+</tbody>
+</table>
+<table role=3D"presentation" style=3D"border-collapse:collapse; width:100%"=
+>
+<tbody>
+<tr>
+<td style=3D"padding:24px 4.5%">
+<table dir=3D"ltr" style=3D"border-collapse:collapse; width:100%">
+<tbody>
+<tr>
+<td style=3D"padding:0; font-family:Roboto,Arial,Helvetica,sans-serif; colo=
+r:#5F6368; width:100%; font-size:12px; line-height:16px; min-height:40px; l=
+etter-spacing:.3px">
+Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA<br>
+You have received this email because <a href=3D"mailto:accounts@inhomemedia=
+.io" style=3D"color:inherit; text-decoration:none">
+accounts@inhomemedia.io</a> shared a spreadsheet with you from Google Sheet=
+s.</td>
+<td style=3D"padding:0; padding-left:20px; min-width:96px"><a href=3D"https=
+://workspace.google.com/" target=3D"_blank" style=3D"text-decoration:none">=
+<img src=3D"https://www.gstatic.com/docs/documents/share/images/googleworks=
+pace_logo_192x80.png" width=3D"96" height=3D"40" alt=3D"Google" style=3D"fo=
+nt-size:16px; font-weight:500; color:#5F6368"></a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
+
+--_000_CWXP265MB28393B88E86B513456948093F91A2CWXP265MB2839GBRP_--

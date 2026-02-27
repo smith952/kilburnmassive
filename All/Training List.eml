@@ -1,0 +1,283 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:874d:b0:a58:9ec9:48c3 with SMTP id hj13csp414422ejb;
+        Fri, 26 Apr 2024 07:57:49 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCW1ZC7MIS/wMdPmyPWlTqbXNcjAgjX1Z6VSCSjPd5ULnVsMc7ZR7eeFEAA8WPPqtGMtjeIjdxKYcfO/GiFVkuOJiw==
+X-Google-Smtp-Source: AGHT+IGP++qj/vknd/PGM8p4ZAGrwH4Um6SKrOzmtdsBRz8re3ws3f5NpmBNXSj4YSHXwpH+JACx
+X-Received: by 2002:a17:902:da8a:b0:1e8:813f:4009 with SMTP id j10-20020a170902da8a00b001e8813f4009mr3469927plx.14.1714143469463;
+        Fri, 26 Apr 2024 07:57:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1714143469; cv=none;
+        d=google.com; s=arc-20160816;
+        b=WIWtjDQKtTjsGuMKV5vGGBwXis9jYMnTOXUTNy1TX2f6/6VZ2IF9C/dSGYLbsqoZjS
+         XnZbAbLV5xygn7XZVnZBLBa6wX6sSGgFM/euOlwKUI6tiZ6Fw74gPJ5GouX6cZ6bUhL0
+         fZWD0YGyKjC74+X4D80TTt6PTGPZ5MFtdNrVw+UldmlfMxbdIJdMmosWIFRHTXMHzSWb
+         OLectL01VLMKQTB3t+Wkvn06V7WXnzEwF+c5WPTPlnqjJ0ZsXVGGldz2a0bqp50w4Fve
+         iqqeJeQi/hGhEmKRWzrCq6orOKOGwNB3nUDVLwYFjZttwXP8qxmwWJ24MZhVGz9rcbKb
+         aEGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:content-language:accept-language:in-reply-to
+         :references:message-id:date:thread-index:thread-topic:subject:to
+         :from:dkim-signature;
+        bh=v37Qw/wEBujBTOdWY001SNWpZHrPlINNAsSrIIBKBKA=;
+        fh=zee4Ldsw4/EEW5SDnRqpELI3+ibguFLyaQv3OKWQkIc=;
+        b=tZ81Nm5vuXcbT3oFhiLl9jbfwdNabRSug2ViC+HnMgeaYy/G6ggPpCYCuteUM3XmX8
+         5/Ueukyq38Xc8fdv8ynmX5dBESMeclZ4BwPrIM/XLOwlcMpn/44MvP319P/Rcb3m/jT5
+         uCtc5/u7CBzlFK/+ErlU+mT6NoeSnDA3cJCSYGi0ukK+KImOMU2xLAy9JT6Vh3qsXJJo
+         T3ZngwQBGM187bYjBOaFsAQRqV42WyAjb7+evdtwjJs5uHlgiaqpIJJOrCwPVK7ZAmG1
+         3g9HY+NqoR98sO5+ZfftFjS/LcNBkcdnjkyidnDCyjF3ipUygGgVOLzWjmN4H5NiXvCc
+         J6yQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b="2NZon5T/";
+       spf=neutral (google.com: 2a00:1450:4864:20::42a is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) smtp.mailfrom=stephen@inhomemedia.io
+Return-Path: <stephen@inhomemedia.io>
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com. [2a00:1450:4864:20::42a])
+        by mx.google.com with ESMTPS id q14-20020a170902eb8e00b001e49c745628si3560176plg.182.2024.04.26.07.57.49
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Apr 2024 07:57:49 -0700 (PDT)
+Received-SPF: neutral (google.com: 2a00:1450:4864:20::42a is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) client-ip=2a00:1450:4864:20::42a;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b="2NZon5T/";
+       spf=neutral (google.com: 2a00:1450:4864:20::42a is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) smtp.mailfrom=stephen@inhomemedia.io
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-349fd1d3723so335326f8f.0
+        for <ot@inhomemedia.io>; Fri, 26 Apr 2024 07:57:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1714143466; x=1714748266; darn=inhomemedia.io;
+        h=mime-version:content-language:accept-language:in-reply-to
+         :references:message-id:date:thread-index:thread-topic:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=v37Qw/wEBujBTOdWY001SNWpZHrPlINNAsSrIIBKBKA=;
+        b=2NZon5T/YF0qlMVnBbln2olCnbNCKve5AnamgOB/yyMiul1lcy9Fdt9EIXWlkkjpYM
+         E73lfjTNZqiMwCybAH9lBSLuZpu1DMGUjqmzZACxQsJwkpEFhGwAPgQUh9YDZQMRJudJ
+         gt9QKDPSjE3Ane5WeeO1THjQ8LVZ6m0fhFO7+M3ooqJpuAIXIj0T/+q3H4FzyWO+4fxC
+         vwB2F9EJuU+zvaQ8ka+D+XlxGUl+VaGq9ceUtwxdTTzka79hq5KeWG9QP2A0VmHWT2b2
+         Ie87pD3Nq0STNH1phAR0AFPQmA5GtpkxZOISnf70Ah8w6nkSSFHUHV2DBIckZa607EDt
+         WOTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714143466; x=1714748266;
+        h=mime-version:content-language:accept-language:in-reply-to
+         :references:message-id:date:thread-index:thread-topic:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=v37Qw/wEBujBTOdWY001SNWpZHrPlINNAsSrIIBKBKA=;
+        b=SpYXHCakaGwOxCwTfkwDmStt1q8EiiuPyxiKJlV3htqAR+sqfXp9FdAJOau2GhjkEq
+         5mrv6Rvtm2E/3cXV2MedvwlpGq6bAn0lGkFFbC2MkjSUuGPJbkT6fUj6hM3NZm2rucR9
+         5AObHwzSk2K1gfl+iqVMgIF9fuXHWk0VHSbVQqX0viikjrTi0y3q/6JYo+VbWyMNNzBr
+         RVRfOVKvNJjhRMLzygX9nYO0eJPKVNTEFvuY3sKHh8bB6WcSbs3f5buEzAMCYf2DpVg5
+         WI/Li/YZxDyVTStwhaE2RDMmEqW/4hohJxyMJVdE0eZ+8Sbjb5bZoORP4GAxSfgds72Z
+         1Pfg==
+X-Forwarded-Encrypted: i=1; AJvYcCW77wpIsU3ZSWfi2Y6EDEc2YbDp8vKV2GVev/4f4LdTEsLuls/YKgZWD5no9sE9x3Siv5HP6I6Dvgho6iSWMDwwkA==
+X-Gm-Message-State: AOJu0Yxrkfiig58/soHtBEelgkzehWLeMmkWtFA41D73MgkHHRDXSEOm
+	8qDNaT1DFSPY3FF87e5YLZUnAicoBCtunXG37yl3fGxNojfZSD/3g2eyMLcur8m8hA==
+X-Received: by 2002:a5d:5f8a:0:b0:346:7f4d:e80f with SMTP id dr10-20020a5d5f8a000000b003467f4de80fmr2928452wrb.1.1714143466010;
+        Fri, 26 Apr 2024 07:57:46 -0700 (PDT)
+Return-Path: <stephen@inhomemedia.io>
+Received: from CWXP265MB2839.GBRP265.PROD.OUTLOOK.COM ([2603:1026:c08:96::5])
+        by smtp.gmail.com with ESMTPSA id d14-20020adfe88e000000b0034b86548582sm9113519wrm.102.2024.04.26.07.57.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Apr 2024 07:57:45 -0700 (PDT)
+From: Stephen Gale <stephen@inhomemedia.io>
+To: Jane Simonova <jane@inhomemedia.io>, Owen Thomas <ot@inhomemedia.io>,
+	Anthony Hughes <th@inhomemedia.io>, Dave Evans <dave@inhomemedia.io>
+Subject: Re: Training List
+Thread-Topic: Training List
+Thread-Index: AWd5Y2JH7UU318ZRjEChd1uXj2jeseY9DUr0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Date: Fri, 26 Apr 2024 14:57:41 +0000
+Message-ID:
+	<CWXP265MB283945EC054C6741DC811C40F9162@CWXP265MB2839.GBRP265.PROD.OUTLOOK.COM>
+References:
+	<CAD0e6TEWOG1y5vzCGpvbvUib-dNGZcFvNo14ybZyYF+UrBrFvg@mail.gmail.com>
+In-Reply-To:
+	<CAD0e6TEWOG1y5vzCGpvbvUib-dNGZcFvNo14ybZyYF+UrBrFvg@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-Exchange-Organization-SCL: -1
+X-MS-TNEF-Correlator:
+X-MS-Exchange-Organization-RecordReviewCfmType: 0
+Content-Type: multipart/alternative;
+	boundary="_000_CWXP265MB283945EC054C6741DC811C40F9162CWXP265MB2839GBRP_"
+MIME-Version: 1.0
+
+--_000_CWXP265MB283945EC054C6741DC811C40F9162CWXP265MB2839GBRP_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks for sharing Jane.
+
+Sent from Outlook for Android<https://aka.ms/AAb9ysg>
+________________________________
+From: Jane Simonova <jane@inhomemedia.io>
+Sent: Friday, April 26, 2024 11:49:38 AM
+To: Owen Thomas <ot@inhomemedia.io>; Anthony Hughes <th@inhomemedia.io>; St=
+ephen Gale <stephen@inhomemedia.io>; Dave Evans <dave@inhomemedia.io>
+Subject: Training List
+
+Hi all,
+
+Quick update on how many trainings I have done and how many are in planning=
+ at the moment
+
+Training done:
+Riverside Heights - Tilbury
+Lifeboat (Aqua) - Poole
+Kings Chelsea - London
+Downtown - Manchester
+
+Arranging:
+Budenberg - Manchester
+Elizabeth Mill and Gardens - Stockport
+
+Thanks,
+Jane
+
+--
+
+Jane Simonova
+
+Network and Operations Manager
+
+
+A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QA
+
+E: jane@inhomemedia.io<mailto:jane@inhomemedia.io>
+
+W: inhomemedia.io<http://inhomemedia.io/>
+
+
+[https://lh7-us.googleusercontent.com/G4ff92Jazz4nl6U3XO4bw1HjizO0hBsjZS3iC=
+ZQOXffuUv-6C9ZOTq4IW15iyu5kB0duaGS4BIdTk6vBLe2by2YwpWZWU0ghiZa-ur3pLUYBvT5g=
+mflP-8PDQuJOrK3hWMiULmn98KuWeYwc8vZo5pQ]<https://inhomemedia.io/>
+
+
+[https://lh7-us.googleusercontent.com/cYdkuaQI6sWib78slCNi_Rz86PtOZ6DcUsNMw=
+bOy-aII_ZEtMyjbiyrSeCokvdKWRcqldt-NzAEylM60R3dg7sPvFvGJFgjTZ85Ao7BrS0HraUMD=
+hHTYQ9iOdBeXX0apBCOe0ySlE2Y3esW4rs6EBV4]<https://www.linkedin.com/company/i=
+n-home-media/?viewAsMember=3Dtrue>
+
+--_000_CWXP265MB283945EC054C6741DC811C40F9162CWXP265MB2839GBRP_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+</head>
+<body>
+<div dir=3D"auto">Thanks for sharing Jane.</div>
+<div><br>
+</div>
+<div id=3D"ms-outlook-mobile-signature" dir=3D"auto">Sent from <a href=3D"h=
+ttps://aka.ms/AAb9ysg">
+Outlook for Android</a></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Jane Simonova &lt;jan=
+e@inhomemedia.io&gt;<br>
+<b>Sent:</b> Friday, April 26, 2024 11:49:38 AM<br>
+<b>To:</b> Owen Thomas &lt;ot@inhomemedia.io&gt;; Anthony Hughes &lt;th@inh=
+omemedia.io&gt;; Stephen Gale &lt;stephen@inhomemedia.io&gt;; Dave Evans &l=
+t;dave@inhomemedia.io&gt;<br>
+<b>Subject:</b> Training List</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">Hi all,
+<div><br>
+</div>
+<div>Quick update on how many trainings I have done and how many are in pla=
+nning at the moment<br>
+<div><br>
+</div>
+<div>Training done:</div>
+<div>Riverside Heights - Tilbury</div>
+<div>Lifeboat (Aqua) - Poole</div>
+<div>Kings Chelsea - London</div>
+<div>Downtown - Manchester<br clear=3D"all">
+<div><br>
+</div>
+<div>Arranging:</div>
+<div>Budenberg - Manchester</div>
+<div>Elizabeth Mill and Gardens - Stockport</div>
+<div><br>
+</div>
+<div>Thanks,</div>
+<div>Jane</div>
+<div><br>
+</div>
+<span class=3D"x_gmail_signature_prefix">-- </span><br>
+<div dir=3D"ltr" class=3D"x_gmail_signature" data-smartmail=3D"gmail_signat=
+ure">
+<div dir=3D"ltr">
+<p dir=3D"ltr" style=3D"color:rgb(0,0,0); line-height:1.38; margin-top:0pt;=
+ margin-bottom:0pt">
+<span style=3D"font-size:10pt; font-family:Poppins,sans-serif; color:rgb(26=
+,34,52); vertical-align:baseline">Jane Simonova</span></p>
+<p dir=3D"ltr" style=3D"color:rgb(0,0,0); line-height:1.38; margin-top:0pt;=
+ margin-bottom:0pt">
+<span style=3D"font-size:10pt; font-family:&quot;Times New Roman&quot;,seri=
+f; color:rgb(117,130,131); vertical-align:baseline">Network and Operations =
+Manager</span></p>
+<p dir=3D"ltr" style=3D"color:rgb(0,0,0); line-height:1.38; margin-top:0pt;=
+ margin-bottom:0pt">
+<br>
+</p>
+<p dir=3D"ltr" style=3D"color:rgb(0,0,0); line-height:1.38; margin-top:0pt;=
+ margin-bottom:0pt">
+<span style=3D"font-size:10pt; font-family:Poppins,sans-serif; color:rgb(26=
+,34,52); vertical-align:baseline">A: Balfour House,&nbsp;</span><span style=
+=3D"font-family:Poppins,sans-serif; color:rgb(26,34,52); vertical-align:bas=
+eline; font-size:13.3333px">46-54 Great Titchfield
+ Street, London W1W 7QA</span></p>
+<p dir=3D"ltr" style=3D"color:rgb(0,0,0); line-height:1.38; margin-top:0pt;=
+ margin-bottom:0pt">
+<span style=3D"color:rgb(26,34,52); font-family:Poppins,sans-serif; font-si=
+ze:10pt">E:&nbsp;</span><a href=3D"mailto:jane@inhomemedia.io" target=3D"_b=
+lank" style=3D"color:rgb(17,85,204); font-family:Poppins,sans-serif; font-s=
+ize:10pt">jane@inhomemedia.io</a><br>
+</p>
+<p dir=3D"ltr" style=3D"color:rgb(0,0,0); line-height:1.38; margin-top:0pt;=
+ margin-bottom:0pt">
+<span style=3D"font-size:10pt; font-family:Poppins,sans-serif; color:rgb(26=
+,34,52); vertical-align:baseline">W:&nbsp;<a href=3D"http://inhomemedia.io/=
+" target=3D"_blank" style=3D"color:rgb(17,85,204)">inhomemedia.io</a></span=
+></p>
+<p dir=3D"ltr" style=3D"color:rgb(0,0,0); line-height:1.38; margin-top:0pt;=
+ margin-bottom:0pt">
+<br>
+</p>
+<p dir=3D"ltr" style=3D"color:rgb(0,0,0); line-height:1.38; margin-top:0pt;=
+ margin-bottom:0pt">
+<a href=3D"https://inhomemedia.io/" target=3D"_blank" style=3D"color:rgb(17=
+,85,204)"><span style=3D"font-size:11pt; font-family:Arial,sans-serif; vert=
+ical-align:baseline"><span style=3D"border:medium; display:inline-block; ov=
+erflow:hidden; width:520px; height:29px"><img src=3D"https://lh7-us.googleu=
+sercontent.com/G4ff92Jazz4nl6U3XO4bw1HjizO0hBsjZS3iCZQOXffuUv-6C9ZOTq4IW15i=
+yu5kB0duaGS4BIdTk6vBLe2by2YwpWZWU0ghiZa-ur3pLUYBvT5gmflP-8PDQuJOrK3hWMiULmn=
+98KuWeYwc8vZo5pQ" width=3D"520" height=3D"29" style=3D"margin-left:0px; mar=
+gin-top:0px"></span></span></a></p>
+<p dir=3D"ltr" style=3D"color:rgb(0,0,0); line-height:1.38; margin-top:0pt;=
+ margin-bottom:0pt">
+<br>
+</p>
+<p dir=3D"ltr" style=3D"color:rgb(0,0,0); line-height:1.38; margin-top:0pt;=
+ margin-bottom:0pt">
+<a href=3D"https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dt=
+rue" target=3D"_blank" style=3D"color:rgb(17,85,204); font-family:Poppins,s=
+ans-serif; font-size:13.333333px"><img src=3D"https://lh7-us.googleusercont=
+ent.com/cYdkuaQI6sWib78slCNi_Rz86PtOZ6DcUsNMwbOy-aII_ZEtMyjbiyrSeCokvdKWRcq=
+ldt-NzAEylM60R3dg7sPvFvGJFgjTZ85Ao7BrS0HraUMDhHTYQ9iOdBeXX0apBCOe0ySlE2Y3es=
+W4rs6EBV4" width=3D"164" height=3D"24" style=3D"margin-left:0px; margin-top=
+:0px"></a><br>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_CWXP265MB283945EC054C6741DC811C40F9162CWXP265MB2839GBRP_--

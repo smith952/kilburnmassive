@@ -1,0 +1,1289 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:f949:b0:a37:113a:c78b with SMTP id ld9csp1972423ejb;
+        Tue, 6 Feb 2024 04:44:02 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFwaImhfpIby6Q1pvKw0bZfzjceBlWOD8kHHe3LAlDsxKH7kdTkhehDP4U6NlgBEA91G1QH
+X-Received: by 2002:a17:906:3d0:b0:a38:65d:8bc8 with SMTP id c16-20020a17090603d000b00a38065d8bc8mr1662425eja.77.1707223442639;
+        Tue, 06 Feb 2024 04:44:02 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1707223442; cv=none;
+        d=google.com; s=arc-20160816;
+        b=J614z6/LxnYdtIqV+PWqDr7icilFEqS1PeNHdBPaycjR7+8WkUv6Y4JiUxB1Y1Arz4
+         7lXEIzi/kWqrspKau+Z4aB5Xya8pBBiPhuXqF/Djv+0MRB8mjZ14M6ouxBOvpnr0hRm6
+         I8GA0rOjj2A3iDN50N0TjWVMUaUF+jUqpc1L+zmjCpOJ1StMRTcD43eSvOOQqZF0Rkep
+         zmS8FasEt2RyvAw3AUXIkPxgmsDEThshKvQT7wssXDaaPyzUEJL59GufpqE5T7mku6SO
+         PP+Vt9R30W/c4HRVxMSjsRP8mv8g6jeYEpXK1BF+5H1RAFb4RBLNAKkim0+PvU1sJxZ+
+         UAig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=dkim-signature:references:to:cc:in-reply-to:date:subject
+         :mime-version:message-id:from;
+        bh=eYhbzDcNhQyYwJ3zNPm1a7WPvCnMxbTR6KWUbFIWPWo=;
+        fh=oAsjBznpfcOs25pqczDiMTuIJc6Tug8lRnRgvD/3Dmw=;
+        b=wPWbRkbM11+msxfTjzp2cH0lsApfU1ZxVFNl2oRNt4Yy/o34h+h7A9VyH4wsEilN0G
+         ugDkDNfJwCYACbd5pwmY2kXZvF5Eye98IOqLEzdfyKKEKOv4SDWZa3UkFar2sowYNR46
+         XAE3P214tCYtTKLsJSWw4thW1PaQg+IPbFqKRA2moNJY3XJFRsLvoejRSuBxKREeQtlR
+         7t5JDIdHsMm3ko1ChFHp7JDPYnHWLxDXP4G5c1tQkpJxR/7dkRNFKR90cTE3wjPcp9pw
+         bzjEXzVwS8Hzh9OVNZftpSs/k7dvxzUlmQ5kc2LtqsNPSL13HYL8MLtqKqFTorQvgRC7
+         bLfw==;
+        darn=inhomemedia.io
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@jms-consult.com header.s=20230208 header.b=DLTg0lXL;
+       spf=neutral (google.com: 62.128.193.158 is neither permitted nor denied by best guess record for domain of jonathansaville@jms-consult.com) smtp.mailfrom=jonathansaville@jms-consult.com
+Return-Path: <jonathansaville@jms-consult.com>
+Received: from mta8.iomartmail.com (mta8.iomartmail.com. [62.128.193.158])
+        by mx.google.com with ESMTPS id l13-20020a1709060e0d00b00a381fa665d4si744898eji.863.2024.02.06.04.44.02
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 06 Feb 2024 04:44:02 -0800 (PST)
+Received-SPF: neutral (google.com: 62.128.193.158 is neither permitted nor denied by best guess record for domain of jonathansaville@jms-consult.com) client-ip=62.128.193.158;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@jms-consult.com header.s=20230208 header.b=DLTg0lXL;
+       spf=neutral (google.com: 62.128.193.158 is neither permitted nor denied by best guess record for domain of jonathansaville@jms-consult.com) smtp.mailfrom=jonathansaville@jms-consult.com
+Received: from vs1.iomartmail.com (vs1.iomartmail.com [10.12.10.121])
+	by mta8.iomartmail.com (8.14.7/8.14.7) with ESMTP id 416Ci1Vb031693;
+	Tue, 6 Feb 2024 12:44:01 GMT
+Received: from vs1.iomartmail.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id CD00146050;
+	Tue,  6 Feb 2024 12:44:01 +0000 (GMT)
+Received: from vs1.iomartmail.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id AB9784603D;
+	Tue,  6 Feb 2024 12:44:01 +0000 (GMT)
+Received: from asmtp2.iomartmail.com (unknown [10.12.10.249])
+	by vs1.iomartmail.com (Postfix) with ESMTPS;
+	Tue,  6 Feb 2024 12:44:01 +0000 (GMT)
+Received: from smtpclient.apple (host86-144-244-228.range86-144.btcentralplus.com [86.144.244.228])
+	(authenticated bits=0)
+	by asmtp2.iomartmail.com (8.14.7/8.14.7) with ESMTP id 416Ci0FO015955
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Tue, 6 Feb 2024 12:44:01 GMT
+From: Jonathan M Saville <jonathansaville@jms-consult.com>
+Message-Id: <8B6BEECD-E45C-473F-91B7-B4A4B5023158@jms-consult.com>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_7E332A8E-268D-440B-B542-1B1EB67B3456"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.300.101.1.3\))
+Subject: Re: Agreements
+Date: Tue, 6 Feb 2024 12:43:50 +0000
+In-Reply-To: <CAMr_NGHothEz7XxFjWWJzEbk7NDSo4z1jUObA3o3icfR1U1Bqg@mail.gmail.com>
+Cc: Anthony Hughes <th@inhomemedia.io>,
+        Jacqueline Hills <jacqueline.hills@jms-consult.com>
+To: Owen Thomas <ot@inhomemedia.io>
+References: <LO0P265MB2619824BE0306C8180AC382E8A472@LO0P265MB2619.GBRP265.PROD.OUTLOOK.COM>
+ <96F3B2F0-07BA-43E7-8136-5AAAF9917DB4@inhomemedia.io>
+ <CAMr_NGHothEz7XxFjWWJzEbk7NDSo4z1jUObA3o3icfR1U1Bqg@mail.gmail.com>
+X-Mailer: Apple Mail (2.3731.300.101.1.3)
+X-Originating-IP: 86.144.244.228
+X-Thinkmail-Auth: jonathansaville@jms-consult.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=jms-consult.com; h=from
+	:message-id:content-type:mime-version:subject:date:in-reply-to
+	:cc:to:references; s=20230208; bh=EBz5IQ+msfe/rVu8Lf/rxxvgROKxcR
+	nZgdKFPBDdCbI=; b=DLTg0lXLqH+BZCa94qdsd/U+ycLh0j5e+eGZtv25Mt9Nah
+	BlC2P3QV9cpYJX+B1ARxGCJlenKao6UF8S3HaEoD0VBKE/BvZaRpjVTXG6WvpV0w
+	fBXAxsK896nFMkZfc6x+FSwXBs72TNZ6/kAWyvFuh8ZOx9zre6eCjsNkdoXRlsun
+	oPQ2swvwl4YOWenQpYCQKNppW8LgY7YoB6g+VyLbXbSmwPIbHyV2bvG5GhjigAj9
+	larfKVBsBd85i3uDVHgJ42b+D0CobrUHVX3REBq3z1MLeuoSxAwzTRMdCO2Zww+z
+	yeGJMdXWRjuFbnlMjppzK0HH5nNwOmZ1kFtj3h5Q==
+X-TM-AS-GCONF: 00
+X-TM-AS-Product-Ver: IMSVA-9.1.0.2090-9.0.0.1002-28170.006
+X-TM-AS-Result: No--54.884-10.0-31-10
+X-imss-scan-details: No--54.884-10.0-31-10
+X-TMASE-Version: IMSVA-9.1.0.2090-9.0.1002-28170.006
+X-TMASE-Result: 10--54.884300-10.000000
+X-TMASE-MatchedRID: CxmI61mtwh9WWOy3obJL+8SSDU9EqI5U4XnbArnSCLGhvH9IigX45ncj
+	c/4RjcGNFZm6C1ASTZyVt5i/q5xn2hjdHT+K8BKNJIL5WH+7MJJezmeoa8MJ80ty8cifGH0Uwa8
+	P2pzDWrB04NeSn4r0MqKhyL9eOX0LfIAvTw0zTR4APmNKDWsW0OWzJnTmLPxv1YzbHoRn9L1j1N
+	Rb0c1HbWNQotsLOSXP+Le519qA9a8fOAI4hm7YV+HB3rR9lbZy/auzApmkedGM7c8RGpvM3Qvzn
+	YJVXoOYed4bqFgmuRninw9FBqXL6O2s4cFTx/b4+r29rL4ZIqH+MnTlbH/dxTfE7ZHdugFY0B4a
+	JaKuCFOOHJaQyVEicJ7mGbSkp2s2cum7zY748EmOtWfhyZ77DhT+tsOINhqjpDxaQJBqtOMXkwj
+	6CDtFHe8CS9vvFOCxbw7q5NO1eYRA3pPQZ4eO0zz6L+U/pejxXHlQSIX8DvWBAXl9LkPp6RfVbN
+	MElz3WE9TDjfLCRK79TWFya6NW9Byi96xLXm+Gs/Hes76OTZDpSt30EpL0kWvm0z5E/Ot+NDJt4
+	sgUW40c7vMgSSBzqfULa2NdupOqkmoOfourmHQIoUOTWQl7EpRy1HDTPOXanUevv3IhmQG7M2Ts
+	8CNYlsL1nn8obPOyPYIh3rgWOgrhMXVuS0H6V0TBk7UtRDpLOc6bY4cmCliNJ2ckLRg2UejtdFB
+	vhPZ/ZHsRUS0wcmPNcD+/klt5MN7UrbTuetRuGIYzQs2CFLG+X9ugNdn86lqpyPdMyj5k7LRrWx
+	IygqCdS/DRrrJUbrNcoBDf0EjV54o2Y013b1eeAiCmPx4NwGmRqNBHmBve1B0Hk1Q1KyIYq/QJO
+	AA07aeluit/pcFpkU6UkIr/V+1nME/Jsn/m+g==
+X-TMASE-SNAP-Result: 1.821001.0001-0-1-22:0,33:0,34:0-0
+
+
+--Apple-Mail=_7E332A8E-268D-440B-B542-1B1EB67B3456
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+Hi Both, so following discussions yesterday and today I am accepting =
+their changes yesterday, save as below (one point to note is that I =
+think we should get them to confirm that they are comfortable with this =
+so with no voting and no dividends etc, to B shares and only A, that =
+this qualifies for SEIS/EIS?) - to allow for the B Shares, I think the =
+quickest way to get this done is to agree that these can be issued in =
+the Shareholder Agreement asap after completion, and I have amended the =
+Articles (which had at Article 13.2 a max number of shares of 200, to =
+allow for the 50 A Shares for the future and to allow for James Acton =
+and Steven Gale=E2=80=99s 18 B Shares, a change to a max number as =
+follows (the red being the gist of the changes being made):
+
+13.2=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0The authority referred to in =
+Article 13.1: <>
+13.1.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0shall be =
+limited to a maximum nominal amount of =C2=A3200 of A Shares <> and =C2=A3=
+18 of B Shares unless otherwise consented in writing by the holders of =
+at least 76% in nominal value of the issued A Shares;
+
+
+I made no other changes to the Articles.
+
+In the Shareholder Agreement, I added this at clause 3 to allow the =
+shortly following completion allotment of B Shares:
+
+3.3       The Investors agree and authorise the Board that for the =
+purposes of Article 13.4, on or as soon as possible after Completion, =
+the Company shall be hereby authorised, subject to it entering into a =
+written subscription agreement between the Employee(s) stated herein =
+(including by them entering into a Deed of Adherence) and the Company, =
+for those Employees to subscribe for B Shares from the date of =
+subscription (but which allows for reverse vesting of B Shares, which =
+reverse vesting shall be operative over three years from the date they =
+became an Employee and which also allows for those B Shares to be =
+converted into Deferred Shares as described herein) as to James Acton 11 =
+B Shares with a subscription price per B Share of =C2=A31.00, and as to =
+Stephen Gale 7 B Shares with a subscription price per B Share of =C2=A31.0=
+0. =20
+
+
+
+In respect of clause 10.7, I have redone this as follows:
+
+
+10.7          In the event a Shareholder is in material breach of this =
+agreement, which breach which is not remedied or can not be remedied =
+within 14 days of the breach being notified to that Shareholder (it =
+being understood that such delay of 14 days to remedy it (provided it is =
+by then remedied) shall not be determined to be an irremedial breach =
+itself because of the passage of time to remedy), that Shareholder shall =
+be deemed to have served a Sale Notice under article 15 of the Articles =
+in respect of all of his A Shares and article 15 shall apply to all of =
+those Share and the Price shall be the Fair Value ((as calculated =
+pursuant to article 16.4 of the Articles). In the event that, in respect =
+of Owen Thomas or Anthony Hughes being in material breach of this =
+agreement, but only in respect of one of them failing and/or refusing to =
+adopt business plans whilst they are both a majority of the directors on =
+the Board, which is not remedied or cannot be remedied within 14 days of =
+that breach being notified to them (it being understood that such delay =
+of 14 days to remedy it (provided it is by then remedied) shall not be =
+determined to be an irremedial breach itself because of the passage of =
+time to remedy), the applicable one or both of Owen Thomas or Anthony =
+Huges who has failed and/or refused to so adopt a business plan, shall =
+be deemed to have served a Sale Notice under article 15 of the Articles =
+in respect of all of their A Shares and article 15 shall apply to all of =
+those Shares except that the Price of those shares shall be 50% of the =
+Fair Value (as calculated pursuant to article 16.4 of the Articles).=20
+
+Can you please let me know instructions for me to share with Kelvin?
+
+Best, Jonathan
+
+
+
+> On 5 Feb 2024, at 19:51, Owen Thomas <ot@inhomemedia.io> wrote:
+>=20
+> Jonathan please see below feedback from James.=20
+>=20
+> I will buzz you in the morning to progress thanks.=20
+>=20
+> ---------- Forwarded message ---------
+> From: Anthony Hughes <th@inhomemedia.io <mailto:th@inhomemedia.io>>
+> Date: Mon, 5 Feb 2024 at 19:49
+> Subject: Fwd: Agreements
+> To: Owen Thomas <ot@inhomemedia.io <mailto:ot@inhomemedia.io>>
+>=20
+>=20
+>=20
+> Sent from my iPhone
+>=20
+> Begin forwarded message:
+>=20
+>> From: James Tuttiett <JTuttiett@penultcp.co.uk =
+<mailto:JTuttiett@penultcp.co.uk>>
+>> Date: 5 February 2024 at 19:10:12 GMT
+>> To: Anthony Hughes <th@inhomemedia.io <mailto:th@inhomemedia.io>>, =
+David Moulton <david.moulton@erismedia.co.uk =
+<mailto:david.moulton@erismedia.co.uk>>
+>> Subject: RE: Agreements
+>>=20
+>> =EF=BB=BFEvening Tony
+>>=20
+>> Thanks for coming back.
+>>=20
+>> We are fine with moderated wording, key point is a breach must be =
+material and not remedied within 14 days. Please suggest wording if you =
+are not comfortable with material.
+>>=20
+>> We are fine with the issue of the two lots of B shares, we assume you =
+are comfortable these are non voting, non dividend but share any =
+exit/share sale proceeds? If happy please draft into the agreement.
+>>=20
+>> All the best
+>>=20
+>> James
+>>=20
+>> -----Original Message-----
+>> From: Anthony Hughes <th@inhomemedia.io <mailto:th@inhomemedia.io>>=20=
+
+>> Sent: Monday, February 5, 2024 5:54 PM
+>> To: James Tuttiett <JTuttiett@penultcp.co.uk =
+<mailto:JTuttiett@penultcp.co.uk>>; David Moulton =
+<david.moulton@erismedia.co.uk <mailto:david.moulton@erismedia.co.uk>>
+>> Subject: Agreements
+>>=20
+>> Hi James and David,
+>>=20
+>> We have the agreements back from Kelvin, we are nearly there, just =
+two items below we are keen to agree.
+>>=20
+>> 1. Material breach we offered some words but this has been reinstated =
+to the original words covering all breaches. Be good to have a =
+compromise position.
+>>=20
+>> 2. Share structure and details we are comfortable with. We do want to =
+ensure on day 1 Stephen Gale has 5% B shares and Jimmy Acton 7.5% B =
+shares. Stephen in our view is critical to the business moving forward.
+>>=20
+>> Owen and I are together tomorrow if a call needed to close off and =
+move to signature.
+>>=20
+>> Best regards=20
+>>=20
+>> Tony
+>>=20
+>>=20
+>> Sent from my iPhone
+>>=20
+>>=20
+>> Disclaimer
+>>=20
+>> The information contained in this communication from the sender is =
+confidential. It is intended solely for use by the recipient and others =
+authorized to receive it. If you are not the recipient, you are hereby =
+notified that any disclosure, copying, distribution or taking action in =
+relation of the contents of this information is strictly prohibited and =
+may be unlawful.
+>>=20
+>> This email has been scanned for viruses and malware, and may have =
+been automatically archived by Mimecast, a leader in email security and =
+cyber resilience. Mimecast integrates email defenses with brand =
+protection, security awareness training, web security, compliance and =
+other essential capabilities. Mimecast helps protect large and small =
+organizations from malicious activity, human error and technology =
+failure; and to lead the movement toward building a more resilient =
+world. To find out more, visit our website.
+>>=20
+>=20
+> This email has been scanned by iomartcloud.
+> http://www.iomartcloud.com <http://www.iomartcloud.com/>
+
+
+--Apple-Mail=_7E332A8E-268D-440B-B542-1B1EB67B3456
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;">Hi Both, so =
+following discussions yesterday and today I am accepting their changes =
+yesterday, save as below (one point to note is that I think we should =
+get them to confirm that they are comfortable with this so with no =
+voting and no dividends etc, to B shares and only A, that this qualifies =
+for SEIS/EIS?) - to allow for the B Shares, I think the quickest way to =
+get this done is to agree that these can be issued in the Shareholder =
+Agreement asap after completion, and I have amended the Articles (which =
+had at Article 13.2 a max number of shares of 200, to allow for the 50 A =
+Shares for the future and to allow for James Acton and Steven Gale=E2=80=99=
+s 18 B Shares, a change to a max number as follows (the red being the =
+gist of the changes being made):<div><br></div><div><style =
+class=3D"WebKit-mso-list-quirks-style">
+<!--
+/* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;
+	mso-font-kerning:1.0pt;
+	mso-ligatures:standardcontextual;
+	mso-fareast-language:EN-US;}
+p.Level1, li.Level1, div.Level1
+	{mso-style-name:"* Level 1";
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	margin-top:7.0pt;
+	margin-right:0cm;
+	margin-bottom:7.0pt;
+	margin-left:34.0pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:-34.0pt;
+	line-height:120%;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	mso-list:l0 level1 lfo1;
+	tab-stops:list 34.0pt;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:11.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-font-kerning:10.0pt;
+	mso-ligatures:standardcontextual;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.Level2, li.Level2, div.Level2
+	{mso-style-name:"* Level 2";
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"* Level 1";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:7.0pt;
+	margin-left:34.0pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:-34.0pt;
+	line-height:120%;
+	mso-pagination:widow-orphan;
+	mso-outline-level:2;
+	mso-list:l0 level2 lfo1;
+	tab-stops:list 34.0pt;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-font-kerning:10.0pt;
+	mso-ligatures:standardcontextual;}
+p.Level3, li.Level3, div.Level3
+	{mso-style-name:"* Level 3";
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"* Level 2";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:7.0pt;
+	margin-left:73.7pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:-39.7pt;
+	line-height:120%;
+	mso-pagination:widow-orphan;
+	mso-outline-level:3;
+	mso-list:l0 level3 lfo1;
+	tab-stops:list 73.7pt;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-font-kerning:10.0pt;
+	mso-ligatures:standardcontextual;}
+p.Level4, li.Level4, div.Level4
+	{mso-style-name:"* Level 4";
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"* Level 3";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:7.0pt;
+	margin-left:96.4pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:-22.7pt;
+	line-height:120%;
+	mso-pagination:widow-orphan;
+	mso-outline-level:4;
+	mso-list:l0 level4 lfo1;
+	tab-stops:list 96.4pt;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-font-kerning:10.0pt;
+	mso-ligatures:standardcontextual;}
+p.Level5, li.Level5, div.Level5
+	{mso-style-name:"* Level 5";
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"* Level 4";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:7.0pt;
+	margin-left:119.05pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:-22.65pt;
+	line-height:120%;
+	mso-pagination:widow-orphan;
+	mso-outline-level:5;
+	mso-list:l0 level5 lfo1;
+	tab-stops:list 119.05pt;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-font-kerning:10.0pt;
+	mso-ligatures:standardcontextual;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-size:11.0pt;
+	mso-ansi-font-size:11.0pt;
+	mso-bidi-font-size:11.0pt;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;
+	mso-font-kerning:0pt;
+	mso-ligatures:none;}
+.MsoPapDefault
+	{mso-style-type:export-only;
+	margin-bottom:10.0pt;
+	line-height:10%;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;
+	mso-header-margin:36.0pt;
+	mso-footer-margin:36.0pt;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:1593079469;
+	mso-list-template-ids:-1741386918;}
+@list l0:level1
+	{mso-level-style-link:"* Level 1";
+	mso-level-text:%1;
+	mso-level-tab-stop:34.0pt;
+	mso-level-number-position:left;
+	margin-left:34.0pt;
+	text-indent:-34.0pt;
+	mso-ansi-font-size:11.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-font-weight:bold;
+	mso-ansi-font-style:normal;}
+@list l0:level2
+	{mso-level-style-link:"* Level 2";
+	mso-level-text:"%1\.%2";
+	mso-level-tab-stop:34.0pt;
+	mso-level-number-position:left;
+	margin-left:34.0pt;
+	text-indent:-34.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	color:windowtext;
+	mso-ansi-font-weight:bold;
+	mso-ansi-font-style:normal;}
+@list l0:level3
+	{mso-level-style-link:"* Level 3";
+	mso-level-text:"%1\.%2\.%3";
+	mso-level-tab-stop:73.7pt;
+	mso-level-number-position:left;
+	margin-left:73.7pt;
+	text-indent:-39.7pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-font-weight:bold;
+	mso-ansi-font-style:normal;}
+@list l0:level4
+	{mso-level-number-format:alpha-lower;
+	mso-level-style-link:"* Level 4";
+	mso-level-text:"\(%4\)";
+	mso-level-tab-stop:96.4pt;
+	mso-level-number-position:left;
+	margin-left:96.4pt;
+	text-indent:-22.7pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-font-weight:bold;}
+@list l0:level5
+	{mso-level-number-format:roman-lower;
+	mso-level-style-link:"* Level 5";
+	mso-level-text:"\(%5\)";
+	mso-level-tab-stop:119.05pt;
+	mso-level-number-position:left;
+	margin-left:119.05pt;
+	text-indent:-22.65pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-font-weight:bold;
+	mso-ansi-font-style:normal;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:164.4pt;
+	mso-level-number-position:left;
+	margin-left:164.4pt;
+	text-indent:-34.0pt;
+	font-family:Symbol;}
+@list l0:level7
+	{mso-level-number-format:none;
+	mso-level-text:"";
+	mso-level-tab-stop:164.4pt;
+	mso-level-number-position:left;
+	margin-left:164.4pt;
+	text-indent:-34.0pt;}
+@list l0:level8
+	{mso-level-number-format:none;
+	mso-level-text:"";
+	mso-level-tab-stop:164.4pt;
+	mso-level-number-position:left;
+	margin-left:164.4pt;
+	text-indent:-34.0pt;}
+@list l0:level9
+	{mso-level-number-format:none;
+	mso-level-text:"";
+	mso-level-tab-stop:164.4pt;
+	mso-level-number-position:left;
+	margin-left:164.4pt;
+	text-indent:-34.0pt;}
+
+-->
+</style><p class=3D"Level2"><a name=3D"a611585"><!--[if =
+!supportLists]--><b><span style=3D"mso-bidi-font-size:10.0pt;
+line-height:120%;mso-fareast-font-family:Arial">13.2<span =
+style=3D"font-weight: normal; font-stretch: normal; font-size: 7pt; =
+line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></span></b><!--[endif]--><span =
+style=3D"line-height: 16px;">The authority referred to in Article =
+13.1:</span></a><span style=3D"line-height: =
+16px;"><o:p></o:p></span></p><p class=3D"Level3"><a =
+name=3D"a494091"><b><span style=3D"mso-bidi-font-size:10.0pt;
+line-height:120%;mso-fareast-font-family:Arial">13.1.1<span =
+style=3D"font-weight: normal; font-stretch: normal; font-size: 7pt; =
+line-height: normal; font-family: &quot;Times New =
+Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span=
+></span></b><!--[endif]--><span style=3D"line-height: 16px;">shall be =
+limited to a maximum nominal amount of =C2=A3200 of A =
+Shares</span></a><span style=3D"line-height: 16px;">&nbsp;<font =
+color=3D"#ff2600">and =C2=A318 of B Shares </font>unless otherwise =
+consented in writing by the holders of at least 76% in nominal value of =
+the issued A Shares;<o:p></o:p></span></p><div>
+<div dir=3D"auto" style=3D"caret-color: rgb(0, 0, 0); letter-spacing: =
+normal; text-align: start; text-indent: 0px; text-transform: none; =
+white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+text-decoration: none; overflow-wrap: break-word; -webkit-nbsp-mode: =
+space; line-break: after-white-space;"><div style=3D"color: rgb(0, 0, =
+0);"><br></div><div style=3D"color: rgb(0, 0, 0);">I made no other =
+changes to the Articles.</div><div style=3D"color: rgb(0, 0, =
+0);"><br></div><div style=3D"color: rgb(0, 0, 0);">In the Shareholder =
+Agreement, I added this at clause 3 to allow the shortly following =
+completion allotment of B Shares:</div><div style=3D"color: rgb(0, 0, =
+0);"><br></div><div><style class=3D"WebKit-mso-list-quirks-style">
+<!--
+/* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	text-align:justify;
+	line-height:15.0pt;
+	mso-pagination:widow-orphan;
+	font-size:11.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-language:EN-US;}
+p.Level1, li.Level1, div.Level1
+	{mso-style-name:"* Level 1";
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	margin-top:7.0pt;
+	margin-right:0cm;
+	margin-bottom:7.0pt;
+	margin-left:34.0pt;
+	text-align:justify;
+	text-indent:-34.0pt;
+	line-height:120%;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	mso-list:l0 level1 lfo1;
+	tab-stops:list 34.0pt;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:12.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-font-kerning:10.0pt;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.Level2, li.Level2, div.Level2
+	{mso-style-name:"* Level 2";
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"* Level 1";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:7.0pt;
+	margin-left:34.0pt;
+	text-align:justify;
+	text-indent:-34.0pt;
+	line-height:120%;
+	mso-pagination:widow-orphan;
+	mso-outline-level:2;
+	mso-list:l0 level2 lfo1;
+	tab-stops:list 34.0pt;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:11.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-font-kerning:10.0pt;}
+p.Level3, li.Level3, div.Level3
+	{mso-style-name:"* Level 3";
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"* Level 2";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:7.0pt;
+	margin-left:73.7pt;
+	text-align:justify;
+	text-indent:-39.7pt;
+	line-height:120%;
+	mso-pagination:widow-orphan;
+	mso-outline-level:3;
+	mso-list:l0 level3 lfo1;
+	tab-stops:list 73.7pt;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:11.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-font-kerning:10.0pt;}
+p.Level4, li.Level4, div.Level4
+	{mso-style-name:"* Level 4";
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"* Level 3";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:7.0pt;
+	margin-left:96.4pt;
+	text-align:justify;
+	text-indent:-22.7pt;
+	line-height:120%;
+	mso-pagination:widow-orphan;
+	mso-outline-level:4;
+	mso-list:l0 level4 lfo1;
+	tab-stops:list 96.4pt;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:11.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-font-kerning:10.0pt;}
+p.Level5, li.Level5, div.Level5
+	{mso-style-name:"* Level 5";
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"* Level 4";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:7.0pt;
+	margin-left:119.05pt;
+	text-align:justify;
+	text-indent:-22.65pt;
+	line-height:120%;
+	mso-pagination:widow-orphan;
+	mso-outline-level:5;
+	mso-list:l0 level5 lfo1;
+	tab-stops:list 119.05pt;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:11.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-font-kerning:10.0pt;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-size:10.0pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;
+	mso-font-kerning:0pt;
+	mso-ligatures:none;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;
+	mso-header-margin:36.0pt;
+	mso-footer-margin:36.0pt;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:1593079469;
+	mso-list-template-ids:-868441288;}
+@list l0:level1
+	{mso-level-style-link:"* Level 1";
+	mso-level-text:%1;
+	mso-level-tab-stop:34.0pt;
+	mso-level-number-position:left;
+	margin-left:34.0pt;
+	text-indent:-34.0pt;
+	mso-ansi-font-size:11.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-font-weight:bold;
+	mso-ansi-font-style:normal;}
+@list l0:level2
+	{mso-level-style-link:"* Level 2";
+	mso-level-text:"%1\.%2";
+	mso-level-tab-stop:34.0pt;
+	mso-level-number-position:left;
+	margin-left:34.0pt;
+	text-indent:-34.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	color:windowtext;
+	mso-ansi-font-weight:normal;
+	mso-bidi-font-weight:bold;
+	mso-ansi-font-style:normal;}
+@list l0:level3
+	{mso-level-style-link:"* Level 3";
+	mso-level-text:"%1\.%2\.%3";
+	mso-level-tab-stop:73.7pt;
+	mso-level-number-position:left;
+	margin-left:73.7pt;
+	text-indent:-39.7pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-font-weight:normal;
+	mso-bidi-font-weight:bold;
+	mso-ansi-font-style:normal;}
+@list l0:level4
+	{mso-level-number-format:alpha-lower;
+	mso-level-style-link:"* Level 4";
+	mso-level-text:"\(%4\)";
+	mso-level-tab-stop:96.4pt;
+	mso-level-number-position:left;
+	margin-left:96.4pt;
+	text-indent:-22.7pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-font-weight:normal;
+	mso-bidi-font-weight:bold;}
+@list l0:level5
+	{mso-level-number-format:roman-lower;
+	mso-level-style-link:"* Level 5";
+	mso-level-text:"\(%5\)";
+	mso-level-tab-stop:119.05pt;
+	mso-level-number-position:left;
+	margin-left:119.05pt;
+	text-indent:-22.65pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-font-weight:bold;
+	mso-ansi-font-style:normal;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:164.4pt;
+	mso-level-number-position:left;
+	margin-left:164.4pt;
+	text-indent:-34.0pt;
+	font-family:Symbol;}
+@list l0:level7
+	{mso-level-number-format:none;
+	mso-level-text:"";
+	mso-level-tab-stop:164.4pt;
+	mso-level-number-position:left;
+	margin-left:164.4pt;
+	text-indent:-34.0pt;}
+@list l0:level8
+	{mso-level-number-format:none;
+	mso-level-text:"";
+	mso-level-tab-stop:164.4pt;
+	mso-level-number-position:left;
+	margin-left:164.4pt;
+	text-indent:-34.0pt;}
+@list l0:level9
+	{mso-level-number-format:none;
+	mso-level-text:"";
+	mso-level-tab-stop:164.4pt;
+	mso-level-number-position:left;
+	margin-left:164.4pt;
+	text-indent:-34.0pt;}
+
+-->
+</style><p class=3D"Level3" style=3D"margin-left: 34pt; text-indent: =
+-34pt;"><span style=3D"font-size: 10pt; line-height: 16px;"><font =
+color=3D"#ff2600">3.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The =
+Investors agree and authorise the Board that for the purposes of Article =
+13.4, on or as soon as possible after Completion, the Company shall be =
+hereby authorised, subject to it entering into a written subscription =
+agreement between the Employee(s) stated herein (including by them =
+entering into a Deed of Adherence) and the Company, for those Employees =
+to subscribe for B Shares from the date of subscription (but which =
+allows for reverse vesting of B Shares, which reverse vesting shall be =
+operative over three years from the date they became an Employee and =
+which also allows for those B Shares to be converted into Deferred =
+Shares as described herein) as to James Acton 11 B Shares with a =
+subscription price per B Share of =C2=A31.00, and as to Stephen Gale 7 B =
+Shares with a subscription price per B Share of =
+=C2=A31.00.&nbsp;&nbsp;</font><o:p></o:p></span></p></div><div =
+style=3D"color: rgb(0, 0, 0);"><br></div><div style=3D"color: rgb(0, 0, =
+0);"><br></div><div style=3D"color: rgb(0, 0, 0);">In respect of clause =
+10.7, I have redone this as follows:</div><div style=3D"color: rgb(0, 0, =
+0);"><br></div><div style=3D"color: rgb(0, 0, 0);"><br></div><div><style =
+class=3D"WebKit-mso-list-quirks-style">
+<!--
+/* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	text-align:justify;
+	line-height:15.0pt;
+	mso-pagination:widow-orphan;
+	font-size:11.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-language:EN-US;}
+p.Level1, li.Level1, div.Level1
+	{mso-style-name:"* Level 1";
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	margin-top:7.0pt;
+	margin-right:0cm;
+	margin-bottom:7.0pt;
+	margin-left:34.0pt;
+	text-align:justify;
+	text-indent:-34.0pt;
+	line-height:120%;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	mso-list:l0 level1 lfo1;
+	tab-stops:list 34.0pt;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:12.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-font-kerning:10.0pt;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.Level2, li.Level2, div.Level2
+	{mso-style-name:"* Level 2";
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"* Level 1";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:7.0pt;
+	margin-left:34.0pt;
+	text-align:justify;
+	text-indent:-34.0pt;
+	line-height:120%;
+	mso-pagination:widow-orphan;
+	mso-outline-level:2;
+	mso-list:l0 level2 lfo1;
+	tab-stops:list 34.0pt;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:11.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-font-kerning:10.0pt;}
+p.Level3, li.Level3, div.Level3
+	{mso-style-name:"* Level 3";
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"* Level 2";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:7.0pt;
+	margin-left:73.7pt;
+	text-align:justify;
+	text-indent:-39.7pt;
+	line-height:120%;
+	mso-pagination:widow-orphan;
+	mso-outline-level:3;
+	mso-list:l0 level3 lfo1;
+	tab-stops:list 73.7pt;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:11.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-font-kerning:10.0pt;}
+p.Level4, li.Level4, div.Level4
+	{mso-style-name:"* Level 4";
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"* Level 3";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:7.0pt;
+	margin-left:96.4pt;
+	text-align:justify;
+	text-indent:-22.7pt;
+	line-height:120%;
+	mso-pagination:widow-orphan;
+	mso-outline-level:4;
+	mso-list:l0 level4 lfo1;
+	tab-stops:list 96.4pt;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:11.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-font-kerning:10.0pt;}
+p.Level5, li.Level5, div.Level5
+	{mso-style-name:"* Level 5";
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"* Level 4";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:7.0pt;
+	margin-left:119.05pt;
+	text-align:justify;
+	text-indent:-22.65pt;
+	line-height:120%;
+	mso-pagination:widow-orphan;
+	mso-outline-level:5;
+	mso-list:l0 level5 lfo1;
+	tab-stops:list 119.05pt;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:11.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-font-kerning:10.0pt;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-size:10.0pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;
+	mso-font-kerning:0pt;
+	mso-ligatures:none;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;
+	mso-header-margin:36.0pt;
+	mso-footer-margin:36.0pt;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:1593079469;
+	mso-list-template-ids:-868441288;}
+@list l0:level1
+	{mso-level-style-link:"* Level 1";
+	mso-level-text:%1;
+	mso-level-tab-stop:34.0pt;
+	mso-level-number-position:left;
+	margin-left:34.0pt;
+	text-indent:-34.0pt;
+	mso-ansi-font-size:11.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-font-weight:bold;
+	mso-ansi-font-style:normal;}
+@list l0:level2
+	{mso-level-style-link:"* Level 2";
+	mso-level-text:"%1\.%2";
+	mso-level-tab-stop:34.0pt;
+	mso-level-number-position:left;
+	margin-left:34.0pt;
+	text-indent:-34.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	color:windowtext;
+	mso-ansi-font-weight:normal;
+	mso-bidi-font-weight:bold;
+	mso-ansi-font-style:normal;}
+@list l0:level3
+	{mso-level-style-link:"* Level 3";
+	mso-level-text:"%1\.%2\.%3";
+	mso-level-tab-stop:73.7pt;
+	mso-level-number-position:left;
+	margin-left:73.7pt;
+	text-indent:-39.7pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-font-weight:normal;
+	mso-bidi-font-weight:bold;
+	mso-ansi-font-style:normal;}
+@list l0:level4
+	{mso-level-number-format:alpha-lower;
+	mso-level-style-link:"* Level 4";
+	mso-level-text:"\(%4\)";
+	mso-level-tab-stop:96.4pt;
+	mso-level-number-position:left;
+	margin-left:96.4pt;
+	text-indent:-22.7pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-font-weight:normal;
+	mso-bidi-font-weight:bold;}
+@list l0:level5
+	{mso-level-number-format:roman-lower;
+	mso-level-style-link:"* Level 5";
+	mso-level-text:"\(%5\)";
+	mso-level-tab-stop:119.05pt;
+	mso-level-number-position:left;
+	margin-left:119.05pt;
+	text-indent:-22.65pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-font-weight:bold;
+	mso-ansi-font-style:normal;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:164.4pt;
+	mso-level-number-position:left;
+	margin-left:164.4pt;
+	text-indent:-34.0pt;
+	font-family:Symbol;}
+@list l0:level7
+	{mso-level-number-format:none;
+	mso-level-text:"";
+	mso-level-tab-stop:164.4pt;
+	mso-level-number-position:left;
+	margin-left:164.4pt;
+	text-indent:-34.0pt;}
+@list l0:level8
+	{mso-level-number-format:none;
+	mso-level-text:"";
+	mso-level-tab-stop:164.4pt;
+	mso-level-number-position:left;
+	margin-left:164.4pt;
+	text-indent:-34.0pt;}
+@list l0:level9
+	{mso-level-number-format:none;
+	mso-level-text:"";
+	mso-level-tab-stop:164.4pt;
+	mso-level-number-position:left;
+	margin-left:164.4pt;
+	text-indent:-34.0pt;}
+
+-->
+</style><p class=3D"Level2"><!--[if !supportLists]--><span style=3D"color:=
+ rgb(0, 0, 0); font-size: 10pt; line-height: 120%;">10.7<span =
+style=3D"font-stretch: normal; font-size: 7pt; line-height: normal; =
+font-family: &quot;Times New Roman&quot;;">&nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp;&nbsp;</span></span><!--[endif]--><span style=3D"font-size: 10pt; =
+line-height: 16px;">In the event <font color=3D"#ff2600">a Shareholder =
+is in material breach of this agreement, which breach which is not =
+remedied or can not be remedied within 14 days of the breach being =
+notified to that Shareholder (it being understood that such delay of 14 =
+days to remedy it (provided it is by then remedied) shall not be =
+determined to be an irremedial breach itself because of the passage of =
+time to remedy), that Shareholder shall be deemed to have served a Sale =
+Notice under article 15 of the Articles in respect of all of his A =
+Shares and article 15 shall apply to all of those Share and the Price =
+shall be the Fair Value ((as calculated pursuant to article 16.4 of the =
+Articles). In the event that, in respect of</font> Owen Thomas or =
+Anthony Hughes being in material breach of this agreement, <font =
+color=3D"#ff2600">but only in respect of one of them failing and/or =
+refusing to adopt business plans whilst they are both a majority of the =
+directors on the Board,</font> which is not remedied or cannot be =
+remedied within 14 days of th<font color=3D"#ff2600">a</font>t breach =
+<font color=3D"#ff2600">being notified to them (it being understood that =
+such delay of 14 days to remedy it (provided it is by then remedied) =
+shall not be determined to be an irremedial breach itself because of the =
+passage of time to remedy), the applicable one or both of Owen Thomas or =
+Anthony Huges who has failed and/or refused to so adopt a business =
+plan,</font> shall be deemed to have served a Sale Notice under article =
+15 of the Articles in respect of all of their A Shares and article 15 =
+shall apply to all of those Shares except that the Price of those shares =
+shall be 50% of the Fair Value (as calculated pursuant to article 16.4 =
+of the Articles).&nbsp;<o:p></o:p></span></p></div><div style=3D"color: =
+rgb(0, 0, 0);">Can you please let me know instructions for me to share =
+with Kelvin?</div><div style=3D"color: rgb(0, 0, 0);"><br></div><div =
+style=3D"color: rgb(0, 0, 0);">Best, Jonathan</div><div style=3D"color: =
+rgb(0, 0, 0);"><br></div><div style=3D"color: rgb(0, 0, =
+0);"><br></div></div>
+</div>
+<div><br><blockquote type=3D"cite"><div>On 5 Feb 2024, at 19:51, Owen =
+Thomas &lt;ot@inhomemedia.io&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div><div dir=3D"auto">Jonathan =
+please see below feedback from James.&nbsp;</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">I will buzz you in the morning =
+to progress thanks.&nbsp;</div><div><br><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">---------- Forwarded message =
+---------<br>From: <strong class=3D"gmail_sendername" dir=3D"auto">Anthony=
+ Hughes</strong> <span dir=3D"auto">&lt;<a =
+href=3D"mailto:th@inhomemedia.io">th@inhomemedia.io</a>&gt;</span><br>Date=
+: Mon, 5 Feb 2024 at 19:49<br>Subject: Fwd: Agreements<br>To: Owen =
+Thomas &lt;<a =
+href=3D"mailto:ot@inhomemedia.io">ot@inhomemedia.io</a>&gt;<br></div><br><=
+br><div dir=3D"auto"><br =
+id=3D"m_8914240942660148180lineBreakAtBeginningOfSignature"><div =
+dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br>Begin =
+forwarded message:<br><br></div><blockquote type=3D"cite"><div =
+dir=3D"ltr"><b>From:</b> James Tuttiett &lt;<a =
+href=3D"mailto:JTuttiett@penultcp.co.uk" =
+target=3D"_blank">JTuttiett@penultcp.co.uk</a>&gt;<br><b>Date:</b> 5 =
+February 2024 at 19:10:12 GMT<br><b>To:</b> Anthony Hughes &lt;<a =
+href=3D"mailto:th@inhomemedia.io" =
+target=3D"_blank">th@inhomemedia.io</a>&gt;, David Moulton &lt;<a =
+href=3D"mailto:david.moulton@erismedia.co.uk" =
+target=3D"_blank">david.moulton@erismedia.co.uk</a>&gt;<br><b>Subject:</b>=
+ <b>RE: Agreements</b><br><br></div></blockquote><blockquote =
+type=3D"cite"><div dir=3D"ltr">=EF=BB=BFEvening Tony<br>
+<br>
+Thanks for coming back.<br>
+<br>
+We are fine with moderated wording, key point is a breach must be =
+material and not remedied within 14 days. Please suggest wording if you =
+are not comfortable with material.<br>
+<br>
+We are fine with the issue of the two lots of B shares, we assume you =
+are comfortable these are non voting, non dividend but share any =
+exit/share sale proceeds? If happy please draft into the agreement.<br>
+<br>
+All the best<br>
+<br>
+James<br>
+<br>
+-----Original Message-----<br>
+From: Anthony Hughes &lt;<a href=3D"mailto:th@inhomemedia.io" =
+target=3D"_blank">th@inhomemedia.io</a>&gt; <br>
+Sent: Monday, February 5, 2024 5:54 PM<br>
+To: James Tuttiett &lt;<a href=3D"mailto:JTuttiett@penultcp.co.uk" =
+target=3D"_blank">JTuttiett@penultcp.co.uk</a>&gt;; David Moulton &lt;<a =
+href=3D"mailto:david.moulton@erismedia.co.uk" =
+target=3D"_blank">david.moulton@erismedia.co.uk</a>&gt;<br>
+Subject: Agreements<br>
+<br>
+Hi James and David,<br>
+<br>
+We have the agreements back from Kelvin, we are nearly there, just two =
+items below we are keen to agree.<br>
+<br>
+1. Material breach we offered some words but this has been reinstated to =
+the original words covering all breaches. Be good to have a compromise =
+position.<br>
+<br>
+2. Share structure and details we are comfortable with. We do want to =
+ensure on day 1 Stephen Gale has 5% B shares and Jimmy Acton 7.5% B =
+shares. Stephen in our view is critical to the business moving =
+forward.<br>
+<br>
+Owen and I are together tomorrow if a call needed to close off and move =
+to signature.<br>
+<br>
+Best regards <br>
+<br>
+Tony<br>
+<br>
+<br>
+Sent from my iPhone<br>
+
+<br><br><p =
+style=3D"font-family:Verdana;font-size:10pt;color:rgb(102,102,102)"><b =
+style=3D"font-family:Verdana">Disclaimer</b></p><p =
+style=3D"font-family:Verdana;font-size:8pt;color:rgb(102,102,102)">The =
+information contained in this communication from the sender is =
+confidential. It is intended solely for use by the recipient and others =
+authorized to receive it. If you are not the recipient, you are hereby =
+notified that any disclosure, copying, distribution or taking action in =
+relation of the contents of this information is strictly prohibited and =
+may be unlawful.<br><br>This email has been scanned for viruses and =
+malware, and may have been automatically archived by Mimecast, a leader =
+in email security and cyber resilience. Mimecast integrates email =
+defenses with brand protection, security awareness training, web =
+security, compliance and other essential capabilities. Mimecast helps =
+protect large and small organizations from malicious activity, human =
+error and technology failure; and to lead the movement toward building a =
+more resilient world. To find out more, visit our website.</p>
+</div></blockquote></div></div></div>
+
+
+<br><hr>This email has been scanned by iomartcloud.<br><a =
+href=3D"http://www.iomartcloud.com/">http://www.iomartcloud.com</a><br><hr=
+></div></blockquote></div><br></div></body></html>=
+
+--Apple-Mail=_7E332A8E-268D-440B-B542-1B1EB67B3456--
+

@@ -1,0 +1,517 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:fcd8:b0:99c:50e1:429a with SMTP id qx24csp557596ejb;
+        Thu, 10 Aug 2023 01:36:59 -0700 (PDT)
+X-Received: by 2002:a5d:44c1:0:b0:317:5efa:c46a with SMTP id z1-20020a5d44c1000000b003175efac46amr920111wrr.27.1691656619291;
+        Thu, 10 Aug 2023 01:36:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1691656619; cv=none;
+        d=google.com; s=arc-20160816;
+        b=vlyBQ6r892awmv7ITkTcSVVHqyVBCL2b6/vw6yRe09WyMbDgE53ufy355LbZ6ZuEYn
+         7fFMMzYkRw/H77rigZGqzAf0z1UpiPEBhRRAxmScxe9SyKuWT/8CZ3muldBlDwooCvgh
+         Gw88L1u4Yx+bDmIU4gx/n52F4jh+OUzngpnOjmd28iwIYZ4XFWevh/0PtaJhwMLQ5pEA
+         o/32ToMBGILnOZqXlsH4592j34T/y3Uif3+9Tkcc5HOf0bK9PsQG985poXQT0GE6hnbX
+         7/vLwmI1zOYARUWWD4Lu9x/wHJOwdatslyjUfa0SdFkwLxcz0jrtm3kkaiwt+9qJcXl5
+         iOEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:dkim-signature;
+        bh=uCh0YRMwzQ9/oVKIkIu32WWpjEcKWAuN2J6l6Cf3aYA=;
+        fh=OGKcfai8fOiGeAxmN8MZ6F/muo02kGDA3N9SBwzbpL0=;
+        b=cejLv8a1+u/kuvCCfgY6b+puGPyMR4EtJCslM5videL56N4gq5crPTxPQJ+f57cme9
+         PUPYmVRQei4sEjK05vnsSedEAT4JtJodoFZQLgPX2UyBYTuav+SlCRaLAsGBmsuBI7sO
+         m2B2qeS0GBw4iG9IS95NGpYM2uoOlW6CQnA7GuQAZD/Xghbhj4sqpaFcUwS8GqieqZfT
+         vlZ1kcHS8KFImIkEAvhhzqCT83AM7RP0nPLo+GWTA+0nEytOpqAjPIbA9selq7fAVwwj
+         l1Z8iOLbo/qTYWbyWKyMoBd8aMkeooMS9EEcMOqA4jq4lmD+VO1ilx/wL/B+fsZJuOAO
+         Ui4g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20221208.gappssmtp.com header.s=20221208 header.b=JU0AETT9;
+       spf=neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+Return-Path: <th@inhomemedia.io>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id k2-20020adfb342000000b00317fe591db2sor249056wrd.2.2023.08.10.01.36.58
+        for <ot@inhomemedia.io>
+        (Google Transport Security);
+        Thu, 10 Aug 2023 01:36:59 -0700 (PDT)
+Received-SPF: neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20221208.gappssmtp.com header.s=20221208 header.b=JU0AETT9;
+       spf=neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20221208.gappssmtp.com; s=20221208; t=1691656618; x=1692261418;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uCh0YRMwzQ9/oVKIkIu32WWpjEcKWAuN2J6l6Cf3aYA=;
+        b=JU0AETT99zZzb2hkyXCCUfPa6LcpT3p4EQCn+WXSntKoo6yxSilrK3gF0gxCuuP3gW
+         Cxslcbgk3GROjI4lzGw+KgOnh+uTNS+DKYHxw1AIqyUpTA+8pNt227Tk8oo2isECkgG0
+         jKU3AqUkIPQ1WCPZAZzFMS1LFqEESNiFNs+HX1EiZb5HOTnmYRY9BHnBboxqUwKCMySU
+         vAa+wsYRNfpIPXd3dKvWtgtogssfqWtxtwh4KJ3CTE65YvErA5yVNYoccaxu0yqRhq7Q
+         0668/hkLSbCNr0zFm8tcwuT+Nsod4Jkp9Cd2v8IT5lBriZAd8Djau3A6h5uBdzpYYwa8
+         FDNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691656618; x=1692261418;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uCh0YRMwzQ9/oVKIkIu32WWpjEcKWAuN2J6l6Cf3aYA=;
+        b=ShRTFOhyl3XXyK2EDdVhViIuQYfrgpNwdWKrwBXUNKBL8W1vftpJFsddZz7uqt07oN
+         Pi4s3S3mf3WrwiwQskjHd4J5lzcLFxNo34rXLXXMNMGOtjQZMsohdcel+XB4ZThLjpk9
+         3wPBlmjd6ugrLLx1Xuky2ufAGQW4lDzSqecsN0GGBmaUymB3hjwRtLAHDgQvVeEkWoOJ
+         TRcXwk60pZqEvt87TxZmr29lShMNLhxT7Nf15gXc86U14C6DMOmZ5ibImaNrynPf+LL4
+         mbSYCcx8qywM0KtzN+SK+mnPdpZpqK/wqjVHkp02APSAl7TvylsvRfBQFXItx90mdCW5
+         zxdg==
+X-Gm-Message-State: AOJu0YwhGTo7l5uXly4H0uF/FnGFrvY3+MGplSoZyRC0qxo5dsuEuyzN
+	LO3htP6wUGwWGFOCB9QIqTN0
+X-Google-Smtp-Source: AGHT+IHiDa3nuy1eY+HZXpVgD1l5KRMVJs5tcib2ERkFzeJMGREVT6CjHFsIpeaQDe706Gri5vp94g==
+X-Received: by 2002:a05:6000:1209:b0:317:630d:2187 with SMTP id e9-20020a056000120900b00317630d2187mr991416wrx.32.1691656618349;
+        Thu, 10 Aug 2023 01:36:58 -0700 (PDT)
+Return-Path: <th@inhomemedia.io>
+Received: from smtpclient.apple (249.red-88-18-203.staticip.rima-tde.net. [88.18.203.249])
+        by smtp.gmail.com with ESMTPSA id l14-20020a1c790e000000b003fc16ee2864sm1346960wme.48.2023.08.10.01.36.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Aug 2023 01:36:57 -0700 (PDT)
+Content-Type: multipart/alternative; boundary=Apple-Mail-D732D551-9116-483E-809C-88D8151CD389
+Content-Transfer-Encoding: 7bit
+From: Anthony Hughes <th@inhomemedia.io>
+Mime-Version: 1.0 (1.0)
+Subject: Re: Teasers/IHM Collateral
+Date: Thu, 10 Aug 2023 10:36:46 +0200
+Message-Id: <9305F731-415A-4CD4-8A22-31A512877161@inhomemedia.io>
+References: <14C10BB0-15FB-4628-B1BD-B9CB9E2AD9C4@fullcomms.co.uk>
+Cc: David Moulton <david.moulton@erismedia.co.uk>,
+ Owen Thomas <ot@inhomemedia.io>
+In-Reply-To: <14C10BB0-15FB-4628-B1BD-B9CB9E2AD9C4@fullcomms.co.uk>
+To: Jimmy Acton <jimmy@fullcomms.co.uk>
+X-Mailer: iPhone Mail (20G75)
+
+
+--Apple-Mail-D732D551-9116-483E-809C-88D8151CD389
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Jimmy,
+
+Look good, could we get some sort of MA content or weather I.e remove the 4t=
+h utility info from off the screens in the in home flyer and how are we look=
+ing on the case study for Watmos and the screen impact on take up, so we can=
+ push further with other ISP=E2=80=99s.
+
+Thanks
+
+Tony
+
+Sent from my iPhone
+
+> On 9 Aug 2023, at 23:50, Jimmy Acton <jimmy@fullcomms.co.uk> wrote:
+>=20
+> =EF=BB=BF
+> Hi Dave,
+>=20
+> You beat me to it, been at Everton academy with Noah for a trial so slight=
+ly later doing emails tonight.=20
+>=20
+> Yes as promised I attach both teasers one from
+> 4THU and one from IHM.
+>=20
+> Words have been revised and look much better; open to comments.
+>=20
+> Confirmed/Installed - this data out of 4THU HubSpot was on the submission t=
+he other night. Should all be there but I=E2=80=99ve got an admin day whilst=
+ travelling home from Greece on Monday to tidy up any gaps. One day 4THU wil=
+l have good data!=20
+>=20
+> I travel to Greece tomorrow am but am available on phone and email as norm=
+al. Wedding this weekend. No kids or wives! Back Monday late on.=20
+>=20
+> Hope all good with you.=20
+>=20
+> KR
+>=20
+> Jimmy=20
+>=20
+> <4thxxxxfc_in_home_media_digital_noticeboards_sales_v3.pdf>
+>=20
+>=20
+> <4th0269fc_digital_noticeboards_sales_deck-01.pdf>
+>=20
+>=20
+>>> On 9 Aug 2023, at 22:12, David Moulton <david.moulton@erismedia.co.uk> w=
+rote:
+>>>=20
+>> =EF=BB=BF
+>> Hi Jimmy,
+>>=20
+>> Hope all well?
+>>=20
+>> Any sign of the teaser docs or the confirmed/installed screens data pleas=
+e?
+>>=20
+>> Thanks
+>>=20
+>> Dave
+>>=20
+>> Sent from my iPhone 14
+>> From: Jimmy Acton <jimmy@fullcomms.co.uk>
+>> Sent: Tuesday, August 8, 2023 22:39
+>> To: David Moulton <david.moulton@erismedia.co.uk>
+>> Cc: Owen Thomas <ot@inhomemedia.io>; Anthony Hughes <th@inhomemedia.io>
+>> Subject: Re: Teasers/IHM Collateral
+>> =20
+>> I=E2=80=99m almost done to be fair on this element.=20
+>>=20
+>> Data session tomorrow and should be all in order and ducks in a row.=20
+>>=20
+>> KR
+>>=20
+>> Jimmy
+>>=20
+>>> On 8 Aug 2023, at 22:36, David Moulton <david.moulton@erismedia.co.uk> w=
+rote:
+>>>=20
+>>> =EF=BB=BF
+>>> Thanks Jimmy.=20
+>>>=20
+>>> Best
+>>>=20
+>>> Dave
+>>>=20
+>>> Sent from my iPhone 14
+>>> From: Jimmy Acton <jimmy@fullcomms.co.uk>
+>>> Sent: Tuesday, August 8, 2023 22:32
+>>> To: David Moulton <david.moulton@erismedia.co.uk>
+>>> Cc: Owen Thomas <ot@inhomemedia.io>; Anthony Hughes <th@inhomemedia.io>
+>>> Subject: Re: Teasers/IHM Collateral
+>>> =20
+>>> Hi Dave,=20
+>>>=20
+>>> I=E2=80=99m sat here as we speak re-writing the content.=20
+>>>=20
+>>> Will be updated and back with us tomorrow close of play.=20
+>>>=20
+>>> We=E2=80=99ll have the 4thu version and the IHM version boxed off.=20
+>>>=20
+>>> Sorry for the delay on this!
+>>>=20
+>>> KR
+>>>=20
+>>> Jimmy
+>>>=20
+>>>> On 8 Aug 2023, at 22:30, David Moulton <david.moulton@erismedia.co.uk> w=
+rote:
+>>>>=20
+>>>> =EF=BB=BF
+>>>> Hi Jimmy/Owen,
+>>>>=20
+>>>> Any news on the whereabouts of the 2 updated teaser docs?
+>>>>=20
+>>>> Thanks
+>>>>=20
+>>>> Dave
+>>>>=20
+>>>> Sent from my iPhone 14
+>>>>=20
+>>>>=20
+>>>> Disclaimer
+>>>>=20
+>>>> The information contained in this communication from the sender is conf=
+idential. It is intended solely for use by the recipient and others authoriz=
+ed to receive it. If you are not the recipient, you are hereby notified that=
+ any disclosure, copying, distribution or taking action in relation of the c=
+ontents of this information is strictly prohibited and may be unlawful.
+>>>>=20
+>>>> This email has been scanned for viruses and malware, and may have been a=
+utomatically archived by Mimecast, a leader in email security and cyber resi=
+lience. Mimecast integrates email defenses with brand protection, security a=
+wareness training, web security, compliance and other essential capabilities=
+. Mimecast helps protect large and small organizations from malicious activi=
+ty, human error and technology failure; and to lead the movement toward buil=
+ding a more resilient world. To find out more, visit our website.
+>>>>=20
+>>>=20
+>>>=20
+>>> Disclaimer
+>>>=20
+>>> The information contained in this communication from the sender is confi=
+dential. It is intended solely for use by the recipient and others authorize=
+d to receive it. If you are not the recipient, you are hereby notified that a=
+ny disclosure, copying, distribution or taking action in relation of the con=
+tents of this information is strictly prohibited and may be unlawful.
+>>>=20
+>>> This email has been scanned for viruses and malware, and may have been a=
+utomatically archived by Mimecast, a leader in email security and cyber resi=
+lience. Mimecast integrates email defenses with brand protection, security a=
+wareness training, web security, compliance and other essential capabilities=
+. Mimecast helps protect large and small organizations from malicious activi=
+ty, human error and technology failure; and to lead the movement toward buil=
+ding a more resilient world. To find out more, visit our website.
+>>>=20
+>>=20
+>>=20
+>> Disclaimer
+>>=20
+>> The information contained in this communication from the sender is confid=
+ential. It is intended solely for use by the recipient and others authorized=
+ to receive it. If you are not the recipient, you are hereby notified that a=
+ny disclosure, copying, distribution or taking action in relation of the con=
+tents of this information is strictly prohibited and may be unlawful.
+>>=20
+>> This email has been scanned for viruses and malware, and may have been au=
+tomatically archived by Mimecast, a leader in email security and cyber resil=
+ience. Mimecast integrates email defenses with brand protection, security aw=
+areness training, web security, compliance and other essential capabilities.=
+ Mimecast helps protect large and small organizations from malicious activit=
+y, human error and technology failure; and to lead the movement toward build=
+ing a more resilient world. To find out more, visit our website.
+
+--Apple-Mail-D732D551-9116-483E-809C-88D8151CD389
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Hi Jimmy,<div><br></div><div>Look good, cou=
+ld we get some sort of MA content or weather I.e remove the 4th utility info=
+ from off the screens in the in home flyer and how are we looking on the cas=
+e study for Watmos and the screen impact on take up, so we can push further w=
+ith other ISP=E2=80=99s.</div><div><br></div><div>Thanks</div><div><br></div=
+><div>Tony<br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"=
+><br><blockquote type=3D"cite">On 9 Aug 2023, at 23:50, Jimmy Acton &lt;jimm=
+y@fullcomms.co.uk&gt; wrote:<br><br></blockquote></div><blockquote type=3D"c=
+ite"><div dir=3D"ltr">=EF=BB=BF<meta http-equiv=3D"content-type" content=3D"=
+text/html; charset=3Dutf-8"><div dir=3D"ltr"></div><div dir=3D"ltr">Hi Dave,=
+</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">You beat me to it, been at=
+ Everton academy with Noah for a trial so slightly later doing emails tonigh=
+t.&nbsp;</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Yes as promised I a=
+ttach both teasers one from</div><div dir=3D"ltr">4THU and one from IHM.</di=
+v><div dir=3D"ltr"><br></div><div dir=3D"ltr">Words have been revised and lo=
+ok much better; open to comments.</div><div dir=3D"ltr"><br></div><div dir=3D=
+"ltr">Confirmed/Installed - this data out of 4THU HubSpot was on the submiss=
+ion the other night. Should all be there but I=E2=80=99ve got an admin day w=
+hilst travelling home from Greece on Monday to tidy up any gaps. One day 4TH=
+U will have good data!&nbsp;</div><div dir=3D"ltr"><br></div><div dir=3D"ltr=
+">I travel to Greece tomorrow am but am available on phone and email as norm=
+al. Wedding this weekend. No kids or wives! Back Monday late on.&nbsp;</div>=
+<div dir=3D"ltr"><br></div><div dir=3D"ltr">Hope all good with you.&nbsp;</d=
+iv><div dir=3D"ltr"><br></div><div dir=3D"ltr">KR</div><div dir=3D"ltr"><br>=
+</div><div dir=3D"ltr">Jimmy&nbsp;</div><div dir=3D"ltr"><br></div><div dir=3D=
+"ltr"></div><div>&lt;4thxxxxfc_in_home_media_digital_noticeboards_sales_v3.p=
+df&gt;</div><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+us-ascii"><div dir=3D"ltr"><br></div><div dir=3D"ltr"><br></div><div dir=3D"=
+ltr"></div><div>&lt;4th0269fc_digital_noticeboards_sales_deck-01.pdf&gt;</di=
+v><meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf-8"><=
+div dir=3D"ltr"><br></div><div dir=3D"ltr"><br><blockquote type=3D"cite">On 9=
+ Aug 2023, at 22:12, David Moulton &lt;david.moulton@erismedia.co.uk&gt; wro=
+te:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=
+=BB=BF
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div>
+<div dir=3D"ltr">
+<div dir=3D"ltr">Hi Jimmy,</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Hope all well?</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Any sign of the teaser docs or the confirmed/installed scre=
+ens data please?</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Thanks</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Dave<span id=3D"ms-outlook-ios-cursor"></span></div>
+</div>
+</div>
+<div id=3D"ms-outlook-mobile-signature">
+<div><br>
+</div>
+<div style=3D"direction:ltr" dir=3D"ltr">Sent from my iPhone 14</div>
+</div>
+<div id=3D"mail-editor-reference-message-container" class=3D"ms-outlook-mobi=
+le-reference-message">
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif"><b>=
+From:</b> Jimmy Acton &lt;jimmy@fullcomms.co.uk&gt;<br>
+<b>Sent:</b> Tuesday, August 8, 2023 22:39<br>
+<b>To:</b> David Moulton &lt;david.moulton@erismedia.co.uk&gt;<br>
+<b>Cc:</b> Owen Thomas &lt;ot@inhomemedia.io&gt;; Anthony Hughes &lt;th@inho=
+memedia.io&gt;<br>
+<b>Subject:</b> Re: Teasers/IHM Collateral
+<div>&nbsp;</div>
+</font></div>
+<div dir=3D"ltr"></div>
+<div dir=3D"ltr">I=E2=80=99m almost done to be fair on this element.&nbsp;</=
+div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Data session tomorrow and should be all in order and ducks i=
+n a row.&nbsp;</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">KR</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Jimmy</div>
+<div dir=3D"ltr"><br>
+<blockquote type=3D"cite">On 8 Aug 2023, at 22:36, David Moulton &lt;david.m=
+oulton@erismedia.co.uk&gt; wrote:<br>
+<br>
+</blockquote>
+</div>
+<blockquote type=3D"cite">
+<div dir=3D"ltr">=EF=BB=BF
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div dir=3D"ltr">
+<div dir=3D"ltr">Thanks Jimmy.&nbsp;</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Best</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Dave</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr"><span id=3D"ms-outlook-ios-cursor"></span></div>
+</div>
+<div id=3D"ms-outlook-mobile-signature">
+<div dir=3D"ltr" style=3D"direction:ltr">Sent from my iPhone 14</div>
+</div>
+<div id=3D"mail-editor-reference-message-container" class=3D"ms-outlook-mobi=
+le-reference-message">
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif"><b>=
+From:</b> Jimmy Acton &lt;jimmy@fullcomms.co.uk&gt;<br>
+<b>Sent:</b> Tuesday, August 8, 2023 22:32<br>
+<b>To:</b> David Moulton &lt;david.moulton@erismedia.co.uk&gt;<br>
+<b>Cc:</b> Owen Thomas &lt;ot@inhomemedia.io&gt;; Anthony Hughes &lt;th@inho=
+memedia.io&gt;<br>
+<b>Subject:</b> Re: Teasers/IHM Collateral
+<div>&nbsp;</div>
+</font></div>
+<div dir=3D"ltr"></div>
+<div dir=3D"ltr">Hi Dave,&nbsp;</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">I=E2=80=99m sat here as we speak re-writing the content.&nb=
+sp;</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Will be updated and back with us tomorrow close of play.&nb=
+sp;</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">We=E2=80=99ll have the 4thu version and the IHM version box=
+ed off.&nbsp;</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Sorry for the delay on this!</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">KR</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Jimmy</div>
+<div dir=3D"ltr"><br>
+<blockquote type=3D"cite">On 8 Aug 2023, at 22:30, David Moulton &lt;david.m=
+oulton@erismedia.co.uk&gt; wrote:<br>
+<br>
+</blockquote>
+</div>
+<blockquote type=3D"cite">
+<div dir=3D"ltr">=EF=BB=BF
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div>Hi Jimmy/Owen,</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Any news on the whereabouts of the 2 updated teaser docs?</=
+div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Thanks</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Dave</div>
+<div id=3D"ms-outlook-mobile-signature">
+<div><br>
+</div>
+<div dir=3D"ltr" style=3D"direction:ltr">Sent from my iPhone 14</div>
+</div>
+</div>
+</div>
+<br>
+<br>
+<p style=3D"font-family:Verdana; font-size:10pt; color:#666666"><b>Disclaime=
+r</b></p>
+<p style=3D"font-family:Verdana; font-size:8pt; color:#666666">The informati=
+on contained in this communication from the sender is confidential. It is in=
+tended solely for use by the recipient and others authorized to receive it. I=
+f you are not the recipient, you
+ are hereby notified that any disclosure, copying, distribution or taking ac=
+tion in relation of the contents of this information is strictly prohibited a=
+nd may be unlawful.<br>
+<br>
+This email has been scanned for viruses and malware, and may have been autom=
+atically archived by Mimecast, a leader in email security and cyber resilien=
+ce. Mimecast integrates email defenses with brand protection, security aware=
+ness training, web security,
+ compliance and other essential capabilities. Mimecast helps protect large a=
+nd small organizations from malicious activity, human error and technology f=
+ailure; and to lead the movement toward building a more resilient world. To f=
+ind out more, visit our website.</p>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+<br>
+<br>
+<p style=3D"font-family:Verdana; font-size:10pt; color:#666666"><b>Disclaime=
+r</b></p>
+<p style=3D"font-family:Verdana; font-size:8pt; color:#666666">The informati=
+on contained in this communication from the sender is confidential. It is in=
+tended solely for use by the recipient and others authorized to receive it. I=
+f you are not the recipient, you
+ are hereby notified that any disclosure, copying, distribution or taking ac=
+tion in relation of the contents of this information is strictly prohibited a=
+nd may be unlawful.<br>
+<br>
+This email has been scanned for viruses and malware, and may have been autom=
+atically archived by Mimecast, a leader in email security and cyber resilien=
+ce. Mimecast integrates email defenses with brand protection, security aware=
+ness training, web security,
+ compliance and other essential capabilities. Mimecast helps protect large a=
+nd small organizations from malicious activity, human error and technology f=
+ailure; and to lead the movement toward building a more resilient world. To f=
+ind out more, visit our website.</p>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+
+
+<br><br><p style=3D"font-family: Verdana; font-size:10pt; color:#666666;"><b=
+>Disclaimer</b></p><p style=3D"font-family: Verdana; font-size:8pt; color:#6=
+66666;">The information contained in this communication from the sender is c=
+onfidential. It is intended solely for use by the recipient and others autho=
+rized to receive it. If you are not the recipient, you are hereby notified t=
+hat any disclosure, copying, distribution or taking action in relation of th=
+e contents of this information is strictly prohibited and may be unlawful.<b=
+r><br>This email has been scanned for viruses and malware, and may have been=
+ automatically archived by Mimecast, a leader in email security and cyber re=
+silience. Mimecast integrates email defenses with brand protection, security=
+ awareness training, web security, compliance and other essential capabiliti=
+es. Mimecast helps protect large and small organizations from malicious acti=
+vity, human error and technology failure; and to lead the movement toward bu=
+ilding a more resilient world. To find out more, visit our website.</p>
+</div></blockquote></div></blockquote></div></body></html>=
+
+--Apple-Mail-D732D551-9116-483E-809C-88D8151CD389--

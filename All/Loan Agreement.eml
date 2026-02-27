@@ -1,0 +1,321 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:ad87:b0:a3b:b3eb:9ad7 with SMTP id la7csp31214ejb;
+        Thu, 8 Feb 2024 02:45:41 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHAqpljYyUva0zmRNuMfJuF11vkfshliOsNswaj9mvTi8UV0XzNiJ/8R0/ACzLffDHoC/u5
+X-Received: by 2002:a2e:b0f0:0:b0:2d0:aa89:a34d with SMTP id h16-20020a2eb0f0000000b002d0aa89a34dmr5538229ljl.11.1707389140918;
+        Thu, 08 Feb 2024 02:45:40 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1707389140; cv=none;
+        d=google.com; s=arc-20160816;
+        b=F1mpvkYXMHQ9L4mRJybfj5SuxVduu+lx2wPaQBgTvKX6nJKNwqaITRicd/iz9iDW7a
+         9wxYGHPVcHYcvw80MT2nMV9E6dlPmHxr4UxBy8Y80wdJQrWWzoD1Ep/kmTYhYffFhlXZ
+         XDNL35/H+QiY3mx0VHALkAK9qsKtTGvWtKHPM34Xmg4wSrEJvPmbK+/3PXmLF3s3A6P8
+         38JWHnkKRg0K4NU2twhpzmk/bPBn/3d8QO4fsEhx02luUhj8xBsAaWvZsAPe/bj9Y0JP
+         HiE+vb3t/y07x5HZHhJaDptVO18uQVL7i6NI2OyiZ374m7BM/2sD5YJGP4BNZz2BqwVU
+         s92w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=dkim-signature:references:to:cc:in-reply-to:date:subject
+         :mime-version:message-id:from;
+        bh=/02APeWeWbcGfKURFHWrm/zjRxPvZqFjo+1Lp/JWCRo=;
+        fh=oAsjBznpfcOs25pqczDiMTuIJc6Tug8lRnRgvD/3Dmw=;
+        b=g+uO9Lr/ccSBqudJccc4og9WRyOkZbINDy65orHg18r39GogLrPXFx4ry7SBAWZjU1
+         Ff1O5ys7WC9Z8DkImg+Z9bAgq2j2AavM/A4Zwg0J7/6ocnkwiZjWhyqV1vl9EomvT+P6
+         4FJm9WmEqz/jGVAXtsfdUfPARDCWOBye7Dmmcvjp3jM9s3lMLKYnltoQW0OR8MAJIFux
+         cjwOLcNSs88XVrZjexxUudBlOtwodpUj6qEa2q26Z7nWlk1lCx94QWUz6M9JB3lgMzzW
+         Uy0S2phM+IuoDMkSIEdSGLEE//lozDVHxD3FOaJ5UD2t3KC187VR9OaffpFQZotMP/Wc
+         Iu6w==;
+        darn=inhomemedia.io
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@jms-consult.com header.s=20230208 header.b=N+RJgkW+;
+       spf=neutral (google.com: 62.128.193.158 is neither permitted nor denied by best guess record for domain of jonathansaville@jms-consult.com) smtp.mailfrom=jonathansaville@jms-consult.com
+Return-Path: <jonathansaville@jms-consult.com>
+Received: from mta8.iomartmail.com (mta8.iomartmail.com. [62.128.193.158])
+        by mx.google.com with ESMTPS id z63-20020a509e45000000b005601022ffaasi801743ede.643.2024.02.08.02.45.40
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 08 Feb 2024 02:45:40 -0800 (PST)
+Received-SPF: neutral (google.com: 62.128.193.158 is neither permitted nor denied by best guess record for domain of jonathansaville@jms-consult.com) client-ip=62.128.193.158;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@jms-consult.com header.s=20230208 header.b=N+RJgkW+;
+       spf=neutral (google.com: 62.128.193.158 is neither permitted nor denied by best guess record for domain of jonathansaville@jms-consult.com) smtp.mailfrom=jonathansaville@jms-consult.com
+Received: from vs3.iomartmail.com (vs3.iomartmail.com [10.12.10.124])
+	by mta8.iomartmail.com (8.14.7/8.14.7) with ESMTP id 418AjeVk011410;
+	Thu, 8 Feb 2024 10:45:40 GMT
+Received: from vs3.iomartmail.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 00A6C4604F;
+	Thu,  8 Feb 2024 10:45:40 +0000 (GMT)
+Received: from vs3.iomartmail.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id DEDD34604E;
+	Thu,  8 Feb 2024 10:45:39 +0000 (GMT)
+Received: from asmtp2.iomartmail.com (unknown [10.12.10.249])
+	by vs3.iomartmail.com (Postfix) with ESMTPS;
+	Thu,  8 Feb 2024 10:45:39 +0000 (GMT)
+Received: from smtpclient.apple (cpc78591-glfd8-2-0-cust101.6-2.cable.virginm.net [86.15.6.102])
+	(authenticated bits=0)
+	by asmtp2.iomartmail.com (8.14.7/8.14.7) with ESMTP id 418AjdQk020684
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Thu, 8 Feb 2024 10:45:39 GMT
+From: Jonathan M Saville <jonathansaville@jms-consult.com>
+Message-Id: <18EBA136-0A9D-474E-AE67-A1E442128CDC@jms-consult.com>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_EAF87C4C-909F-44B6-A94D-0025079DF212"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.300.101.1.3\))
+Subject: Re: Loan Agreement
+Date: Thu, 8 Feb 2024 10:45:30 +0000
+In-Reply-To: <CAMr_NGG_3=fzV7h5QEiMu3VL_tbSORuh803uRD68sxHhr-jOsQ@mail.gmail.com>
+Cc: Anthony Hughes <th@inhomemedia.io>,
+        Jacqueline Hills <jacqueline.hills@jms-consult.com>
+To: Owen Thomas <ot@inhomemedia.io>
+References: <CAMr_NGEq7ni8b3uGV186sT5+K8SOo-Ukd+sDeX0u7tROExWR2Q@mail.gmail.com>
+ <A240D52C-113D-4217-8336-1CBC5C613402@inhomemedia.io>
+ <BDADAC2F-F738-400D-8B02-10FDE456DEEB@jms-consult.com>
+ <CAMr_NGG_3=fzV7h5QEiMu3VL_tbSORuh803uRD68sxHhr-jOsQ@mail.gmail.com>
+X-Mailer: Apple Mail (2.3731.300.101.1.3)
+X-Originating-IP: 86.15.6.102
+X-Thinkmail-Auth: jonathansaville@jms-consult.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=jms-consult.com; h=from
+	:message-id:content-type:mime-version:subject:date:in-reply-to
+	:cc:to:references; s=20230208; bh=apH9BYVtmo8K+NS80zFc8X+HD5kg5Y
+	n/OsKfJRfA1t4=; b=N+RJgkW+XJaDZYs6gNoYu2tONROWH13QfUqm6Owi1pcqM3
+	bK7f5Kq5Ld4TTN5kp8P3GWJWf5O62XsQ+osHPEIXy4x+wwu5sehlTEsqK0qO08bs
+	PEfJZu37INBFoFgFQJE5StuaA6NZFS7Qou5MzmTuz6zPRf4P6JsJYLOCHYdQsORt
+	yUTXZs+iAGIU1uGnqYYV/lYkgpI7JtnUSQ+KdGaOjZlXMdTWggIKO+AWN6JmKu9K
+	lyNX2X1mZYPOpMXEXPiA1JT/WCYxl+R8lrqny8+ktHYUUwOayY2bL/n7ntHhuVOj
+	BcMYj1iZyPfcTE+/fBGWL+sy+YbSn+5T8aD+CZOA==
+X-TM-AS-GCONF: 00
+X-TM-AS-Product-Ver: IMSVA-9.1.0.2090-9.0.0.1002-28178.004
+X-TM-AS-Result: No--26.091-10.0-31-10
+X-imss-scan-details: No--26.091-10.0-31-10
+X-TMASE-Version: IMSVA-9.1.0.2090-9.0.1002-28178.004
+X-TMASE-Result: 10--26.091000-10.000000
+X-TMASE-MatchedRID: hFbMlnd2lLMdRLdnWwNsaNl+dy3lQHNxJIL5WH+7MJI9DpdZx5HaZb1X
+	hhq8rF/jNanl/XcofYMOeEivp/zOUo9bHfxDWoibzlhhP4M79IjyfEIbP6iyJDwMSFAtG5mMDed
+	/BxnuiN80yMSO7apIUD4bJ4Zu6dsZTPCSzZMouRX8qzEDkzwmp836paW7ZnFoOhJ9m53n4aDIPb
+	n2oQhptcRPeAilHz1EuYhCPdC+eqFCYfuBQabljPctWb8/kW7oPPov5T+l6PGZmLDnd2pI3w5pB
+	v/7KJDvSikP5EIJEGRc9fLNQJj2QHn0x6scqY/T/eMDGv6oIPmyFmhU0AQsU1ovFDgcUGGNyIKH
+	zIGoT618Uwgzqe5YiFltg5sL35vH49oYbBSXZhX4nEvV7HPnWwXGi/7cli9jzdsZfo/JKgm6fN8
+	NIi7WeplFk0YRtezKAgbxNXiHGCpP6DnOkU3pb+eKNmNNd29XaDgPZBX/bMuuiAW0p38/t7Kw8H
+	x0EGitZ2uNmQkKXF423b525W4OgFPSAWHDBcndeGs4plHuj5QwaHGcAJmkbXfdMkv/4CaGK36BW
+	K75QOQdq6xnvK2Wy+Mecwql2rDB06rKqz454uQb164a/ZMs04HfzWJnn0eoqa+0bGZ+s5m6NS8T
+	fgIrtWb7dhuQA5VCfTcyZbvCBP6jo+6NKThvSW0p4D2S6u9Is0T0PE+KHuVdXlg9YBB9OohIjrz
+	eyQMKOCjykMcvhP5wBjtAn06VixVKcRKr3LVS9+6IwUlplAlh5IuIaxTO+ce59MOqfUqPS++yc8
+	IIyC80vqsllk1jDSt1Z0agp9TKXmo5Tys5gVsxjl0MrQJYVH11ZumDuRp7fS0Ip2eEHnyvXSmSd
+	lcYmrLn+0Vm71Lc9FZW/FNZbmvfd+P6wwCt8xoxTJ4LSy1oSRUA+vRNdLw=
+X-TMASE-SNAP-Result: 1.821001.0001-0-1-22:0,33:0,34:0-0
+
+
+--Apple-Mail=_EAF87C4C-909F-44B6-A94D-0025079DF212
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+Hi Owen, I am not a tax expert, but the loan should prob not affect the =
+SEIS status but worth you checking, the subscription agreement says that =
+the company will not do anything to prejudice the company getting =
+EIS/SEIS, my other question for the accountant is does B non-voting =
+affect that (I think prob not but worth checking) as I don=E2=80=99t =
+want the company to be in breach, Best, Jonathan
+
+
+
+> On 8 Feb 2024, at 10:40, Owen Thomas <ot@inhomemedia.io> wrote:
+>=20
+> Hi Jonathan,
+>=20
+> I am happy for Jacq to share this updated loan agreement with Kelvin
+>=20
+> Are we able to apply our loan to SEIS? I will ask my accountant what =
+the rules are.=20
+>=20
+> Thanks,
+> Owen
+>=20
+>=20
+> On Thu, 8 Feb 2024 at 10:32, Jonathan M Saville =
+<jonathansaville@jms-consult.com =
+<mailto:jonathansaville@jms-consult.com>> wrote:
+>> Hi both,
+>>=20
+>> I have spoken to Owen and I attach my suggested amends, you are =
+ofcourse free to reject them, but please let me and Jacq know - I am in =
+meetings for a chunk of today, so advance apols for any delays my side.  =
+Can you both confirm what you want to do about SEIS and EIS?, best, =
+Jonathan
+>>=20
+>>=20
+>>=20
+>>=20
+>>> On 8 Feb 2024, at 09:16, Anthony Hughes <th@inhomemedia.io =
+<mailto:th@inhomemedia.io>> wrote:
+>>>=20
+>>=20
+>>=20
+>>> I agree with Owen on this point this clause is the only one that =
+needs amending. Thanks=20
+>>> Sent from my iPhone
+>>>=20
+>>>> On 8 Feb 2024, at 08:53, Owen Thomas <ot@inhomemedia.io =
+<mailto:ot@inhomemedia.io>> wrote:
+>>>>=20
+>>>> =EF=BB=BF
+>>>> Thanks Jonathan.
+>>>>=20
+>>>> I have issue with the following Default term - (on one hand Eris =
+have demanded myself and Tony take a pay cut due to interests in other =
+businesses, but here they say we Default if we have any external =
+interest) - did I understand this point correctly? If so it's an issue =
+for me, I need to attend a monthly group finance meeting for the other =
+businesses I have shares in:
+>>>>=20
+>>>> 1.1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 The =
+Borrower carrying on or being concerned, engaged or interested in, or in =
+any way assisting, any business other than the business of the Company. =
+<>
+>>>> On Thu, Feb 8, 2024 at 8:07=E2=80=AFAM Jonathan M Saville =
+<jonathansaville@jms-consult.com =
+<mailto:jonathansaville@jms-consult.com>> wrote:
+>>>>> Hi Owen and Tony
+>>>>>=20
+>>>>> Following my discussion with Owen yesterday, I have highlighted in =
+yellow, some of the key areas of the new loan agreement sent to me =
+yesterday by Kelvin in the attached. =20
+>>>>>=20
+>>>>> In my view some of the terms are onerous - also please note that =
+the lender is Eris (not James) and therefore any rights to shares as =
+security (which means on default the shares would transfer) would =
+benefit Eris or its nominees.  Please let me know your thought, best, =
+Jonathan
+>>>>>=20
+>>>=20
+>>=20
+>>> This email has been scanned by iomartcloud.
+>>> http://www.iomartcloud.com <http://www.iomartcloud.com/>
+>>=20
+>=20
+> This email has been scanned by iomartcloud.
+> http://www.iomartcloud.com <http://www.iomartcloud.com/>
+
+
+--Apple-Mail=_EAF87C4C-909F-44B6-A94D-0025079DF212
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;">Hi Owen, I am =
+not a tax expert, but the loan should prob not affect the SEIS status =
+but worth you checking, the subscription agreement says that the company =
+will not do anything to prejudice the company getting EIS/SEIS, my other =
+question for the accountant is does B non-voting affect that (I think =
+prob not but worth checking) as I don=E2=80=99t want the company to be =
+in breach, Best, Jonathan<br><div>
+<div dir=3D"auto" style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, =
+0); letter-spacing: normal; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; text-decoration: none; word-wrap: =
+break-word; -webkit-nbsp-mode: space; line-break: =
+after-white-space;"><div><br></div></div><br>
+</div>
+<div><br><blockquote type=3D"cite"><div>On 8 Feb 2024, at 10:40, Owen =
+Thomas &lt;ot@inhomemedia.io&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div><div dir=3D"auto">Hi =
+Jonathan,</div><div dir=3D"auto"><br></div><div dir=3D"auto">I am happy =
+for Jacq to share this updated loan agreement with Kelvin</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">Are we able to apply our loan =
+to SEIS? I will ask my accountant what the rules are.&nbsp;</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">Thanks,</div><div =
+dir=3D"auto">Owen</div><div dir=3D"auto"><br></div><div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, 8 =
+Feb 2024 at 10:32, Jonathan M Saville &lt;<a =
+href=3D"mailto:jonathansaville@jms-consult.com">jonathansaville@jms-consul=
+t.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px =
+0.8ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;borde=
+r-left-color:rgb(204,204,204)"><div =
+style=3D"line-break:after-white-space">Hi both,<div><br></div><div>I =
+have spoken to Owen and I attach my suggested amends, you are ofcourse =
+free to reject them, but please let me and Jacq know - I am in meetings =
+for a chunk of today, so advance apols for any delays my side.&nbsp; Can =
+you both confirm what you want to do about SEIS and EIS?, best, =
+Jonathan</div><div><br></div><div></div></div><div =
+style=3D"line-break:after-white-space"><div><br><div>
+<div dir=3D"auto" style=3D"letter-spacing: normal; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; =
+word-spacing: 0px; text-decoration: none; line-break: =
+after-white-space;"><div><br></div></div></div><div><blockquote =
+type=3D"cite"></blockquote></div></div></div><div =
+style=3D"line-break:after-white-space"><div><div><blockquote =
+type=3D"cite"><div>On 8 Feb 2024, at 09:16, Anthony Hughes &lt;<a =
+href=3D"mailto:th@inhomemedia.io" =
+target=3D"_blank">th@inhomemedia.io</a>&gt; =
+wrote:</div><br></blockquote></div></div></div><div =
+style=3D"line-break:after-white-space"><div><div><blockquote =
+type=3D"cite"><div><div =
+dir=3D"auto"></div></div></blockquote></div></div></div><div =
+style=3D"line-break:after-white-space"><div><div><blockquote =
+type=3D"cite"><div><div dir=3D"auto">I agree with Owen on this point =
+this clause is the only one that needs amending. Thanks&nbsp;<br =
+id=3D"m_299419625645159261lineBreakAtBeginningOfSignature"><div =
+dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote =
+type=3D"cite">On 8 Feb 2024, at 08:53, Owen Thomas &lt;<a =
+href=3D"mailto:ot@inhomemedia.io" =
+target=3D"_blank">ot@inhomemedia.io</a>&gt; =
+wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div =
+dir=3D"ltr">=EF=BB=BF<div =
+dir=3D"ltr">Thanks&nbsp;Jonathan.<div><br></div><div>I have issue with =
+the following Default term - (on one hand Eris have demanded&nbsp;myself =
+and Tony take a pay cut due to interests in other businesses, but here =
+they say we Default if we have any external interest) - did I understand =
+this point correctly? If so it's an issue for me, I need to attend a =
+monthly group finance meeting for the other businesses&nbsp;I have =
+shares in:</div><div><br></div><div><p style=3D"margin:0cm 0cm 10pt =
+35.45pt;text-align:justify;line-height:130%;font-size:10pt;font-family:Ari=
+al,sans-serif"><a name=3D"m_299419625645159261__Ref158198407" =
+style=3D"font-family:Arial,sans-serif"><span style=3D"background:repeat =
+yellow;font-family:Arial,sans-serif">1.1<span =
+style=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-v=
+ariant-alternates:normal;font-kerning:auto;font-feature-settings:normal;fo=
+nt-stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;Times=
+ New =
+Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style=3D"background:repeat =
+yellow;font-family:Arial,sans-serif">The Borrower carrying on or being =
+concerned, engaged or interested in,
+or in any way assisting, any business other than the business of the =
+Company.</span></a><span style=3D"background:repeat =
+yellow;font-family:Arial,sans-serif"></span></p></div></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb =
+8, 2024 at 8:07=E2=80=AFAM Jonathan M Saville &lt;<a =
+href=3D"mailto:jonathansaville@jms-consult.com" =
+target=3D"_blank">jonathansaville@jms-consult.com</a>&gt; =
+wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px =
+0.8ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;borde=
+r-left-color:rgb(204,204,204)"><div>Hi Owen and =
+Tony<div><br></div><div>Following my discussion with Owen yesterday, I =
+have highlighted in yellow, some of the key areas of the new loan =
+agreement sent to me yesterday by Kelvin in the attached. =
+&nbsp;</div><div><br></div><div>In my view some of the terms are onerous =
+- also please note that the lender is Eris (not James) and therefore any =
+rights to shares as security (which means on default the shares would =
+transfer) would benefit Eris or its nominees.&nbsp; Please let me know =
+your thought, best, Jonathan</div><div><br><div>
+<div dir=3D"auto" =
+style=3D"text-align:start;text-indent:0px"><div></div></div></div></div></=
+div><div><div><div><div dir=3D"auto" =
+style=3D"text-align:start;text-indent:0px"><div></div></div></div></div></=
+div></blockquote></div>
+</div></blockquote>
+<br></div></div></blockquote></div></div></div><div =
+style=3D"line-break:after-white-space"><div><div><blockquote =
+type=3D"cite"><div><div dir=3D"auto"><hr>This email has been scanned by =
+iomartcloud.<br><a href=3D"http://www.iomartcloud.com/" =
+target=3D"_blank">http://www.iomartcloud.com</a><br><hr>
+</div></div></blockquote></div><br></div></div></blockquote></div></div>
+
+
+<br><hr>This email has been scanned by iomartcloud.<br><a =
+href=3D"http://www.iomartcloud.com/">http://www.iomartcloud.com</a><br><hr=
+></div></blockquote></div><br></body></html>=
+
+--Apple-Mail=_EAF87C4C-909F-44B6-A94D-0025079DF212--
+

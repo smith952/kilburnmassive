@@ -1,0 +1,855 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:3498:b0:a59:31b2:e81d with SMTP id g24csp1128844ejb;
+        Thu, 9 May 2024 06:23:26 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE8MNRopAH3Xtqx8zkTrrEDFZhI1TXr98JGsl6n9JHOQS4qJluknQJL3Cw8rnuVlxiJaWlv
+X-Received: by 2002:a05:6a00:1750:b0:6f4:47b0:6b5d with SMTP id d2e1a72fcca58-6f49c2ad3cbmr5059541b3a.30.1715261006490;
+        Thu, 09 May 2024 06:23:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1715261006; cv=none;
+        d=google.com; s=arc-20160816;
+        b=jVWbcF9EMzlDCyuBjl3TVcu2VpkyGGuDJoyHzoNMePFK6h2ls3JN813Y550xguZivB
+         wa/XddxaUaDaKSAD3ebFlCUMcJUuZt/Lnc1K/ihmW6jx5jxWlCD9PwM2fjKZa1KiKxeJ
+         N/vSd/crr4hdbImsc3QqYRrJLYuVk9W/AzNx3trKNWyXNvv+16Q+SQn5kPWnrBT+yU1x
+         HkvrfP1zVPd/V76FoWSud91oWOsEhziTeN5CZx7q4vCrzGubqPtfR0i8cYiHCIfDPJDF
+         wXwlw0QOGhj5CensR5TkUqGeP9bzLSVS66LXlHQcPu9ofuyQVyLnSDKVv2sVZT7hvxbA
+         1ZuQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=/jehg55lPqa5VNfWoH+B500HjKYWbTp1o66gwWUfh2w=;
+        fh=PPC1HqqdMuvCicfndAtvqlbv4AGpwjpAql224GPSQGU=;
+        b=wZ4+86omA+FiP/L+hbws49USPc/VWuMLVW9utbkPFEhm4wV/AFBcDkLthKQr3qEjI1
+         +EgWo9bvzZcBRq8ZpW6IXo1PzFzMT74FO0y4K4vOB1fz3qyN8Kp9WSSqODJhdefOlGr/
+         p74CJx5WvjMpaIx1UMoPSJYdSPvYbFSLTRxSUqK8Vm7zFZCJLyqdxZcj8+bdyx+epRCT
+         4XxRf+xDyiEG9gZhHqZs9/M0kejFWfgjsIt8bz7z2N8AqbQuX6kXz39W+xrszY3EWD2K
+         tdAK3nEla5Oa3MLfKLahtu69w1bnhRSC5hTRVSugiPnrYv6hnVCcoA8ybaONXDhRn0dY
+         NSBQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=fE4rIzTp;
+       spf=neutral (google.com: 2a00:1450:4864:20::62f is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) smtp.mailfrom=stephen@inhomemedia.io
+Return-Path: <stephen@inhomemedia.io>
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com. [2a00:1450:4864:20::62f])
+        by mx.google.com with ESMTPS id 41be03b00d2f7-63409e825fcsi1437763a12.97.2024.05.09.06.23.25
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 May 2024 06:23:26 -0700 (PDT)
+Received-SPF: neutral (google.com: 2a00:1450:4864:20::62f is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) client-ip=2a00:1450:4864:20::62f;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=fE4rIzTp;
+       spf=neutral (google.com: 2a00:1450:4864:20::62f is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) smtp.mailfrom=stephen@inhomemedia.io
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-a59a0d10e12so22396766b.3
+        for <ot@inhomemedia.io>; Thu, 09 May 2024 06:23:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1715261003; x=1715865803; darn=inhomemedia.io;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/jehg55lPqa5VNfWoH+B500HjKYWbTp1o66gwWUfh2w=;
+        b=fE4rIzTpbIq3uYMVeiAOCH7Eu9t0Z/uq4Y+M9ngbOld/I0Kns/0NMHEFRcXCP8mg5Q
+         xEoOqQ/8gR/0QfsnZQP9VDaqNb8vBtT8f004tdVN6zyYYQgmn5IDF+siaaQQ0Ab8TUNJ
+         v8VBO9bN5bBtkK2QcPXQ98tX4IVSeaDW+FK2aTIYhnfiPZusfOjPkrj4xkD+G+TfNYG4
+         cGKeVMfhFRUGaa3GLNlZuEHDTJyN4GqHssHceB1fEA44ugFD68wucxVy0lvs2byfT4bZ
+         XEI4DAiypAsvaJKZG4iwVhev3T6gZKEcsiDv5R8y+hLZK51BtlMIyV5ECAaf3MD3izc3
+         M5Dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715261003; x=1715865803;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/jehg55lPqa5VNfWoH+B500HjKYWbTp1o66gwWUfh2w=;
+        b=ZCzofj+3cvqfOShPJSXXCJMg6Zj0ShSVqKDo7UK3PQE/uZS5d+IEaArNtA02ynkCab
+         /LO9cSK77AwXOphaEEfN1jDvkoMztzar81FChBo6vq7CnrU9mBsUmgbrebklDzDfGHI2
+         waHrgiWwVbQSlD9GJBI/0O/Jlcz6wQjvNKS58ij5XBXOhi6yPi6olTx0W2gnFuyH6Z9D
+         CjT6LCcRrIAvSzCtzLImPGNJkSOniMyxv6AzhkPmrYmRjeUfthFnO6vKPh+/wpxgBjqm
+         yY7xFq1fp8IvQ11k5mk4AXZZGJuYnN3c6ihWKAH/eIEWs+e2jvjbt6cVCGe/BI5DBwQ1
+         QJLw==
+X-Gm-Message-State: AOJu0Yy3tU0Wx0M7J2TEG18SgM1qO4lSy569tJddSAHpTfYROmc03M6N
+	B2e5/ZVjCyeICkHEv4glluVkX7RhGbJ5G2KDj0nIcIdZ0MFrKJ2NJycV9BiYHKT+MkthJLnWHjr
+	3XmZ432y2Tri9PcLzNqEI9Mmo08ng8oiEK5QQEcwpUC6IAZ9kcWuQnw==
+X-Received: by 2002:a05:6402:3707:b0:572:d6b6:4bed with SMTP id
+ 4fb4d7f45d1cf-5731da62568mr3333089a12.2.1715261002793; Thu, 09 May 2024
+ 06:23:22 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAPsP-GaRYWBbQSEVHHQOTWko70ctjCt9=EOq650+77BzWvCV_w@mail.gmail.com>
+ <CAMr_NGEPKcv-sDRSr1xXRUS+UXOzX7vBhyS+5LES3OXTPUUM7g@mail.gmail.com>
+ <CAK4N=LAfLa7_wJNbnQiamKZaO5LJNf3M6jkU5Hn79XbvgxiY_Q@mail.gmail.com>
+ <CAMr_NGHYvSEm=Oyh7Nv7jKGp+xCXLPh3Y8NgkjGdV_aZ0Zc8Fg@mail.gmail.com>
+ <CAK4N=LA=E4h+qBZa1UNfLMCFmtYnA+rDkb2ODOzyg0DQDna9MA@mail.gmail.com> <CAMr_NGH7ZTVx3PM5bW8d5+hZgQyv5Y=sOJM=Sft7MeRtiTwRyA@mail.gmail.com>
+In-Reply-To: <CAMr_NGH7ZTVx3PM5bW8d5+hZgQyv5Y=sOJM=Sft7MeRtiTwRyA@mail.gmail.com>
+From: Stephen Gale <stephen@inhomemedia.io>
+Date: Thu, 9 May 2024 14:23:12 +0100
+Message-ID: <CAPsP-GZzmoUGfspU7bDHuDLTx_FxF2cXATsGTyuTbOcV05JHoQ@mail.gmail.com>
+Subject: Re: 4th/Eris proposed removals
+To: Owen Thomas <ot@inhomemedia.io>
+Content-Type: multipart/alternative; boundary="000000000000c4de5106180552b7"
+
+--000000000000c4de5106180552b7
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+There is a lot of detail there for sure.
+
+I think they hit 10,000 customers not 1,000.
+
+Our desired ration is 1 screen per 40 apartments
+
+I think that if the intention is to get a face to face meeting, we should
+just state that a good percentage of the current screens are placed in
+buildings which have no commercial value to IHM and are costing us both
+time and money to maintain. These are low quality buildings with many
+screens serving very few customers and do not meet our quality threshold.
+It would be great to understand whether these buildings still hold a value
+to 4th in terms of increasing penetration.
+
+It would be great to find a position which is mutually beneficial to both
+4th and IHM, whereby the screen network can both drive revenue and
+penetration. Clearly, the current situation is neither cost efficient or
+sustainable and we feel that this can be resolved for the long-term benefit
+of both companies.
+
+Something like that?
+
+Stephen Gale
+
+
+T: 07837 52186
+
+A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QE
+
+E: Stephen@inhomemedia.io <dave@inhomemedia.io>
+
+W: inhomemedia.io
+
+
+
+<https://inhomemedia.io/>
+
+
+On Thu, May 9, 2024 at 1:33=E2=80=AFPM Owen Thomas <ot@inhomemedia.io> wrot=
+e:
+
+> Thoughts on this mate?
+>
+> Not sure whether we should go into so much detail on first email, sort of
+> negates the need for a face to face meeting.
+>
+>
+>
+> ---------- Forwarded message ---------
+> From: Dave Evans <dave@inhomemedia.io>
+> Date: Thu, 9 May 2024 at 12:48
+> Subject: Re: 4th/Eris proposed removals
+> To: Owen Thomas <ot@inhomemedia.io>
+>
+>
+> Something like this mate?
+>
+> Hi Steve
+>
+> Firstly big congrats on reaching 1,000 customers - what a great
+> achievement for you and the team.
+>
+> I believe Jimmy has mentioned that I'd like to have a chat about how best
+> we move forward with the digital noticeboards that In Home Media is
+> managing in 4th Utility sites.  Could we get a date in the diary for next
+> week?
+>
+> Ahead of that, here are my thoughts.
+>
+> Currently we have the following numbers installed via Eris:
+>
+> 41 sites
+> 120 screens
+> 2501 apartments (=3D 1 screen per 20 apartments)
+> 6,200 estimated reach
+>
+> We also have X sites which were installed prior to your arrangement with
+> Eris.
+>
+> After considerable of analysis over the past year, we have drawn the
+> conclusion that only a small number of these are commercially viable for
+> us.  Many do not meet our minimum ratio of screens to apartments (1:25)
+> and/or the tenure (e.g. social housing) or location (not major city
+> centres) mean that they have little or no advertising value and in most
+> cases, we are not confident that managing agents are willing or able to p=
+ay
+> license fees for our content management software, which we have invested
+> substantially in, or ongoing technical support and ongoing screen
+> monitoring and maintenance.
+>
+> Furthermore we are contracted to pay Eris =C2=A350/month on all the scree=
+ns
+> they facilitated and to pay LDSK for their remote management software. on
+> live screens  This is simply not sustainable on sites with no commercial
+> value.
+>
+> As such, am I proposing that we continue to support approximately 40% of
+> these - 20 developments that do meet our commercial criteria and will be
+> predominantly in Manchester, Greater Manchester/Cheshire and London.
+>
+> With this smaller portfolio we will be able to generate sufficient income
+> to share advertising revenue (Y%) with The 4th Utility, which we forecast
+> at =C2=A3Z per annum for a period of A years.  The 4th Utility can contin=
+ue to
+> advertise on these screens with 1 x 10-second slot in the loop, at no
+> charge.
+>
+> I will send you a list of these sites. For the ones we cannot support, I
+> propose two options:
+>
+> 1. If these sites still retain a commercial value to The 4th Utility -
+> i.e. because fibe customer penetration is still some way below target - T=
+he
+> 4th Utility will take over management of the screens and content (using
+> LDSK and/or our MA portal - at no charge for the latter?)
+> 2. If the sites are no longer of strategic value to 4th, we will arrange
+> for removal of screens, storage and/or installation into new, more suitab=
+le
+> sites, at no charge.
+>
+> In order to proceed on this basis, we would require payment of all
+> outstanding invoices by the end of May, and a commitment to continue
+> payments at the agreed rate on the smaller portfolio.
+>
+> I hope you agree this provides the best solution moving forward, one whic=
+h
+> will benefit The 4th Utility financially and provide a good service to al=
+l
+> our mutual customers.  I look forward to discussing this with you at the
+> earliest opportunity.
+>
+> Kind regards
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> Dave Evans
+>
+> Marketing Director
+>
+>
+> T: 07930 124209
+>
+> A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QA
+> <https://www.google.com/maps/search/46-54+Great+Titchfield+Street,+London=
++W1W+7QA?entry=3Dgmail&source=3Dg>
+>
+> E: dave@inhomemedia.io
+>
+> W: inhomemedia.io
+>
+>
+>
+> <https://inhomemedia.io/>
+>
+>
+> <https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+>
+>
+> Just so you know... this email and any files transmitted with it are
+> confidential and intended solely for the use of the individual or entity =
+to
+> whom they are addressed. They are the property of In Home Media Ltd. If y=
+ou
+> have received this email in error please notify the system manager. This
+> message may contain confidential information and is intended only for the
+> individual named. Please notify the sender immediately by e-mail if you
+> have received this email by mistake and delete this email from your syste=
+m.
+> In Home Media  Ltd accepts no liability for the content of this email, or
+> for the consequences of any actions taken based on the information provid=
+ed
+> unless that information is subsequently confirmed in writing. If you are
+> not the intended recipient you are notified that disclosing, copying,
+> distributing or taking any action in reliance on the contents of this
+> information is strictly prohibited. In Home Media Ltd, 2nd Floor, Balfour
+> House, 46-54 Great Titchfield Street, London W1W 7QE
+> <https://www.google.com/maps/search/46-54+Great+Titchfield+Street,+London=
++W1W+7QE?entry=3Dgmail&source=3Dg>.
+> Company registration 14606919. VAT no. 435094106.
+>
+>
+> On Wed, May 8, 2024 at 3:53=E2=80=AFPM Owen Thomas <ot@inhomemedia.io> wr=
+ote:
+>
+>>
+>>
+>> ---------- Forwarded message ---------
+>> From: Dave Evans <dave@inhomemedia.io>
+>> Date: Thu, 2 May 2024 at 09:35
+>> Subject: Re: 4th/Eris proposed removals
+>> To: Owen Thomas <ot@inhomemedia.io>
+>> Cc: Stephen Gale <stephen@inhomemedia.io>, Anthony Hughes <
+>> th@inhomemedia.io>
+>>
+>>
+>> Morning All
+>>
+>> Yes, that approach makes sense to me Stephen.  Might be worth checking i=
+f
+>> there are any outside the 19 with best screen/units ratio with key MA's =
+we
+>> want to keep on-side -  i.e. at least communicate with them properly pri=
+or
+>> to removal.  Similarly, there are a few schemes now - not great
+>> ones-  where the MA is engaging with the portal, had training, etc -  so
+>> they should be given the opportunity to sign up for portal fees before
+>> removal.  In fact, that sentiment - pay or we remove - could be applied
+>> across the board to the lower ratio sites.
+>>
+>> For the 19 or so with the better ratios we propose taking forward
+>> with 4th, we need to then be proactive with their training, get all thei=
+r
+>> screens working pronto and have a similar approach to Kings Chelsea - i.=
+e.
+>> meetings to advise we've 'taken over' and that we need to enter contract=
+s
+>> after a trial period.  Ideally as part of a portfolio chat.
+>>
+>> O -  I would say yes to all your points. Also, we need to be clear that
+>> Jimmy (or whoever) has to relinquish LDSK access, to allow us to do our =
+job
+>> with MA's properly.
+>>
+>> D.
+>>
+>>
+>> Dave Evans
+>>
+>> Marketing Director
+>>
+>>
+>> T: 07930 124209
+>>
+>> A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QA
+>> <https://www.google.com/maps/search/46-54+Great+Titchfield+Street,+Londo=
+n+W1W+7QA?entry=3Dgmail&source=3Dg>
+>>
+>> E: dave@inhomemedia.io
+>>
+>> W: inhomemedia.io
+>>
+>>
+>>
+>> <https://inhomemedia.io/>
+>>
+>>
+>> <https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+>>
+>>
+>> Just so you know... this email and any files transmitted with it are
+>> confidential and intended solely for the use of the individual or entity=
+ to
+>> whom they are addressed. They are the property of In Home Media Ltd. If =
+you
+>> have received this email in error please notify the system manager. This
+>> message may contain confidential information and is intended only for th=
+e
+>> individual named. Please notify the sender immediately by e-mail if you
+>> have received this email by mistake and delete this email from your syst=
+em.
+>> In Home Media  Ltd accepts no liability for the content of this email, o=
+r
+>> for the consequences of any actions taken based on the information provi=
+ded
+>> unless that information is subsequently confirmed in writing. If you are
+>> not the intended recipient you are notified that disclosing, copying,
+>> distributing or taking any action in reliance on the contents of this
+>> information is strictly prohibited. In Home Media Ltd, 2nd Floor, Balfou=
+r
+>> House, 46-54 Great Titchfield Street, London W1W 7QE
+>> <https://www.google.com/maps/search/46-54+Great+Titchfield+Street,+Londo=
+n+W1W+7QE?entry=3Dgmail&source=3Dg>.
+>> Company registration 14606919. VAT no. 435094106.
+>>
+>>
+>> On Thu, May 2, 2024 at 9:07=E2=80=AFAM Owen Thomas <ot@inhomemedia.io> w=
+rote:
+>>
+>>> Thanks Stephen, yes I like this.. (I actually think it might be best
+>>> coming from you Stephen)
+>>>
+>>> Do we mention the =C2=A350/screen we have to pay Eris? Feel like this n=
+eeds
+>>> to be on his radar.
+>>>
+>>> Maybe on non Eris buildings we offer a discount on fees, say =C2=A340/m=
+onth
+>>> instead of =C2=A375.
+>>>
+>>> And on new stock we can offer to cover the capex and sell them ad space
+>>> like the G Network deal.
+>>>
+>>> Do we offer to move the screens FOC in return for clearing old invoices
+>>> this month? This is key from a cashflow perspective.
+>>>
+>>> We also need to ask who is our contact at 4thU going forward and Jimmy
+>>> has stopped all comms.
+>>>
+>>>
+>>>
+>>>
+>>>
+>>> On Thu, May 2, 2024 at 8:14=E2=80=AFAM Stephen Gale <stephen@inhomemedi=
+a.io>
+>>> wrote:
+>>>
+>>>> Morning all,
+>>>>
+>>>> As agreed yesterday, the best way forward with 4th is to send Steve
+>>>> Wilson an email with a proposal for how we best take the relationship
+>>>> forward and the crux of that is do deal with the current screens/schem=
+es
+>>>> which offer no value to IHM, but most importantly provide a tangible
+>>>> solution to 4th (a way out, if you like). I will have a stab at drafti=
+ng
+>>>> this, but just wanted us to agree on the rationale for the screens we
+>>>> remove.
+>>>>
+>>>> Currently they have the following numbers installed via Eris:
+>>>>
+>>>> 41 Schemes
+>>>> 120 Screens
+>>>> 2501 Apartments (=3D 1 screen per 20 apartments)
+>>>> 6,200 estimated reach
+>>>> =C2=A36,000 Eris monthly invoice.
+>>>>
+>>>> In my opinion, none of the above offer any real advertising value
+>>>> whatsoever, with the possible argument for keeping those in Manchester=
+.
+>>>> Rather than suggest we remove the whole lot, perhaps it's best to sugg=
+est
+>>>> removing the screens from the developments where the ratio of screens =
+to
+>>>> apartments is lower than 25. This would give us the following:-
+>>>>
+>>>> Total developments =3D 19
+>>>> Total apartments =3D 898
+>>>> Total screens =3D 84 (average of c10 screens per apartment)
+>>>>
+>>>> By doing this it would basically halve the number of schemes and
+>>>> assuming they were paying, save them =C2=A36,300 per month.
+>>>>
+>>>> What do you think?
+>>>>
+>>>>
+>>>>
+>>>> Stephen Gale
+>>>>
+>>>>
+>>>> T: 07837 52186
+>>>>
+>>>> A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QE
+>>>> <https://www.google.com/maps/search/46-54+Great+Titchfield+Street,+Lon=
+don+W1W+7QE?entry=3Dgmail&source=3Dg>
+>>>>
+>>>> E: Stephen@inhomemedia.io <dave@inhomemedia.io>
+>>>>
+>>>> W: inhomemedia.io
+>>>>
+>>>>
+>>>>
+>>>> <https://inhomemedia.io/>
+>>>>
+>>>
+
+--000000000000c4de5106180552b7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">There is a lot of detail there for sure.<div><br></div><di=
+v>I think they hit 10,000 customers not 1,000.</div><div><br></div><div>Our=
+ desired ration is 1 screen per 40 apartments</div><div><br></div><div>I th=
+ink that if the intention is to get a face to face meeting, we should just =
+state that a good percentage of the current screens are placed in buildings=
+ which have no commercial value to IHM and are costing us both time and mon=
+ey to maintain. These are low quality buildings with many screens serving v=
+ery few customers and do not meet our quality threshold. It would be great =
+to understand whether these buildings still hold a value to 4th in terms of=
+ increasing penetration.</div><div><br></div><div>It would be great to find=
+ a position which is mutually beneficial to both 4th and IHM, whereby the s=
+creen network can both drive revenue and penetration. Clearly, the current =
+situation is neither cost efficient or sustainable and we feel that this ca=
+n be resolved for the long-term benefit of both companies.</div><div><br></=
+div><div>Something like that?<br clear=3D"all"><div><div dir=3D"ltr" class=
+=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><p=
+ style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font color=3D=
+"#1a2234" face=3D"Poppins, sans-serif"><span style=3D"font-size:13.3333px">=
+Stephen Gale</span></font></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line=
+-height:1.38;margin-top:0pt;margin-bottom:0pt"><br></p><p dir=3D"ltr" style=
+=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><sp=
+an style=3D"font-size:10pt;font-family:Poppins,sans-serif;color:rgb(26,34,5=
+2);background-color:transparent;vertical-align:baseline">T: 07837 52186</sp=
+an></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top=
+:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-family:Poppins,s=
+ans-serif;color:rgb(26,34,52);background-color:transparent;vertical-align:b=
+aseline">A: Balfour House,=C2=A0</span><span style=3D"font-family:Poppins,s=
+ans-serif;color:rgb(26,34,52);background-color:transparent;vertical-align:b=
+aseline;font-size:13.3333px">46-54 Great Titchfield Street, London W1W 7QE<=
+/span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-=
+top:0pt;margin-bottom:0pt"><span style=3D"background-color:transparent;colo=
+r:rgb(26,34,52);font-family:Poppins,sans-serif;font-size:10pt">E: Stephen</=
+span><a href=3D"mailto:dave@inhomemedia.io" style=3D"color:rgb(17,85,204);b=
+ackground-color:transparent;font-family:Poppins,sans-serif;font-size:10pt" =
+target=3D"_blank">@inhomemedia.io</a></p><p dir=3D"ltr" style=3D"color:rgb(=
+0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"fo=
+nt-size:10pt;font-family:Poppins,sans-serif;color:rgb(26,34,52);background-=
+color:transparent;vertical-align:baseline">W:=C2=A0<a href=3D"http://inhome=
+media.io/" style=3D"color:rgb(17,85,204)" target=3D"_blank">inhomemedia.io<=
+/a></span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;mar=
+gin-top:0pt;margin-bottom:0pt"><br><br></p><p dir=3D"ltr" style=3D"color:rg=
+b(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><a href=3D"http=
+s://inhomemedia.io/" style=3D"color:rgb(17,85,204)" target=3D"_blank"><span=
+ style=3D"font-size:11pt;font-family:Arial,sans-serif;background-color:tran=
+sparent;vertical-align:baseline"><span style=3D"border:medium;display:inlin=
+e-block;overflow:hidden;width:520px;height:29px"><img src=3D"https://lh7-us=
+.googleusercontent.com/G4ff92Jazz4nl6U3XO4bw1HjizO0hBsjZS3iCZQOXffuUv-6C9ZO=
+Tq4IW15iyu5kB0duaGS4BIdTk6vBLe2by2YwpWZWU0ghiZa-ur3pLUYBvT5gmflP-8PDQuJOrK3=
+hWMiULmn98KuWeYwc8vZo5pQ" width=3D"520" height=3D"29" style=3D"margin-left:=
+0px;margin-top:0px"></span></span></a></p></div></div></div><br></div></div=
+><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Th=
+u, May 9, 2024 at 1:33=E2=80=AFPM Owen Thomas &lt;<a href=3D"mailto:ot@inho=
+memedia.io">ot@inhomemedia.io</a>&gt; wrote:<br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex"><div dir=3D"auto">Thoughts on this mate?</div>=
+<div dir=3D"auto"><br></div><div dir=3D"auto">Not sure whether we should go=
+ into so much detail on first email, sort of negates the need for a face to=
+ face meeting.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br=
+></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
+attr">---------- Forwarded message ---------<br>From: <strong class=3D"gmai=
+l_sendername" dir=3D"auto">Dave Evans</strong> <span dir=3D"auto">&lt;<a hr=
+ef=3D"mailto:dave@inhomemedia.io" target=3D"_blank">dave@inhomemedia.io</a>=
+&gt;</span><br>Date: Thu, 9 May 2024 at 12:48<br>Subject: Re: 4th/Eris prop=
+osed removals<br>To: Owen Thomas &lt;<a href=3D"mailto:ot@inhomemedia.io" t=
+arget=3D"_blank">ot@inhomemedia.io</a>&gt;<br></div><br><br><div dir=3D"ltr=
+"><div>Something like this mate?</div><div><br></div><div>Hi Steve</div><di=
+v><br></div><div>Firstly=C2=A0big congrats on reaching 1,000 customers - wh=
+at a great achievement=C2=A0for you and the team.=C2=A0=C2=A0</div><div><br=
+></div><div>I believe=C2=A0Jimmy has mentioned=C2=A0that I&#39;d like to ha=
+ve a chat about how best we move forward with=C2=A0the digital=C2=A0noticeb=
+oards=C2=A0that In Home Media is managing in 4th Utility sites.=C2=A0 Could=
+ we get a date in the diary for next week?</div><div><br></div><div>Ahead o=
+f that, here are my thoughts.</div><div><br></div><div>Currently we have th=
+e following numbers installed via Eris:<br><br>41 sites<br>120 screens<br>2=
+501 apartments (=3D 1 screen per 20 apartments)<br>6,200 estimated reach<br=
+></div><div><br></div><div>We also have <font style=3D"color:rgb(255,0,0)">=
+X </font>sites which were installed prior to your arrangement with Eris.</d=
+iv><div><br></div><div>After considerable of analysis over the past year, w=
+e have drawn the conclusion that only a small number of these are commercia=
+lly viable=C2=A0for us.=C2=A0 Many do not meet our minimum ratio of screens=
+ to apartments (1:25) and/or the tenure (e.g. social housing) or location (=
+not major city centres) mean that they have little=C2=A0or no advertising=
+=C2=A0value and in most cases, we are not confident that managing agents ar=
+e willing or able to pay license fees for our content management software, =
+which we have invested substantially in, or ongoing technical support and o=
+ngoing screen monitoring=C2=A0and=C2=A0maintenance.</div><div><br></div><di=
+v>Furthermore we are contracted to pay Eris =C2=A350/month on all the scree=
+ns they facilitated and to pay LDSK for their remote management software. o=
+n live screens=C2=A0 This is simply not sustainable on sites with no commer=
+cial value.</div><div><br></div><div>As such, am I proposing that we contin=
+ue to support approximately 40% of these - 20 developments that do meet our=
+ commercial criteria and will be predominantly=C2=A0in Manchester, Greater =
+Manchester/Cheshire and London.</div><div><br></div><div>With this smaller =
+portfolio we will be able to generate sufficient income to share advertisin=
+g revenue (<font style=3D"color:rgb(255,0,0)">Y</font>%) with The 4th Utili=
+ty, which we forecast at =C2=A3<font style=3D"color:rgb(255,0,0)">Z</font> =
+per annum for a period of<font style=3D"color:rgb(255,0,0)"> A </font>years=
+.=C2=A0 The 4th Utility can continue to advertise on these screens with 1 x=
+ 10-second slot in the loop, at no charge.</div><div><br></div><div>I will =
+send you a list of these sites. For the ones we cannot support, I propose t=
+wo options:</div><div><br></div><div>1. If these sites still retain a comme=
+rcial value to The 4th Utility -=C2=A0 i.e. because fibe customer penetrati=
+on is still some way below target - The 4th Utility will take over manageme=
+nt of the screens and content (using LDSK and/or our MA portal - <font styl=
+e=3D"color:rgb(255,0,0)">at no charge for the latter?</font>)</div><div>2. =
+If the sites are no longer of strategic value to 4th, we will arrange for r=
+emoval of screens, storage and/or installation into new, more suitable site=
+s, at no charge.=C2=A0</div><div><br></div><div>In order to proceed on this=
+ basis, we would require payment of all outstanding invoices by the end of =
+May, and a commitment to continue payments at the agreed rate on the smalle=
+r portfolio.</div><div><br></div><div>I hope you agree this provides the be=
+st solution moving forward, one which will benefit The 4th Utility financia=
+lly and provide a good service to all our mutual customers.=C2=A0 I look fo=
+rward to discussing this with you at the earliest=C2=A0opportunity.</div><d=
+iv><br></div><div>Kind regards</div></div><div dir=3D"ltr"><div><br></div><=
+div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><=
+div><br></div><div><br></div><div><br></div><br clear=3D"all"><div><div dir=
+=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><p dir=3D"ltr" style=3D=
+"line-height:1.38;margin-top:0pt;margin-bottom:0pt;color:rgb(0,0,0)"><span =
+style=3D"font-size:10pt;font-family:Poppins,sans-serif;vertical-align:basel=
+ine;background-color:transparent;color:rgb(26,34,52)">Dave Evans</span></p>=
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;c=
+olor:rgb(0,0,0)"><span style=3D"font-size:10pt;font-family:&quot;Times New =
+Roman&quot;,serif;vertical-align:baseline;background-color:transparent;colo=
+r:rgb(117,130,131)">Marketing Director</span></p><p dir=3D"ltr" style=3D"li=
+ne-height:1.38;margin-top:0pt;margin-bottom:0pt;color:rgb(0,0,0)"><br></p><=
+p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;co=
+lor:rgb(0,0,0)"><span style=3D"font-size:10pt;font-family:Poppins,sans-seri=
+f;vertical-align:baseline;background-color:transparent;color:rgb(26,34,52)"=
+>T: 07930 124209</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-=
+top:0pt;margin-bottom:0pt;color:rgb(0,0,0)"><span style=3D"font-size:10pt;f=
+ont-family:Poppins,sans-serif;vertical-align:baseline;background-color:tran=
+sparent;color:rgb(26,34,52)">A: Balfour House,=C2=A0</span><span style=3D"f=
+ont-family:Poppins,sans-serif;vertical-align:baseline;font-size:13.3333px;b=
+ackground-color:transparent;color:rgb(26,34,52)"><a href=3D"https://www.goo=
+gle.com/maps/search/46-54+Great+Titchfield+Street,+London+W1W+7QA?entry=3Dg=
+mail&amp;source=3Dg" style=3D"font-family:Poppins,sans-serif" target=3D"_bl=
+ank">46-54 Great Titchfield Street, London W1W 7QA</a></span></p><p dir=3D"=
+ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;color:rgb(0=
+,0,0)"><span style=3D"font-family:Poppins,sans-serif;font-size:10pt;backgro=
+und-color:transparent;color:rgb(26,34,52)">E:=C2=A0</span><a href=3D"mailto=
+:dave@inhomemedia.io" style=3D"font-family:Poppins,sans-serif;font-size:10p=
+t;background-color:transparent;color:rgb(17,85,204)" target=3D"_blank">dave=
+@inhomemedia.io</a></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:=
+0pt;margin-bottom:0pt;color:rgb(0,0,0)"><span style=3D"font-size:10pt;font-=
+family:Poppins,sans-serif;vertical-align:baseline;background-color:transpar=
+ent;color:rgb(26,34,52)">W:=C2=A0<a href=3D"http://inhomemedia.io/" style=
+=3D"font-family:Poppins,sans-serif;color:rgb(17,85,204)" target=3D"_blank">=
+inhomemedia.io</a></span></p><p dir=3D"ltr" style=3D"line-height:1.38;margi=
+n-top:0pt;margin-bottom:0pt;color:rgb(0,0,0)"><br><br></p><p dir=3D"ltr" st=
+yle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;color:rgb(0,0,0)">=
+<a href=3D"https://inhomemedia.io/" style=3D"color:rgb(17,85,204)" target=
+=3D"_blank"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;vert=
+ical-align:baseline;background-color:transparent"><span style=3D"border:med=
+ium;display:inline-block;overflow:hidden;width:520px;height:29px;font-famil=
+y:Arial,sans-serif"><img src=3D"https://lh7-us.googleusercontent.com/G4ff92=
+Jazz4nl6U3XO4bw1HjizO0hBsjZS3iCZQOXffuUv-6C9ZOTq4IW15iyu5kB0duaGS4BIdTk6vBL=
+e2by2YwpWZWU0ghiZa-ur3pLUYBvT5gmflP-8PDQuJOrK3hWMiULmn98KuWeYwc8vZo5pQ" wid=
+th=3D"520" height=3D"29" style=3D"margin-left: 0px; margin-top: 0px; font-f=
+amily: Arial, sans-serif;"></span></span></a></p><p dir=3D"ltr" style=3D"li=
+ne-height:1.38;margin-top:0pt;margin-bottom:0pt;color:rgb(0,0,0)"><br></p><=
+p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;co=
+lor:rgb(0,0,0)"><span style=3D"font-size:10pt;font-family:Poppins,sans-seri=
+f;vertical-align:baseline;background-color:transparent;color:rgb(26,34,52)"=
+><span style=3D"border:medium;display:inline-block;overflow:hidden;width:16=
+4px;height:24px;font-family:Poppins,sans-serif"><a href=3D"https://www.link=
+edin.com/company/in-home-media/?viewAsMember=3Dtrue" style=3D"font-family:P=
+oppins,sans-serif" target=3D"_blank"><img src=3D"https://lh7-us.googleuserc=
+ontent.com/cYdkuaQI6sWib78slCNi_Rz86PtOZ6DcUsNMwbOy-aII_ZEtMyjbiyrSeCokvdKW=
+Rcqldt-NzAEylM60R3dg7sPvFvGJFgjTZ85Ao7BrS0HraUMDhHTYQ9iOdBeXX0apBCOe0ySlE2Y=
+3esW4rs6EBV4" width=3D"164" height=3D"24" style=3D"margin-left: 0px; margin=
+-top: 0px; font-family: Poppins, sans-serif;"></a></span></span></p><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;color:r=
+gb(0,0,0)"><br></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;=
+margin-bottom:0pt;color:rgb(0,0,0)"><span style=3D"font-size:8pt;font-famil=
+y:Arial,sans-serif;vertical-align:baseline;background-color:transparent;col=
+or:rgb(153,153,153)">Just so you know... this email and any files transmitt=
+ed with it are confidential and intended solely for the use of the individu=
+al or entity to whom they are addressed. They are the property of In Home M=
+edia Ltd. If you have received this email in error please notify the system=
+ manager. This message may contain confidential information and is intended=
+ only for the individual named. Please notify the sender immediately by e-m=
+ail if you have received this email by mistake and delete this email from y=
+our system. In Home Media=C2=A0 Ltd accepts no liability for the content of=
+ this email, or for the consequences of any actions taken based on the info=
+rmation provided unless that information is subsequently confirmed in writi=
+ng. If you are not the intended recipient you are notified that disclosing,=
+ copying, distributing or taking any action in reliance on the contents of =
+this information is strictly prohibited. In Home Media Ltd, 2nd Floor, Balf=
+our House, <a href=3D"https://www.google.com/maps/search/46-54+Great+Titchf=
+ield+Street,+London+W1W+7QE?entry=3Dgmail&amp;source=3Dg" style=3D"font-fam=
+ily:Arial,sans-serif" target=3D"_blank">46-54 Great Titchfield Street, Lond=
+on W1W 7QE</a>. Company registration 14606919. VAT no. 435094106.</span></p=
+></div></div></div><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
+" class=3D"gmail_attr">On Wed, May 8, 2024 at 3:53=E2=80=AFPM Owen Thomas &=
+lt;<a href=3D"mailto:ot@inhomemedia.io" target=3D"_blank">ot@inhomemedia.io=
+</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
+0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
+<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">---------- Forwarded message ---------<br>From: <strong cla=
+ss=3D"gmail_sendername" dir=3D"auto">Dave Evans</strong> <span dir=3D"auto"=
+>&lt;<a href=3D"mailto:dave@inhomemedia.io" target=3D"_blank">dave@inhomeme=
+dia.io</a>&gt;</span><br>Date: Thu, 2 May 2024 at 09:35<br>Subject: Re: 4th=
+/Eris proposed removals<br>To: Owen Thomas &lt;<a href=3D"mailto:ot@inhomem=
+edia.io" target=3D"_blank">ot@inhomemedia.io</a>&gt;<br>Cc: Stephen Gale &l=
+t;<a href=3D"mailto:stephen@inhomemedia.io" target=3D"_blank">stephen@inhom=
+emedia.io</a>&gt;, Anthony Hughes &lt;<a href=3D"mailto:th@inhomemedia.io" =
+target=3D"_blank">th@inhomemedia.io</a>&gt;<br></div><br><br><div dir=3D"lt=
+r"><div>Morning All</div><div><br></div><div>Yes, that approach makes sense=
+ to me Stephen.=C2=A0 Might be worth checking if there are any outside the =
+19 with best screen/units ratio with key MA&#39;s we want to keep=C2=A0on-s=
+ide -=C2=A0 i.e. at least communicate with them properly prior to removal.=
+=C2=A0 Similarly, there are a few schemes now - not great ones-=C2=A0=C2=A0=
+where=C2=A0the MA is engaging with the portal, had training, etc -=C2=A0 so=
+ they should be given the opportunity to sign up for portal fees before rem=
+oval.=C2=A0 In fact, that sentiment - pay or we remove - could be applied a=
+cross the board to the lower ratio sites.</div><div><br></div><div>For the =
+19 or so with the better ratios we propose taking forward with=C2=A04th, we=
+ need to then be proactive with their training, get all their screens worki=
+ng pronto and have a similar approach to Kings Chelsea - i.e. meetings to a=
+dvise we&#39;ve &#39;taken over&#39; and that we need to enter contracts af=
+ter a trial period.=C2=A0 Ideally as part of a portfolio chat.</div><div><b=
+r></div><div>O -=C2=A0 I would say yes to all your points. Also, we need to=
+ be clear that Jimmy (or whoever) has to relinquish LDSK access, to allow u=
+s to do our job with MA&#39;s properly.</div><div><br></div><div>D.</div><d=
+iv><br></div><br clear=3D"all"><div><div dir=3D"ltr" class=3D"gmail_signatu=
+re"><div dir=3D"ltr"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0p=
+t;margin-bottom:0pt;color:rgb(0,0,0)"><span style=3D"font-size:10pt;font-fa=
+mily:Poppins,sans-serif;vertical-align:baseline;background-color:transparen=
+t;color:rgb(26,34,52)">Dave Evans</span></p><p dir=3D"ltr" style=3D"line-he=
+ight:1.38;margin-top:0pt;margin-bottom:0pt;color:rgb(0,0,0)"><span style=3D=
+"font-size:10pt;font-family:&quot;Times New Roman&quot;,serif;vertical-alig=
+n:baseline;background-color:transparent;color:rgb(117,130,131)">Marketing D=
+irector</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt;color:rgb(0,0,0)"><br></p><p dir=3D"ltr" style=3D"line-hei=
+ght:1.38;margin-top:0pt;margin-bottom:0pt;color:rgb(0,0,0)"><span style=3D"=
+font-size:10pt;font-family:Poppins,sans-serif;vertical-align:baseline;backg=
+round-color:transparent;color:rgb(26,34,52)">T: 07930 124209</span></p><p d=
+ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;color=
+:rgb(0,0,0)"><span style=3D"font-size:10pt;font-family:Poppins,sans-serif;v=
+ertical-align:baseline;background-color:transparent;color:rgb(26,34,52)">A:=
+ Balfour House,=C2=A0</span><span style=3D"font-family:Poppins,sans-serif;v=
+ertical-align:baseline;font-size:13.3333px;background-color:transparent;col=
+or:rgb(26,34,52)"><a href=3D"https://www.google.com/maps/search/46-54+Great=
++Titchfield+Street,+London+W1W+7QA?entry=3Dgmail&amp;source=3Dg" style=3D"f=
+ont-family:Poppins,sans-serif" target=3D"_blank">46-54 Great Titchfield Str=
+eet, London W1W 7QA</a></span></p><p dir=3D"ltr" style=3D"line-height:1.38;=
+margin-top:0pt;margin-bottom:0pt;color:rgb(0,0,0)"><span style=3D"font-fami=
+ly:Poppins,sans-serif;font-size:10pt;background-color:transparent;color:rgb=
+(26,34,52)">E:=C2=A0</span><a href=3D"mailto:dave@inhomemedia.io" style=3D"=
+font-family:Poppins,sans-serif;font-size:10pt;background-color:transparent;=
+color:rgb(17,85,204)" target=3D"_blank">dave@inhomemedia.io</a></p><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;color:r=
+gb(0,0,0)"><span style=3D"font-size:10pt;font-family:Poppins,sans-serif;ver=
+tical-align:baseline;background-color:transparent;color:rgb(26,34,52)">W:=
+=C2=A0<a href=3D"http://inhomemedia.io/" style=3D"font-family:Poppins,sans-=
+serif;color:rgb(17,85,204)" target=3D"_blank">inhomemedia.io</a></span></p>=
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;c=
+olor:rgb(0,0,0)"><br><br></p><p dir=3D"ltr" style=3D"line-height:1.38;margi=
+n-top:0pt;margin-bottom:0pt;color:rgb(0,0,0)"><a href=3D"https://inhomemedi=
+a.io/" style=3D"color:rgb(17,85,204)" target=3D"_blank"><span style=3D"font=
+-size:11pt;font-family:Arial,sans-serif;vertical-align:baseline;background-=
+color:transparent"><span style=3D"border:medium;display:inline-block;overfl=
+ow:hidden;width:520px;height:29px;font-family:Arial,sans-serif"><img src=3D=
+"https://lh7-us.googleusercontent.com/G4ff92Jazz4nl6U3XO4bw1HjizO0hBsjZS3iC=
+ZQOXffuUv-6C9ZOTq4IW15iyu5kB0duaGS4BIdTk6vBLe2by2YwpWZWU0ghiZa-ur3pLUYBvT5g=
+mflP-8PDQuJOrK3hWMiULmn98KuWeYwc8vZo5pQ" width=3D"520" height=3D"29" style=
+=3D"margin-left: 0px; margin-top: 0px; font-family: Arial, sans-serif;"></s=
+pan></span></a></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;=
+margin-bottom:0pt;color:rgb(0,0,0)"><br></p><p dir=3D"ltr" style=3D"line-he=
+ight:1.38;margin-top:0pt;margin-bottom:0pt;color:rgb(0,0,0)"><span style=3D=
+"font-size:10pt;font-family:Poppins,sans-serif;vertical-align:baseline;back=
+ground-color:transparent;color:rgb(26,34,52)"><span style=3D"border:medium;=
+display:inline-block;overflow:hidden;width:164px;height:24px;font-family:Po=
+ppins,sans-serif"><a href=3D"https://www.linkedin.com/company/in-home-media=
+/?viewAsMember=3Dtrue" style=3D"font-family:Poppins,sans-serif" target=3D"_=
+blank"><img src=3D"https://lh7-us.googleusercontent.com/cYdkuaQI6sWib78slCN=
+i_Rz86PtOZ6DcUsNMwbOy-aII_ZEtMyjbiyrSeCokvdKWRcqldt-NzAEylM60R3dg7sPvFvGJFg=
+jTZ85Ao7BrS0HraUMDhHTYQ9iOdBeXX0apBCOe0ySlE2Y3esW4rs6EBV4" width=3D"164" he=
+ight=3D"24" style=3D"margin-left: 0px; margin-top: 0px; font-family: Poppin=
+s, sans-serif;"></a></span></span></p><p dir=3D"ltr" style=3D"line-height:1=
+.38;margin-top:0pt;margin-bottom:0pt;color:rgb(0,0,0)"><br></p><p dir=3D"lt=
+r" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;color:rgb(0,0=
+,0)"><span style=3D"font-size:8pt;font-family:Arial,sans-serif;vertical-ali=
+gn:baseline;background-color:transparent;color:rgb(153,153,153)">Just so yo=
+u know... this email and any files transmitted with it are confidential and=
+ intended solely for the use of the individual or entity to whom they are a=
+ddressed. They are the property of In Home Media Ltd. If you have received =
+this email in error please notify the system manager. This message may cont=
+ain confidential information and is intended only for the individual named.=
+ Please notify the sender immediately by e-mail if you have received this e=
+mail by mistake and delete this email from your system. In Home Media=C2=A0=
+ Ltd accepts no liability for the content of this email, or for the consequ=
+ences of any actions taken based on the information provided unless that in=
+formation is subsequently confirmed in writing. If you are not the intended=
+ recipient you are notified that disclosing, copying, distributing or takin=
+g any action in reliance on the contents of this information is strictly pr=
+ohibited. In Home Media Ltd, 2nd Floor, Balfour House, <a href=3D"https://w=
+ww.google.com/maps/search/46-54+Great+Titchfield+Street,+London+W1W+7QE?ent=
+ry=3Dgmail&amp;source=3Dg" style=3D"font-family:Arial,sans-serif" target=3D=
+"_blank">46-54 Great Titchfield Street, London W1W 7QE</a>. Company registr=
+ation 14606919. VAT no. 435094106.</span></p></div></div></div><br></div><b=
+r><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, =
+May 2, 2024 at 9:07=E2=80=AFAM Owen Thomas &lt;<a href=3D"mailto:ot@inhomem=
+edia.io" target=3D"_blank">ot@inhomemedia.io</a>&gt; wrote:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Thanks Stephen=
+, yes I like this.. (I actually think it might be best coming from you Step=
+hen)<div><br></div><div>Do we mention the =C2=A350/screen we have to pay Er=
+is? Feel like this needs to be on his radar.</div><div><br></div><div>Maybe=
+ on non Eris buildings we offer a discount on fees, say =C2=A340/month inst=
+ead of =C2=A375.</div><div><br></div><div>And on new=C2=A0stock we can offe=
+r to cover the capex=C2=A0and sell them ad space like the G Network=C2=A0de=
+al.</div><div><br></div><div>Do we offer to move the screens FOC in return =
+for clearing old invoices this month? This is key from a cashflow=C2=A0pers=
+pective.</div><div><br></div><div>We also need to ask who is our contact at=
+ 4thU going forward=C2=A0and Jimmy has stopped all comms.</div><div><br></d=
+iv><div><br></div><div><br></div><div><br></div></div><br><div class=3D"gma=
+il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 2, 2024 at 8:14=
+=E2=80=AFAM Stephen Gale &lt;<a href=3D"mailto:stephen@inhomemedia.io" targ=
+et=3D"_blank">stephen@inhomemedia.io</a>&gt; wrote:<br></div><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
+ rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Morning all,<div><br><=
+/div><div>As agreed yesterday, the best way forward with 4th is to send Ste=
+ve Wilson an email with a proposal for how we best take the relationship fo=
+rward and the crux of that is do deal with the current screens/schemes whic=
+h offer no value to IHM, but most importantly provide a tangible solution t=
+o 4th (a way out, if you like). I will have a stab at drafting this, but ju=
+st wanted us to agree on the rationale for the screens we remove.</div><div=
+><br></div><div>Currently they have the following numbers installed via Eri=
+s:</div><div><br></div><div><div dir=3D"auto">41 Schemes</div><div dir=3D"a=
+uto">120 Screens</div><div dir=3D"auto">2501 Apartments (=3D 1 screen per 2=
+0 apartments)</div><div dir=3D"auto">6,200 estimated reach</div><div dir=3D=
+"auto">=C2=A36,000 Eris monthly invoice.</div></div><div dir=3D"auto"><br><=
+/div><div>In my opinion, none of the above offer any real advertising value=
+ whatsoever, with the possible argument for keeping those in Manchester. Ra=
+ther than suggest we remove the whole lot, perhaps it&#39;s best to suggest=
+ removing the screens from the developments where the ratio of screens to a=
+partments is lower than 25. This would give us the following:-</div><div><b=
+r></div><div>Total developments =3D 19</div><div>Total apartments =3D 898=
+=C2=A0</div><div>Total screens =3D 84 (average of c10 screens per apartment=
+)</div><div><br></div><div>By doing this it would basically halve the numbe=
+r of schemes and assuming they were paying, save them =C2=A36,300 per month=
+.</div><div><br></div><div>What do you think?</div><div><br></div><div><br>=
+</div><div><br clear=3D"all"><div><div dir=3D"ltr" class=3D"gmail_signature=
+"><div dir=3D"ltr"><p style=3D"line-height:1.38;margin-top:0pt;margin-botto=
+m:0pt"><font face=3D"Poppins, sans-serif" style=3D"font-family:Poppins,sans=
+-serif;color:rgb(26,34,52)"><span style=3D"font-size:13.3333px;font-family:=
+Poppins,sans-serif">Stephen Gale</span></font></p><p dir=3D"ltr" style=3D"l=
+ine-height:1.38;margin-top:0pt;margin-bottom:0pt;color:rgb(0,0,0)"><br></p>=
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;c=
+olor:rgb(0,0,0)"><span style=3D"font-size:10pt;font-family:Poppins,sans-ser=
+if;vertical-align:baseline;background-color:transparent;color:rgb(26,34,52)=
+">T: 07837 52186</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-=
+top:0pt;margin-bottom:0pt;color:rgb(0,0,0)"><span style=3D"font-size:10pt;f=
+ont-family:Poppins,sans-serif;vertical-align:baseline;background-color:tran=
+sparent;color:rgb(26,34,52)">A: Balfour House,=C2=A0</span><span style=3D"f=
+ont-family:Poppins,sans-serif;vertical-align:baseline;font-size:13.3333px;b=
+ackground-color:transparent;color:rgb(26,34,52)"><a href=3D"https://www.goo=
+gle.com/maps/search/46-54+Great+Titchfield+Street,+London+W1W+7QE?entry=3Dg=
+mail&amp;source=3Dg" style=3D"font-family:Poppins,sans-serif" target=3D"_bl=
+ank">46-54 Great Titchfield Street, London W1W 7QE</a></span></p><p dir=3D"=
+ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;color:rgb(0=
+,0,0)"><span style=3D"font-family:Poppins,sans-serif;font-size:10pt;backgro=
+und-color:transparent;color:rgb(26,34,52)">E: Stephen</span><a href=3D"mail=
+to:dave@inhomemedia.io" style=3D"font-family:Poppins,sans-serif;font-size:1=
+0pt;background-color:transparent;color:rgb(17,85,204)" target=3D"_blank">@i=
+nhomemedia.io</a></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0p=
+t;margin-bottom:0pt;color:rgb(0,0,0)"><span style=3D"font-size:10pt;font-fa=
+mily:Poppins,sans-serif;vertical-align:baseline;background-color:transparen=
+t;color:rgb(26,34,52)">W:=C2=A0<a href=3D"http://inhomemedia.io/" style=3D"=
+font-family:Poppins,sans-serif;color:rgb(17,85,204)" target=3D"_blank">inho=
+memedia.io</a></span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-to=
+p:0pt;margin-bottom:0pt;color:rgb(0,0,0)"><br><br></p><p dir=3D"ltr" style=
+=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;color:rgb(0,0,0)"><a =
+href=3D"https://inhomemedia.io/" style=3D"color:rgb(17,85,204)" target=3D"_=
+blank"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;vertical-=
+align:baseline;background-color:transparent"><span style=3D"border:medium;d=
+isplay:inline-block;overflow:hidden;width:520px;height:29px;font-family:Ari=
+al,sans-serif"><img src=3D"https://lh7-us.googleusercontent.com/G4ff92Jazz4=
+nl6U3XO4bw1HjizO0hBsjZS3iCZQOXffuUv-6C9ZOTq4IW15iyu5kB0duaGS4BIdTk6vBLe2by2=
+YwpWZWU0ghiZa-ur3pLUYBvT5gmflP-8PDQuJOrK3hWMiULmn98KuWeYwc8vZo5pQ" width=3D=
+"520" height=3D"29" style=3D"margin-left: 0px; margin-top: 0px; font-family=
+: Arial, sans-serif;"></span></span></a></p></div></div></div></div></div>
+</blockquote></div>
+</blockquote></div>
+</div></div>
+</blockquote></div>
+</div></div>
+</blockquote></div>
+
+--000000000000c4de5106180552b7--

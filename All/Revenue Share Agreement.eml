@@ -1,0 +1,226 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:ad87:b0:a3b:b3eb:9ad7 with SMTP id la7csp238328ejb;
+        Thu, 8 Feb 2024 08:36:44 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGhOIPKJoCo6Rml0X8/cSogJSRw5h4pk5NJo9OqbECwmwwSHN4KUBCW4H6vXPfgZ/pxhy3Z
+X-Received: by 2002:a17:907:8326:b0:a37:73be:7f56 with SMTP id mq38-20020a170907832600b00a3773be7f56mr6375444ejc.22.1707410204730;
+        Thu, 08 Feb 2024 08:36:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1707410204; cv=none;
+        d=google.com; s=arc-20160816;
+        b=lgbBHZWfhzGdaQ6toEc+1B2GIUUFzT7L+nClUTuzsMDuqRHUdshOXeLjCUFV2cUZVj
+         EmH8usifPfRDtlLOshsUr6h+3CqBycbWlqDbX7qTJw4i52GMUY6WhD3Z9zBauP8BvKXb
+         xooaqbNOQ+M98Sa94eJ0D596L5deUfW54XddT0tM92b04a/PrV+swv2D1od9R0e0NZ6J
+         gThBh7FkbOqJAiTergYFs5LoJMg+9KqioNgcB+m4ayWKuptogf79yFkKL4Yh1WO37smn
+         an/4clVkQQvOhrFuremRh5eL0aonhPhGlHUPYI0loLJj6hU2q8m6K1y8yi/yTibG7lh9
+         o9uQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=dkim-signature:content-transfer-encoding:cc:to:references
+         :message-id:in-reply-to:thread-topic:subject:from:date:mime-version;
+        bh=QE2OOcfzOhbm4Xy7qnxo+R3shVnn0FCCyBXYaMZ98pM=;
+        fh=h+eHm0oV9P3Ibg6hbBvu/FzDuNc7Bs9YvMuPeAqTsN8=;
+        b=y9IB83hR1T2g6ztcZ0ak0Q5if9zc4XtGvbdGfXHZ3jJiF18nTXbnxcu9hSzNFJbRVJ
+         dhCvQtr0X/mVft4fOBBF4F47pVjb2Tb/UTd6fh10k9Ah9DDHfhnQCevr5sYhB8SZr62h
+         pCTKAEvynBffLbkQ4dXKfMqdD2pkerDErfhOar5SN8NrhnxnGOhowNyOagciGU/Kvv8o
+         hmJ+Bgpi4nlikKNCIhEbsxdvsAarXBtQhLOCrv8iaAxbQAWHfB6NU4EqhTZedYgjLXg/
+         Cb9bNYbV3mujgVBIEeX5Ts5PUB356/whMWNB1txKwvNBznMLcuDjvjUatZplE+geTZpO
+         IkWQ==;
+        darn=inhomemedia.io
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@jms-consult.com header.s=20230208 header.b=KFTJhlyC;
+       spf=neutral (google.com: 62.128.193.156 is neither permitted nor denied by best guess record for domain of jacqueline.hills@jms-consult.com) smtp.mailfrom=jacqueline.hills@jms-consult.com
+Return-Path: <jacqueline.hills@jms-consult.com>
+Received: from mta6.iomartmail.com (mta6.iomartmail.com. [62.128.193.156])
+        by mx.google.com with ESMTPS id dv6-20020a170906b80600b00a3860c94c38si193240ejb.485.2024.02.08.08.36.44
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 08 Feb 2024 08:36:44 -0800 (PST)
+Received-SPF: neutral (google.com: 62.128.193.156 is neither permitted nor denied by best guess record for domain of jacqueline.hills@jms-consult.com) client-ip=62.128.193.156;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@jms-consult.com header.s=20230208 header.b=KFTJhlyC;
+       spf=neutral (google.com: 62.128.193.156 is neither permitted nor denied by best guess record for domain of jacqueline.hills@jms-consult.com) smtp.mailfrom=jacqueline.hills@jms-consult.com
+Received: from vs3.iomartmail.com (vs3.iomartmail.com [10.12.10.124])
+	by mta6.iomartmail.com (8.14.7/8.14.7) with ESMTP id 418Gail6017485;
+	Thu, 8 Feb 2024 16:36:44 GMT
+Received: from vs3.iomartmail.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id DF7924604E;
+	Thu,  8 Feb 2024 16:36:43 +0000 (GMT)
+Received: from vs3.iomartmail.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id C9BF04604C;
+	Thu,  8 Feb 2024 16:36:43 +0000 (GMT)
+Received: from asmtp2.iomartmail.com (unknown [10.12.10.249])
+	by vs3.iomartmail.com (Postfix) with ESMTPS;
+	Thu,  8 Feb 2024 16:36:43 +0000 (GMT)
+Received: from Jacquelines-MBP (host86-144-244-228.range86-144.btcentralplus.com [86.144.244.228])
+	(authenticated bits=0)
+	by asmtp2.iomartmail.com (8.14.7/8.14.7) with ESMTP id 418GahT6020796
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Thu, 8 Feb 2024 16:36:43 GMT
+MIME-Version: 1.0
+Date: Thu, 8 Feb 2024 16:36:42 +0000
+From: "jacqueline.hills@jms-consult.com" <jacqueline.hills@jms-consult.com>
+Subject: Re: Revenue Share Agreement
+Thread-Topic: Re: Revenue Share Agreement
+In-Reply-To: <A1A8C304-2386-4A26-95CE-272FA4EDBC65@inhomemedia.io>
+Message-ID: <52E3CFED-0D02-E443-A316-DE3D0D29D5F9@hxcore.ol>
+References:
+ <C0DD1C80-7D40-CA4B-8456-1E1D6D244D26@hxcore.ol>,<A1A8C304-2386-4A26-95CE-272FA4EDBC65@inhomemedia.io>
+To: Anthony Hughes <th@inhomemedia.io>
+Cc: Owen Thomas <ot@inhomemedia.io>,
+        Jonathan M Saville <jonathansaville@jms-consult.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
+X-Originating-IP: 86.144.244.228
+X-Thinkmail-Auth: jacqueline.hills@jms-consult.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=jms-consult.com; h=
+	mime-version:date:from:subject:in-reply-to:message-id:references
+	:to:cc:content-transfer-encoding:content-type; s=20230208; bh=M/
+	tE6VEfnCU2SyiGLHbfKeq9tf8n2jLL5cWDQC9/zm0=; b=KFTJhlyCjMwCSLXqX3
+	ZCdPSHUznz7OK7DMFqIJm5KN2GA1RoiFrgfdzpunRA+NnCmGN5AorF5NHIF43piJ
+	PSZP2fSLNLQRCRh04xz+MDP8j7QD4N7+GHddBnQZdvNfRj3QtGhRKiHncQNNEQsn
+	1s5sGC5MtJL45lRCx2zuI8ZRenKCqV5H78fIVI3xkahcBrkmThH9ME6wDWxJtTDH
+	NvSyrgkGGhOchlCiRUrW90FcY98ZIGERJ2nlLbRY06l+m9iNt8eI0D2VL6TsPMyv
+	j1gHIn+W1Ssj+q3+1TED44XdLv6bSq1vlXfn8L9EhceBuUlF97/4a4a640Er3hd+
+	rMbg==
+X-TM-AS-GCONF: 00
+X-TM-AS-Product-Ver: IMSVA-9.1.0.2090-9.0.0.1002-28180.000
+X-TM-AS-Result: No--24.450-10.0-31-10
+X-imss-scan-details: No--24.450-10.0-31-10
+X-TMASE-Version: IMSVA-9.1.0.2090-9.0.1002-28180.000
+X-TMASE-Result: 10--24.449900-10.000000
+X-TMASE-MatchedRID: I3/5JTTp/cQQo9nihO6svtdr79zR2+qdF5cXjwszASxHW+94FA8JFysI
+	uzCLc2mNrogFtKd/P7eysPB8dBBorWdrjZkJClxep3Z/y3zTL99CGOzZuO3NvLnYYc5tkWxnnQr
+	ZDK7DrTq87rU89eLPKZnB2qzM3UOUxOv8bbijtGuqNuoozuAP+QXw7c+gymvCpd9eRR8QtJXDwz
+	xYvNXdQLigBuDjJcn/jh8W55J4iKd16oSuRWGA6RJbZkwWA5HYpimlO7mS2uY3wzgWd/0cb8fA9
+	n6yoau5tPGelsKOu4j8DCHGEvzYB4vawJ4dXHm9irogNAXQW58bkqsab4RZFkm5WVrF3vB/AD5j
+	Sg1rFtCU1sgHARX+Hss3mdBBdiYS5ztF8OuvYTD5DhMAITBjSz2XWYWSiLXyuSnOOMRfMN0LwUw
+	fdPoXvtDZ1FFTJUymolen13B42W/QQXltEDZXypaJCE1UPj2WWaAwkmcFrzHRRKRvpdGsebPx3r
+	O+jk2Qb/A0Dvek73/kwMCV+cVEakNKxNfKw7SivAdlz3zxr6b6XlaQTkk4x8yUH2BaQVMONmg1c
+	kxsf6clJy85NfiMc6Gt1qu/SFJWWKoDKTsuRuTncrVZQ/mNPxe6sQL1XHD5sdJb8mpdccSB381i
+	Z59HqPRU+9PTPHSYmS0TtehjpJIgpb4EMwpbvvdoK1MEIGGXxoZxNHb/9nkID4rkuCl2gp4CIKY
+	/Hg3AWQy9YC5qGvyrkHq3RkpCLW4KlIF0bhOG8DFFIBzQ4Q0i4mJ41W/O+n7cGd19dSFd
+X-TMASE-SNAP-Result: 1.821001.0001-0-1-22:0,33:0,34:0-0
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40"><head><meta http-equiv=3DContent-Type content=
+=3D"text/html; charset=3Dutf-8"><meta name=3DGenerator content=3D"Microsoft=
+ Word 15 (filtered medium)"><!--[if !mso]><style>v\:* {behavior:url(#defaul=
+t#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	mso-ligatures:none;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB link=3Dblue vli=
+nk=3Dpurple style=3D'word-wrap:break-word;-webkit-nbsp-mode:space;line-brea=
+k:after-white-space'><div class=3DWordSection1><p class=3DMsoNormal><span s=
+tyle=3D'font-size:11.0pt;mso-fareast-language:EN-US'>Thanks Anthony<o:p></o=
+:p></span></p><p class=3DMsoNormal><span style=3D'font-size:11.0pt;mso-fare=
+ast-language:EN-US'><o:p>&nbsp;</o:p></span></p><div><div><p class=3DMsoNor=
+mal><span style=3D'font-family:"Arial",sans-serif'>Jacqueline S Hills<o:p><=
+/o:p></span></p><p class=3DMsoNormal><span style=3D'font-family:"Arial",san=
+s-serif'>Chief Legal Officer<o:p></o:p></span></p><p class=3DMsoNormal><spa=
+n style=3D'font-family:"Arial",sans-serif'><o:p>&nbsp;</o:p></span></p><p c=
+lass=3DMsoNormal><span style=3D'font-family:"Arial",sans-serif'><o:p>&nbsp;=
+</o:p></span></p><p class=3DMsoNormal><span style=3D'font-family:"Arial",sa=
+ns-serif'>JMS Consulting is a trading name of JMS Consulting Ltd, a limited=
+ liability company registered in England with company registration number 0=
+3686858 and whose registered office is at 2 Swan Lane, London EC4R 3TT.&nbs=
+p; This email and any attachments is confidential and may be legally privil=
+eged and is intended only for the addressee.&nbsp; If you receive this emai=
+l (including any attachments) in error, please contact the sender of this e=
+mail and immediately delete all records of it from your system.&nbsp; The s=
+ender of this email cannot guarantee that it is free from any error or viru=
+s and the recipient is responsible for ensuring they have adequate virus an=
+d other security scanning programs to address this.&nbsp; <o:p></o:p></span=
+></p><p class=3DMsoNormal><span style=3D'font-family:"Arial",sans-serif'>Th=
+is message and any attachments are intended for the persons named as addres=
+sees only and may contain confidential information.&nbsp; Any information c=
+ontained herein may also be protected by copyright.&nbsp; If you receive th=
+is in error please notify us, delete it and do not make use or copy it .&nb=
+sp; You must not copy, disseminate, or otherwise distribute or publish this=
+ message except for the purposes for which this message is intended, withou=
+t our consent.&nbsp; Please note this email has been created in the knowled=
+ge that internet email is not a 100% secure communications medium.&nbsp; We=
+ advise that you understand and accept this lack of security when emailing =
+us.&nbsp; <o:p></o:p></span></p></div></div><p class=3DMsoNormal><span styl=
+e=3D'font-size:11.0pt;mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span><=
+/p><p class=3DMsoNormal><span style=3D'font-size:11.0pt;mso-fareast-languag=
+e:EN-US'><o:p>&nbsp;</o:p></span></p><div id=3Dmail-editor-reference-messag=
+e-container><div><div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;p=
+adding:3.0pt 0cm 0cm 0cm'><p class=3DMsoNormal style=3D'margin-bottom:12.0p=
+t'><b><span style=3D'font-size:12.0pt;color:black'>From: </span></b><span s=
+tyle=3D'font-size:12.0pt;color:black'>Anthony Hughes &lt;th@inhomemedia.io&=
+gt;<br><b>Date: </b>Thursday, 8 February 2024 at 15:24<br><b>To: </b>jacque=
+line.hills@jms-consult.com &lt;jacqueline.hills@jms-consult.com&gt;<br><b>C=
+c: </b>Owen Thomas &lt;ot@inhomemedia.io&gt;, Jonathan M Saville &lt;jonath=
+ansaville@jms-consult.com&gt;<br><b>Subject: </b>Re: Revenue Share Agreemen=
+t<o:p></o:p></span></p></div><p class=3DMsoNormal><span style=3D'font-size:=
+11.0pt'>Hi Jacqueline,<o:p></o:p></span></p><div><p class=3DMsoNormal><span=
+ style=3D'font-size:11.0pt'><o:p>&nbsp;</o:p></span></p></div><div><p class=
+=3DMsoNormal><span style=3D'font-size:11.0pt'>Revenue share agreement attac=
+hed.<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span style=3D'fo=
+nt-size:11.0pt'><o:p>&nbsp;</o:p></span></p></div><div><p class=3DMsoNormal=
+><span style=3D'font-size:11.0pt'>My home address is.<o:p></o:p></span></p>=
+</div><div><p class=3DMsoNormal><span style=3D'font-size:11.0pt'><o:p>&nbsp=
+;</o:p></span></p></div><div><p class=3DMsoNormal><span style=3D'font-size:=
+11.0pt'>Holly Cottage<o:p></o:p></span></p></div><div><p class=3DMsoNormal>=
+<span style=3D'font-size:11.0pt'>51 South Downs Road&nbsp;<o:p></o:p></span=
+></p></div><div><p class=3DMsoNormal><span style=3D'font-size:11.0pt'>Bowdo=
+n<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span style=3D'font-=
+size:11.0pt'>WA14 3DR<o:p></o:p></span></p></div><div><p class=3DMsoNormal>=
+<span style=3D'font-size:11.0pt'><o:p>&nbsp;</o:p></span></p></div><div><p =
+class=3DMsoNormal><span style=3D'font-size:11.0pt'>Email address James - <a=
+ href=3D"mailto:jtuttiett@penultcp.co.uk">jtuttiett@penultcp.co.uk</a>&nbsp=
+;David - David.moulton@erismedia.co.uk<o:p></o:p></span></p></div><div><p c=
+lass=3DMsoNormal><span style=3D'font-size:11.0pt'><o:p>&nbsp;</o:p></span><=
+/p></div><div><p class=3DMsoNormal><span style=3D'font-size:11.0pt'>I will =
+ask for their addresses.<o:p></o:p></span></p></div><div><p class=3DMsoNorm=
+al><span style=3D'font-size:11.0pt'><o:p>&nbsp;</o:p></span></p></div><div>=
+<p class=3DMsoNormal><span style=3D'font-size:11.0pt'>Best<o:p></o:p></span=
+></p></div><div><p class=3DMsoNormal><span style=3D'font-size:11.0pt'><o:p>=
+&nbsp;</o:p></span></p></div><div><p class=3DMsoNormal><span style=3D'font-=
+size:11.0pt'>Tony<o:p></o:p></span></p></div><div><p class=3DMsoNormal><spa=
+n style=3D'font-size:11.0pt'><o:p>&nbsp;</o:p></span></p></div><p class=3DM=
+soNormal><span style=3D'font-size:11.0pt'><o:p>&nbsp;</o:p></span></p><div =
+class=3DMsoNormal align=3Dcenter style=3D'text-align:center'><span style=3D=
+'font-size:11.0pt'><hr size=3D0 width=3D"100%" align=3Dcenter></span></div>=
+<p class=3DMsoNormal><span style=3D'font-size:11.0pt'>This email has been s=
+canned by iomartcloud.<br><a href=3D"http://www.iomartcloud.com">http://www=
+iomartcloud.com</a><o:p></o:p></span></p><div class=3DMsoNormal align=3Dce=
+nter style=3D'text-align:center'><span style=3D'font-size:11.0pt'><hr size=
+=3D0 width=3D"100%" align=3Dcenter></span></div></div></div></div></body></=
+html>=
+

@@ -1,0 +1,271 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:1d51:b0:a77:c3e9:7948 with SMTP id o17csp242146ejh;
+        Wed, 10 Jul 2024 03:50:38 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCXmDNwnj2CZ3YZh5cSWtfyhZ1oRForQbGV0EsbOicXGTseNBPvhtDC8ziUOwJdk8coyESoaurdxtGu+udbeurz/QA==
+X-Google-Smtp-Source: AGHT+IEGOX0J9PLv7qfjTX1WBGvJYW2OCsgqyaMI9b1ghcu8j1ziwcy9LeF8dAsjWFK3n2DloWdJ
+X-Received: by 2002:a25:2608:0:b0:de4:738b:c2e4 with SMTP id 3f1490d57ef6-e041b078239mr6103240276.28.1720608637715;
+        Wed, 10 Jul 2024 03:50:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1720608637; cv=none;
+        d=google.com; s=arc-20160816;
+        b=b49gJW7X3ihWHd30ymGVtAxaaqEyCdAr+43gf0R5fyBghZuYiCTFAG43Y2VvhnCbOb
+         0NXewBA2JpJ83f7S1NFYTxkHS5+mLGo5CNmQ+IFsV8hRJJyzI8eT7nyPphMDqQUe/iWc
+         wS3gLdOSS+xdH/z1AxWNyp/0lZ7P0+rhWcLvHER40tnkOKrsFgYWj6w26CCynJ2xL5jW
+         FIptqcBpjJD3SvcSSripUGzRvPfeM4KGh2XGeBD7PS7LW2W8jeOEmuDDsEHIz9Y/e239
+         9ghfjep0/FfT8l9WLMPa1JM5BxeCR76fGss0ptOa7y2l42F2X76AeWsYTbg5QauMs1tm
+         9WPw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=tA1T7p+2QrlB/7vh4r/YP8wotdM4VqYPmyzfqYDBa5g=;
+        fh=FkEo0OYV+1BRDipJp0A85txJiw+0c8dhfffnkuyhWzw=;
+        b=Cd56M2cH5I0BJffd8j7pD7LWJqK1nWRSjbbh6kiAwMZgCjeR4i45xDwpJc3ir4NuhL
+         vYhw3S7dh53kGHPg0bPMoSyNoX2324jY8B+1DX2yPRykeWJtNmjiN31YYH4uPODkv/EX
+         Pl5yYuU/vWwluYFXsms/B2CQXoorwatJd2wSeNpwHTmQ1dQeXtDi+C96TL4zfRZh4JKn
+         IKY0XgvCylao5X8NTurCTcBOudw1H5XyDMIxoWm7p7fNHScuChyoYiteKwmPg6o9Wuv+
+         IX6OBMqrTmOC1ulIJObPc4gOtlM0jmp3lQKjdpmkoxaiGnWIEvopEVIZgLYGf1SaYyUN
+         2Pnw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=3epDrcvd;
+       spf=neutral (google.com: 2607:f8b0:4864:20::32b is neither permitted nor denied by best guess record for domain of dave@inhomemedia.io) smtp.mailfrom=dave@inhomemedia.io
+Return-Path: <dave@inhomemedia.io>
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com. [2607:f8b0:4864:20::32b])
+        by mx.google.com with ESMTPS id 3f1490d57ef6-e041a9a4a04si2340473276.479.2024.07.10.03.50.37
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Jul 2024 03:50:37 -0700 (PDT)
+Received-SPF: neutral (google.com: 2607:f8b0:4864:20::32b is neither permitted nor denied by best guess record for domain of dave@inhomemedia.io) client-ip=2607:f8b0:4864:20::32b;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=3epDrcvd;
+       spf=neutral (google.com: 2607:f8b0:4864:20::32b is neither permitted nor denied by best guess record for domain of dave@inhomemedia.io) smtp.mailfrom=dave@inhomemedia.io
+Received: by mail-ot1-x32b.google.com with SMTP id 46e09a7af769-7039e4a4a03so868068a34.3
+        for <ot@inhomemedia.io>; Wed, 10 Jul 2024 03:50:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1720608637; x=1721213437; darn=inhomemedia.io;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=tA1T7p+2QrlB/7vh4r/YP8wotdM4VqYPmyzfqYDBa5g=;
+        b=3epDrcvdBRENQ4CWPVMcUxJTaGGzH9skGJYz6HphMP/j1OqlYyYF9lZlhVjwCGzEfT
+         3PM1dl3eAw0vmCU/AUCcgNfd+q/rqTA1Dc1s05Cp4QCRsFl27ZwuGcdd0zlVFVTrDs17
+         xmnq2S6gDINfD2IBl2YP/dmL6i/T/dghTWpDTA655S4A/tmti/ZwpeTyZh+UKLCGYUMv
+         xDFURiVy22AJ5mkroFCOku+s0S04gHq0ScRL9xoEAmq8Fs7gqUb08oBDsemUOJWjHN0v
+         SXZo6jkTIAy0c8W+RGSpKy6i2q2wC6X9jR7FIahJrc3MP5PJKYWCtxEUOyLcsFomry7V
+         KmiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720608637; x=1721213437;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tA1T7p+2QrlB/7vh4r/YP8wotdM4VqYPmyzfqYDBa5g=;
+        b=PB1FijhET1tQv+7A4YEvgGtPf3ZtIH6kTKqnAJ1CBbNrYTqf2oZGyk00AOS9zleaa1
+         /Sjbd13v/ISZd2skY/ULZ3+G1NRvUMGP9tpSuXzlJGqjsETjFeBX9JU8uK/LlnMFdEWn
+         UDaw4/Zr8XDAXIqtqJGMQ/ICYpjXYJuR/2CS0i87NUMeSa58kJoXSxrj7SEH7Zr8LLym
+         Ualwa/WXmIFIXErhaIQzTnQheAN6Nf2WbVgUDL8BYSGMZzSLPJyLdeouiRcw6oAPTh+z
+         R2ZQJyLkK3C8yuf5b08YQGzD9ieAp94zlATJ61oNZUvS9jCDtKZhoHk6Ick54aOwcfOv
+         Wh/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVGGcgMFwKsAmYPTNzdq877HwhAPJnT2mKKNxu4Ywfe91Iuv+BPO/0rKbRhJfPIxuSFfg9aTHxsCkMMNZrX7PmcyA==
+X-Gm-Message-State: AOJu0Yw6+UcIVvMZIVX4BVwRo0CWjCPNf3T38UMQ/a7LjRLDTD2tEWQA
+	36cyiAQe416/R/mQB3ik5ji75FcpVOa7FkHkgezsTNU+b3lAByyhOrDYp9ik/zF5+11zvDJd2DY
+	clcuFwYlNUO4IjbmYmaTR46i9pBpz0VriPkRkqBmDwutcUpO6tD2yuw==
+X-Received: by 2002:a05:6870:3327:b0:24f:d873:9f32 with SMTP id
+ 586e51a60fabf-25eae831fdbmr4082153fac.26.1720608636672; Wed, 10 Jul 2024
+ 03:50:36 -0700 (PDT)
+MIME-Version: 1.0
+From: Dave Evans <dave@inhomemedia.io>
+Date: Wed, 10 Jul 2024 11:50:24 +0100
+Message-ID: <CAK4N=LA+J2q3+5Zx0LWeQph17VkUeW-LA-m5XzQhAOLKTmAULg@mail.gmail.com>
+Subject: Xenia contract
+To: Anthony Hughes <th@inhomemedia.io>
+Cc: Stephen Gale <stephen@inhomemedia.io>, Owen Thomas <ot@inhomemedia.io>
+Content-Type: multipart/alternative; boundary="000000000000963a1a061ce26af9"
+
+--000000000000963a1a061ce26af9
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Tony
+
+I've adapted this for multiple sites and the deal agreed in principle, as
+we discussed.
+
+https://docs.google.com/document/d/1S7-FTmn-oCuQyBY0mjS_DB3Mm8xzRHdb0ik3TIJ=
+KwzQ/edit?usp=3Dsharing
+
+Please check the sections highlighted in blue, in particular the
+assumptions around  revenue share and portal fees -  I couldn't remember if
+there was a small revenue share on the =C2=A31.50.
+
+I've listed the existing buildings in schedule 3 at the end, piecing the
+details together from various spreadsheets we have! Hopefully this is
+accurate, but no doubt they will check it.  If you can send me the new
+sites, I'll add those to the table.
+
+A few things occurred to me while doing this:
+
+   - For sites that may be added in the future, I assume this can be done
+   by way of addendum, on the same terms but with the appropriate entry lev=
+el
+   charges, given that we have the option in clause 6 of increasing charges=
+ by
+   inflation annually.
+   - The Agreement assumes a single commencement date for all sites - does
+   this need additional wording to allow for some starting at later dates t=
+o
+   fit in with service charge budgeting?
+   - I've left in the 5 year term with a 12 month break clause - I assume
+   they will need this to comply with section 20, even though these are all
+   'instructed' sites.  Again, maybe this needs more definition as they (or
+   we) may wish to terminate on individual developments, rather than the wh=
+ole
+   contract.
+
+Let me know if we need any changes at this stage but I think for something
+of this scale, we would want Jonathon to look at it too, when the time is
+right.
+
+Stephen - another set of eyes would be good if you have a minute,
+especially on the ad rev example.
+
+D.
+
+
+Dave Evans
+
+Marketing Director
+
+
+T: 07930 124209
+
+A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QA
+
+E: dave@inhomemedia.io
+
+W: inhomemedia.io
+
+
+
+<https://inhomemedia.io/>
+
+
+<https://www.linkedin.com/company/in-home-media/?viewAsMember=3Dtrue>
+
+
+Just so you know... this email and any files transmitted with it are
+confidential and intended solely for the use of the individual or entity to
+whom they are addressed. They are the property of In Home Media Ltd. If you
+have received this email in error please notify the system manager. This
+message may contain confidential information and is intended only for the
+individual named. Please notify the sender immediately by e-mail if you
+have received this email by mistake and delete this email from your system.
+In Home Media  Ltd accepts no liability for the content of this email, or
+for the consequences of any actions taken based on the information provided
+unless that information is subsequently confirmed in writing. If you are
+not the intended recipient you are notified that disclosing, copying,
+distributing or taking any action in reliance on the contents of this
+information is strictly prohibited. In Home Media Ltd, 2nd Floor, Balfour
+House, 46-54 Great Titchfield Street, London W1W 7QE. Company registration
+14606919. VAT no. 435094106.
+
+--000000000000963a1a061ce26af9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Tony</div><div><br></div><div>I&#39;ve adapted=C2=
+=A0this for multiple sites and the deal agreed in principle, as we discusse=
+d.</div><div>=C2=A0=C2=A0</div><div><a href=3D"https://docs.google.com/docu=
+ment/d/1S7-FTmn-oCuQyBY0mjS_DB3Mm8xzRHdb0ik3TIJKwzQ/edit?usp=3Dsharing">htt=
+ps://docs.google.com/document/d/1S7-FTmn-oCuQyBY0mjS_DB3Mm8xzRHdb0ik3TIJKwz=
+Q/edit?usp=3Dsharing</a><br></div><div><br></div><div>Please check the sect=
+ions highlighted in blue, in particular the assumptions around=C2=A0 revenu=
+e share and portal fees -=C2=A0 I couldn&#39;t remember if there was a smal=
+l revenue share on=C2=A0the =C2=A31.50.</div><div><br></div><div>I&#39;ve l=
+isted the existing buildings in schedule 3 at the end, piecing the details =
+together from various spreadsheets we have! Hopefully this is accurate, but=
+ no doubt they will check it.=C2=A0 If you can send me the new sites, I&#39=
+;ll add those to the table.</div><div><br></div><div>A few things occurred =
+to me while doing this:<br></div><div><ul><li>For sites that may be added i=
+n the future, I assume this can be done by way of=C2=A0addendum, on the sam=
+e terms but with the appropriate entry=C2=A0level charges, given that we ha=
+ve the option in clause 6 of increasing=C2=A0charges by inflation annually.=
+</li><li>The Agreement assumes a single commencement date for all sites - d=
+oes this need additional=C2=A0wording to allow for some starting=C2=A0at la=
+ter dates to fit in with service charge=C2=A0budgeting?<br></li><li>I&#39;v=
+e left in the 5 year term with a 12 month break clause - I assume they will=
+ need this to comply with=C2=A0section 20, even though=C2=A0these are all &=
+#39;instructed&#39; sites.=C2=A0 Again, maybe this needs more definition as=
+ they (or we) may wish to terminate on individual developments, rather than=
+ the whole contract.</li></ul><div>Let me know if we need any changes at th=
+is stage but I think for something of this scale, we would want Jonathon to=
+ look at it too, when the time is right.</div></div><div><br></div><div>Ste=
+phen - another set of eyes would be good if you have a minute, especially o=
+n the ad rev example.</div><div><br></div><div>D.</div><div><br></div><br c=
+lear=3D"all"><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=
+=3D"gmail_signature"><div dir=3D"ltr"><p dir=3D"ltr" style=3D"color:rgb(0,0=
+,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-=
+size:10pt;font-family:Poppins,sans-serif;color:rgb(26,34,52);background-col=
+or:transparent;vertical-align:baseline">Dave Evans</span></p><p dir=3D"ltr"=
+ style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0p=
+t"><span style=3D"font-size:10pt;font-family:&quot;Times New Roman&quot;,se=
+rif;color:rgb(117,130,131);background-color:transparent;vertical-align:base=
+line">Marketing Director</span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0)=
+;line-height:1.38;margin-top:0pt;margin-bottom:0pt"><br></p><p dir=3D"ltr" =
+style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt=
+"><span style=3D"font-size:10pt;font-family:Poppins,sans-serif;color:rgb(26=
+,34,52);background-color:transparent;vertical-align:baseline">T: 07930 1242=
+09</span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;marg=
+in-top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-family:Pop=
+pins,sans-serif;color:rgb(26,34,52);background-color:transparent;vertical-a=
+lign:baseline">A: Balfour House,=C2=A0</span><span style=3D"font-family:Pop=
+pins,sans-serif;color:rgb(26,34,52);background-color:transparent;vertical-a=
+lign:baseline;font-size:13.3333px">46-54 Great Titchfield Street, London W1=
+W 7QA</span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;m=
+argin-top:0pt;margin-bottom:0pt"><span style=3D"background-color:transparen=
+t;color:rgb(26,34,52);font-family:Poppins,sans-serif;font-size:10pt">E:=C2=
+=A0</span><a href=3D"mailto:dave@inhomemedia.io" style=3D"color:rgb(17,85,2=
+04);background-color:transparent;font-family:Poppins,sans-serif;font-size:1=
+0pt" target=3D"_blank">dave@inhomemedia.io</a></p><p dir=3D"ltr" style=3D"c=
+olor:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span st=
+yle=3D"font-size:10pt;font-family:Poppins,sans-serif;color:rgb(26,34,52);ba=
+ckground-color:transparent;vertical-align:baseline">W:=C2=A0<a href=3D"http=
+://inhomemedia.io/" style=3D"color:rgb(17,85,204)" target=3D"_blank">inhome=
+media.io</a></span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height=
+:1.38;margin-top:0pt;margin-bottom:0pt"><br><br></p><p dir=3D"ltr" style=3D=
+"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><a hre=
+f=3D"https://inhomemedia.io/" style=3D"color:rgb(17,85,204)" target=3D"_bla=
+nk"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;background-c=
+olor:transparent;vertical-align:baseline"><span style=3D"border:medium;disp=
+lay:inline-block;overflow:hidden;width:520px;height:29px"><img src=3D"https=
+://lh7-us.googleusercontent.com/G4ff92Jazz4nl6U3XO4bw1HjizO0hBsjZS3iCZQOXff=
+uUv-6C9ZOTq4IW15iyu5kB0duaGS4BIdTk6vBLe2by2YwpWZWU0ghiZa-ur3pLUYBvT5gmflP-8=
+PDQuJOrK3hWMiULmn98KuWeYwc8vZo5pQ" width=3D"520" height=3D"29" style=3D"mar=
+gin-left:0px;margin-top:0px"></span></span></a></p><p dir=3D"ltr" style=3D"=
+color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><br></p=
+><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:10pt;font-family:Poppins,sans-se=
+rif;color:rgb(26,34,52);background-color:transparent;vertical-align:baselin=
+e"><span style=3D"border:medium;display:inline-block;overflow:hidden;width:=
+164px;height:24px"><a href=3D"https://www.linkedin.com/company/in-home-medi=
+a/?viewAsMember=3Dtrue" target=3D"_blank"><img src=3D"https://lh7-us.google=
+usercontent.com/cYdkuaQI6sWib78slCNi_Rz86PtOZ6DcUsNMwbOy-aII_ZEtMyjbiyrSeCo=
+kvdKWRcqldt-NzAEylM60R3dg7sPvFvGJFgjTZ85Ao7BrS0HraUMDhHTYQ9iOdBeXX0apBCOe0y=
+SlE2Y3esW4rs6EBV4" width=3D"164" height=3D"24" style=3D"margin-left:0px;mar=
+gin-top:0px"></a></span></span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0)=
+;line-height:1.38;margin-top:0pt;margin-bottom:0pt"><br></p><p dir=3D"ltr" =
+style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt=
+"><span style=3D"font-size:8pt;font-family:Arial,sans-serif;color:rgb(153,1=
+53,153);background-color:transparent;vertical-align:baseline">Just so you k=
+now... this email and any files transmitted with it are confidential and in=
+tended solely for the use of the individual or entity to whom they are addr=
+essed. They are the property of In Home Media Ltd. If you have received thi=
+s email in error please notify the system manager. This message may contain=
+ confidential information and is intended only for the individual named. Pl=
+ease notify the sender immediately by e-mail if you have received this emai=
+l by mistake and delete this email from your system. In Home Media=C2=A0 Lt=
+d accepts no liability for the content of this email, or for the consequenc=
+es of any actions taken based on the information provided unless that infor=
+mation is subsequently confirmed in writing. If you are not the intended re=
+cipient you are notified that disclosing, copying, distributing or taking a=
+ny action in reliance on the contents of this information is strictly prohi=
+bited. In Home Media Ltd, 2nd Floor, Balfour House, 46-54 Great Titchfield =
+Street, London W1W 7QE. Company registration 14606919. VAT no. 435094106.</=
+span></p></div></div></div></div>
+
+--000000000000963a1a061ce26af9--

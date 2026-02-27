@@ -1,0 +1,532 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:907:3d90:b0:ac7:b8c2:8604 with SMTP id he16csp2247975ejc;
+        Tue, 22 Apr 2025 02:12:52 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHu+wHnA+nLUFCaUXbNp7bJIFlJZRSA4F93EdMvIg4oqCOM7lQ9jxBq63s0y0I1lKMn/Bb2
+X-Received: by 2002:a05:6512:131b:b0:54d:6a01:4bf6 with SMTP id 2adb3069b0e04-54d6e662796mr3479568e87.57.1745313172439;
+        Tue, 22 Apr 2025 02:12:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1745313172; cv=none;
+        d=google.com; s=arc-20240605;
+        b=HfZdg5FHEhoM8rOUd/8UygRlohuTpU4K7wwvizaDO86fQ6wlgXeR5qhbqv7Y3kHSv2
+         IKvCbAAu3MaczDzYvwSLc1i7bOg3qlsHLDuGatjujaX2pH9s3T2hqA4gDE8bqQJmCQU3
+         TjCGj5dVRJXzF/Wut72odQ+tpN169Obu9yt890WQJqX2c2s8YnHt/g2fiSUJclqykHjQ
+         E4KE59oMuuqHr/8zwAOc/jy/pbYSDc9oK7eIpJzesUOsKNz4emQRJ5XN5ycgWxlAPll7
+         bFiMvttYMWzQg0ZkyNYuQPz6oPBEv4FltZVaohM77RxoDziZ0ZxkbqqcJkw/o6G0g/Bw
+         m9UA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:references:message-id:cc:date:in-reply-to:from:subject
+         :mime-version:dkim-signature;
+        bh=lP19FbwpBCK3oEbsBY52doJ5UnB6e6YsEmunva9W7u0=;
+        fh=H+bS2iP1ElsW7XeSPitF/DqzpcQhuvvAingrxh+l+fI=;
+        b=Bmua2UwoafZfCwJdYoL9u5do8bWGg7jflENyogYvGtTK8mNtU8bO9Q2lHn4IlYPvTo
+         rJ+19IKI147RlNrLAafek5ldEJ+7N19DFNC+66/dLh3jWZndOH5emMwA34fiptQuQbul
+         JohIcvq15o20nFMIs4UsZQ16/o66gBMM2/qurKrLELrN/dvXoXE/0uUZAkgyG9Y5zCcZ
+         0Mix6Ji9VoZ2P/Ar4oDotfqXj08TB1Cq+AIsTWCOQioPwfIa0Dv71bLQCuwOhl3Mr02p
+         gd58U7XQxA49o3vFk2tjLnGbwUjCPPbOjtAFR5a3rJyn5JNXXIio+Oq0WPnUNydy7iFJ
+         urXg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=lj+y2J+C;
+       spf=none (google.com: th@inhomemedia.io does not designate permitted sender hosts) smtp.mailfrom=th@inhomemedia.io;
+       dara=pass header.i=@inhomemedia.io
+Return-Path: <th@inhomemedia.io>
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com. [2a00:1450:4864:20::32d])
+        by mx.google.com with ESMTPS id 38308e7fff4ca-3109077b046si37274001fa.124.2025.04.22.02.12.51
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Apr 2025 02:12:52 -0700 (PDT)
+Received-SPF: none (google.com: th@inhomemedia.io does not designate permitted sender hosts) client-ip=2a00:1450:4864:20::32d;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=lj+y2J+C;
+       spf=none (google.com: th@inhomemedia.io does not designate permitted sender hosts) smtp.mailfrom=th@inhomemedia.io;
+       dara=pass header.i=@inhomemedia.io
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-43690d4605dso39337765e9.0
+        for <ot@inhomemedia.io>; Tue, 22 Apr 2025 02:12:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1745313171; x=1745917971; darn=inhomemedia.io;
+        h=to:references:message-id:cc:date:in-reply-to:from:subject
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=lP19FbwpBCK3oEbsBY52doJ5UnB6e6YsEmunva9W7u0=;
+        b=lj+y2J+COl/O9yS1j6q/LlD4Z9RZ3uxsEpNHKe++1oX5RMjFi3hzlpQW+Ekr9BQpcd
+         AB0ZXOirAuj1lGPsQK5PhZhpweWyDdSKblulCtUy7VnO/yKYpwPc6cJuVduLuoQP49Zh
+         S52Q2/P9B/+9aKwBves3VsOjqXb5mJgRW+MeKeIaI+52ZV6xJ+xSGsVyIgQQR9JwogaC
+         uyhY/WXf78ZDQ2HimL48WA457UEYXkGXX8YL/owzdw2lON8UVi96SO5mnHS5hu0nww4q
+         XuKEQuJeMBfCxJaXIDEGKwAvKzZDUaaZu0LSc54SE7r9zkDJLuuPutj3d05680rQC8of
+         PJfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745313171; x=1745917971;
+        h=to:references:message-id:cc:date:in-reply-to:from:subject
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lP19FbwpBCK3oEbsBY52doJ5UnB6e6YsEmunva9W7u0=;
+        b=aQX2fRxw5R0LxkFqnuGwmJrpAawdWVq67g2NJW1YyQFdqjAz4e8HpMyDa5pujPPo8Q
+         8i1nfAlVtsR6LmWtd0aeF3c3lgUbEiMcbaSJLlAoKj1zSgERNJ4FpvN57UwRvhix2AUm
+         JoDz8ly3uucnAgdRYbYTUpTW7eVCQCQRW/7qoSAgFjM4BDqlNaOaKwI/bP7NArmoKRWd
+         dF1MFdQR4W3+hV1grVkj8zPMM+Gd+KPwVhC3qPu0jhRw1tFlTZTkudvZjDRXe4qCXe1B
+         4FWxcpw4KwF5iA0wUdB0ciLN37ohlOtq4gOLybPausjhTaAQJSfnE4g9gOFzcbDnbqBr
+         dGfg==
+X-Gm-Message-State: AOJu0Yy0MupqaiHQNj4WznnauYCUzxhm5q8Dc/xhwiWICulzyt05092T
+	/z/8+lEwy6dA+JoaRdPT2Mzn1ZQEvLT2eLKQrCeAvXXCc43j1pz6/iLOmCrwpw==
+X-Gm-Gg: ASbGncvtN2AFSEmdeQH8GH3S9FY+n3ahtNzfnibKXhJIhI9G1GN6kF578foHdCUdXAl
+	w/+3cws7X5POz1QZ70S02pq0EkGgGF1QBCItiYcaqf6L348adiUAixGljhlA9bVN5kszPINF8hk
+	7NDZQGattw7c242KMSUQnvA7k5m5N2dkznWtBw1J4KMMhJO8okTrv7hIzU/MxrOH+x59uga3y/W
+	U1P92b1//Mm5uVrW7qAFspg2wP8ug/msHtWZDAnBzkqUd8lyeA89qtLaSZDXClYeYAltBzqC726
+	o+cgDlkfJGR2RSyqiTtihpgaasI74fMhkeaA41RZcm1qzJK5UqVIkpLuioM9CqXRUjR3cF4M/09
+	imwv5EOPSn8nL2aOL1OrglrZn5wTD
+X-Received: by 2002:a05:600c:3583:b0:43c:f689:dd with SMTP id 5b1f17b1804b1-4406abb3bd9mr110267965e9.19.1745313171074;
+        Tue, 22 Apr 2025 02:12:51 -0700 (PDT)
+Return-Path: <th@inhomemedia.io>
+Received: from smtpclient.apple (host81-132-0-218.range81-132.btcentralplus.com. [81.132.0.218])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4406d5acc5dsm168610015e9.9.2025.04.22.02.12.50
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 22 Apr 2025 02:12:50 -0700 (PDT)
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_CE4D82AA-FAB4-4166-9C80-51CA3AC1533B"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.700.6.1.9\))
+Subject: Re: Overdue Invoice- In Home Media Ltd
+From: Anthony Hughes <th@inhomemedia.io>
+X-Priority: 1
+In-Reply-To: <CWXP123MB2807DF5F217F58A9F8107717D4BD2@CWXP123MB2807.GBRP123.PROD.OUTLOOK.COM>
+Date: Tue, 22 Apr 2025 10:12:40 +0100
+Cc: "ot@inhomemedia.io" <ot@inhomemedia.io>,
+ "info@inhomemedia.io" <info@inhomemedia.io>
+Message-Id: <03A12926-C88A-420F-85BD-3B84DA3056D9@inhomemedia.io>
+References: <CWXP123MB28078A501581717B604107F8D4CB2@CWXP123MB2807.GBRP123.PROD.OUTLOOK.COM>
+ <CWXP123MB2807DF5F217F58A9F8107717D4BD2@CWXP123MB2807.GBRP123.PROD.OUTLOOK.COM>
+To: Credit Control <creditcontrol@luminoav.com>
+X-Mailer: Apple Mail (2.3731.700.6.1.9)
+
+
+--Apple-Mail=_CE4D82AA-FAB4-4166-9C80-51CA3AC1533B
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+Unfortunately the Company is in the process of being placed into =
+liquidation, the liquidator will be in touch in due course.
+
+> On 16 Apr 2025, at 12:00, Credit Control <creditcontrol@luminoav.com> =
+wrote:
+>=20
+> Good afternoon,
+>=20
+> Please can we have an update regarding payment date for invoice 3494 =
+as a matter of urgency.
+>=20
+> Kind Regards,=E2=80=8B=E2=80=8B=E2=80=8B=E2=80=8B
+> =E2=80=8B
+> Credit Control
+> <image685981.png> <http://www.luminoav.com/>=09
+>  	=20
+> <image101600.png>
+> =C2=A0=C2=A0Lumino=C2=A0AV=C2=A0Support=C2=A0-=C2=A0Click=C2=A0Here =
+<https://luminoav-help.freshdesk.com/support/home>
+> <image724223.png>
+> =C2=A0=C2=A0www.luminoav.com <http://www.luminoav.com/>
+> Lumino AV Solutions Limited is registered in England under No. =
+10556664 with its registered office at Unit 5, Denbigh Hall, Milton =
+Keynes, Buckinghamshire, MK3 7QT
+> =F0=9F=8C=B2 Consider the environment. Do you really need to print =
+this email?
+> Lumino AV Solutions Limited accepts no liability for the content of =
+this email, or for the consequences of any actions taken on the basis of =
+the information provided, unless that information is subsequently =
+confirmed in writing. Any views or opinions presented in this email are =
+solely those of the author and do not necessarily represent those of the =
+company.
+> From: Credit Control <creditcontrol@luminoav.com>
+> Sent: 05 March 2025 10:36
+> To: ot@inhomemedia.io <ot@inhomemedia.io>; th@inhomemedia.io =
+<th@inhomemedia.io>
+> Subject: Overdue Invoice- In Home Media Ltd
+> =20
+> Good afternoon,
+>=20
+> We have the following invoice which is overdue on the account for =
+payment. Please can you confirm a payment date as a matter of urgency.
+>=20
+> <image.png>
+>=20
+> I look forward to hearing from you.
+>=20
+> Kind Regards,=E2=80=8B=E2=80=8B=E2=80=8B=E2=80=8B
+> =E2=80=8B
+> Credit Control
+> <image460997.png> <http://www.luminoav.com/>=09
+>  	=20
+> <image096153.png>
+> =C2=A0=C2=A0Lumino=C2=A0AV=C2=A0Support=C2=A0-=C2=A0Click=C2=A0Here =
+<https://luminoav-help.freshdesk.com/support/home>
+> <image329424.png>
+> =C2=A0=C2=A0www.luminoav.com <http://www.luminoav.com/>
+> Lumino AV Solutions Limited is registered in England under No. =
+10556664 with its registered office at Unit 5, Denbigh Hall, Milton =
+Keynes, Buckinghamshire, MK3 7QT
+> =F0=9F=8C=B2 Consider the environment. Do you really need to print =
+this email?
+> Lumino AV Solutions Limited accepts no liability for the content of =
+this email, or for the consequences of any actions taken on the basis of =
+the information provided, unless that information is subsequently =
+confirmed in writing. Any views or opinions presented in this email are =
+solely those of the author and do not necessarily represent those of the =
+company.
+
+
+--Apple-Mail=_CE4D82AA-FAB4-4166-9C80-51CA3AC1533B
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;">Unfortunately =
+the Company is in the process of being placed into liquidation, the =
+liquidator will be in touch in due course.<br><div><br><blockquote =
+type=3D"cite"><div>On 16 Apr 2025, at 12:00, Credit Control =
+&lt;creditcontrol@luminoav.com&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div><meta charset=3D"UTF-8"><div =
+class=3D"elementToProof" style=3D"font-style: normal; font-variant-caps: =
+normal; font-weight: 400; letter-spacing: normal; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
+none; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt;">Good =
+afternoon,</div><div class=3D"elementToProof" style=3D"font-style: =
+normal; font-variant-caps: normal; font-weight: 400; letter-spacing: =
+normal; text-align: start; text-indent: 0px; text-transform: none; =
+white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+text-decoration: none; font-family: Aptos, Aptos_EmbeddedFont, =
+Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: =
+12pt;"><br></div><div class=3D"elementToProof" style=3D"font-style: =
+normal; font-variant-caps: normal; font-weight: 400; letter-spacing: =
+normal; text-align: start; text-indent: 0px; text-transform: none; =
+white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+text-decoration: none; font-family: Aptos, Aptos_EmbeddedFont, =
+Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: =
+12pt;">Please can we have an update regarding payment date for invoice =
+3494 as a matter of urgency.</div><div class=3D"elementToProof" =
+style=3D"font-style: normal; font-variant-caps: normal; font-weight: =
+400; letter-spacing: normal; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; text-decoration: none; font-family: =
+Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, =
+sans-serif; font-size: 12pt;"><br></div><div dir=3D"ltr" =
+style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-style: =
+normal; font-variant-caps: normal; font-weight: 400; letter-spacing: =
+normal; text-align: start; text-indent: 0px; text-transform: none; =
+white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+text-decoration: none; font-size: 1px; direction: ltr;"><table dir=3D"ltr"=
+ cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width: =
+789.96875px; direction: ltr; border-collapse: collapse; font-size: =
+1px;"><tbody><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"vertical-align: top;"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"border-collapse: collapse; font-size: =
+0px;"><tbody><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"padding: 10px 0px; vertical-align: top;"><table cellpadding=3D"0"=
+ cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; =
+font-size: 0px; font-style: italic; font-weight: 400; white-space: =
+nowrap;"><tbody><tr style=3D"font-size: 14.67px;"><td align=3D"left" =
+style=3D"vertical-align: top; font-family: Calibri, Arial, =
+sans-serif;"><div style=3D"margin-top: 0px; margin-bottom: 0px; color: =
+rgb(0, 0, 1);">Kind&nbsp;Regards,<span style=3D"font-family: =
+remialcxesans; font-size: 1px; color: rgb(255, 255, 255); line-height: =
+1px;">=E2=80=8B<span style=3D"font-family: =
+template-fnfeFKX9Ee26d8xgyLIxXQ;">=E2=80=8B</span><span =
+style=3D"font-family: zone-1;">=E2=80=8B</span><span style=3D"font-family:=
+ zones-AQ;">=E2=80=8B</span></span><br>=E2=80=8B</div></td></tr><tr =
+style=3D"font-size: 14.67px; font-style: normal; font-weight: 700;"><td =
+align=3D"left" style=3D"vertical-align: top; font-family: Calibri, =
+Arial, sans-serif;"><div style=3D"margin-top: 0px; margin-bottom: 0px; =
+color: rgb(0, 0, =
+1);">Credit&nbsp;Control</div></td></tr></tbody></table></td></tr></tbody>=
+</table></td></tr><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"vertical-align: top;"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"border-collapse: collapse; font-size: =
+0px;"><tbody><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"padding: 10px 0px 0px; vertical-align: top;"><table =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:=
+ collapse; font-size: 0px;"><tbody><tr style=3D"font-size: 0px;"><td =
+align=3D"right" style=3D"vertical-align: top;"><table cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; =
+font-size: 0px; line-height: normal;"><tbody><tr style=3D"font-size: =
+0px;"><td align=3D"right" style=3D"padding: 0px 20px 10px 0px; =
+vertical-align: top;"><div style=3D"margin-top: 0px; margin-bottom: =
+0px;"><a href=3D"http://www.luminoav.com/" target=3D"_blank" =
+id=3D"LPlnk689713" style=3D"text-decoration: none;"><span =
+id=3D"cid:image685981.png@37B1295E.8C11EE14">&lt;image685981.png&gt;</span=
+></a></div></td></tr></tbody></table></td><td align=3D"left" =
+style=3D"vertical-align: top;"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"border-collapse: collapse; font-size: =
+0px;"><tbody><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"padding: 5px 5px 5px 10px; border-width: medium medium medium =
+2px; border-style: none none none solid; border-color: currentcolor =
+currentcolor currentcolor rgb(187, 10, 10); vertical-align: top;"><table =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:=
+ collapse; font-size: 0px;"><tbody><tr style=3D"font-size: 0px;"><td =
+align=3D"left" style=3D"padding: 0px; vertical-align: top;"></td><td =
+align=3D"left" style=3D"padding: 0px; vertical-align: =
+top;"></td></tr><tr style=3D"font-size: 0px;"><td style=3D"padding: =
+0px;">&nbsp;</td><td style=3D"padding: 0px;">&nbsp;</td></tr><tr =
+style=3D"font-size: 0px;"><td align=3D"left" style=3D"padding: 0px; =
+vertical-align: top;"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"border-collapse: collapse; font-size: 0px; =
+line-height: normal;"><tbody><tr style=3D"font-size: 0px;"><td =
+align=3D"left" style=3D"padding: 2px; vertical-align: top;"><div =
+style=3D"margin-top: 0px; margin-bottom: 0px;"><span =
+id=3D"cid:image101600.png@CCB1E873.49D02E3D">&lt;image101600.png&gt;</span=
+></div></td></tr></tbody></table></td><td align=3D"left" style=3D"padding:=
+ 0px; vertical-align: top;"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"border-collapse: collapse; font-size: 0px; =
+font-style: normal; font-weight: 400; white-space: nowrap;"><tbody><tr =
+style=3D"font-size: 14.67px;"><td align=3D"left" style=3D"padding: 2px; =
+vertical-align: top; font-family: Calibri, Arial, sans-serif;"><div =
+style=3D"margin-top: 0px; margin-bottom: 0px; color: rgb(0, 0, 1);"><a =
+href=3D"https://luminoav-help.freshdesk.com/support/home" =
+target=3D"_blank" id=3D"LPlnk689713" style=3D"text-decoration: none; =
+color: rgb(0, 0, =
+1);">&nbsp;&nbsp;Lumino&nbsp;AV&nbsp;Support&nbsp;-&nbsp;Click&nbsp;Here</=
+a><br></div></td></tr></tbody></table></td></tr><tr style=3D"font-size: =
+14.67px; font-style: normal; font-weight: 400; white-space: nowrap;"><td =
+align=3D"left" style=3D"padding: 0px; vertical-align: top; font-size: =
+0px;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+style=3D"border-collapse: collapse; font-size: 0px; line-height: =
+normal;"><tbody><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"padding: 2px; vertical-align: top;"><div style=3D"margin-top: =
+0px; margin-bottom: 0px;"><span =
+id=3D"cid:image724223.png@E43E4CAD.453B69B6">&lt;image724223.png&gt;</span=
+></div></td></tr></tbody></table></td><td align=3D"left" style=3D"padding:=
+ 2px; vertical-align: top; font-family: Calibri, Arial, =
+sans-serif;"><div style=3D"margin-top: 0px; margin-bottom: 0px; color: =
+rgb(0, 0, 1);"><a href=3D"http://www.luminoav.com/" target=3D"_blank" =
+id=3D"LPlnk689713" style=3D"text-decoration: none; color: rgb(0, 0, =
+1);">&nbsp;&nbsp;www.luminoav.com</a></div></td></tr></tbody></table></td>=
+</tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><=
+/td></tr><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"vertical-align: top;"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"width: 789.96875px; border-collapse: collapse; =
+font-size: 0px;"><tbody><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"vertical-align: top;"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"border-collapse: collapse; font-size: 0px; =
+font-style: normal; font-weight: 700; white-space: nowrap;"><tbody><tr =
+style=3D"font-size: 10px;"><td align=3D"left" style=3D"padding: 10px 0px =
+5px; vertical-align: top; font-family: Calibri, Arial, sans-serif;"><div =
+style=3D"margin-top: 0px; margin-bottom: 0px; color: rgb(174, 170, =
+170);"><span style=3D"background-color: rgb(255, 255, =
+255);">Lumino&nbsp;AV&nbsp;Solutions&nbsp;Limited&nbsp;is&nbsp;registered&=
+nbsp;in&nbsp;England&nbsp;under&nbsp;No.&nbsp;10556664&nbsp;with&nbsp;its&=
+nbsp;registered&nbsp;office&nbsp;at&nbsp;Unit&nbsp;5,&nbsp;Denbigh&nbsp;Ha=
+ll,&nbsp;Milton&nbsp;Keynes,&nbsp;Buckinghamshire,&nbsp;MK3&nbsp;7QT</span=
+><br></div></td></tr></tbody></table></td></tr><tr style=3D"font-size: =
+0px;"><td align=3D"left" style=3D"vertical-align: top;"><table =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:=
+ collapse; font-size: 0px; font-style: normal; font-weight: 400; =
+white-space: nowrap;"><tbody><tr style=3D"font-size: 14.67px;"><td =
+align=3D"left" style=3D"padding: 0px 0px 5px; vertical-align: top; =
+font-family: Calibri, Arial, sans-serif;"><div style=3D"margin-top: 0px; =
+margin-bottom: 0px; color: rgb(0, 128, =
+0);">=F0=9F=8C=B2&nbsp;Consider&nbsp;the&nbsp;environment.&nbsp;Do&nbsp;yo=
+u&nbsp;really&nbsp;need&nbsp;to&nbsp;print&nbsp;this&nbsp;email?</div></td=
+></tr></tbody></table></td></tr></tbody></table></td></tr><tr =
+style=3D"font-size: 0px;"><td align=3D"left" style=3D"vertical-align: =
+top;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+style=3D"white-space: normal; color: rgb(0, 0, 1); font-size: 14.67px; =
+font-family: Calibri, Arial, sans-serif; font-weight: 400; font-style: =
+normal; text-align: justify; width: 789.96875px; border-collapse: =
+collapse;"><tbody><tr style=3D"font-size: 10.67px;"><td =
+style=3D"font-family: Calibri, Arial, sans-serif;"><div =
+style=3D"margin-top: 0px; margin-bottom: 0px; color: rgb(192, 192, =
+192);">Lumino AV Solutions Limited accepts no liability for the content =
+of this email, or for the consequences of any actions taken on the basis =
+of the information provided, unless that information is subsequently =
+confirmed in writing. Any views or opinions presented in this email are =
+solely those of the author and do not necessarily represent those of the =
+company.</div></td></tr></tbody></table></td></tr></tbody></table></div><d=
+iv id=3D"appendonsend" style=3D"caret-color: rgb(0, 0, 0); font-family: =
+Helvetica; font-size: 12px; font-style: normal; font-variant-caps: =
+normal; font-weight: 400; letter-spacing: normal; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
+none;"></div><hr tabindex=3D"-1" style=3D"caret-color: rgb(0, 0, 0); =
+font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+text-decoration: none; display: inline-block; width: =
+707.546875px;"><span style=3D"caret-color: rgb(0, 0, 0); font-family: =
+Helvetica; font-size: 12px; font-style: normal; font-variant-caps: =
+normal; font-weight: 400; letter-spacing: normal; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
+none; float: none; display: inline !important;"></span><div =
+id=3D"divRplyFwdMsg" dir=3D"ltr" style=3D"caret-color: rgb(0, 0, 0); =
+font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+text-decoration: none;"><font face=3D"Calibri, sans-serif" =
+style=3D"font-size: 11pt;"><b>From:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span>Credit Control =
+&lt;creditcontrol@luminoav.com&gt;<br><b>Sent:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span>05 March 2025 =
+10:36<br><b>To:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span>ot@inhomemedia.io =
+&lt;ot@inhomemedia.io&gt;; th@inhomemedia.io =
+&lt;th@inhomemedia.io&gt;<br><b>Subject:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span>Overdue Invoice- In Home =
+Media Ltd</font><div>&nbsp;</div></div><div dir=3D"ltr" =
+style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
+12px; font-style: normal; font-variant-caps: normal; font-weight: 400; =
+letter-spacing: normal; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; text-decoration: none;"><div =
+class=3D"x_elementToProof" style=3D"font-family: Aptos, =
+Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; =
+font-size: 12pt;">Good afternoon,</div><div class=3D"x_elementToProof" =
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt;"><br></div><div =
+class=3D"x_elementToProof" style=3D"font-family: Aptos, =
+Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; =
+font-size: 12pt;">We have the following invoice which is overdue on the =
+account for payment. Please can you confirm a payment date as a matter =
+of urgency.</div><div class=3D"x_elementToProof" style=3D"font-family: =
+Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, =
+sans-serif; font-size: 12pt;"><br></div><div class=3D"x_elementToProof" =
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt;"><span =
+id=3D"cid:504ae2a5-21fa-46a7-b3e9-e9623addbc54">&lt;image.png&gt;</span></=
+div><div class=3D"x_elementToProof" style=3D"font-family: Aptos, =
+Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; =
+font-size: 12pt;"><br></div><div class=3D"x_elementToProof" =
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt;">I look forward to =
+hearing from you.</div><div class=3D"x_elementToProof" =
+style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt;"><br></div><div =
+dir=3D"ltr" style=3D"font-size: 1px; direction: ltr;"><table dir=3D"ltr" =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width: =
+789.96875px; direction: ltr; border-collapse: collapse; font-size: =
+1px;"><tbody><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"vertical-align: top;"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"border-collapse: collapse; font-size: =
+0px;"><tbody><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"padding: 10px 0px; vertical-align: top;"><table cellpadding=3D"0"=
+ cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; =
+font-size: 0px; font-style: italic; font-weight: 400; white-space: =
+nowrap;"><tbody><tr style=3D"font-size: 14.67px;"><td align=3D"left" =
+style=3D"vertical-align: top; font-family: Calibri, Arial, =
+sans-serif;"><div style=3D"margin-top: 0px; margin-bottom: 0px; color: =
+rgb(0, 0, 1);">Kind&nbsp;Regards,<span style=3D"font-family: =
+remialcxesans; font-size: 1px; color: rgb(255, 255, 255); line-height: =
+1px;">=E2=80=8B<span style=3D"font-family: =
+template-fnfeFKX9Ee26d8xgyLIxXQ;">=E2=80=8B</span><span =
+style=3D"font-family: zone-1;">=E2=80=8B</span><span style=3D"font-family:=
+ zones-AQ;">=E2=80=8B</span></span><br>=E2=80=8B</div></td></tr><tr =
+style=3D"font-size: 14.67px; font-style: normal; font-weight: 700;"><td =
+align=3D"left" style=3D"vertical-align: top; font-family: Calibri, =
+Arial, sans-serif;"><div style=3D"margin-top: 0px; margin-bottom: 0px; =
+color: rgb(0, 0, =
+1);">Credit&nbsp;Control</div></td></tr></tbody></table></td></tr></tbody>=
+</table></td></tr><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"vertical-align: top;"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"border-collapse: collapse; font-size: =
+0px;"><tbody><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"padding: 10px 0px 0px; vertical-align: top;"><table =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:=
+ collapse; font-size: 0px;"><tbody><tr style=3D"font-size: 0px;"><td =
+align=3D"right" style=3D"vertical-align: top;"><table cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; =
+font-size: 0px; line-height: normal;"><tbody><tr style=3D"font-size: =
+0px;"><td align=3D"right" style=3D"padding: 0px 20px 10px 0px; =
+vertical-align: top;"><div style=3D"margin-top: 0px; margin-bottom: =
+0px;"><a href=3D"http://www.luminoav.com/" target=3D"_blank" =
+id=3D"LPlnk689713" style=3D"text-decoration: none;"><span =
+id=3D"cid:image460997.png@FDCEDC3A.9715CC19">&lt;image460997.png&gt;</span=
+></a></div></td></tr></tbody></table></td><td align=3D"left" =
+style=3D"vertical-align: top;"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"border-collapse: collapse; font-size: =
+0px;"><tbody><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"padding: 5px 5px 5px 10px; border-width: medium medium medium =
+2px; border-style: none none none solid; border-color: currentcolor =
+currentcolor currentcolor rgb(187, 10, 10); vertical-align: top;"><table =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:=
+ collapse; font-size: 0px;"><tbody><tr style=3D"font-size: 0px;"><td =
+align=3D"left" style=3D"padding: 0px; vertical-align: top;"></td><td =
+align=3D"left" style=3D"padding: 0px; vertical-align: =
+top;"></td></tr><tr style=3D"font-size: 0px;"><td style=3D"padding: =
+0px;">&nbsp;</td><td style=3D"padding: 0px;">&nbsp;</td></tr><tr =
+style=3D"font-size: 0px;"><td align=3D"left" style=3D"padding: 0px; =
+vertical-align: top;"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"border-collapse: collapse; font-size: 0px; =
+line-height: normal;"><tbody><tr style=3D"font-size: 0px;"><td =
+align=3D"left" style=3D"padding: 2px; vertical-align: top;"><div =
+style=3D"margin-top: 0px; margin-bottom: 0px;"><span =
+id=3D"cid:image096153.png@FE50574F.EFE482C0">&lt;image096153.png&gt;</span=
+></div></td></tr></tbody></table></td><td align=3D"left" style=3D"padding:=
+ 0px; vertical-align: top;"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"border-collapse: collapse; font-size: 0px; =
+font-style: normal; font-weight: 400; white-space: nowrap;"><tbody><tr =
+style=3D"font-size: 14.67px;"><td align=3D"left" style=3D"padding: 2px; =
+vertical-align: top; font-family: Calibri, Arial, sans-serif;"><div =
+style=3D"margin-top: 0px; margin-bottom: 0px; color: rgb(0, 0, 1);"><a =
+href=3D"https://luminoav-help.freshdesk.com/support/home" =
+target=3D"_blank" id=3D"LPlnk689713" style=3D"text-decoration: none; =
+color: rgb(0, 0, =
+1);">&nbsp;&nbsp;Lumino&nbsp;AV&nbsp;Support&nbsp;-&nbsp;Click&nbsp;Here</=
+a><br></div></td></tr></tbody></table></td></tr><tr style=3D"font-size: =
+14.67px; font-style: normal; font-weight: 400; white-space: nowrap;"><td =
+align=3D"left" style=3D"padding: 0px; vertical-align: top; font-size: =
+0px;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+style=3D"border-collapse: collapse; font-size: 0px; line-height: =
+normal;"><tbody><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"padding: 2px; vertical-align: top;"><div style=3D"margin-top: =
+0px; margin-bottom: 0px;"><span =
+id=3D"cid:image329424.png@BC52BC28.C2952A10">&lt;image329424.png&gt;</span=
+></div></td></tr></tbody></table></td><td align=3D"left" style=3D"padding:=
+ 2px; vertical-align: top; font-family: Calibri, Arial, =
+sans-serif;"><div style=3D"margin-top: 0px; margin-bottom: 0px; color: =
+rgb(0, 0, 1);"><a href=3D"http://www.luminoav.com/" target=3D"_blank" =
+id=3D"LPlnk689713" style=3D"text-decoration: none; color: rgb(0, 0, =
+1);">&nbsp;&nbsp;www.luminoav.com</a></div></td></tr></tbody></table></td>=
+</tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><=
+/td></tr><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"vertical-align: top;"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"width: 789.96875px; border-collapse: collapse; =
+font-size: 0px;"><tbody><tr style=3D"font-size: 0px;"><td align=3D"left" =
+style=3D"vertical-align: top;"><table cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" style=3D"border-collapse: collapse; font-size: 0px; =
+font-style: normal; font-weight: 700; white-space: nowrap;"><tbody><tr =
+style=3D"font-size: 10px;"><td align=3D"left" style=3D"padding: 10px 0px =
+5px; vertical-align: top; font-family: Calibri, Arial, sans-serif;"><div =
+style=3D"margin-top: 0px; margin-bottom: 0px; color: rgb(174, 170, =
+170);"><span style=3D"background-color: rgb(255, 255, =
+255);">Lumino&nbsp;AV&nbsp;Solutions&nbsp;Limited&nbsp;is&nbsp;registered&=
+nbsp;in&nbsp;England&nbsp;under&nbsp;No.&nbsp;10556664&nbsp;with&nbsp;its&=
+nbsp;registered&nbsp;office&nbsp;at&nbsp;Unit&nbsp;5,&nbsp;Denbigh&nbsp;Ha=
+ll,&nbsp;Milton&nbsp;Keynes,&nbsp;Buckinghamshire,&nbsp;MK3&nbsp;7QT</span=
+><br></div></td></tr></tbody></table></td></tr><tr style=3D"font-size: =
+0px;"><td align=3D"left" style=3D"vertical-align: top;"><table =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:=
+ collapse; font-size: 0px; font-style: normal; font-weight: 400; =
+white-space: nowrap;"><tbody><tr style=3D"font-size: 14.67px;"><td =
+align=3D"left" style=3D"padding: 0px 0px 5px; vertical-align: top; =
+font-family: Calibri, Arial, sans-serif;"><div style=3D"margin-top: 0px; =
+margin-bottom: 0px; color: rgb(0, 128, =
+0);">=F0=9F=8C=B2&nbsp;Consider&nbsp;the&nbsp;environment.&nbsp;Do&nbsp;yo=
+u&nbsp;really&nbsp;need&nbsp;to&nbsp;print&nbsp;this&nbsp;email?</div></td=
+></tr></tbody></table></td></tr></tbody></table></td></tr><tr =
+style=3D"font-size: 0px;"><td align=3D"left" style=3D"vertical-align: =
+top;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+style=3D"white-space: normal; color: rgb(0, 0, 1); font-size: 14.67px; =
+font-family: Calibri, Arial, sans-serif; font-weight: 400; font-style: =
+normal; text-align: justify; width: 789.96875px; border-collapse: =
+collapse;"><tbody><tr style=3D"font-size: 10.67px;"><td =
+style=3D"font-family: Calibri, Arial, sans-serif;"><div =
+style=3D"margin-top: 0px; margin-bottom: 0px; color: rgb(192, 192, =
+192);">Lumino AV Solutions Limited accepts no liability for the content =
+of this email, or for the consequences of any actions taken on the basis =
+of the information provided, unless that information is subsequently =
+confirmed in writing. Any views or opinions presented in this email are =
+solely those of the author and do not necessarily represent those of the =
+company.</div></td></tr></tbody></table></td></tr></tbody></table></div></=
+div></div></blockquote></div><br></body></html>=
+
+--Apple-Mail=_CE4D82AA-FAB4-4166-9C80-51CA3AC1533B--

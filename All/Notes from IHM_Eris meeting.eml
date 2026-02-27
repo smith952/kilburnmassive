@@ -1,0 +1,736 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:7acf:b0:a51:dd26:8489 with SMTP id k15csp1941520ejo;
+        Mon, 15 Apr 2024 00:24:58 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFIYnjLDZbSG+YJsXrFrALjg+Qit01SVT/NpRKtWPy3q4h18fG8bUQt+Kq8BDsTq6yrMM2R
+X-Received: by 2002:a05:6512:312a:b0:516:d448:b42a with SMTP id p10-20020a056512312a00b00516d448b42amr5992801lfd.26.1713165898354;
+        Mon, 15 Apr 2024 00:24:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1713165898; cv=none;
+        d=google.com; s=arc-20160816;
+        b=OEuH1QnqzKd1+vF15WsNJVhQFf/VNn5S/28IBsOUogbUYpJZRjHsUt995iehT/nSbD
+         jBsvhaxtRhJeDRLQEc9gU6JxBWwRHgMTHggFWeQPdXBEdISmuZDrqLaaqOCD5r+HaeGc
+         JeI8R56Bi0jYhVrYI2emt68tXsV9fcIzdXOFxYTe/x01C6nbA8jx0OVi5vRdsA0h2j8+
+         iTMxMRS01lYHRzIOH9QU8CQT8iDL3JazOKwEiNpuKGQy4IjveQs40D3QCbKIfl5kDBvp
+         KMf1+rU6N9dV6svqGBo9uN30sZxKfTeEzTHOj/ml0YhH3y9JksoEnIptiNPtjU+6n+m0
+         SFVg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:dkim-signature;
+        bh=wlwlygluP9lMSL0gIYQmdgsxT9bHudmOnjJhFiHQSn4=;
+        fh=4AJfnc7X9C0D7YxSnHH21XzD4Ru4lKJPuYCTrrr4lUM=;
+        b=SVS5+0+B4i3P8Iq6de4d/y2f0sfb4X1nvKO7+RJuF2XtxQIgUTe4JtmUCpKZlzz2Np
+         i2lDSbWA66L/0SoeSPadCRod1mwTkjILW3pkwu/5KqMovBNkSGJZyL7SbwOhapwudp/t
+         MhTsSfKJqGNxvrAL6ejTLsOzd36uGWR+Al7Ku/sDpI+HzxsBi06b4rTTLbS7AS3u4hnR
+         06/ZTc1QetOxdOK5VqxmsoQSvtpFWzLdspfjjg0EZswA9tbqseUJSvdtAqJAvEFDn+GY
+         vStE5yFSEyh9piPSJSDlgjpG3UUXzwoNX1smLMBkBGlIXl+Hk1t3mhFpE4TRONoX75Kr
+         3jeQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@utilitymix.com header.s=google header.b=kHeB4a7j;
+       spf=pass (google.com: domain of tony@utilitymix.com designates 2a00:1450:4864:20::32e as permitted sender) smtp.mailfrom=tony@utilitymix.com
+Return-Path: <tony@utilitymix.com>
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com. [2a00:1450:4864:20::32e])
+        by mx.google.com with ESMTPS id g12-20020ac2538c000000b00518be9673ccsi1014209lfh.177.2024.04.15.00.24.58
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Apr 2024 00:24:58 -0700 (PDT)
+Received-SPF: pass (google.com: domain of tony@utilitymix.com designates 2a00:1450:4864:20::32e as permitted sender) client-ip=2a00:1450:4864:20::32e;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@utilitymix.com header.s=google header.b=kHeB4a7j;
+       spf=pass (google.com: domain of tony@utilitymix.com designates 2a00:1450:4864:20::32e as permitted sender) smtp.mailfrom=tony@utilitymix.com
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-41879f3d204so355965e9.3
+        for <ot@inhomemedia.io>; Mon, 15 Apr 2024 00:24:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=utilitymix.com; s=google; t=1713165897; x=1713770697; darn=inhomemedia.io;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wlwlygluP9lMSL0gIYQmdgsxT9bHudmOnjJhFiHQSn4=;
+        b=kHeB4a7jqkuyc0wWQFfpXM0gGqx6aaNaWVtHZUDoxeizrNyI3AHxbsEtie6RBDuqey
+         XF/koO+PvU8JmhGPO1KRlaskiQBTEr4bquE67tufmaZMnFXypyfsayfJAB3NBzsrRi6t
+         63eGPCwZyLHU08EBc9ujTu1mI5rjfkiFoT/cM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713165897; x=1713770697;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wlwlygluP9lMSL0gIYQmdgsxT9bHudmOnjJhFiHQSn4=;
+        b=seD+o58jw42rCLFHmNIHAbz1SekfqdS5ifFfEhE0G6yen+ZoPe0fxvvgh1TaMtRudX
+         bD48nwLOIFkEYPfuxMUKwViuDnACwRPNgQY95pLSFmJzWKN+EaZI8i79MyJeXUjOdCod
+         sVtxaiUsHEPzwQuKi4HVAjNnP3S0gzxE4yF+ccsmnan2Q65MXL/pc9eO8b6qhpdTuxyA
+         jjJUc2giiuKMhrVpY+Vet6N9FrK7Yce/WiVmVidZqTkpULfMgnlV4bsjEHNlH768RB8W
+         h8THJAlNA84CUWWyIJKtxGfYJS9c8Hvuxr+BW+KGszsFYz9I7yg6PIMPDk8sx3OD5/6G
+         wmeA==
+X-Gm-Message-State: AOJu0YxtW+pz4MfDNyBxAro824m2I3wZYpiCwoEmNwyfMeAzK/Lruy+g
+	vX0MNHLzOnOns62P1GLticp0ORK7NlI9vinVp3lpNJBU0G1Wu022B6jZnKdOOuo=
+X-Received: by 2002:a05:600c:4715:b0:417:29a3:3f59 with SMTP id v21-20020a05600c471500b0041729a33f59mr5604439wmo.36.1713165897410;
+        Mon, 15 Apr 2024 00:24:57 -0700 (PDT)
+Return-Path: <tony@utilitymix.com>
+Received: from smtpclient.apple ([137.22.165.234])
+        by smtp.gmail.com with ESMTPSA id o4-20020a05600c4fc400b004170e0aff7asm17866462wmq.35.2024.04.15.00.24.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Apr 2024 00:24:57 -0700 (PDT)
+Content-Type: multipart/alternative; boundary=Apple-Mail-F3C9920E-4CAE-4E7D-8524-26646B4328CB
+Content-Transfer-Encoding: 7bit
+From: Tony Hughes <tony@utilitymix.com>
+Mime-Version: 1.0 (1.0)
+Subject: Re: Notes from IHM/Eris meeting
+Date: Mon, 15 Apr 2024 08:24:46 +0100
+Message-Id: <94EA506A-1B2F-414B-A8D4-A42BAAA92EC6@utilitymix.com>
+References: <LO4P265MB6480AFB8567313292E99F46BBF042@LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM>
+Cc: Owen Thomas <ot@inhomemedia.io>, stephen@inhomemedia.io
+In-Reply-To: <LO4P265MB6480AFB8567313292E99F46BBF042@LO4P265MB6480.GBRP265.PROD.OUTLOOK.COM>
+To: David Moulton <david.moulton@erismedia.co.uk>
+X-Mailer: iPhone Mail (21E236)
+
+
+--Apple-Mail-F3C9920E-4CAE-4E7D-8524-26646B4328CB
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Hi Dave,<div><br></div><div>Can we go for T=
+uesday at 12pm.</div><div><br></div><div>Thanks</div><div><br></div><div>Ton=
+y<br id=3D"lineBreakAtBeginningOfSignature"><div dir=3D"ltr">Sent from my iP=
+hone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On 12 Apr 2024, at 0=
+5:30, David Moulton &lt;david.moulton@erismedia.co.uk&gt; wrote:<br><br></bl=
+ockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-12=
+52">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style>@font-face { font-family: Wingdings; }
+@font-face { font-family: "Cambria Math"; }
+@font-face { font-family: Aptos; }
+p.MsoNormal, li.MsoNormal, div.MsoNormal { margin: 0cm; font-size: 10pt; fon=
+t-family: Aptos, sans-serif; }
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph { margin: 0cm 0=
+cm 0cm 36pt; font-size: 10pt; font-family: Aptos, sans-serif; }
+span.xgmail-apple-converted-space { }
+span.EmailStyle19 { font-family: Aptos, sans-serif; color: windowtext; }
+.MsoChpDefault { font-size: 10pt; }
+@page WordSection1 { size: 612pt 792pt; margin: 72pt; }
+div.WordSection1 { page: WordSection1; }
+ol { margin-bottom: 0cm; }
+ul { margin-bottom: 0cm; }</style>
+
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language:=
+EN-US">Morning guys,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language:=
+EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language:=
+EN-US">Hope you're well?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language:=
+EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language:=
+EN-US">Further to the below email, please find an update from my side:<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language:=
+EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt">Help from Eris:</=
+span></b><span style=3D"font-size:11.0pt"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+<ul style=3D"margin-top:0cm" type=3D"disc">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l0 level1 l=
+fo1"><span style=3D"font-size:11.0pt">A meeting with Victoria to present our=
+ MA offer, and also discuss any intro=E2=80=99s at exec level within MAs.
+<b><i>How are you fixed for either Monday or Tuesday next week? VCB is with E=
+ris for 2 days.</i></b></span><span style=3D"font-size:11.0pt"><o:p></o:p></=
+span></li></ul>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+<ul style=3D"margin-top:0cm" type=3D"disc">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l0 level1 l=
+fo1"><span style=3D"font-size:11.0pt">Secure a commercial meeting with Dana a=
+t Hyperoptic.
+<b><i>Give me some London dates please Tony.</i></b></span><span style=3D"fo=
+nt-size:11.0pt"><o:p></o:p></span></li></ul>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+<ul style=3D"margin-top:0cm" type=3D"disc">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l0 level1 l=
+fo1"><span style=3D"font-size:11.0pt">Intro to Aviva or First Port to discus=
+s our targeted London sites, and also the possible removal of our competitor=
+ Elevision (they are currently in Aviva=E2=80=99s
+ two strongest buildings). <b><i>Aviva dates being given for an intro meetin=
+g to IHM. They have reconfirmed this week, that they want to proceed with sc=
+reens. On Elevision, they are amenable to agreeing a more structured way for=
+ward in those 2 schemes! Dates
+ should be for next week. Aim will be for surveys to take place next month.<=
+/i></b></span><span style=3D"font-size:11.0pt"><o:p></o:p></span></li></ul>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+<ul style=3D"margin-top:0cm" type=3D"disc">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l0 level1 l=
+fo1"><span style=3D"font-size:11.0pt">Any other high level intro=E2=80=99s w=
+ithin MA=E2=80=99s or Freeholders, with the view to a top down approach to a=
+sset development.
+<b><i>I will get dates for meetings with FexCo, Warwick Estates, and Landmar=
+k at CEO level.</i></b></span><span style=3D"font-size:11.0pt"><o:p></o:p></=
+span></li></ul>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+<ul style=3D"margin-top:0cm" type=3D"disc">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l0 level1 l=
+fo1"><span style=3D"font-size:11.0pt">Confirmation of =C2=A31 per apartment c=
+harge in live instructed E&amp;J sites - this will really help with current r=
+unway.
+<b><i>E&amp;J can=E2=80=99t confirm that. It will be down to positive IHM di=
+alogue with respective MAs, who manage the E&amp;J schemes. Should be an eas=
+ier ask, if the MAs are onboarded and using the software on a daily basis. H=
+ow is Jane=E2=80=99s training of the MAs going? How many
+ has she done now?</i></b></span><span style=3D"font-size:11.0pt"><o:p></o:p=
+></span></li></ul>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+<ul style=3D"margin-top:0cm" type=3D"disc">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l0 level1 l=
+fo1"><span style=3D"font-size:11.0pt">Currently we only see a limited number=
+ of ENJ sites which meet our criteria, however a meeting with the Eris team t=
+o review all data would be appreciated.<span class=3D"xgmail-apple-converted=
+-space">&nbsp;<b><i>All
+ E&amp;J stock has been re-sent =E2=80=93 plus the rest of the Eris client p=
+ortfolio.</i></b></span></span><span style=3D"font-size:11.0pt"><o:p></o:p><=
+/span></li></ul>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language:=
+EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language:=
+EN-US">Owen =E2=80=93 can you send us Management Accounts for both February a=
+nd March asap please. We need to have these moving forward and we can all re=
+view on a monthly basis, along with WIP
+ etc. Be good to get the next 6 months meetings in everyone=E2=80=99s diarie=
+s, including James=E2=80=99. The next meeting should be w/c 22<sup>nd</sup> A=
+pril =E2=80=93 if we can agree on a date and time.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language:=
+EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language:=
+EN-US">Look forward to pushing forward on all of the above.<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language:=
+EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language:=
+EN-US">Best<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language:=
+EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language:=
+EN-US">Dave<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language:=
+EN-US"><o:p>&nbsp;</o:p></span></p>
+<div>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm .75pt 0cm 0cm">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 3.75pt 0cm 0cm">
+<div align=3D"center">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm .75pt 0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt"><span style=3D"font-size:12.0p=
+t"><div>&lt;image001.png&gt;</div><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+<td valign=3D"top" style=3D"padding:0cm 4.5pt 0cm .75pt">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr>
+<td nowrap=3D"" style=3D"padding:0cm .75pt 0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt;line-height:13.5pt"><b><span st=
+yle=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">David Moulton</=
+span></b><span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin:.75pt;line-height:14.25pt"><span styl=
+e=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">Managing Director=
+</span><span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin:.75pt;line-height:14.25pt"><span styl=
+e=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">Eris Media Soluti=
+ons Limited</span><span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style=3D"border:none;border-right:solid windowtext 1.0pt;padding:.75pt 0=
+cm 0cm 0cm">
+</td>
+<td valign=3D"top" style=3D"padding:0cm .75pt 0cm 4.5pt">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:0cm .75pt 0cm 0cm">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:.75pt 3.75pt .75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt"><span style=3D"font-size:12.0p=
+t"><div>&lt;image002.png&gt;</div><o:p></o:p></span></p>
+</td>
+<td nowrap=3D"" style=3D"padding:.75pt 0cm .75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt;line-height:13.5pt"><span style=
+=3D"font-family:&quot;Arial&quot;,sans-serif;color:#000001"><a href=3D"tel:0=
+8000698228" target=3D"_blank" title=3D"tel:08000698228"><span style=3D"color=
+:black">0800 069 8228</span></a></span><span style=3D"font-size:12.0pt"><o:p=
+></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:.75pt 3.75pt .75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt"><span style=3D"font-size:12.0p=
+t"><div>&lt;image003.png&gt;</div><o:p></o:p></span></p>
+</td>
+<td nowrap=3D"" style=3D"padding:.75pt 0cm .75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt;line-height:13.5pt"><span style=
+=3D"font-family:&quot;Arial&quot;,sans-serif;color:#000001"><a href=3D"tel:0=
+7747443561" target=3D"_blank" title=3D"tel:07747443561"><span style=3D"color=
+:black">07747 443 561</span></a></span><span style=3D"font-size:12.0pt"><o:p=
+></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:.75pt 3.75pt .75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt"><span style=3D"font-size:12.0p=
+t"><div>&lt;image004.png&gt;</div><o:p></o:p></span></p>
+</td>
+<td nowrap=3D"" style=3D"padding:.75pt 0cm .75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt;line-height:13.5pt"><span style=
+=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">1, Winnall Valley R=
+oad, Winchester, SO23 0LD</span><span style=3D"font-size:12.0pt"><o:p></o:p>=
+</span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:.75pt 3.75pt .75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt"><span style=3D"font-size:12.0p=
+t"><div>&lt;image005.png&gt;</div><o:p></o:p></span></p>
+</td>
+<td nowrap=3D"" style=3D"padding:.75pt 0cm .75pt 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt;line-height:13.5pt"><b><span st=
+yle=3D"font-family:&quot;Arial&quot;,sans-serif;color:#3F29EC"><a href=3D"ht=
+tps://www.erismedia.co.uk/" target=3D"_blank" title=3D"https://www.erismedia=
+.co.uk/"><span style=3D"color:#3F29ED">erismedia.co.uk</span></a></span></b>=
+<span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan=3D"4" style=3D"border:none;border-bottom:solid windowtext 1.0pt;=
+padding:0cm .75pt 3.75pt 0cm">
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0cm 0cm 0cm 0cm"></td>
+<td style=3D"padding:0cm 0cm 0cm 0cm"></td>
+<td style=3D"padding:0cm 0cm 0cm 0cm"></td>
+<td style=3D"padding:0cm 0cm 0cm 0cm"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0cm .75pt 0cm 0cm">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" style=3D"max-width:450.0pt;border-collapse:collapse">
+<tbody>
+<tr>
+<td style=3D"padding:4.5pt .75pt 0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin:.75pt;line-height:10.5pt"><span style=
+=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#888888">=
+This email and any files transmitted with it are confidential and intended s=
+olely for the use of the individual or entity
+ to whom they are addressed. If you have received this email in error please=
+ notify the system manager. This message contains confidential information a=
+nd is intended only for the individual named. If you are not the named addre=
+ssee you should not disseminate,
+ distribute or copy this e-mail. Please notify the sender immediately by e-m=
+ail if you have received this e-mail by mistake and delete this e-mail from y=
+our system. If you are not the intended recipient you are notified that disc=
+losing, copying, distributing
+ or taking any action in reliance on the contents of this information is str=
+ictly prohibited.<br>
+<br>
+WARNING: Although the company has taken reasonable precautions to ensure no v=
+iruses are present in this email, the company cannot accept responsibility f=
+or any loss or damage arising from the use of this email or attachments.<br>=
+
+<br>
+Eris Media Solutions Limited is a company registered in England &amp; Wales<=
+br>
+Registered number: 010605270. Registered office address: Burlington House, B=
+otleigh Grange Business Park, Hedge End, Southampton, SO30 2AF</span><span s=
+tyle=3D"font-size:12.0pt"><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language:=
+EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language:=
+EN-US"><o:p>&nbsp;</o:p></span></p>
+<div id=3D"mail-editor-reference-message-container">
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm 0=
+cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><b><span style=3D"font=
+-size:12.0pt;color:black">From:
+</span></b><span style=3D"font-size:12.0pt;color:black">Tony Hughes &lt;tony=
+@utilitymix.com&gt;<br>
+<b>Date: </b>Tuesday, 9 April 2024 at 16:58<br>
+<b>To: </b>David Moulton &lt;david.moulton@erismedia.co.uk&gt;<br>
+<b>Subject: </b>Fwd: Notes from IHM/Eris meeting<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt">Hi Dave, <o:p></o:p>=
+</span></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt">Let me know when wor=
+ks for a call either Thursday morning or Friday flexible. In terms of action=
+s the below from our call with yourself and James are ones we are keen to fo=
+cus on in the short term, to enable
+ us to build momentum.<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt">Any questions let me=
+ know.<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt">Thanks<o:p></o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt">Tony<o:p></o:p></spa=
+n></p>
+<div>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><br>
+<br>
+<o:p></o:p></span></p>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt">Begin forwarded mess=
+age:<o:p></o:p></span></p>
+</div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:12.0pt">From: </span></b>=
+<span style=3D"font-size:12.0pt">Owen Thomas &lt;ot@inhomemedia.io&gt;<o:p><=
+/o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:12.0pt">Subject: Notes fr=
+om IHM/Eris meeting</span></b><span style=3D"font-size:12.0pt"><o:p></o:p></=
+span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:12.0pt">Date: </span></b>=
+<span style=3D"font-size:12.0pt">19 March 2024 at 21:04:07 GMT<o:p></o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:12.0pt">To: </span></b><s=
+pan style=3D"font-size:12.0pt">James Tuttiett &lt;JTuttiett@penultcp.co.uk&g=
+t;, David Moulton &lt;david.moulton@erismedia.co.uk&gt;, Anthony Hughes &lt;=
+th@inhomemedia.io&gt;, Stephen Gale &lt;stephen@inhomemedia.io&gt;<o:p></o:p=
+></span></p>
+</div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif">Hi all,</span><span style=3D"font-size:12.0pt"><o:p></o=
+:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif">It was great to meet today, and thanks again for your t=
+ime James and Dave.</span><span style=3D"font-size:12.0pt"><o:p></o:p></span=
+></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif">Below are some notes on what was covered and a few area=
+s of support we hope the Eris team can help with. We are all raring to go an=
+d fully launch IHM over the coming weeks/months.</span><span style=3D"font-s=
+ize:12.0pt"><o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:12.0pt;font-family:&quot;=
+Arial&quot;,sans-serif">Exec summary:</span></b><span style=3D"font-size:12.=
+0pt"><o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif">IHM are currently refining our go to market plans with t=
+he aim of launching March 31st with website &amp; social channels<span class=
+=3D"xgmail-apple-converted-space">&nbsp;</span></span><span style=3D"font-si=
+ze:12.0pt"><o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif">We believe strongly that IHM should be positioned first=
+ and foremost as a PropTech solution for MA's and Freeholders, to improve re=
+sident communications.</span><span style=3D"font-size:12.0pt"><o:p></o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif">Immediate plan is to prove multiple revenue streams wit=
+h a focus on our legacy screens in Manchester City Centre.</span><span style=
+=3D"font-size:12.0pt"><o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif">See attached our building revenue model - as discussed o=
+ur plan at this stage is to keep CAPEX payback to under 6 months. These buil=
+dings on the 2nd tab are<span class=3D"xgmail-apple-converted-space">&nbsp;<=
+/span>just
+ examples of what is achievable if we manage to be laser focussed on multi r=
+evenue opportunities. Once we agree our roll-out plans/targets for Q2 we wil=
+l populate with real stock, and build our full financial model around these a=
+ssumptions.</span><span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif">Our tech integration and build is on hold until we prov=
+e multiple revenue streams. At this point we will explore a fundraise to dri=
+ve our Tech and Capex roll-out.</span><span style=3D"font-size:12.0pt"><o:p>=
+</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:12.0pt;font-family:&quot;=
+Arial&quot;,sans-serif">Help from Eris:</span></b><span style=3D"font-size:1=
+2.0pt"><o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif">A meeting with Victoria to present our MA offer, and al=
+so discuss any intro=E2=80=99s at exec level within MAs.</span><span style=3D=
+"font-size:12.0pt"><o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif">Secure a commercial meeting with Dana at Hyperoptic.</s=
+pan><span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif">Intro to Aviva or First Port to discuss our targeted Lo=
+ndon sites, and also the possible removal of our competitor Elevision (they a=
+re currently in Aviva=E2=80=99s two strongest buildings).</span><span style=3D=
+"font-size:12.0pt"><o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif">Any other high level intro=E2=80=99s within MA=E2=80=99=
+s or Freeholders, with the view to a top down approach to asset development.=
+</span><span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif">Confirmation of =C2=A31 per apartment charge in live in=
+structed E&amp;J sites - this will really help with current runway.</span><s=
+pan style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif">Currently we only see a limited number of ENJ sites whi=
+ch meet our criteria, however a meeting with the Eris team to review all dat=
+a would be appreciated.<span class=3D"xgmail-apple-converted-space">&nbsp;</=
+span></span><span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif">Thanks,</span><span style=3D"font-size:12.0pt"><o:p></o=
+:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif">Owen</span><span style=3D"font-size:12.0pt"><o:p></o:p>=
+</span></p>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+<div>
+<div>
+<div>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<br><br><p style=3D"font-family: Verdana; font-size:10pt; color:#666666;"><b=
+>Disclaimer</b></p><p style=3D"font-family: Verdana; font-size:8pt; color:#6=
+66666;">The information contained in this communication from the sender is c=
+onfidential. It is intended solely for use by the recipient and others autho=
+rized to receive it. If you are not the recipient, you are hereby notified t=
+hat any disclosure, copying, distribution or taking action in relation of th=
+e contents of this information is strictly prohibited and may be unlawful.<b=
+r><br>This email has been scanned for viruses and malware, and may have been=
+ automatically archived by Mimecast, a leader in email security and cyber re=
+silience. Mimecast integrates email defenses with brand protection, security=
+ awareness training, web security, compliance and other essential capabiliti=
+es. Mimecast helps protect large and small organizations from malicious acti=
+vity, human error and technology failure; and to lead the movement toward bu=
+ilding a more resilient world. To find out more, visit our website.</p>
+</div></blockquote></div></body></html>=
+
+--Apple-Mail-F3C9920E-4CAE-4E7D-8524-26646B4328CB--

@@ -1,0 +1,94 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:80c1:b0:a7d:27b1:57ca with SMTP id a1csp379152ejx;
+        Tue, 20 Aug 2024 02:08:59 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEc1r8dnGSP30pH2oC6t6MNOirHszmPXdDcEY61apwkWFwHCYmDIb16RR9sv6XnRyvNwk5A
+X-Received: by 2002:a05:6870:4d15:b0:260:e58d:5bb6 with SMTP id 586e51a60fabf-2701c3c35d8mr14949251fac.19.1724144938900;
+        Tue, 20 Aug 2024 02:08:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1724144938; cv=none;
+        d=google.com; s=arc-20160816;
+        b=kyX4MOuNMWCGARPO9sxfKYyQNme52M6DLWL4GsqpYfYEzfpDKGERC/kHNc0ALaxdy/
+         Kpxr8obnMtZE5afjd4IgQnfn7WE38+U699LtDqaT5yZPKzgmpXIqcb9AS6OLAr0LH1Xk
+         Vupf4hzFSk9c/Lu8oq8RyxowWV2i3jIipBlmBWUq7j2/eGLFL0OQO4F2guqd/AyBHAJD
+         OT8FUDSoNF/3jr+taa59GkNzkQtB07bYhsEixsX4wsN6NHqseoOnnuLSNDMbJwhKJfUH
+         CMiZQ6pc1tfnzTVz9VogZtlUPYfvJG5N+esfI6mQJdyXrU3CPkCvxN2bl/Dk4tOW/2N6
+         ZJ6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:cc:date:message-id:subject:mime-version
+         :content-transfer-encoding:from:dkim-signature;
+        bh=1yBDTuhenuXkpUqwVbhTfW9qBhfyjpXPWDR2nyRlKYQ=;
+        fh=IvCgan++CdOp5OyGM5yjAkFBhsy0/BeDGM9CyUz1oqU=;
+        b=0Tzl5jEhQE0bjBnyTeR8Z2LHunmN+Tk5ebjD6fYsoDZY7+gTuQxt18MEs+5drdQwkh
+         1J3FW3M1rIRYjR0CWK9GzbEffMtkBpC3LMSWL1i9EZNeIlD9rrt/4eyhlAJsh4DZk8YD
+         B/by2ltB70ZS4H386qfkTO80OpoL++E7/E/R+rmFaLjUq8YQCO6HUy+9rKuKta8b5c4K
+         XiLevLKj1uboLValkSz1MyVXSYyKJRRf3tev98GROhHHboLFGOEGQZh2xFqWRgfC/UQD
+         m69WLd7jFNCLRKWiCi+yFKQWIbmxowtAwf4GewwIBhIxQGCocdHZhLW8sQ7Z5BJ5H8ni
+         CVVw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=xnTEDzyC;
+       spf=neutral (google.com: 2a00:1450:4864:20::133 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io;
+       dara=pass header.i=@inhomemedia.io
+Return-Path: <th@inhomemedia.io>
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com. [2a00:1450:4864:20::133])
+        by mx.google.com with ESMTPS id d2e1a72fcca58-7127ae0f299si11130984b3a.127.2024.08.20.02.08.58
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Aug 2024 02:08:58 -0700 (PDT)
+Received-SPF: neutral (google.com: 2a00:1450:4864:20::133 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) client-ip=2a00:1450:4864:20::133;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=xnTEDzyC;
+       spf=neutral (google.com: 2a00:1450:4864:20::133 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io;
+       dara=pass header.i=@inhomemedia.io
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-53310b07267so6933828e87.3
+        for <ot@inhomemedia.io>; Tue, 20 Aug 2024 02:08:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1724144936; x=1724749736; darn=inhomemedia.io;
+        h=to:cc:date:message-id:subject:mime-version
+         :content-transfer-encoding:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1yBDTuhenuXkpUqwVbhTfW9qBhfyjpXPWDR2nyRlKYQ=;
+        b=xnTEDzyC8Zi8bOYH71KnUDmqgiCb3bHR8hd9yrt7G8cidupoB7d1PkrnpgDdYHIS6S
+         zYYB1FcUcezPMC2qNYLx5bGnotgwVn+FvV1NaiegwRz2kFJCxyc+6rjd+TQoMcYHfUBv
+         bShkTdPj9kswoP94fZOkGzn4/Frj350Elb07a91H9W0gyynM2Z7CuwlCkGh14/S0cvg6
+         RY3K+Z7FlI8cX0y3qtrz1WSuS13/nK/31oMpoDThWx4IHgNqzJFo6IlSRvT8iKim5pGC
+         kdH7lWtvQK5FsLv7+MAIdx5PHIDbWZJRPNzr3poQp5lKJUXEd7K0O/Aew4oVQgRe27mX
+         uHvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724144936; x=1724749736;
+        h=to:cc:date:message-id:subject:mime-version
+         :content-transfer-encoding:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1yBDTuhenuXkpUqwVbhTfW9qBhfyjpXPWDR2nyRlKYQ=;
+        b=vf5N8pQSvrhrVYaocmXw3jWinRZqPB6f7Tkdeg3ytH3wUZtsPSw9zKIsz6FnE3Evhu
+         epxCSo8kPj76+Ig/aXFhAXtWIpX2fieZL10ipUSkrfxb+pR3+M3Hb/B0+bdaa9rDko6s
+         IG5sXMuE+lcFOggEdOy7k8T8BryEoqJvVTcj/3ANavMMe8+QNXnugBP3dD69V1BtteGd
+         w+m0ej3/g28RMPBhQRQaT1jQ5k95Roo90R70yiTQ8zsy20yduLvrs6I5mqQyiIsDVBzS
+         +c1J1BgN170gIrzp3Q/fbOET75/+Bl+PLt5vIxegQM/FCf/Oe4rMPQHhO8n7x1XmErHJ
+         kRDg==
+X-Gm-Message-State: AOJu0Yy1cSFqf7m4Oj43df/B52SJeqXZnL8y2cB4NGCW/bniFn/RWjbX
+	/rEsHkJYlGouoQOJMlUJ2V5jA6TlkOoDQ1ICKTbXEG3qpZkQEDK4oiY+UxYR7z1+ZS8j5d6veoZ
+	tgQ==
+X-Received: by 2002:a05:6512:4007:b0:530:ab68:25c5 with SMTP id 2adb3069b0e04-5331c691facmr11948971e87.2.1724144935446;
+        Tue, 20 Aug 2024 02:08:55 -0700 (PDT)
+Return-Path: <th@inhomemedia.io>
+Received: from smtpclient.apple (host81-132-1-91.range81-132.btcentralplus.com. [81.132.1.91])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a83839471ecsm736150666b.156.2024.08.20.02.08.54
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 20 Aug 2024 02:08:55 -0700 (PDT)
+From: Anthony Hughes <th@inhomemedia.io>
+Content-Type: text/plain;
+	charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.700.6.1.1\))
+Subject: Contact Details
+Message-Id: <934797F1-91A5-4A1F-B81A-B85F265581DB@inhomemedia.io>
+Date: Tue, 20 Aug 2024 10:08:44 +0100
+Cc: Owen Thomas <ot@inhomemedia.io>
+To: Dave Evans <dave@inhomemedia.io>
+X-Mailer: Apple Mail (2.3731.700.6.1.1)
+
+Hi Dave see below.
+
+gemma@xeniaestates.com mobile 07917 149976
+
+

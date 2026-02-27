@@ -1,0 +1,349 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:55ca:b0:982:1ad6:1395 with SMTP id z10csp1603346ejp;
+        Wed, 14 Jun 2023 02:00:40 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ5SzkSzwasJWtlNI6SsTljq/aii70WrwZCtMKoxqw+1dHDz6LiZW/VvqI5D7DPoTlzyOiZu
+X-Received: by 2002:a05:6000:14c:b0:30f:a895:d991 with SMTP id r12-20020a056000014c00b0030fa895d991mr7080314wrx.55.1686733240497;
+        Wed, 14 Jun 2023 02:00:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1686733240; cv=none;
+        d=google.com; s=arc-20160816;
+        b=cDd0gobNNKBjelmlXP0r9QjsFFaXH9RPb6GTlGQpB1Zea1T4+QN+DyjJUWJuyZETap
+         QSDZbReIq6CzTBueICK4WCYIZ3t1UTtLQJ5lALeLDBOM5AGIpSBzDQ4U4EpSNJyqs0Xx
+         /aT0sNPeLwavs9ko/tmXYFCGADPOgmojot/PtPHWIOLkmtHhGYcwCcgMRyRkZdthb7uA
+         pqaiiDYyD8XeAHtOpGBmYW7R+l/zvh9/v03n2HP2bDm6YsG/qgDsAk/bz83Jyt4Q6P9o
+         LQJ39U4iG7kgzRo3+/D14V7ZPQ3eNxIHnCZNBczTfP6cVQ1EIUs45WOnXtPl3obNtPWW
+         Re2Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-language:mime-version:accept-language:message-id:date
+         :thread-index:thread-topic:subject:cc:to:from:dkim-signature;
+        bh=fQYNedfEOD/eIfbS+sgvaBz/X631XJnnPb3w3NCiB5E=;
+        b=uo52YV3o4sPDYht2uJQzXXiIetHAM1uHSEMp3RMFAL6n8QagTvpWK7sUsJyZrX6Oa2
+         vIIzjGFbVf7wV8X1nSe5ZD//geMkLG+CpghwQGDXX2AKCfL7aDOb6sDwiSl5Kdc4r3kK
+         shMtFX1CWNH/HZfchvPNaq6CFb5jLGwER6oZLZOQBrcXZ+wMJczuFI1T3vl3VEz1A7ob
+         XQTUzSkIlezB87E5P02LYWbvmUv0G3ooB1ABsDx2YEp2AsbuQ5QfByvvM4rBp28CGId1
+         xUKhIIPgAG5vhqBZNi3LCbHcqU6O0agTong495DSbTnM+kRxKH5pxs1r4JQ8DqprXHRU
+         vZuQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@erismedia.co.uk header.s=mimecast20220812 header.b=FRgL0L1y;
+       spf=pass (google.com: domain of david.moulton@erismedia.co.uk designates 185.58.85.139 as permitted sender) smtp.mailfrom=david.moulton@erismedia.co.uk
+Return-Path: <david.moulton@erismedia.co.uk>
+Received: from eu-smtp-delivery-139.mimecast.com (eu-smtp-delivery-139.mimecast.com. [185.58.85.139])
+        by mx.google.com with ESMTPS id n13-20020a5d420d000000b0030fd242e1b0si998325wrq.590.2023.06.14.02.00.40
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jun 2023 02:00:40 -0700 (PDT)
+Received-SPF: pass (google.com: domain of david.moulton@erismedia.co.uk designates 185.58.85.139 as permitted sender) client-ip=185.58.85.139;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@erismedia.co.uk header.s=mimecast20220812 header.b=FRgL0L1y;
+       spf=pass (google.com: domain of david.moulton@erismedia.co.uk designates 185.58.85.139 as permitted sender) smtp.mailfrom=david.moulton@erismedia.co.uk
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=erismedia.co.uk;
+	s=mimecast20220812; t=1686733240;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+	bh=fQYNedfEOD/eIfbS+sgvaBz/X631XJnnPb3w3NCiB5E=;
+	b=FRgL0L1yORIJJYSXpci79noxuDPjwSvs5C0tBGqErTN5wL34at348W+ENwwV61dZq911so
+	TX/mMKPGeCtkOA62/mt5mZnHsb5R99hOBtPnnGylN5QLGH50upIkPaSEsKR14++QPj873D
+	w2kkc2tjgCSLBhvFvOrjemJcB3CGWC2uyJIFstvQaJgCZofR7jGTeaJREkqrwDyTQmAfXu
+	r1gYTi/RH9OMqllVUXZLmCvcXrjkEGvqoPVayksBvuSP0EdjNhlDVaYvyUeQdZdJgiBtlk
+	a1K55PszBV6lqyyznAr0i1PbQgQsPx0Kdv1jV6lP4ynFQqVK3iYocYt4LZfC4A==
+Received: from GBR01-LO2-obe.outbound.protection.outlook.com
+ (mail-lo2gbr01lp2054.outbound.protection.outlook.com [104.47.21.54]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ uk-mta-204-r-LDUZBGPxSEzRVKSwqJjQ-1; Wed, 14 Jun 2023 10:00:27 +0100
+X-MC-Unique: r-LDUZBGPxSEzRVKSwqJjQ-1
+Received: from LO2P265MB3453.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:199::14)
+ by LOYP265MB1840.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:e2::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.25; Wed, 14 Jun
+ 2023 09:00:26 +0000
+Received: from LO2P265MB3453.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::ab0d:2644:70c9:1cd8]) by LO2P265MB3453.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::ab0d:2644:70c9:1cd8%6]) with mapi id 15.20.6500.025; Wed, 14 Jun 2023
+ 09:00:26 +0000
+From: David Moulton <david.moulton@erismedia.co.uk>
+To: James Tuttiett <JTuttiett@penultcp.co.uk>, anthony hughes
+	<tony_hughes1@hotmail.co.uk>
+CC: "ot@inhomemedia.io" <ot@inhomemedia.io>
+Subject: Eris and In-Home Media Teams Meeting
+Thread-Topic: Eris and In-Home Media Teams Meeting
+Thread-Index: AQHZnp6pyWA8NOhSK0CHb12JCwq1yw==
+Date: Wed, 14 Jun 2023 09:00:26 +0000
+Message-ID: <LO2P265MB34536352CB6DBD005EBD5EE1BF5AA@LO2P265MB3453.GBRP265.PROD.OUTLOOK.COM>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-exchange-calendar-series-instance-id: BAAAAIIA4AB0xbcQGoLgCAAAAAD6IEpVPJ3ZAQAAAAAAAAAAEAAAAJbSeGADfQtKpwrxKyyx1Yc=
+x-ms-traffictypediagnostic: LO2P265MB3453:EE_MeetingMessage|LOYP265MB1840:EE_MeetingMessage
+x-ms-office365-filtering-correlation-id: 32d91c6b-1c97-401a-e433-08db6cb5cb96
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0
+x-microsoft-antispam-message-info: dkXYIqpCc1soWVyYHI6B8XQnFHtgd0k8FgvW6uRRgM9Gxgk75K/+mB7RyUJg3WBoR2HzFaraueS5zNItn2FlPNoTRK2exs6g7g+/ue90yF/QtO69R5ktfyuRa5n99lZunWG8LluxqJ4bL+roOGDI4YnVUPIqxYl/uICeI7Itcnb0zaiPLK9Edpla//pkVaY20Yh4yo4/UkibHAlQBRXzKu1/dU2wimhmy4IHWzW9lW8fwtlHeAaCHyT1cbJhhMDp7Kdm7g6TmzQA+YAzr/PcebNWT2mEbJXEKroQ/iPqaFRkiz2ZIp/X4k3/QDokHZcdH+BpIJFoUCwNuQ3fleEanpMmN3/sR+MqdiuRGOaMvC6ZcnI3lNP+DYWjnBHOTxFTUKjE+yAKLVyhQzrOYYdx0RAUucbcNaS0kObLw/ySFA0YM2yCSUeRXtuDmYbazgGdnY5wqjA0IyLM0z1DXE5//vo5UjQHE13QxRnxNDeu/bg30f7zvehFeWXZPQpPh+ntg64TL8nRUioWh0br9iygjjuUFYYwBq5VwMVIryxEdwFSnmLvBTqiJs8m3sjSc1sAyGweYxfg9C70Gp62TwTgZtUSrS2FJXGV0XdlkN8vXW4=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LO2P265MB3453.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(396003)(136003)(376002)(346002)(366004)(39840400004)(451199021)(55236004)(9686003)(45080400002)(6506007)(26005)(186003)(478600001)(4743002)(7696005)(71200400001)(55016003)(4744005)(2906002)(316002)(33656002)(41300700001)(8936002)(44832011)(166002)(38070700005)(86362001)(122000001)(52536014)(38100700002)(8676002)(5660300002)(110136005)(83380400001)(66899021)(64756008)(66446008)(66476007)(66556008)(66946007)(76116006)(4326008);DIR:OUT;SFP:1102
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?8sUj/03rg9kAYkPaox6+zoWQlIphQr39d1HeajhWfU9/bD9/nH6Tr8Zn1U?=
+ =?iso-8859-1?Q?r0ebref8ZY+0Kq9f9jWL20ALZ7HpaiRaKHgcL1MJIt6gxMjBhZC3+8K0K7?=
+ =?iso-8859-1?Q?zF5XVjCFzjmXMLVp8DMM92tGiVLmHCZIXnVfdoUAwgbCeFeCZP8Mz1F8sr?=
+ =?iso-8859-1?Q?CZx4P72hDPHtdMuZDtf0kPvz8q2YGF+JJsjz/sjVnjB0aFQHY9V9TKU5q7?=
+ =?iso-8859-1?Q?ztifRu1AqS8V+nga1RjgzkvmcUTBysan532a6UMc7y73N8Wn2DhN9hulXu?=
+ =?iso-8859-1?Q?CPLg0YzbpvKloRWG82vAAFvsGAZhrrS8jnf7mwPnldBJSveixlQtohvCVq?=
+ =?iso-8859-1?Q?03eKobLZDmbhpip3m8w3QUWBkB/vE0Gi6FZnh4FkYYoyMxWPLCBRYYZDil?=
+ =?iso-8859-1?Q?YKCfmbiFnfdKm+U4+g6Z8JsusAvwcA3zJ+/hH8IGPFemvvR6WDsAdm/qoq?=
+ =?iso-8859-1?Q?gCm7TPDkWb/EVuph+jbXLXTSNLRKygWUYKTJx9kZj/XKticny7Lx8nCJcL?=
+ =?iso-8859-1?Q?osEoSLnEDgBz2PFfxAraPXm3GQoMGdVj4UkhhO45Dprqu+zd1ME8Vf/Fnc?=
+ =?iso-8859-1?Q?xpvj6d2gCgBrsBr2gcMWGwdmsKwmL+koCp/SpSTiVpgDszl5Caq1/aL+3w?=
+ =?iso-8859-1?Q?EBRB0NjjTGHEdUvcxZqBtPu3aNUCpozeWJ8DGGS6/AwC/U/tQtCZ58xiJB?=
+ =?iso-8859-1?Q?fUsLxo+cwZFqBjx2PX012Ug3uorQtTu0hCe9CfNRfBaW5YJjfd5E+J5axe?=
+ =?iso-8859-1?Q?ykKErobYMON6PFDf5CUhS9xcD/HXkI9U5CCZP0S3OdIppz0TFQl/6ZPBi5?=
+ =?iso-8859-1?Q?tvy82kisKN2DKiHdEEV0KRS/T4Bz3D7VneidJhTvABWuBu55tHBlSvjgB4?=
+ =?iso-8859-1?Q?mHh8g4EmGs8EaRvi5fOh+5U00QaCHkWfRF5Zizmu7TfdWAHpEAxDe6RrKJ?=
+ =?iso-8859-1?Q?q9if2b24urXcALKObMJzOvY9QYxFEASMmsxuSUlrsET3UCvPcyFSLiEyix?=
+ =?iso-8859-1?Q?OAzRVOXUg8Xfei12+H4W7f4YI0Xq8+ldZIwbplA9zJUCsoxa29i84SGTPN?=
+ =?iso-8859-1?Q?pmQ2OIWoC7EVCLJ73qHH5QHILZ/JSmULFDmI2egRze2HO/eWd3e6kRTZKH?=
+ =?iso-8859-1?Q?lS9/0/dOCzs25E5I2v7+wkODYl1F9rpeWODO7mWS9gxswSCb/XIIzIMRCR?=
+ =?iso-8859-1?Q?4E5eXe+7dT1Rv8lzIPZ3ZxLDCql941ePGAMiVGWID8r8Qf7nF8tod7+00d?=
+ =?iso-8859-1?Q?FFDPI+/2bOTn4KYtptSy11HXv+FoO+fvY6JFL4ghVRS0+IOL31gvduuKC9?=
+ =?iso-8859-1?Q?CsbNUWZi4agFTJkCfQai+e8xC+AtlZ9WdNAOUxcXyqVN1/VauwlVLCfAzb?=
+ =?iso-8859-1?Q?RjMQ6q9xUViDgpL17+bWj206CS4dT8488n2i2F9matk70lqqGQq5VYcEu1?=
+ =?iso-8859-1?Q?t6Hco3WTi6X4yiT/vUW5SuURycmlAVWdmNXSUEN1X1GofS1so0WuP5SOsu?=
+ =?iso-8859-1?Q?uyYSQvxxDij664aNuBXw4V8piL3RPH/sURkSJEW3nfgqWf6a4N4lVlyzMI?=
+ =?iso-8859-1?Q?h9ZwG4u63Z924qA2VUb/eT7NJUSK1CsDY29i3QQ52UnlKB4FRl0ov+GTHR?=
+ =?iso-8859-1?Q?88Y3u7+jPijn22pfZlSRZsujgXeHHfYvA29fCjSn71x4FgoLUryYi0HM9P?=
+ =?iso-8859-1?Q?p+zm2fpuzv+unwZbssQ=3D?=
+MIME-Version: 1.0
+X-OriginatorOrg: erismedia.co.uk
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: LO2P265MB3453.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 32d91c6b-1c97-401a-e433-08db6cb5cb96
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jun 2023 09:00:26.3306
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3a36f15e-d1be-43aa-a418-5a3c7384cc00
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: j7oL8B6pv5MCDNCeaOiFCsTwxa9+zV0Vd1SQ6k+lPxAF36OKAq6M5XCaQpRL0/aEktjYhLsaa0y4cMiMnFKKX41QiSsP3XiyfZn7GlAB1vs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LOYP265MB1840
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: erismedia.co.uk
+Content-Language: en-GB
+Content-Type: multipart/alternative;
+	boundary="_000_LO2P265MB34536352CB6DBD005EBD5EE1BF5AALO2P265MB3453GBRP_"
+
+--_000_LO2P265MB34536352CB6DBD005EBD5EE1BF5AALO2P265MB3453GBRP_
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Tony - please can you forward on to Owen? Thanks.
+
+___________________________________________________________________________=
+_____
+Microsoft Teams meeting
+Join on your computer, mobile app or room device
+Click here to join the meeting<https://teams.microsoft.com/l/meetup-join/19=
+%3ameeting_OWFiY2IwMzItYzI4Mi00NjkyLWEwYWMtMzJhNzQ3ZTM0NGM3%40thread.v2/0?c=
+ontext=3D%7b%22Tid%22%3a%223a36f15e-d1be-43aa-a418-5a3c7384cc00%22%2c%22Oid=
+%22%3a%22eca2c0a3-88a3-4c1d-b1f2-622eff3c5a94%22%7d>
+Meeting ID: 310 077 554 814
+Passcode: D9uY2r
+Download Teams<https://www.microsoft.com/en-us/microsoft-teams/download-app=
+> | Join on the web<https://www.microsoft.com/microsoft-teams/join-a-meetin=
+g>
+Learn more<https://aka.ms/JoinTeamsMeeting> | Meeting options<https://teams=
+.microsoft.com/meetingOptions/?organizerId=3Deca2c0a3-88a3-4c1d-b1f2-622eff=
+3c5a94&tenantId=3D3a36f15e-d1be-43aa-a418-5a3c7384cc00&threadId=3D19_meetin=
+g_OWFiY2IwMzItYzI4Mi00NjkyLWEwYWMtMzJhNzQ3ZTM0NGM3@thread.v2&messageId=3D0&=
+language=3Den-GB>
+___________________________________________________________________________=
+_____
+
+Disclaimer
+
+The information contained in this communication from the sender is confiden=
+tial. It is intended solely for use by the recipient and others authorized =
+to receive it. If you are not the recipient, you are hereby notified that a=
+ny disclosure, copying, distribution or taking action in relation of the co=
+ntents of this information is strictly prohibited and may be unlawful.
+
+This email has been scanned for viruses and malware, and may have been auto=
+matically archived by Mimecast, a leader in email security and cyber resili=
+ence. Mimecast integrates email defenses with brand protection, security aw=
+areness training, web security, compliance and other essential capabilities=
+. Mimecast helps protect large and small organizations from malicious activ=
+ity, human error and technology failure; and to lead the movement toward bu=
+ilding a more resilient world. To find out more, visit our website.
+
+--_000_LO2P265MB34536352CB6DBD005EBD5EE1BF5AALO2P265MB3453GBRP_
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css">.style1 {font-family: "Times New Roman";}</style><=
+/head><body>
+<div>Tony - please can you forward on to Owen? Thanks.</div>
+<br>
+<div style=3D"width:100%;"><span style=3D"white-space:nowrap;color:#5F5F5F;=
+opacity:.36;">_____________________________________________________________=
+___________________</span>
+</div>
+<div class=3D"me-email-text" style=3D"color:#252424;font-family:'Segoe UI',=
+'Helvetica Neue',Helvetica,Arial,sans-serif;" lang=3D"en-GB">
+<div style=3D"margin-top: 24px; margin-bottom: 20px;"><span style=3D"font-s=
+ize: 24px; color:#252424">Microsoft Teams meeting</span>
+</div>
+<div style=3D"margin-bottom: 20px;">
+<div style=3D"margin-top: 0px; margin-bottom: 0px; font-weight: bold"><span=
+ style=3D"font-size: 14px; color:#252424">Join on your computer, mobile app=
+ or room device</span>
+</div>
+<a class=3D"me-email-headline" style=3D"font-size: 14px;font-family:'Segoe =
+UI Semibold','Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;text-de=
+coration: underline;color: #6264a7;" href=3D"https://teams.microsoft.com/l/=
+meetup-join/19%3ameeting_OWFiY2IwMzItYzI4Mi00NjkyLWEwYWMtMzJhNzQ3ZTM0NGM3%4=
+0thread.v2/0?context=3D%7b%22Tid%22%3a%223a36f15e-d1be-43aa-a418-5a3c7384cc=
+00%22%2c%22Oid%22%3a%22eca2c0a3-88a3-4c1d-b1f2-622eff3c5a94%22%7d" target=
+=3D"_blank" rel=3D"noreferrer noopener">Click
+ here to join the meeting</a> </div>
+<div style=3D"margin-bottom:20px; margin-top:20px">
+<div style=3D"margin-bottom:4px"><span data-tid=3D"meeting-code" style=3D"f=
+ont-size: 14px; color:#252424;">Meeting ID:
+<span style=3D"font-size:16px; color:#252424;">310 077 554 814</span> </spa=
+n><br>
+<span style=3D"font-size: 14px; color:#252424;">Passcode: </span><span styl=
+e=3D"font-size: 16px; color:#252424;">D9uY2r
+</span>
+<div style=3D"font-size: 14px;"><a class=3D"me-email-link" style=3D"font-si=
+ze: 14px;text-decoration: underline;color: #6264a7;font-family:'Segoe UI','=
+Helvetica Neue',Helvetica,Arial,sans-serif;" target=3D"_blank" href=3D"http=
+s://www.microsoft.com/en-us/microsoft-teams/download-app" rel=3D"noreferrer=
+ noopener">Download
+ Teams</a> | <a class=3D"me-email-link" style=3D"font-size: 14px;text-decor=
+ation: underline;color: #6264a7;font-family:'Segoe UI','Helvetica Neue',Hel=
+vetica,Arial,sans-serif;" target=3D"_blank" href=3D"https://www.microsoft.c=
+om/microsoft-teams/join-a-meeting" rel=3D"noreferrer noopener">
+Join on the web</a></div>
+</div>
+</div>
+<div style=3D"margin-bottom: 24px;margin-top: 20px;"><a class=3D"me-email-l=
+ink" style=3D"font-size: 14px;text-decoration: underline;color: #6264a7;fon=
+t-family:'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;" target=3D=
+"_blank" href=3D"https://aka.ms/JoinTeamsMeeting" rel=3D"noreferrer noopene=
+r">Learn
+ more</a> | <a class=3D"me-email-link" style=3D"font-size: 14px;text-decora=
+tion: underline;color: #6264a7;font-family:'Segoe UI','Helvetica Neue',Helv=
+etica,Arial,sans-serif;" target=3D"_blank" href=3D"https://teams.microsoft.=
+com/meetingOptions/?organizerId=3Deca2c0a3-88a3-4c1d-b1f2-622eff3c5a94&amp;=
+tenantId=3D3a36f15e-d1be-43aa-a418-5a3c7384cc00&amp;threadId=3D19_meeting_O=
+WFiY2IwMzItYzI4Mi00NjkyLWEwYWMtMzJhNzQ3ZTM0NGM3@thread.v2&amp;messageId=3D0=
+&amp;language=3Den-GB" rel=3D"noreferrer noopener">
+Meeting options</a> </div>
+</div>
+<div style=3D"font-size: 14px; margin-bottom: 4px;font-family:'Segoe UI','H=
+elvetica Neue',Helvetica,Arial,sans-serif;">
+</div>
+<div style=3D"font-size: 12px;"></div>
+<div></div>
+<div style=3D"width:100%;"><span style=3D"white-space:nowrap;color:#5F5F5F;=
+opacity:.36;">_____________________________________________________________=
+___________________</span>
+</div>
+
+
+<br><br><p style=3D"font-family: Verdana; font-size:10pt; color:#666666;"><=
+b>Disclaimer</b></p><p style=3D"font-family: Verdana; font-size:8pt; color:=
+#666666;">The information contained in this communication from the sender i=
+s confidential. It is intended solely for use by the recipient and others a=
+uthorized to receive it. If you are not the recipient, you are hereby notif=
+ied that any disclosure, copying, distribution or taking action in relation=
+ of the contents of this information is strictly prohibited and may be unla=
+wful.<br><br>This email has been scanned for viruses and malware, and may h=
+ave been automatically archived by Mimecast, a leader in email security and=
+ cyber resilience. Mimecast integrates email defenses with brand protection=
+, security awareness training, web security, compliance and other essential=
+ capabilities. Mimecast helps protect large and small organizations from ma=
+licious activity, human error and technology failure; and to lead the movem=
+ent toward building a more resilient world. To find out more, visit our web=
+site.</p></body></html>
+
+--_000_LO2P265MB34536352CB6DBD005EBD5EE1BF5AALO2P265MB3453GBRP_
+Content-Type: text/calendar; charset=UTF-8; method=REQUEST
+Content-Transfer-Encoding: base64
+
+QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6UkVRVUVTVA0KUFJPRElEOk1pY3Jvc29mdCBFeGNoYW5n
+ZSBTZXJ2ZXIgMjAxMA0KVkVSU0lPTjoyLjANCkJFR0lOOlZUSU1FWk9ORQ0KVFpJRDpHTVQgU3Rh
+bmRhcmQgVGltZQ0KQkVHSU46U1RBTkRBUkQNCkRUU1RBUlQ6MTYwMTAxMDFUMDIwMDAwDQpUWk9G
+RlNFVEZST006KzAxMDANClRaT0ZGU0VUVE86KzAwMDANClJSVUxFOkZSRVE9WUVBUkxZO0lOVEVS
+VkFMPTE7QllEQVk9LTFTVTtCWU1PTlRIPTEwDQpFTkQ6U1RBTkRBUkQNCkJFR0lOOkRBWUxJR0hU
+DQpEVFNUQVJUOjE2MDEwMTAxVDAxMDAwMA0KVFpPRkZTRVRGUk9NOiswMDAwDQpUWk9GRlNFVFRP
+OiswMTAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJTlRFUlZBTD0xO0JZREFZPS0xU1U7QllNT05USD0z
+DQpFTkQ6REFZTElHSFQNCkVORDpWVElNRVpPTkUNCkJFR0lOOlZFVkVOVA0KT1JHQU5JWkVSO0NO
+PURhdmlkIE1vdWx0b246bWFpbHRvOmRhdmlkLm1vdWx0b25AZXJpc21lZGlhLmNvLnVrDQpBVFRF
+TkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVF
+O0NOPUphbWVzIFR1dHQNCiBpZXR0Om1haWx0bzpKVHV0dGlldHRAcGVudWx0Y3AuY28udWsNCkFU
+VEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRS
+VUU7Q049YW50aG9ueSBodQ0KIGdoZXM6bWFpbHRvOnRvbnlfaHVnaGVzMUBob3RtYWlsLmNvLnVr
+DQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNW
+UD1UUlVFO0NOPW90QGluaG9tZW0NCiBlZGlhLmlvOm1haWx0bzpvdEBpbmhvbWVtZWRpYS5pbw0K
+REVTQ1JJUFRJT047TEFOR1VBR0U9ZW4tR0I6VG9ueSAtIHBsZWFzZSBjYW4geW91IGZvcndhcmQg
+b24gdG8gT3dlbj8gVGhhbmtzDQogLlxuXG5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCiBfX19fX19fX19fX1xuTWlj
+cm9zb2Z0IFRlYW1zIG1lZXRpbmdcbkpvaW4gb24geW91ciBjb21wdXRlclwsIG1vYmlsZSBhcHAg
+bw0KIHIgcm9vbSBkZXZpY2VcbkNsaWNrIGhlcmUgdG8gam9pbiB0aGUgbWVldGluZzxodHRwczov
+L3RlYW1zLm1pY3Jvc29mdC5jb20vDQogbC9tZWV0dXAtam9pbi8xOSUzYW1lZXRpbmdfT1dGaVky
+SXdNekl0WXpJNE1pMDBOamt5TFdFd1lXTXRNekpoTnpRM1pUTTBOR00NCiAzJTQwdGhyZWFkLnYy
+LzA/Y29udGV4dD0lN2IlMjJUaWQlMjIlM2ElMjIzYTM2ZjE1ZS1kMWJlLTQzYWEtYTQxOC01YTNj
+NzM4NA0KIGNjMDAlMjIlMmMlMjJPaWQlMjIlM2ElMjJlY2EyYzBhMy04OGEzLTRjMWQtYjFmMi02
+MjJlZmYzYzVhOTQlMjIlN2Q+XG5NZWV0DQogaW5nIElEOiAzMTAgMDc3IDU1NCA4MTRcblBhc3Nj
+b2RlOiBEOXVZMnJcbkRvd25sb2FkIFRlYW1zPGh0dHBzOi8vd3d3Lm1pY3INCiBvc29mdC5jb20v
+ZW4tdXMvbWljcm9zb2Z0LXRlYW1zL2Rvd25sb2FkLWFwcD4gfCBKb2luIG9uIHRoZSB3ZWI8aHR0
+cHM6Ly93dw0KIHcubWljcm9zb2Z0LmNvbS9taWNyb3NvZnQtdGVhbXMvam9pbi1hLW1lZXRpbmc+
+XG5MZWFybiBtb3JlPGh0dHBzOi8vYWthLm1zDQogL0pvaW5UZWFtc01lZXRpbmc+IHwgTWVldGlu
+ZyBvcHRpb25zPGh0dHBzOi8vdGVhbXMubWljcm9zb2Z0LmNvbS9tZWV0aW5nT3ANCiB0aW9ucy8/
+b3JnYW5pemVySWQ9ZWNhMmMwYTMtODhhMy00YzFkLWIxZjItNjIyZWZmM2M1YTk0JnRlbmFudElk
+PTNhMzZmMTVlLQ0KIGQxYmUtNDNhYS1hNDE4LTVhM2M3Mzg0Y2MwMCZ0aHJlYWRJZD0xOV9tZWV0
+aW5nX09XRmlZMkl3TXpJdFl6STRNaTAwTmpreUxXDQogRXdZV010TXpKaE56UTNaVE0wTkdNM0B0
+aHJlYWQudjImbWVzc2FnZUlkPTAmbGFuZ3VhZ2U9ZW4tR0I+XG5fX19fX19fX19fX18NCiBfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX1xuDQpVSUQ6MDQwMDAwMDA4MjAwRTAwMDc0QzVCNzEwMUE4MkUwMDgwMDAwMDAwMEZB
+MjA0QTU1M0M5REQ5MDEwMDAwMDAwMDAwMDAwMDANCiAwMTAwMDAwMDA5NkQyNzg2MDAzN0QwQjRB
+QTcwQUYxMkIyQ0IxRDU4Nw0KU1VNTUFSWTtMQU5HVUFHRT1lbi1HQjpFcmlzIGFuZCBJbi1Ib21l
+IE1lZGlhIFRlYW1zIE1lZXRpbmcgDQpEVFNUQVJUO1RaSUQ9R01UIFN0YW5kYXJkIFRpbWU6MjAy
+MzA2MTRUMTAwMDAwDQpEVEVORDtUWklEPUdNVCBTdGFuZGFyZCBUaW1lOjIwMjMwNjE0VDExMDAw
+MA0KQ0xBU1M6UFVCTElDDQpQUklPUklUWTo1DQpEVFNUQU1QOjIwMjMwNjE0VDA5MDAyNloNClRS
+QU5TUDpPUEFRVUUNClNUQVRVUzpDT05GSVJNRUQNClNFUVVFTkNFOjENCkxPQ0FUSU9OO0xBTkdV
+QUdFPWVuLUdCOk1pY3Jvc29mdCBUZWFtcyBNZWV0aW5nDQpYLU1JQ1JPU09GVC1DRE8tQVBQVC1T
+RVFVRU5DRToxDQpYLU1JQ1JPU09GVC1DRE8tT1dORVJBUFBUSUQ6MjEyMTY4ODU3MA0KWC1NSUNS
+T1NPRlQtQ0RPLUJVU1lTVEFUVVM6VEVOVEFUSVZFDQpYLU1JQ1JPU09GVC1DRE8tSU5URU5ERURT
+VEFUVVM6QlVTWQ0KWC1NSUNST1NPRlQtQ0RPLUFMTERBWUVWRU5UOkZBTFNFDQpYLU1JQ1JPU09G
+VC1DRE8tSU1QT1JUQU5DRToxDQpYLU1JQ1JPU09GVC1DRE8tSU5TVFRZUEU6MA0KWC1NSUNST1NP
+RlQtT05MSU5FTUVFVElOR0VYVEVSTkFMTElOSzoNClgtTUlDUk9TT0ZULU9OTElORU1FRVRJTkdJ
+TkZPUk1BVElPTjp7Ik9ubGluZU1lZXRpbmdDaGFubmVsSWQiOm51bGxcLCJPbmxpbg0KIGVNZWV0
+aW5nUHJvdmlkZXIiOjN9DQpYLU1JQ1JPU09GVC1TS1lQRVRFQU1TTUVFVElOR1VSTDpodHRwczov
+L3RlYW1zLm1pY3Jvc29mdC5jb20vbC9tZWV0dXAtam9pbi8NCiAxOSUzYW1lZXRpbmdfT1dGaVky
+SXdNekl0WXpJNE1pMDBOamt5TFdFd1lXTXRNekpoTnpRM1pUTTBOR00zJTQwdGhyZWFkLnYyLw0K
+IDA/Y29udGV4dD0lN2IlMjJUaWQlMjIlM2ElMjIzYTM2ZjE1ZS1kMWJlLTQzYWEtYTQxOC01YTNj
+NzM4NGNjMDAlMjIlMmMlMjJPDQogaWQlMjIlM2ElMjJlY2EyYzBhMy04OGEzLTRjMWQtYjFmMi02
+MjJlZmYzYzVhOTQlMjIlN2QNClgtTUlDUk9TT0ZULVNDSEVEVUxJTkdTRVJWSUNFVVBEQVRFVVJM
+Omh0dHBzOi8vYXBpLnNjaGVkdWxlci50ZWFtcy5taWNyb3NvZg0KIHQuY29tL3RlYW1zLzNhMzZm
+MTVlLWQxYmUtNDNhYS1hNDE4LTVhM2M3Mzg0Y2MwMC9lY2EyYzBhMy04OGEzLTRjMWQtYjFmMi02
+DQogMjJlZmYzYzVhOTQvMTlfbWVldGluZ19PV0ZpWTJJd016SXRZekk0TWkwME5qa3lMV0V3WVdN
+dE16SmhOelEzWlRNME5HTTNAdGgNCiByZWFkLnYyLzANClgtTUlDUk9TT0ZULVNLWVBFVEVBTVNQ
+Uk9QRVJUSUVTOnsiY2lkIjoiMTk6bWVldGluZ19PV0ZpWTJJd016SXRZekk0TWkwME5qaw0KIHlM
+V0V3WVdNdE16SmhOelEzWlRNME5HTTNAdGhyZWFkLnYyIlwsInJpZCI6MFwsIm1pZCI6MFwsInVp
+ZCI6bnVsbFwsInByaXZhDQogdGUiOnRydWVcLCJ0eXBlIjowfQ0KWC1NSUNST1NPRlQtT05MSU5F
+TUVFVElOR0NPTkZMSU5LOmNvbmY6c2lwOmRhdmlkLm1vdWx0b25AZXJpc21lZGlhLmNvLnVrXDtn
+DQogcnV1XDtvcGFxdWU9YXBwOmNvbmY6Zm9jdXM6aWQ6dGVhbXM6MjowITE5Om1lZXRpbmdfT1dG
+aVkySXdNekl0WXpJNE1pMDBOamsNCiB5TFdFd1lXTXRNekpoTnpRM1pUTTBOR00zLXRocmVhZC52
+MiFlY2EyYzBhMzg4YTM0YzFkYjFmMjYyMmVmZjNjNWE5NCEzYTM2Zg0KIDE1ZWQxYmU0M2FhYTQx
+ODVhM2M3Mzg0Y2MwMA0KWC1NSUNST1NPRlQtRE9OT1RGT1JXQVJETUVFVElORzpGQUxTRQ0KWC1N
+SUNST1NPRlQtRElTQUxMT1ctQ09VTlRFUjpGQUxTRQ0KWC1NSUNST1NPRlQtTE9DQVRJT05ESVNQ
+TEFZTkFNRTpNaWNyb3NvZnQgVGVhbXMgTWVldGluZw0KWC1NSUNST1NPRlQtTE9DQVRJT05TT1VS
+Q0U6Tm9uZQ0KWC1NSUNST1NPRlQtTE9DQVRJT05TOlt7IkRpc3BsYXlOYW1lIjoiTWljcm9zb2Z0
+IFRlYW1zIE1lZXRpbmciXCwiTG9jYXRpb25BDQogbm5vdGF0aW9uIjoiIlwsIkxvY2F0aW9uVXJp
+IjoiIlwsIkxvY2F0aW9uU3RyZWV0IjoiIlwsIkxvY2F0aW9uQ2l0eSI6IiJcLCINCiBMb2NhdGlv
+blN0YXRlIjoiIlwsIkxvY2F0aW9uQ291bnRyeSI6IiJcLCJMb2NhdGlvblBvc3RhbENvZGUiOiIi
+XCwiTG9jYXRpbw0KIG5GdWxsQWRkcmVzcyI6IiJ9XQ0KRU5EOlZFVkVOVA0KRU5EOlZDQUxFTkRB
+Ug0K
+--_000_LO2P265MB34536352CB6DBD005EBD5EE1BF5AALO2P265MB3453GBRP_--
+

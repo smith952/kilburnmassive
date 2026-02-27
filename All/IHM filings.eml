@@ -1,0 +1,154 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:3e17:b0:a59:31b2:e81d with SMTP id k23csp1263621eji;
+        Mon, 6 May 2024 00:33:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUX/ulBBnfH0/D+Eh2F7/IUEuyoSBc7OpmSfDIbak0EsFwq4h5n1CKa7BxIBEyzfEbl6VqIGQAaI5LDuyQoUOdV1Q==
+X-Google-Smtp-Source: AGHT+IE5ZoQZoasDyW0Eoy2YkxThWvik1w0KRxOyL6SVoLMG+7Yk/98TGCc1S4ZPtrR2uXCP3wnc
+X-Received: by 2002:a17:906:190f:b0:a59:b1dc:57a8 with SMTP id a15-20020a170906190f00b00a59b1dc57a8mr3141564eje.33.1714980806492;
+        Mon, 06 May 2024 00:33:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1714980806; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Db70t/nXvIMZ9yGpirY2stZrfgMN1marOHZXsWrvNbXWuR4G/HWu1z/ybiaOPoENKM
+         PjVUz69U7wwXP46taDi9YA78/35B24NfnIgM7Pr1tHqj7tb/u5VbGPjpMq/ginoG79x7
+         HnK44SNTJauKA597z1oFKSYQMghkOkiQpKHzFWPDUqagUHgEMsyy/DFdF6pek2JFTj4R
+         GXqtGcqEWduvw+US9bIoJo9wRg+5CFvgMe4LUYuMacXKUCQW8reyQUw4uXs2VrLxoEIh
+         FQx4R9ZM9PNRJI896Z+kjAFMirYpw5SZusjKXKH7FpJ4kFZ+REfpKfqJYJiic2mQ6/Z3
+         r0rQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=dkim-signature:content-transfer-encoding:cc:to:references
+         :message-id:in-reply-to:thread-topic:subject:from:date:mime-version;
+        bh=D/9CCg/ZJifiwgZEbyz0M+UuJD5pai69YfqMl0Eh31w=;
+        fh=qb8HPiBPbj8rqNiSnqu4zMRWMOHou2p57gS666Jcb34=;
+        b=Oy9U8l1PsYJ1RXy6GiXK/6/sLXpafVOagU8WjkLlaKs385v3jkKsJ+QIbEv6SizEda
+         +2EZTWWYznkGuGEJA7T8/SqpcGerWtPP6Wv3J0fF5zrCZ4KgAI2vRKDTgdlQBMgAlNiE
+         5gau70Q3/PZGDZZKrFGfoKil++G3D19iQ5pR8/g5ZSf2B5DouEOyt9T9xXRskd0cQ/9G
+         nLm1aCbAV4jHTfAym9WkXlvMzdzy0ESsN0heJ6qAo7Z1gv+wWrygslvuIo0C5KtlcLQq
+         v/VWoqppG+0mD7j6E6Q5JxGRLXzMpVtW88KtMcYxRgv0NtOETUIH91beuK5GgCS7tX9V
+         uXzA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@jms-consult.com header.s=20230208 header.b=etAS57gW;
+       spf=neutral (google.com: 62.128.193.158 is neither permitted nor denied by best guess record for domain of jacqueline.hills@jms-consult.com) smtp.mailfrom=jacqueline.hills@jms-consult.com
+Return-Path: <jacqueline.hills@jms-consult.com>
+Received: from mta8.iomartmail.com (mta8.iomartmail.com. [62.128.193.158])
+        by mx.google.com with ESMTPS id mc18-20020a170906eb5200b00a59b6dd7149si2168022ejb.310.2024.05.06.00.33.26
+        for <ot@inhomemedia.io>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 06 May 2024 00:33:26 -0700 (PDT)
+Received-SPF: neutral (google.com: 62.128.193.158 is neither permitted nor denied by best guess record for domain of jacqueline.hills@jms-consult.com) client-ip=62.128.193.158;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@jms-consult.com header.s=20230208 header.b=etAS57gW;
+       spf=neutral (google.com: 62.128.193.158 is neither permitted nor denied by best guess record for domain of jacqueline.hills@jms-consult.com) smtp.mailfrom=jacqueline.hills@jms-consult.com
+Received: from vs3.iomartmail.com (vs3.iomartmail.com [10.12.10.124])
+	by mta8.iomartmail.com (8.14.7/8.14.7) with ESMTP id 4467XPDS016475;
+	Mon, 6 May 2024 08:33:26 +0100
+Received: from vs3.iomartmail.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id C236C4604B;
+	Mon,  6 May 2024 08:33:25 +0100 (BST)
+Received: from vs3.iomartmail.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id B639D4604A;
+	Mon,  6 May 2024 08:33:25 +0100 (BST)
+Received: from asmtp2.iomartmail.com (unknown [10.12.10.249])
+	by vs3.iomartmail.com (Postfix) with ESMTPS;
+	Mon,  6 May 2024 08:33:25 +0100 (BST)
+Received: from localhost (cpc78591-glfd8-2-0-cust101.6-2.cable.virginm.net [86.15.6.102])
+	(authenticated bits=0)
+	by asmtp2.iomartmail.com (8.14.7/8.14.7) with ESMTP id 4467XPqA023791;
+	Mon, 6 May 2024 08:33:25 +0100
+MIME-Version: 1.0
+Date: Mon, 6 May 2024 08:33:24 +0100
+From: Jacqueline Hills <jacqueline.hills@jms-consult.com>
+Subject: Re: IHM filings
+Thread-Topic: IHM filings
+In-Reply-To: <18E6F446-27F5-0447-9824-CEB2BAEA8090@hxcore.ol>
+Message-ID: <D8F7C569-3AC1-754C-82C1-992FBD2B71BD@hxcore.ol>
+References: <18E6F446-27F5-0447-9824-CEB2BAEA8090@hxcore.ol>
+To: Owen Thomas <owen@keaze.com>, Owen Thomas <ot@inhomemedia.io>
+Cc: Jonathan M Saville <jonathansaville@jms-consult.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
+X-Originating-IP: 86.15.6.102
+X-Thinkmail-Auth: jacqueline.hills@jms-consult.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=jms-consult.com; h=
+	mime-version:date:from:subject:in-reply-to:message-id:references
+	:to:cc:content-transfer-encoding:content-type; s=20230208; bh=bd
+	qK49LJ0Eb7jgjOZX9LRZGZrc4zsrwMEse24bWMbPY=; b=etAS57gW1hUbMC2iRC
+	YIMpILGcIyhHms9DlydPByAzTRr1F7KcHHg8CQ+i+EehKiXQwSKLlIpMASX07iQV
+	MmEvsK06WFQxcff9/dE68TdZlL5qJ/XoTLACyKlvpeJzdu0p2UZvR0E8LlbWZcUy
+	PklGhqyUpLv8K0WTr9QXnl7KnUaUrVJQ0upvevBjbB7snLiy1rwxmfiU4j4xon3D
+	mfwvB1Y0A6sHT03Hn2Gxwmv4lEdcUQWfO9cUa4kZcc5hNjFVroJIXVTl5AU5NMDi
+	HjwM1A/yr+5GGIdwRBMvyV0xg0ulMPsH+rA3ohpCuo6AE2G8tCm/lQPll6YoM9g6
+	Hqng==
+X-TM-AS-GCONF: 00
+X-TM-AS-Product-Ver: IMSVA-9.1.0.2090-9.0.0.1002-28352.003
+X-TM-AS-Result: No--17.736-10.0-31-10
+X-imss-scan-details: No--17.736-10.0-31-10
+X-TMASE-Version: IMSVA-9.1.0.2090-9.0.1002-28352.003
+X-TMASE-Result: 10--17.736300-10.000000
+X-TMASE-MatchedRID: x2Vtays57L07iuZ/mdYYtgeLCIX046iBjmGW6ilNpaTuGpDZdzOQnyss
+	X9txSGeRm4ecPZjp0wSIf3m0sUfx53hHp5CqhYA4lhoZR16K112NRCPAFosOlNT3nBsjS6FoV0X
+	lRZnkQ+ewquY0kEgdZ8Y5g7HnuHqyXef5t6q8RcwDx6oqiF8ShrFWPk0Zd97FEQMSlYGHfWwuIM
+	zXYpBTtm0Xr+fj3ww/5p1ddw6V4Rsyi3XhzUIbyKlOQjQcrzOlOCjykMcvhP6BwOiAXd70LL1Hk
+	uQTWUfr/0dTUjHNqgmHbVO48Fx2bX5Lmbb/xUuaponFa6Jp11H6rBWesBpjXynEgVhrujbNy79y
+	O6Em1OOl4Agrpd+E+pGA/MAGSrEgHAwy0XhreD35lA8aRaIEF6PFjJEFr+olVoTa5lFknUHrrQI
+	HclTjeZRMZUCEHkRt
+X-TMASE-SNAP-Result: 1.821001.0001-0-1-22:0,33:0,34:0-0
+
+<html><body><div dir=3D"ltr"><div>=0A=
+  =0A=
+  =0A=
+  =0A=
+    =0A=
+    </div><div><div dir=3D"ltr">Hi Owen</div><div dir=3D"ltr">I hope you ar=
+e having a good bank holiday. I wonder if you have received the replacement=
+ auth code so I can complete your filings? &nbsp;</div><div dir=3D"ltr">Man=
+y thanks</div><div dir=3D"ltr">Kind regards&nbsp;</div><div dir=3D"ltr">Jac=
+queline&nbsp;</div>=0A=
+    <div id=3D"ms-outlook-mobile-signature"><div><br></div>Sent from <a hre=
+f=3D"https://aka.ms/o0ukef">Outlook for iOS</a></div>=0A=
+  =0A=
+=0A=
+<div>&nbsp;</div><hr style=3D"display:inline-block;width:98%" tabindex=3D"-=
+1"><div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif"=
+><b>From:</b> jacqueline.hills@jms-consult.com &lt;jacqueline.hills@jms-con=
+sult.com&gt;<br><b>Sent:</b> Monday, April 15, 2024 11:49 AM<br><b>To:</b> =
+Owen Thomas &lt;owen@keaze.com&gt;; Owen Thomas &lt;ot@inhomemedia.io&gt;<b=
+r><b>Cc:</b> Jonathan M Saville &lt;jonathansaville@jms-consult.com&gt;<br>=
+<b>Subject:</b> IHM filings<div>&nbsp;</div></font></div><meta name=3D"Gene=
+rator" content=3D"Microsoft Word 15 (filtered medium)"><!--[if gte mso 9]><=
+xml>=0A=
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />=0A=
+</xml><![endif]--><!--[if gte mso 9]><xml>=0A=
+<o:shapelayout v:ext=3D"edit">=0A=
+<o:idmap v:ext=3D"edit" data=3D"1" />=0A=
+</o:shapelayout></xml><![endif]--><div class=3D"WordSection1" style=3D"page=
+: WordSection1;"><p class=3D"MsoNormal" style=3D"margin: 0cm; font-size: 11=
+pt; font-family: Aptos, sans-serif;">Hi Owen,</p><p class=3D"MsoNormal" sty=
+le=3D"margin: 0cm; font-size: 11pt; font-family: Aptos, sans-serif;">I have=
+ not been able to file the SH01 and make the new director appointment for I=
+HM as I am still awaiting the auth code for companies house.&nbsp; </p><p c=
+lass=3D"MsoNormal" style=3D"margin: 0cm; font-size: 11pt; font-family: Apto=
+s, sans-serif;">&nbsp;</p><p class=3D"MsoNormal" style=3D"margin: 0cm; font=
+-size: 11pt; font-family: Aptos, sans-serif;">I have asked for a new auth c=
+ode to be sent to you.&nbsp; This will arrive at your registered office<spa=
+n style=3D"font-family: Arial, sans-serif; background: white; color: black;=
+"> - 2nd Floor Balfour House, 46-54 Great Titchfield Street, London, Englan=
+d, W1W 7QA</span></p><p class=3D"MsoNormal" style=3D"margin: 0cm; font-size=
+: 11pt; font-family: Aptos, sans-serif;"><span style=3D"font-family: Arial,=
+ sans-serif; background: white; color: black;">&nbsp;</span></p><p class=3D=
+"MsoNormal" style=3D"margin: 0cm; font-size: 11pt; font-family: Aptos, sans=
+-serif;"><span style=3D"font-family: Arial, sans-serif; background: white; =
+color: black;">Please look out for it this week and let me have a copy of i=
+t by pdf once received.</span></p><p class=3D"MsoNormal" style=3D"margin: 0=
+cm; font-size: 11pt; font-family: Aptos, sans-serif;"><span style=3D"font-f=
+amily: Arial, sans-serif; background: white; color: black;">&nbsp;</span></=
+p><p class=3D"MsoNormal" style=3D"margin: 0cm; font-size: 11pt; font-family=
+: Aptos, sans-serif;"><span style=3D"font-family: Arial, sans-serif; backgr=
+ound: white; color: black;">Thanks</span></p><p class=3D"MsoNormal" style=
+=3D"margin: 0cm; font-size: 11pt; font-family: Aptos, sans-serif;"><span st=
+yle=3D"font-family: Arial, sans-serif; background: white; color: black;">Ki=
+nd regards</span></p><p class=3D"MsoNormal" style=3D"margin: 0cm; font-size=
+: 11pt; font-family: Aptos, sans-serif;"><span style=3D"font-family: Arial,=
+ sans-serif; background: white; color: black;">Jacqueline</span></p><p clas=
+s=3D"MsoNormal" style=3D"margin: 0cm; font-size: 11pt; font-family: Aptos, =
+sans-serif;">&nbsp;</p></div></div></div></body></html>=
+

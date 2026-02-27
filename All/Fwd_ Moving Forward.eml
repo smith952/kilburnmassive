@@ -1,0 +1,275 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:30cd:b0:a7d:27b1:57ca with SMTP id b13csp38796ejb;
+        Thu, 25 Jul 2024 08:09:42 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUHpl3+fWNftUqYqcNxqKnH7j5yIErRyKwr1eSTL4Tnp9QD8PKQSQHdbS4Fg90VwAUqK8G6blAmP4W1nrZmPX0iAg==
+X-Google-Smtp-Source: AGHT+IFTWPDhTVWLCdvlTow6kCf4RqRVhgY27jhNNTSfDSNwKrp21BaOWpPcKrLxMu0JgG1ZpReg
+X-Received: by 2002:a05:6512:3089:b0:52c:ddef:4eb7 with SMTP id 2adb3069b0e04-52fd602bc31mr2053749e87.20.1721920182404;
+        Thu, 25 Jul 2024 08:09:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1721920182; cv=none;
+        d=google.com; s=arc-20160816;
+        b=YO+1NLvF0kphaQoREpMZ5aoLipa3QXqMcNC6XbGwo0QE/buLeV2wP8NyGjVFQI+HJA
+         tnsrHhT2F8sKOlj2+SpNemNzFjJxDiyMASSr7O1WTLt3H7edOZwPX8ZywL67j86BXrFp
+         R2QJelL8jCSNtudJzk+ka3d357XavznRNUCvU6SWD80rEbu6/7t2RtWrxIY0e7eC0CBf
+         Ht2tpsd5pOpNCNBRliguv12EN6srr0ap5E3oGx4DaLuc3OLnh2rb9n0nYv6/Qyj/rwYC
+         Xb+50Fxja8OvpKrQHvONkCFuJPru1A7PhRQ5mLwQfysxFoaChnCNZb06EjIwphwKxS9o
+         tVNw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=date:to:in-reply-to:references:message-id:subject:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=DQtypJqA6LRMpD2ruQnIyWttS6B5fNGIdJszPS7YQz8=;
+        fh=ruAQPZwOdXJ9yuBUZcg7lEfG0b87wbruD3JY+UGa9/w=;
+        b=evPoHXW8KXaQtjvrjDhXMNw8p8j7lJEha1yrysVWb4sFFIdVFIkA/CrYIvNgT5ZH1j
+         pJjkKWC9apnxpcFxHf8ixO3sl/LhC46PGpD0dPPQ9Z5nLQuAAaI5ZdQk/6iN8AqRKIO8
+         qzcyDFRpFG5/sm3ZwL4JM6M9zNyRVetSvZ8JJd1VsbWYgOHwJu5EKJ/E5T0J6cTsM4mB
+         0NQ7XLg+VJ7cAb6Fn3IK5J/7raBaGN4A6hgbukxBvt9P7QF/U5PQ/FnYlLmbFBCU7Kx7
+         9yfpEAj2/xNhtvGUBQoLEKUuFUQ2Ieako4cjHm3fBPPL0fttgf56CevkCsMVySrWUKgS
+         ARkg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=r1jfeZAD;
+       spf=neutral (google.com: 2a00:1450:4864:20::331 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io;
+       dara=pass header.i=@inhomemedia.io
+Return-Path: <th@inhomemedia.io>
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com. [2a00:1450:4864:20::331])
+        by mx.google.com with ESMTPS id 2adb3069b0e04-52fd5c17cb5si535776e87.594.2024.07.25.08.09.42
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Jul 2024 08:09:42 -0700 (PDT)
+Received-SPF: neutral (google.com: 2a00:1450:4864:20::331 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) client-ip=2a00:1450:4864:20::331;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=r1jfeZAD;
+       spf=neutral (google.com: 2a00:1450:4864:20::331 is neither permitted nor denied by best guess record for domain of th@inhomemedia.io) smtp.mailfrom=th@inhomemedia.io;
+       dara=pass header.i=@inhomemedia.io
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4257d5fc9b7so10569305e9.2
+        for <ot@inhomemedia.io>; Thu, 25 Jul 2024 08:09:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1721920181; x=1722524981; darn=inhomemedia.io;
+        h=date:to:in-reply-to:references:message-id:subject:mime-version:from
+         :content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DQtypJqA6LRMpD2ruQnIyWttS6B5fNGIdJszPS7YQz8=;
+        b=r1jfeZAD/XD0BG7XqPvRbUv0LGXGHOszBIxlMtY9Qug+KttMgbn/MqDMHi2hTcmVJl
+         KgSD+Hjvqwq6Zne2igBzF2VLW1AIiPvsEM57GtZNROPLRoAcfHmWwH61KAtbHsSF5LkG
+         GVAY4Tb4pbeJ74ryjQhec5baSOGeHcLUnOn+21mqzIanvrnfwHhU0MSWWpJE2ssPCJwJ
+         88/TbhY/GOisRO1B4ya9W0A7Qpctb+D3yKE1j84mlgtXOciq+r+1nwH1tFpZuZufHYJs
+         urg/j1MuUy7SGpBJlUqoqO2Ulo8BMGD2DC0vgQD2iS6A3R+21LUVgBW1e9+jwotip+V1
+         kGyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721920181; x=1722524981;
+        h=date:to:in-reply-to:references:message-id:subject:mime-version:from
+         :content-transfer-encoding:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=DQtypJqA6LRMpD2ruQnIyWttS6B5fNGIdJszPS7YQz8=;
+        b=mMCmdTir1+1P2DN8xyw4ylPLXZorwrhkJYC3oNYqB93D6aAmj9HBcZDFP5liDG38Zi
+         SoWYVDxTlThAXZW/QaPLkUYJR1XKG0aqGhhh4zeNwIlpYWSJbYs/MBZ8Y+vJcC2gV0CU
+         /W05tZn1lA0K1ZYdMMTxVHQbzYurvnRuy4Y8L88nEkCCcHf9DtmWdfPeXl6wa1i5BwZw
+         T0hvbSJ1tUTIUGnqNHwW3+GbP5IRNzbl5LQk+sjgtDVhX4gItj82WYxHetIZ8u3cefwB
+         fjEzwi8Eyj1UBCf5MLJ2hN6yhg6PFfG7Wfnhh5SfvITNUqqkiUUJMWDKoEPQSDiUZ63n
+         FWDA==
+X-Forwarded-Encrypted: i=1; AJvYcCXQE8evrguE9+GcioUT1DL7pjH3KRVIxpc6/1fjKHoxnQSuURoD3Dpn4W/L48cBIHbjCGR7OuMknQNw2NvMZzh0iQ==
+X-Gm-Message-State: AOJu0YyN1kLLT4Z9B0glYp+Fhlegw38SpBAoG1Es8PChh3727QYiwnHB
+	aBsZ3pSJxlmmL3zXacv40jmB7SihlF0gkHFck+BUJkyfOHMo3M0JDeW3edZHWh3uYfLqb15x8gE
+	=
+X-Received: by 2002:a05:600c:1907:b0:426:593c:9359 with SMTP id 5b1f17b1804b1-42806bf39aamr25061975e9.32.1721920181306;
+        Thu, 25 Jul 2024 08:09:41 -0700 (PDT)
+Return-Path: <th@inhomemedia.io>
+Received: from smtpclient.apple ([2a00:23c4:6022:d901:c092:8064:71f2:e0c8])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-428029e32fesm54786425e9.25.2024.07.25.08.09.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Jul 2024 08:09:40 -0700 (PDT)
+Content-Type: multipart/alternative; boundary=Apple-Mail-83DB9E2A-20F2-4C5F-AED3-6A680AD449A7
+Content-Transfer-Encoding: 7bit
+From: Anthony Hughes <th@inhomemedia.io>
+Mime-Version: 1.0 (1.0)
+Subject: Re: Moving Forward
+Message-Id: <1023573C-5511-4E2A-9932-2E6A8923AB66@inhomemedia.io>
+References: <98A42162-4BF7-49DC-9CE4-FF46F8A3978E@inhomemedia.io>
+In-Reply-To: <98A42162-4BF7-49DC-9CE4-FF46F8A3978E@inhomemedia.io>
+To: David Moulton <david.moulton@erismedia.co.uk>
+Date: Thu, 25 Jul 2024 16:09:30 +0100
+X-Mailer: iPhone Mail (21F90)
+
+
+--Apple-Mail-83DB9E2A-20F2-4C5F-AED3-6A680AD449A7
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Dave,
+
+Not heard back from you on the below or the previous email in terms of a dis=
+cussion.
+
+The suggested changes would enable us to move the business forward which I a=
+ssumed you would want to do.
+
+If you can come back to me as leaving doing nothing is not a strategy that w=
+ill provide success. As per my previous note screens are currently off and b=
+lank which is far from ideal.
+
+Best=20
+
+Tony
+Sent from my iPhone
+
+> On 22 Jul 2024, at 12:28, Anthony Hughes <th@inhomemedia.io> wrote:
+>=20
+> =EF=BB=BF
+> Hi Dave,
+> =20
+> I have dropped you a note re a catch up but have not heard back so wanted t=
+o confirm the team at IHM thoughts in terms of growing the business and what=
+ we would look to do on structure to achieve this.
+>=20
+> Structure
+>=20
+> DM & JT retain 12.5% each and 33% of any dividends moving forward
+>=20
+> Amend shareholders agreement/Articles to move to a majority decision makin=
+g process.
+>=20
+> Dave Evans and Stephen Gale brough in as shareholders diluting Owen and To=
+ny.
+>=20
+> We approach 4th utility to take ownership of the current screens in situ.=20=
+
+> =20
+> In terms of the current Eris stock with screens we see zero media value, w=
+e would suggest Eris would write to all their buildings/MA=E2=80=99s with a 2=
+-month deadline to pay fees at =C2=A31/unit/month or screens will be removed=
+. =20
+> =20
+> This effectively then becomes a 2-month trial period where we can sell the=
+ benefits (Jasmine has got materials from IHM already to do this), provide a=
+ccess to the system in the most resource-efficient way.  Those who don=E2=80=
+=99t engage at all, or try it and decide against, will go on the list for re=
+moval based on a program we would need to cost out over time - we would firs=
+t remove the sites with high screen: unit ratios as these are the most cost-=
+effective to be removed via our partner.=20
+>=20
+> Eris outstanding invoices to IHM converted to loan with an agreed interest=
+ position and would be a priority payment at a transaction.
+>=20
+> We would provide s/w and service access for screens to be updated in Eris b=
+uildings but no charge to IHM moving forward and as above that where appropr=
+iate screens are removed over time.
+> =20
+> Our view is that the agreement of =C2=A350/screen was invalidated by Eris b=
+eing unable to deliver on the guaranteed portal fees plus the end of the 4th=
+ U arrangement - but especially the former=20
+> It could become applicable again If MA=E2=80=99s anyone sign up to portal f=
+ees - providing these cover the =C2=A350/screen -  this is an opportunity to=
+ sell the benefit of the network for comms to MA=E2=80=99s and residents, pl=
+us the new services Eris is looking to take to buildings. =20
+>=20
+> New deals - Xenia, KG G- networks will be signed and used as the basis for=
+ funding discussions moving forward. All these sites with the non Eris sites=
+ in Manchester/Liverpool we would keep and would begin to generate media inc=
+ome.
+>=20
+> There is a platform built, website and collateral much has been learned an=
+d we have opportunities to grow moving forward, plus want to avoid a hiatus a=
+nd the above protects the =C2=A3250k investment.
+>=20
+> Be good to discuss so we can look to progress.
+>=20
+>=20
+> Best regards
+>=20
+> Tony
+> =20
+
+--Apple-Mail-83DB9E2A-20F2-4C5F-AED3-6A680AD449A7
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Hi Dave,<div><br></div><div>Not heard back f=
+rom you on the below or the previous email in terms of a discussion.</div><d=
+iv><br></div><div>The suggested changes would enable us to move the business=
+ forward which I assumed you would want to do.</div><div><br></div><div>If y=
+ou can come back to me as leaving doing nothing is not a strategy that will p=
+rovide success. As per my previous note screens are currently off and blank w=
+hich is far from ideal.</div><div><br></div><div>Best&nbsp;</div><div><br></=
+div><div>Tony</div><div><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D=
+"ltr"><br><blockquote type=3D"cite">On 22 Jul 2024, at 12:28, Anthony Hughes=
+ &lt;th@inhomemedia.io&gt; wrote:<br><br></blockquote></div><blockquote type=
+=3D"cite"><div dir=3D"ltr">=EF=BB=BF<meta http-equiv=3D"content-type" conten=
+t=3D"text/html; charset=3Dutf-8"><p class=3D"MsoNormal" style=3D"margin: 0cm=
+; font-size: medium; font-family: Aptos, sans-serif;"><span style=3D"font-si=
+ze: 11pt;">Hi Dave,<o:p></o:p></span></p><p class=3D"MsoNormal" style=3D"mar=
+gin: 0cm; font-size: medium; font-family: Aptos, sans-serif;"><span style=3D=
+"font-size: 11pt;">&nbsp;</span></p><p class=3D"MsoNormal" style=3D"margin: 0=
+cm; font-size: medium; font-family: Aptos, sans-serif;"><span style=3D"font-=
+size: 11pt;">I have dropped you a note re a catch up but have not heard back=
+ so wanted to confirm the team at IHM thoughts in terms of growing the busin=
+ess and what we would look to do on structure to achieve this.<br><br><b>Str=
+ucture</b><br><br>DM &amp; JT retain 12.5% each and 33% of any dividends mov=
+ing forward<br><br>Amend shareholders agreement/Articles to move to a majori=
+ty decision making process.<br><br>Dave Evans and Stephen Gale brough in as s=
+hareholders diluting Owen and Tony.<br><br>We approach 4th utility to take o=
+wnership of the current screens in situ.&nbsp;</span><span style=3D"font-siz=
+e: 13.5pt;"><o:p></o:p></span></p><p class=3D"MsoNormal" style=3D"margin: 0c=
+m; font-size: medium; font-family: Aptos, sans-serif;"><span style=3D"font-s=
+ize: 11pt;">&nbsp;</span><span style=3D"font-size: 13.5pt;"><o:p></o:p></spa=
+n></p><p class=3D"MsoNormal" style=3D"margin: 0cm; font-size: medium; font-f=
+amily: Aptos, sans-serif;"><span style=3D"font-size: 11pt;">In terms of the c=
+urrent Eris stock with screens we see zero media value, we would suggest Eri=
+s would write to all their buildings/MA=E2=80=99s with a 2-month deadline to=
+ pay fees at =C2=A31/unit/month or screens will be removed.&nbsp;&nbsp;</spa=
+n><span style=3D"font-size: 13.5pt;"><o:p></o:p></span></p><p class=3D"MsoNo=
+rmal" style=3D"margin: 0cm; font-size: medium; font-family: Aptos, sans-seri=
+f;"><span style=3D"font-size: 11pt;">&nbsp;</span><span style=3D"font-size: 1=
+3.5pt;"><o:p></o:p></span></p><p class=3D"MsoNormal" style=3D"margin: 0cm; f=
+ont-size: medium; font-family: Aptos, sans-serif;"><span style=3D"font-size:=
+ 11pt;">This effectively then becomes a 2-month trial period where we can se=
+ll the benefits (Jasmine has got materials from IHM already to do this), pro=
+vide access to the system in the most resource-efficient way.&nbsp;&nbsp;Tho=
+se who don=E2=80=99t engage at all, or try it and decide against, will go on=
+ the list for removal based on a program we would need to cost out over time=
+ - we would first remove the sites with high screen: unit ratios as these ar=
+e the most cost-effective to be removed via our partner.&nbsp;</span><span s=
+tyle=3D"font-size: 13.5pt;"><o:p></o:p></span></p><p class=3D"MsoNormal" sty=
+le=3D"margin: 0cm; font-size: medium; font-family: Aptos, sans-serif;"><span=
+ style=3D"font-size: 11pt;"><br>Eris outstanding invoices to IHM converted t=
+o loan with an agreed interest position and would be a priority payment at a=
+ transaction.</span><span style=3D"font-size: 13.5pt;"><o:p></o:p></span></p=
+><p class=3D"MsoNormal" style=3D"margin: 0cm; font-size: medium; font-family=
+: Aptos, sans-serif;"><span style=3D"font-size: 11pt;"><br>We would provide s=
+/w and service access for screens to be updated in Eris buildings but no cha=
+rge to IHM moving forward and as above that where appropriate screens are re=
+moved over time.</span><span style=3D"font-size: 13.5pt;"><o:p></o:p></span>=
+</p><p class=3D"MsoNormal" style=3D"margin: 0cm; font-size: medium; font-fam=
+ily: Aptos, sans-serif;"><span style=3D"font-size: 11pt;">&nbsp;</span><span=
+ style=3D"font-size: 13.5pt;"><o:p></o:p></span></p><p class=3D"MsoNormal" s=
+tyle=3D"margin: 0cm; font-size: medium; font-family: Aptos, sans-serif;"><sp=
+an style=3D"font-size: 11pt;">Our view is that the agreement of =C2=A350/scr=
+een was invalidated by Eris being unable to deliver on the guaranteed portal=
+ fees plus the end of the 4th U arrangement - but especially the former&nbsp=
+;</span><span style=3D"font-size: 13.5pt;"><o:p></o:p></span></p><p class=3D=
+"MsoNormal" style=3D"margin: 0cm; font-size: medium; font-family: Aptos, san=
+s-serif;"><span style=3D"font-size: 11pt;">It could become applicable again I=
+f MA=E2=80=99s anyone sign up to portal fees - providing these cover the =C2=
+=A350/screen -&nbsp;&nbsp;this is an opportunity to sell the benefit of the n=
+etwork for comms to MA=E2=80=99s and residents, plus the new services Eris i=
+s looking to take to buildings.&nbsp;&nbsp;</span><span style=3D"font-size: 1=
+3.5pt;"><o:p></o:p></span></p><p class=3D"MsoNormal" style=3D"margin: 0cm; f=
+ont-size: medium; font-family: Aptos, sans-serif;"><span style=3D"font-size:=
+ 11pt;"><br>New deals - Xenia, KG G- networks will be signed and used as the=
+ basis for funding discussions moving forward. All these sites with the non E=
+ris sites in Manchester/Liverpool we would keep and would begin to generate m=
+edia income.<br><br>There is a platform built, website and collateral much h=
+as been learned and we have opportunities to grow moving forward, plus want t=
+o avoid a hiatus and the above protects the =C2=A3250k investment.<br><br>Be=
+ good to discuss so we can look to progress.<br><br><br>Best regards</span><=
+span style=3D"font-size: 13.5pt;"><o:p></o:p></span></p><p class=3D"MsoNorma=
+l" style=3D"margin: 0cm; font-size: medium; font-family: Aptos, sans-serif;"=
+><span style=3D"font-size: 11pt;"><br></span></p><p class=3D"MsoNormal" styl=
+e=3D"margin: 0cm; font-size: medium; font-family: Aptos, sans-serif;"><span s=
+tyle=3D"font-size: 11pt;">Tony</span></p><p class=3D"MsoNormal" style=3D"mar=
+gin: 0cm; font-size: medium; font-family: Aptos, sans-serif;"><span style=3D=
+"font-size: 11pt;">&nbsp;</span><span style=3D"font-size: 13.5pt;"><o:p></o:=
+p></span></p></div></blockquote></div></body></html>=
+
+--Apple-Mail-83DB9E2A-20F2-4C5F-AED3-6A680AD449A7--

@@ -1,0 +1,696 @@
+Delivered-To: ot@inhomemedia.io
+Received: by 2002:a17:906:3b9b:b0:a58:9ec9:48c3 with SMTP id u27csp94749ejf;
+        Wed, 24 Apr 2024 03:20:22 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCVO+reFaxPO1YO1O4wwkzplkaXa24up27V45LUzS93klio1UhzUbPXOXaxhNpUgjPY8kCqpiCzgX9JEMYk14c1LrA==
+X-Google-Smtp-Source: AGHT+IFJ9qfGOS5TS4KjX0JfQYhjFhCm7Zr9XyTPGuYp2lUNj/hSba7LdXmknZyT+GQfIOQw+S/Z
+X-Received: by 2002:a2e:3308:0:b0:2db:a7c7:5d11 with SMTP id d8-20020a2e3308000000b002dba7c75d11mr1002910ljc.47.1713954021604;
+        Wed, 24 Apr 2024 03:20:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1713954021; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Fpu9CXcQmPJ9Sruci64RsolQ3sGNR3+pL26qY/WQ9MAmo1a01qM58RwIYT3j8WJ+2n
+         m8jw1wRkUM9s3PtZFrD45EeVGdb0SjCyVYiSo+ZiSWQwzfIoLOTj7sjW9i+ar5YXySAJ
+         z5i+P1tdJupVJDmqeFarCZqd6ZLpP0wBneBAl3UTfl+EfeGl5HeSkVipoZwCT+2HjiqU
+         5CgVZI1vSZjf7Lq0QYf4VN7DIeVdeakR6apLpE7HO0QSt6Bsqo8XXRFIze+Za3Zej0a/
+         6DqLkmlWc1KfUDlpSJH0Z7m+Zoy83UOnq/nX4CtXo+SYwxe6uHOVF37rkgVWe7ZwIxBB
+         R3Qg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=jDt2qm96cd60CbKbxd3wQZ53Y2WuDlITvGgNF4/2+u8=;
+        fh=e7NVjaln0lPpIS9PMDHtQs5Ac8HcLWGK4GV5YUw7jFE=;
+        b=Mm1ApJ+qAzoJ+g75l1Gyb05WcGtBXUefMC1n0To2lA6RagOJNfjTo7t48Vtf2Y+r0B
+         FoLTlU7iBsil7jRhaZMUCwWNPuDE2cP3rQA3xr9rFewBQbdp+90ImJ1pYWopH4VdmaN0
+         UoL25S7ZdNzKaHlKGPgw/EhL0v73eiDsVdx2KsM8nyZB6UnKw9oldXboCEiKXTScIYYF
+         sEKJiC4lU/Q/dPKrvR2MoR7wL9b0EtxfKNKiJe8eKjNKLC1orSsaLXDozMUsyJcuCcz3
+         9ZYeQsygaq3u0RPNAQyMCl9OdFvNZb16nomw/eKheLXRs/8T7BHv7eLg+xDWS6AYFboG
+         3KXA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=ZEwabwDr;
+       spf=neutral (google.com: 2a00:1450:4864:20::52b is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) smtp.mailfrom=stephen@inhomemedia.io
+Return-Path: <stephen@inhomemedia.io>
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com. [2a00:1450:4864:20::52b])
+        by mx.google.com with ESMTPS id y21-20020a2e95d5000000b002d6ef59df4dsi3955723ljh.435.2024.04.24.03.20.21
+        for <ot@inhomemedia.io>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Apr 2024 03:20:21 -0700 (PDT)
+Received-SPF: neutral (google.com: 2a00:1450:4864:20::52b is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) client-ip=2a00:1450:4864:20::52b;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inhomemedia-io.20230601.gappssmtp.com header.s=20230601 header.b=ZEwabwDr;
+       spf=neutral (google.com: 2a00:1450:4864:20::52b is neither permitted nor denied by best guess record for domain of stephen@inhomemedia.io) smtp.mailfrom=stephen@inhomemedia.io
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-572237240c6so40458a12.3
+        for <ot@inhomemedia.io>; Wed, 24 Apr 2024 03:20:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inhomemedia-io.20230601.gappssmtp.com; s=20230601; t=1713954021; x=1714558821; darn=inhomemedia.io;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=jDt2qm96cd60CbKbxd3wQZ53Y2WuDlITvGgNF4/2+u8=;
+        b=ZEwabwDrQ+ybjn+GjClfFCs9DyT3XQicspEBJZH/HeqPq8YDsaXnLZ1sfbfsWd6l6W
+         Z8iPfIJRsva9j4OUsTpD9+rQ0Qz9J2qUEFPQGWX873XnS+ZSRPEjn10rsirNRqVPk0Aw
+         LeTzJZGpsblHtxIgKHz+KsDgFkx23T7if0jppzgtSrmHCtfLzAoYAMQJIdQ5md14/OMk
+         GosFuLL9hID6PSHVhVFI+wHOSHhlkB+bm53IujZgaY50fyGKPusfL4txj5Ehnj8qphsW
+         V/ejAeAh58AhVR56inPiUiZEfhIjdbBDMKkWrqEK6Xj0qrkj4s/pLWjvxzK7N2Vr1onO
+         umwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713954021; x=1714558821;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jDt2qm96cd60CbKbxd3wQZ53Y2WuDlITvGgNF4/2+u8=;
+        b=Hn/aX+upRECdhTOyUXNIQB5QnvgFSGxgmnmQ+/6qSGAoP+mkyfrE8Sd8EoTdLLwsGm
+         NaX5UEEahi2kjCCz6XiS85+7lKASjZ4/nMzdCWHpN7dq8HJeEL5Jho65l5GwkZMZp1at
+         dt3UY7PDIOYdCPWZX6BP7rBgcBSqM65MxLRbnWz6tz8xbl/WiJBCWY6bcYBhCYpWbhdv
+         GgCCJ8YqJMhTCLcDJ8x/j8JAdCV5OlX9Z3Dp6h5a2OPOmEH7HPjMI3ndf8Nqfi+nJQqA
+         f4FCrG3a5VOnxmRnpkPyRlJfy8kOiGStqiBP/W4ol6PK07qqcd8T4FPGRP8Ss+zQ+W7x
+         1jiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUYModSatiMFJ6r9gL9BusLAMs448mQKE9jsTSequuXLrjqOWP9/H7MnET8pWeB1Yw4Ly5m+2kBYIEu7KYQ/HniBQ==
+X-Gm-Message-State: AOJu0Yx1x98oLTk6szqHngJ+uIw2jD0GieKK/CLlRGWr2j2V4QslHC2r
+	aIusyvNNkwvSDh21L9/io4P8Dr4bvHNuK5F0B9pEFYrcHZv7tHkr0sDpkbNoISUH1fyezk7u6qU
+	HHmOiV5HgWWRAAk3kmeOHxmPvdyxrEsPRsPWM3gbY
+X-Received: by 2002:a50:aad4:0:b0:56e:b665:c4d6 with SMTP id
+ r20-20020a50aad4000000b0056eb665c4d6mr1376126edc.2.1713954020683; Wed, 24 Apr
+ 2024 03:20:20 -0700 (PDT)
+MIME-Version: 1.0
+References: <CWXP265MB2839EEB564829BCC14F99CBFF9112@CWXP265MB2839.GBRP265.PROD.OUTLOOK.COM>
+ <CAKjGq9m0vyh8UoesUjXS=69AR0xALuDHHS1SeFiNTey0UJL_ag@mail.gmail.com>
+ <CWXP265MB2839DC1400FA635729949C31F9112@CWXP265MB2839.GBRP265.PROD.OUTLOOK.COM>
+ <CAKjGq9nrxo=iDbVGZfBy4Emd_AVe56Zo_2r-p9XSAdnHM_-eSQ@mail.gmail.com>
+In-Reply-To: <CAKjGq9nrxo=iDbVGZfBy4Emd_AVe56Zo_2r-p9XSAdnHM_-eSQ@mail.gmail.com>
+From: Stephen Gale <stephen@inhomemedia.io>
+Date: Wed, 24 Apr 2024 11:20:14 +0100
+Message-ID: <CAPsP-GaF-YAEFD2-vKrZguE=S+xaP8YzeGgKMg1Ufxx0Lr6LHw@mail.gmail.com>
+Subject: Re: Live Screens
+To: Ana Pavliceanu <ana@fullcomms.co.uk>
+Cc: Anthony Hughes <th@inhomemedia.io>, Dave Evans <dave@inhomemedia.io>, 
+	Jane Simonova <jane@inhomemedia.io>, Owen Thomas <ot@inhomemedia.io>
+Content-Type: multipart/alternative; boundary="00000000000090920c0616d504b2"
+
+--00000000000090920c0616d504b2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Ana,
+
+Thank you so much for doing this. Jane is going to create a summary of the
+screens/sites which we are not being charged for any longer and we can then
+determine what the issue is (screens removed, sim cards etc)
+
+I'll be in before lunch tomorrow.
+
+S
+
+Stephen Gale
+
+
+T: 07837 52186
+
+A: Balfour House, 46-54 Great Titchfield Street, London W1W 7QE
+
+E: Stephen@inhomemedia.io <dave@inhomemedia.io>
+
+W: inhomemedia.io
+
+
+
+<https://inhomemedia.io/>
+
+
+On Wed, Apr 24, 2024 at 10:42=E2=80=AFAM Ana Pavliceanu <ana@fullcomms.co.u=
+k> wrote:
+
+> Hey Stephen,
+>
+> I finally managed to find someone at LDSK to provide us with the breakdow=
+n
+> we needed. It turns out that not only they charged us for some screens in
+> January that weren't included in February and March, but also, there are
+> new screens we were charged for in February or March that weren't in
+> January. To make this a bit simpler (hopefully), I created a summary tab =
+in
+> the file they sent us. It shows all the screens we=E2=80=99ve been charge=
+d for over
+> the last three months and indicates which ones were included each month.
+> You can filter the data to see anything you need for each month (please s=
+ee
+> the link below)
+>
+> In Home Media - LDSK
+> <https://docs.google.com/spreadsheets/d/1W0WZc_hpEL-wqB4hgEsXGx-5ZbDyvPmx=
+/edit#gid=3D1805524361>
+>
+> Regarding the rest of the data needed, I won 't probably have access to
+> all of that but I might be able to help to put it together. I'm not in th=
+e
+> office today, but I'm around if you or Jane wants to have a chat anytime =
+or
+> if you need anything. Otherwise, I'll be in early tomorrow.
+>
+> Many thanks,
+> *Ana Pavliceanu*
+> *Accounting Manager*
+>
+> T: 020 7637 4909
+>
+> London Office:
+>
+> 2nd Floor, Balfour House, 46-54 Great Titchfield Street,
+>
+> London,  W1W 7QA
+>
+>
+>
+>   <https://www.linkedin.com/showcase/4974658/>
+> <https://twitter.com/fullcomms> <https://www.instagram.com/full_comms/>
+>
+> Just so you know... this email and any files transmitted with it are
+> confidential and intended solely for the use of the individual or entity =
+to
+> whom they are addressed. They are the property of Full Communications Ltd=
+.
+> If you have received this email in error please notify the system manager=
+.
+> This message may contain confidential information and is intended only fo=
+r
+> the individual named. Please notify the sender immediately by e-mail if y=
+ou
+> have received this e-mail by mistake and delete this e-mail from your
+> system. Full Communications Ltd accepts no liability for the content of
+> this email, or for the consequences of any actions taken on the basis of
+> the information provided unless that information is subsequently confirme=
+d
+> in writing. If you are not the intended recipient you are notified that
+> disclosing, copying, distributing or taking any action in reliance on the
+> contents of this information is strictly prohibited. Full Communications
+> Ltd, 91 Wimpole Street, London, United Kingdom, W1G 0EF. Company
+> registration 4736768, VAT reg no. 645717224
+>
+>
+> On Tue, Apr 23, 2024 at 9:48=E2=80=AFAM Stephen Gale <stephen@inhomemedia=
+.io>
+> wrote:
+>
+>> Many thanks Ana.
+>>
+>> It will be interesting to find out from LDSK where the difference is in
+>> the 34 screens that have 'dropped off' since Jan, as undoubtedly most wi=
+ll
+>> be Eris/4th schemes. Eris will not know about which screens are live and
+>> not, except for the small number of building managers that contact them.=
+ I
+>> strongly suspect that there are currently not 120 live Eris screens.
+>>
+>> Here's what we need to know in summary:
+>>
+>> - Total number of screens installed
+>> - Total number of screens 'live'
+>> - Screens that are down (how many and where)
+>> - Developments entered on LDSK, but no screens installed (clearly there
+>> must be some and these need to be removed)
+>> - Total screens not entered on LDSK and/or Magic Info
+>>
+>> This is pretty critical stuff to be honest, as we can't have any Media
+>> type conversations and send site lists etc until we have a complete
+>> understanding of the network. We can then take a judgement on what we do
+>> with 4th sites and specifically the stolen Sims.
+>>
+>> Regards
+>>
+>> Stephen
+>>
+>> Sent from Outlook for Android <https://aka.ms/AAb9ysg>
+>> ------------------------------
+>> *From:* Ana Pavliceanu <ana@fullcomms.co.uk>
+>> *Sent:* Tuesday, April 23, 2024 9:04:29 AM
+>> *To:* Stephen Gale <stephen@inhomemedia.io>
+>> *Cc:* Anthony Hughes <th@inhomemedia.io>; Dave Evans <dave@inhomemedia.i=
+o>;
+>> Jane Simonova <jane@inhomemedia.io>; Owen Thomas <ot@inhomemedia.io>
+>> *Subject:* Re: Live Screens
+>>
+>> Hey Stephen,
+>>
+>> I haven=E2=80=99t heard back yet from LDSK regarding the breakdown. I=E2=
+=80=99ve followed
+>> up again just now. If we don=E2=80=99t receive a response by the end of =
+today, I
+>> will try to find a contact number from the accounts team and give them a
+>> call. I=E2=80=99ll keep you updated on this.
+>>
+>> Regarding the Eris invoices, both for February and March, they show 120
+>> screens each.
+>>
+>> Thanks,
+>> *Ana Pavliceanu*
+>> *Accounting Manager*
+>>
+>> T: 020 7637 4909
+>>
+>> London Office:
+>>
+>> =E2=80=8B2nd Floor, Balfour House, 46-54 Great Titchfield Street,
+>>
+>> London,  W1W 7QA
+>>
+>>
+>>
+>>   <https://www.linkedin.com/showcase/4974658/>
+>> <https://twitter.com/fullcomms> <https://www.instagram.com/full_comms/>
+>>
+>> Just so you know... this email and any files transmitted with it are
+>> confidential and intended solely for the use of the individual or entity=
+ to
+>> whom they are addressed. They are the property of Full Communications Lt=
+d.
+>> If you have received this email in error please notify the system manage=
+r.
+>> This message may contain confidential information and is intended only f=
+or
+>> the individual named. Please notify the sender immediately by e-mail if =
+you
+>> have received this e-mail by mistake and delete this e-mail from your
+>> system. Full Communications Ltd accepts no liability for the content of
+>> this email, or for the consequences of any actions taken on the basis of
+>> the information provided unless that information is subsequently confirm=
+ed
+>> in writing. If you are not the intended recipient you are notified that
+>> disclosing, copying, distributing or taking any action in reliance on th=
+e
+>> contents of this information is strictly prohibited. Full Communications
+>> Ltd,=E2=80=8B 91 Wimpole Street, London, United Kingdom, W1G 0EF. Compan=
+y
+>> registration 4736768, VAT reg no. 645717224
+>>
+>>
+>> On Tue, 23 Apr 2024 at 07:59, Stephen Gale <stephen@inhomemedia.io>
+>> wrote:
+>>
+>> Hi Jane,
+>>
+>> Hope you are well?
+>>
+>> I have a Finance meeting with Owen and Tony on Thursday and need to
+>> reconcile the live screen numbers. As you know, LDSK are invoicing us fo=
+r
+>> 131 currently and hopefully Ana can provide us with this breakdown. Can =
+you
+>> tell me the number that Eris have please for Eris only schemes? I believ=
+e
+>> that is everything with the exception of Kings Chelsea and Xenia Estates
+>> buildings.
+>>
+>> Also, can you confirm the sites which are not on LDSK (excluding office
+>> etc). I believe that there should only be the two externals at Budenberg=
+,
+>> but perhaps there are more for some strange reason.
+>>
+>> I'm around all day if we need to go through, but the crucial number is t=
+o
+>> find out how many screens are installed and how many of these are offlin=
+e.
+>> We need to reach a decision pretty quickly on what we do with the screen=
+s
+>> which are down, as I'm assuming the majority are missing Sim cards.
+>>
+>> Ana, can you let me know how many screens we are currently being invoice=
+d
+>> for by Eris?
+>>
+>> Let's crack this once and for all.
+>>
+>> Best regards
+>>
+>> S
+>>
+>> Sent from Outlook for Android <https://aka.ms/AAb9ysg>
+>>
+>>
+
+--00000000000090920c0616d504b2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Ana,<div><br></div><div>Thank you so much for doing thi=
+s. Jane is going to create a summary of the screens/sites which we are not =
+being charged for any longer and we can then determine what the issue is (s=
+creens removed, sim cards etc)</div><div><br></div><div>I&#39;ll be in befo=
+re lunch tomorrow.</div><div><br></div><div>S</div><div><div><div dir=3D"lt=
+r" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D=
+"ltr"><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font =
+color=3D"#1a2234" face=3D"Poppins, sans-serif"><span style=3D"font-size:13.=
+3333px">Stephen Gale</span></font></p><p dir=3D"ltr" style=3D"color:rgb(0,0=
+,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><br></p><p dir=3D"lt=
+r" style=3D"color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:=
+0pt"><span style=3D"font-size:10pt;font-family:Poppins,sans-serif;color:rgb=
+(26,34,52);background-color:transparent;vertical-align:baseline">T: 07837 5=
+2186</span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38;ma=
+rgin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:10pt;font-family:P=
+oppins,sans-serif;color:rgb(26,34,52);background-color:transparent;vertical=
+-align:baseline">A: Balfour House,=C2=A0</span><span style=3D"font-family:P=
+oppins,sans-serif;color:rgb(26,34,52);background-color:transparent;vertical=
+-align:baseline;font-size:13.3333px">46-54 Great Titchfield Street, London =
+W1W 7QE</span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:1.38=
+;margin-top:0pt;margin-bottom:0pt"><span style=3D"background-color:transpar=
+ent;color:rgb(26,34,52);font-family:Poppins,sans-serif;font-size:10pt">E: S=
+tephen</span><a href=3D"mailto:dave@inhomemedia.io" style=3D"color:rgb(17,8=
+5,204);background-color:transparent;font-family:Poppins,sans-serif;font-siz=
+e:10pt" target=3D"_blank">@inhomemedia.io</a></p><p dir=3D"ltr" style=3D"co=
+lor:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span sty=
+le=3D"font-size:10pt;font-family:Poppins,sans-serif;color:rgb(26,34,52);bac=
+kground-color:transparent;vertical-align:baseline">W:=C2=A0<a href=3D"http:=
+//inhomemedia.io/" style=3D"color:rgb(17,85,204)" target=3D"_blank">inhomem=
+edia.io</a></span></p><p dir=3D"ltr" style=3D"color:rgb(0,0,0);line-height:=
+1.38;margin-top:0pt;margin-bottom:0pt"><br><br></p><p dir=3D"ltr" style=3D"=
+color:rgb(0,0,0);line-height:1.38;margin-top:0pt;margin-bottom:0pt"><a href=
+=3D"https://inhomemedia.io/" style=3D"color:rgb(17,85,204)" target=3D"_blan=
+k"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;background-co=
+lor:transparent;vertical-align:baseline"><span style=3D"border:medium;displ=
+ay:inline-block;overflow:hidden;width:520px;height:29px"><img src=3D"https:=
+//lh7-us.googleusercontent.com/G4ff92Jazz4nl6U3XO4bw1HjizO0hBsjZS3iCZQOXffu=
+Uv-6C9ZOTq4IW15iyu5kB0duaGS4BIdTk6vBLe2by2YwpWZWU0ghiZa-ur3pLUYBvT5gmflP-8P=
+DQuJOrK3hWMiULmn98KuWeYwc8vZo5pQ" width=3D"520" height=3D"29" style=3D"marg=
+in-left:0px;margin-top:0px"></span></span></a></p></div></div></div><br></d=
+iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Wed, Apr 24, 2024 at 10:42=E2=80=AFAM Ana Pavliceanu &lt;<a href=3D"m=
+ailto:ana@fullcomms.co.uk">ana@fullcomms.co.uk</a>&gt; wrote:<br></div><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
+:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hey=C2=A0Ste=
+phen,<div><br></div><div><div>I finally managed to find someone at LDSK to =
+provide us with the breakdown we needed. It turns out that not=C2=A0only th=
+ey charged us for some screens in January that weren&#39;t included in Febr=
+uary and March, but also, there are new screens we were charged for in Febr=
+uary or March that weren&#39;t in January. To make this a bit simpler (hope=
+fully), I created a summary tab in the file they sent us. It shows all the =
+screens we=E2=80=99ve been charged for over the last three months and indic=
+ates which ones were included each month. You can filter the data to see an=
+ything you need for each month (please see the link below)<br></div><div><b=
+r></div><div><a href=3D"https://docs.google.com/spreadsheets/d/1W0WZc_hpEL-=
+wqB4hgEsXGx-5ZbDyvPmx/edit#gid=3D1805524361" target=3D"_blank">In Home Medi=
+a - LDSK</a><br></div><div><br></div><div>Regarding the rest of the data ne=
+eded, I won &#39;t probably have access to all of that but I might be able =
+to help to put it together. I&#39;m not in the office today, but I&#39;m ar=
+ound=C2=A0if you or Jane wants to have a chat anytime or if you need anythi=
+ng. Otherwise, I&#39;ll be in early tomorrow.</div><div><br></div><div>Many=
+=C2=A0thanks,</div></div><div><div dir=3D"ltr" class=3D"gmail_signature"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div><font color=3D"#000000"><span style=3D=
+"font-size:13.3333px"><b>Ana Pavliceanu</b></span></font></div><div><font c=
+olor=3D"#000000"><span style=3D"font-size:13.3333px"><b>Accounting Manager<=
+/b></span></font></div><div><span style=3D"font-size:10pt"><font color=3D"#=
+000000"><span style=3D"font-size:10pt"><br></span><b><span style=3D"font-si=
+ze:10pt"></span></b><span style=3D"font-weight:bold;font-size:10pt">T</span=
+><span style=3D"font-weight:bold;font-size:10pt">:=C2=A0</span><span style=
+=3D"font-size:10pt">020 7637 4909</span></font></span></div></div><div dir=
+=3D"ltr"><br><table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-famil=
+y:Times"><tbody><tr><td><img src=3D"https://www.fullcomms.co.uk/e-signature=
+/logo.png" style=3D"margin-top: 10px;"></td></tr></tbody></table><table cel=
+lpadding=3D"0" cellspacing=3D"0" style=3D"font-family:Times"><tbody><tr><td=
+><p style=3D"font-family:Helvetica,sans-serif;font-size:13px;font-weight:bo=
+ld;line-height:20px;margin-top:10px">London Office:</p><p style=3D"margin:0=
+px;padding:0px;line-height:20px"><span style=3D"font-family:arial,sans-seri=
+f;font-size:small;color:rgb(29,28,29)"></span><font color=3D"#1d1c1d" face=
+=3D"arial, sans-serif">2nd Floor, Balfour House, 46-54 Great Titchfield Str=
+eet,</font></p><p style=3D"margin:0px;padding:0px;line-height:20px"><font c=
+olor=3D"#1d1c1d" face=3D"arial, sans-serif">London,=C2=A0 W1W 7QA</font></p=
+></td><td style=3D"padding-left:20px"><p style=3D"font-family:Helvetica,san=
+s-serif;font-size:13px;font-weight:bold;line-height:20px;margin-top:10px"><=
+br></p></td></tr></tbody></table><table cellpadding=3D"0" cellspacing=3D"0"=
+ style=3D"font-family:Times"><tbody><tr><td><br><a href=3D"https://www.link=
+edin.com/showcase/4974658/" style=3D"color:rgb(17,85,204)" target=3D"_blank=
+"><img src=3D"https://www.fullcomms.co.uk/e-signature/linkedin.png">=C2=A0<=
+/a><a href=3D"https://twitter.com/fullcomms" style=3D"color:rgb(17,85,204)"=
+ target=3D"_blank"><img src=3D"https://www.fullcomms.co.uk/e-signature/twit=
+ter.png">=C2=A0</a><a href=3D"https://www.instagram.com/full_comms/" style=
+=3D"color:rgb(17,85,204)" target=3D"_blank"><img src=3D"https://www.fullcom=
+ms.co.uk/e-signature/instagram.png"></a></td></tr><tr><td><br><p><span styl=
+e=3D"font-family:Helvetica,sans-serif;font-size:11px">Just so you know... t=
+his email and any files transmitted with it are confidential and intended s=
+olely for the use of the individual or entity to whom they are addressed. T=
+hey are the property of Full Communications Ltd. If you have received this =
+email in error please notify the system manager. This message may contain c=
+onfidential information and is intended only for the individual named. Plea=
+se notify the sender immediately by e-mail if you have received this e-mail=
+ by mistake and delete this e-mail from your system. Full Communications Lt=
+d accepts no liability for the content of this email, or for the consequenc=
+es of any actions taken on the basis of the information provided unless tha=
+t information is subsequently confirmed in writing. If you are not the inte=
+nded recipient you are notified that disclosing, copying, distributing or t=
+aking any action in reliance on the contents of this information is strictl=
+y prohibited. Full Communications Ltd,</span><font face=3D"Helvetica, sans-=
+serif"><span style=3D"font-size:11px"> 91 Wimpole Street, London,=C2=A0</sp=
+an></font><font face=3D"Helvetica, sans-serif"><span style=3D"font-size:11p=
+x">United Kingdom, W1G 0EF</span></font><span style=3D"font-family:Helvetic=
+a,sans-serif;font-size:11px">. Company registration 4736768, VAT reg no. 64=
+5717224</span></p></td></tr></tbody></table></div></div></div></div><br></d=
+iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
+Tue, Apr 23, 2024 at 9:48=E2=80=AFAM Stephen Gale &lt;<a href=3D"mailto:ste=
+phen@inhomemedia.io" target=3D"_blank">stephen@inhomemedia.io</a>&gt; wrote=
+:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
+8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+
+
+
+<div>
+<div dir=3D"auto">Many thanks Ana.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">It will be interesting to find out from LDSK where the di=
+fference is in the 34 screens that have &#39;dropped off&#39; since Jan, as=
+ undoubtedly most will be Eris/4th schemes. Eris will not know about which =
+screens are live and not, except for the small
+ number of building managers that contact them. I strongly suspect that the=
+re are currently not 120 live Eris screens.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Here&#39;s what we need to know in summary:</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">- Total number of screens installed</div>
+<div dir=3D"auto">- Total number of screens &#39;live&#39;</div>
+<div dir=3D"auto">- Screens that are down (how many and where)</div>
+<div dir=3D"auto">- Developments entered on LDSK, but no screens installed =
+(clearly there must be some and these need to be removed)</div>
+<div dir=3D"auto">- Total screens not entered on LDSK and/or Magic Info</di=
+v>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">This is pretty critical stuff to be honest, as we can&#39=
+;t have any Media type conversations and send site lists etc until we have =
+a complete understanding of the network. We can then take a judgement on wh=
+at we do with 4th sites and specifically
+ the stolen Sims.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Regards</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Stephen=C2=A0</div>
+<div><br>
+</div>
+<div id=3D"m_8162911394953811327m_-7600178326029032770ms-outlook-mobile-sig=
+nature" dir=3D"auto">Sent from <a href=3D"https://aka.ms/AAb9ysg" target=3D=
+"_blank">
+Outlook for Android</a></div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_8162911394953811327m_-7600178326029032770divRplyFwdMsg" dir=3D=
+"ltr"><font face=3D"Calibri, sans-serif" style=3D"font-size:11pt" color=3D"=
+#000000"><b>From:</b> Ana Pavliceanu &lt;<a href=3D"mailto:ana@fullcomms.co=
+.uk" target=3D"_blank">ana@fullcomms.co.uk</a>&gt;<br>
+<b>Sent:</b> Tuesday, April 23, 2024 9:04:29 AM<br>
+<b>To:</b> Stephen Gale &lt;<a href=3D"mailto:stephen@inhomemedia.io" targe=
+t=3D"_blank">stephen@inhomemedia.io</a>&gt;<br>
+<b>Cc:</b> Anthony Hughes &lt;<a href=3D"mailto:th@inhomemedia.io" target=
+=3D"_blank">th@inhomemedia.io</a>&gt;; Dave Evans &lt;<a href=3D"mailto:dav=
+e@inhomemedia.io" target=3D"_blank">dave@inhomemedia.io</a>&gt;; Jane Simon=
+ova &lt;<a href=3D"mailto:jane@inhomemedia.io" target=3D"_blank">jane@inhom=
+emedia.io</a>&gt;; Owen Thomas &lt;<a href=3D"mailto:ot@inhomemedia.io" tar=
+get=3D"_blank">ot@inhomemedia.io</a>&gt;<br>
+<b>Subject:</b> Re: Live Screens</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<div>
+<div dir=3D"auto">Hey=C2=A0Stephen,</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto"></div>
+<div dir=3D"auto">I haven=E2=80=99t heard back yet from LDSK regarding the =
+breakdown. I=E2=80=99ve followed up again just now. If we don=E2=80=99t rec=
+eive a response by the end of today, I will try to find a contact number fr=
+om the accounts team and give them a call. I=E2=80=99ll keep you updated
+ on this.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto"></div>
+<div>Regarding the Eris invoices, both for February and March, they show 12=
+0 screens each.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Thanks,<br>
+</div>
+<div dir=3D"auto">
+<div dir=3D"auto">
+<div dir=3D"ltr">
+<div dir=3D"ltr">
+<div dir=3D"ltr">
+<div><font style=3D"color:rgb(0,0,0)"><span style=3D"font-size:13.3333px"><=
+b>Ana Pavliceanu</b></span></font></div>
+<div><font style=3D"color:rgb(0,0,0)"><span style=3D"font-size:13.3333px"><=
+b>Accounting Manager</b></span></font></div>
+<div><span style=3D"font-size:10pt"><font style=3D"color:rgb(0,0,0)"><span =
+style=3D"font-size:10pt"><br>
+</span><b><span style=3D"font-size:10pt"></span></b><span style=3D"font-wei=
+ght:bold;font-size:10pt">T</span><span style=3D"font-weight:bold;font-size:=
+10pt">:=C2=A0</span><span style=3D"font-size:10pt">020 7637 4909</span></fo=
+nt></span></div>
+</div>
+<div dir=3D"ltr"><br>
+<table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family:Times">
+<tbody style=3D"font-family:Times">
+<tr style=3D"font-family:Times">
+<td style=3D"font-family:Times"><img src=3D"https://www.fullcomms.co.uk/e-s=
+ignature/logo.png" style=3D"margin-top: 10px; font-family: Times;"></td>
+</tr>
+</tbody>
+</table>
+<table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family:Times">
+<tbody style=3D"font-family:Times">
+<tr style=3D"font-family:Times">
+<td style=3D"font-family:Times">
+<p style=3D"font-family:Helvetica,sans-serif;font-size:13px;font-weight:bol=
+d;line-height:20px;margin-top:10px">
+London Office:</p>
+<p style=3D"margin:0px;padding:0px;line-height:20px;font-family:Times"><spa=
+n style=3D"font-family:arial,sans-serif;font-size:small;color:rgb(29,28,29)=
+">=E2=80=8B</span><font face=3D"arial, sans-serif" style=3D"font-family:ari=
+al,sans-serif;color:rgb(29,28,29)">2nd Floor,
+ Balfour House, 46-54 Great Titchfield Street,</font></p>
+<p style=3D"margin:0px;padding:0px;line-height:20px;font-family:Times"><fon=
+t face=3D"arial, sans-serif" style=3D"font-family:arial,sans-serif;color:rg=
+b(29,28,29)">London,=C2=A0 W1W 7QA</font></p>
+</td>
+<td style=3D"padding-left:20px;font-family:Times">
+<p style=3D"font-family:Helvetica,sans-serif;font-size:13px;font-weight:bol=
+d;line-height:20px;margin-top:10px">
+<br>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family:Times">
+<tbody style=3D"font-family:Times">
+<tr style=3D"font-family:Times">
+<td style=3D"font-family:Times"><br>
+<a href=3D"https://www.linkedin.com/showcase/4974658/" style=3D"font-family=
+:Times;color:rgb(17,85,204)" target=3D"_blank"><img src=3D"https://www.full=
+comms.co.uk/e-signature/linkedin.png" style=3D"font-family: Times;">=C2=A0<=
+/a><a href=3D"https://twitter.com/fullcomms" style=3D"font-family:Times;col=
+or:rgb(17,85,204)" target=3D"_blank"><img src=3D"https://www.fullcomms.co.u=
+k/e-signature/twitter.png" style=3D"font-family: Times;">=C2=A0</a><a href=
+=3D"https://www.instagram.com/full_comms/" style=3D"font-family:Times;color=
+:rgb(17,85,204)" target=3D"_blank"><img src=3D"https://www.fullcomms.co.uk/=
+e-signature/instagram.png" style=3D"font-family: Times;"></a></td>
+</tr>
+<tr style=3D"font-family:Times">
+<td style=3D"font-family:Times"><br>
+<p style=3D"font-family:Times"><span style=3D"font-family:Helvetica,sans-se=
+rif;font-size:11px">Just so you know... this email and any files transmitte=
+d with it are confidential and intended solely for the use of the individua=
+l or entity to whom they are addressed.
+ They are the property of Full Communications Ltd. If you have received thi=
+s email in error please notify the system manager. This message may contain=
+ confidential information and is intended only for the individual named. Pl=
+ease notify the sender immediately
+ by e-mail if you have received this e-mail by mistake and delete this e-ma=
+il from your system. Full Communications Ltd accepts no liability for the c=
+ontent of this email, or for the consequences of any actions taken on the b=
+asis of the information provided
+ unless that information is subsequently confirmed in writing. If you are n=
+ot the intended recipient you are notified that disclosing, copying, distri=
+buting or taking any action in reliance on the contents of this information=
+ is strictly prohibited. Full Communications
+ Ltd,</span><font face=3D"Helvetica, sans-serif" style=3D"font-family:Helve=
+tica,sans-serif;color:rgb(0,0,0)"><span style=3D"font-size:11px;font-family=
+:Helvetica,sans-serif">=E2=80=8B 91 Wimpole Street, London,=C2=A0</span></f=
+ont><font face=3D"Helvetica, sans-serif" style=3D"font-family:Helvetica,san=
+s-serif;color:rgb(0,0,0)"><span style=3D"font-size:11px;font-family:Helveti=
+ca,sans-serif">United
+ Kingdom, W1G 0EF</span></font><span style=3D"font-family:Helvetica,sans-se=
+rif;font-size:11px">. Company registration 4736768, VAT reg no. 645717224</=
+span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div><br>
+</div>
+<div><br>
+<div>
+<div dir=3D"ltr">On Tue, 23 Apr 2024 at 07:59, Stephen Gale &lt;<a href=3D"=
+mailto:stephen@inhomemedia.io" target=3D"_blank">stephen@inhomemedia.io</a>=
+&gt; wrote:<br>
+</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
+<div>
+<div dir=3D"auto">Hi Jane,</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Hope you are well?</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">I have a Finance meeting with Owen and Tony on Thursday a=
+nd need to reconcile the live screen numbers. As you know, LDSK are invoici=
+ng us for 131 currently and hopefully Ana can provide us with this breakdow=
+n. Can you tell me the number that
+ Eris have please for Eris only schemes? I believe that is everything with =
+the exception of Kings Chelsea and Xenia Estates buildings.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Also, can you confirm the sites which are not on LDSK (ex=
+cluding office etc). I believe that there should only be the two externals =
+at Budenberg, but perhaps there are more for some strange reason.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">I&#39;m around all day if we need to go through, but the =
+crucial number is to find out how many screens are installed and how many o=
+f these are offline. We need to reach a decision pretty quickly on what we =
+do with the screens which are down, as
+ I&#39;m assuming the majority are missing Sim cards.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Ana, can you let me know how many screens we are currentl=
+y being invoiced for by Eris?</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Let&#39;s crack this once and for all.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Best regards=C2=A0</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">S</div>
+<div id=3D"m_8162911394953811327m_-7600178326029032770x_m_60887838851571622=
+02m_3747104823315254531ms-outlook-mobile-signature" dir=3D"auto">
+<div><br>
+</div>
+Sent from <a href=3D"https://aka.ms/AAb9ysg" target=3D"_blank">Outlook for =
+Android</a></div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</blockquote></div>
+</blockquote></div>
+
+--00000000000090920c0616d504b2--
