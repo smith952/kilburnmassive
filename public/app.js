@@ -1,73 +1,58 @@
 const statusEl = document.getElementById("status");
-const promptInput = document.getElementById("promptInput");
-const askBtn = document.getElementById("askBtn");
-const resultCard = document.getElementById("resultCard");
-const resultOutput = document.getElementById("resultOutput");
+const chunksEl = document.getElementById("chunks");
 
-function setStatus(msg, isError = false) {
-  statusEl.textContent = msg;
-  statusEl.style.color = isError ? "#b91c1c" : "#4b5563";
-}
-
-let retryCount = 0;
-
-async function checkReady() {
+async function load() {
   try {
-    const res = await fetch("/api/status");
+    const res = await fetch("/api/chunks");
     const data = await res.json();
-    if (data.loaded) {
-      setStatus(`${data.emails} emails + ${data.attachments} attachments loaded in ${data.chunks} chunks. Ask away.`);
-      askBtn.disabled = false;
-      promptInput.focus();
-      return;
+    if (!res.ok) throw new Error(data.error);
+
+    statusEl.textContent = `${data.totalRecords} records (${data.emails} emails + ${data.attachments} attachments) split into ${data.chunks.length} chunks. Paste each into ChatGPT in order.`;
+
+    for (let i = 0; i < data.chunks.length; i++) {
+      const chunk = data.chunks[i];
+      const card = document.createElement("div");
+      card.className = "chunk-card";
+
+      const header = document.createElement("div");
+      header.className = "chunk-header";
+
+      const title = document.createElement("h2");
+      title.textContent = `Chunk ${i + 1} of ${data.chunks.length}`;
+
+      const info = document.createElement("span");
+      info.textContent = `${chunk.records} records · ${chunk.chars.toLocaleString()} chars`;
+
+      const btn = document.createElement("button");
+      btn.textContent = "Copy";
+      btn.addEventListener("click", () => {
+        navigator.clipboard.writeText(chunk.text).then(() => {
+          btn.textContent = "Copied!";
+          btn.classList.add("copied");
+          setTimeout(() => {
+            btn.textContent = "Copy";
+            btn.classList.remove("copied");
+          }, 2000);
+        });
+      });
+
+      header.appendChild(title);
+      header.appendChild(info);
+      header.appendChild(btn);
+
+      const ta = document.createElement("textarea");
+      ta.value = chunk.text;
+      ta.readOnly = true;
+
+      card.appendChild(header);
+      card.appendChild(ta);
+      chunksEl.appendChild(card);
     }
-    retryCount++;
-    setStatus(`Loading data... (attempt ${retryCount})`);
-  } catch (_e) {
-    retryCount++;
-    setStatus(`Connecting to server... (attempt ${retryCount})`);
+  } catch (e) {
+    statusEl.textContent = e.message || "Failed to load.";
+    statusEl.style.color = "#b91c1c";
+    setTimeout(load, 3000);
   }
-  setTimeout(checkReady, 2000);
 }
 
-checkReady();
-
-async function ask() {
-  const question = promptInput.value.trim();
-  if (!question) return;
-
-  try {
-    askBtn.disabled = true;
-    askBtn.textContent = "Thinking...";
-    resultCard.style.display = "block";
-    resultOutput.textContent = "Searching relevant files and analysing...";
-
-    const res = await fetch("/api/ask", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question }),
-    });
-
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || "Request failed.");
-
-    let output = data.answer || "No answer returned.";
-    if (data.chunksProcessed) {
-      output += `\n\n---\nProcessed ${data.chunksProcessed} data chunks.`;
-    }
-    resultOutput.textContent = output;
-  } catch (error) {
-    resultOutput.textContent = error.message || "Something went wrong.";
-  } finally {
-    askBtn.disabled = false;
-    askBtn.textContent = "Ask";
-  }
-}
-
-askBtn.addEventListener("click", ask);
-promptInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter" && !e.shiftKey) {
-    e.preventDefault();
-    ask();
-  }
-});
+load();

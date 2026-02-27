@@ -9,19 +9,9 @@
   <body>
     <main class="container">
       <h1>The Kilburn Massive Email Prompt Machine</h1>
-      <p class="sub" id="status">Loading emails...</p>
-
-      <section class="card prompt-card">
-        <textarea id="promptInput" placeholder="Ask anything about the emails..." rows="3"></textarea>
-        <button id="askBtn" disabled>Ask</button>
-      </section>
-
-      <section class="card" id="resultCard" style="display:none">
-        <h2>Result</h2>
-        <pre id="resultOutput"></pre>
-      </section>
+      <p class="sub" id="status">Loading...</p>
+      <div id="chunks"></div>
     </main>
-
     <script src="/app.js"></script>
   </body>
 </html>

@@ -283,7 +283,7 @@ async function loadAllFolder(dirPath) {
   return records;
 }
 
-const MAX_CHUNK_CHARS = 80000;
+const MAX_CHUNK_CHARS = 25000;
 
 function buildChunks(records) {
   const chunks = [];
@@ -308,107 +308,22 @@ function buildChunks(records) {
 
 const ALL_DIR = path.join(__dirname, "All");
 
-app.get("/api/status", (_req, res) => {
+app.get("/api/chunks", (_req, res) => {
+  if (ALL_RECORDS.length === 0) {
+    return res.status(400).json({ error: "No data loaded yet. Try again in a moment." });
+  }
+
+  const output = CHUNKS.map((lines) => {
+    const text = lines.join("\n");
+    return { text, records: lines.length, chars: text.length };
+  });
+
   res.json({
-    loaded: ALL_RECORDS.length > 0,
     totalRecords: ALL_RECORDS.length,
-    chunks: CHUNKS.length,
     emails: ALL_RECORDS.filter((r) => r.type === "email").length,
     attachments: ALL_RECORDS.filter((r) => r.type === "attachment").length,
+    chunks: output,
   });
-});
-
-async function callLLM(messages) {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) throw new Error("No OPENAI_API_KEY set in .env");
-
-  const resp = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      model: "gpt-4o-mini",
-      messages,
-      temperature: 0.2,
-      max_tokens: 2048,
-    }),
-  });
-  if (!resp.ok) {
-    const text = await resp.text();
-    throw new Error(`LLM error: ${resp.status} ${text}`);
-  }
-  const data = await resp.json();
-  return data.choices?.[0]?.message?.content || "";
-}
-
-function sleep(ms) {
-  return new Promise((r) => setTimeout(r, ms));
-}
-
-app.post("/api/ask", async (req, res) => {
-  try {
-    const { question } = req.body || {};
-    if (!question) return res.status(400).json({ error: "No question provided." });
-    if (ALL_RECORDS.length === 0) return res.status(400).json({ error: "No data loaded." });
-
-    const apiKey = process.env.OPENAI_API_KEY;
-    if (!apiKey) {
-      return res.json({ answer: "No OPENAI_API_KEY set in .env. Add your key and restart." });
-    }
-
-    // MAP: send each chunk to GPT with the question, collect partial answers
-    const chunkPrompt =
-      "You are analysing a batch of email and attachment records (JSONL). " +
-      "Extract ALL information relevant to the user's question from this batch. " +
-      "Include specific details: names, dates, numbers, filenames, quotes. " +
-      "If nothing relevant is found, reply with just: [NO_RELEVANT_DATA]";
-
-    const partialAnswers = [];
-    for (let i = 0; i < CHUNKS.length; i++) {
-      const chunkText = CHUNKS[i].join("\n");
-      try {
-        const partial = await callLLM([
-          { role: "system", content: chunkPrompt + `\n\nRECORDS (batch ${i + 1}/${CHUNKS.length}):\n` + chunkText },
-          { role: "user", content: question },
-        ]);
-        if (partial && !partial.includes("[NO_RELEVANT_DATA]")) {
-          partialAnswers.push(`[Batch ${i + 1}]\n${partial}`);
-        }
-      } catch (e) {
-        if (e.message.includes("429")) {
-          await sleep(5000);
-          i--;
-          continue;
-        }
-        partialAnswers.push(`[Batch ${i + 1}] Error: ${e.message}`);
-      }
-      if (i < CHUNKS.length - 1) await sleep(1000);
-    }
-
-    if (partialAnswers.length === 0) {
-      return res.json({ answer: "No relevant information found across all records.", chunksProcessed: CHUNKS.length });
-    }
-
-    // REDUCE: combine all partial answers into one final answer
-    const combined = partialAnswers.join("\n\n");
-    const finalAnswer = await callLLM([
-      {
-        role: "system",
-        content:
-          "You are an expert analyst. Below are extracted findings from multiple batches of emails, documents, and spreadsheets. " +
-          "Combine them into one clear, thorough answer. Remove duplicates. Cite specific filenames, people, dates, and data points. " +
-          "Structure your answer with clear sections if appropriate.\n\n" +
-          "FINDINGS:\n" + combined,
-      },
-      { role: "user", content: question },
-    ]);
-
-    res.json({ answer: finalAnswer, chunksProcessed: CHUNKS.length });
-  } catch (error) {
-    res.status(500).json({ error: error.message || "Ask failed." });
-  }
 });
 
 const port = process.env.PORT || 3000;
