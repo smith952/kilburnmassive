@@ -258,7 +258,7 @@ async function loadFromZipBuffer(zipBuffer) {
 // --------------- in-memory store ---------------
 
 let ALL_RECORDS = [];
-let INDEX = [];
+let CHUNKS = [];
 
 async function loadAllFolder(dirPath) {
   const allFiles = fs.readdirSync(dirPath).sort();
@@ -283,23 +283,25 @@ async function loadAllFolder(dirPath) {
   return records;
 }
 
-function buildIndex(records) {
-  return records.map((r) => {
-    if (r.type === "attachment") {
-      return {
-        id: r.id, filename: r.filename, type: r.type,
-        file_type: r.file_type,
-        preview: r.body.slice(0, 200),
-        chars: r.body.length,
-      };
+const MAX_CHUNK_CHARS = 80000;
+
+function buildChunks(records) {
+  const chunks = [];
+  let current = [];
+  let currentSize = 0;
+
+  for (const r of records) {
+    const line = JSON.stringify(r);
+    if (currentSize + line.length > MAX_CHUNK_CHARS && current.length > 0) {
+      chunks.push(current);
+      current = [];
+      currentSize = 0;
     }
-    return {
-      id: r.id, filename: r.filename, type: r.type,
-      from: r.from, to: r.to, subject: r.subject, date: r.date,
-      preview: r.body.slice(0, 150),
-      chars: r.body.length,
-    };
-  });
+    current.push(line);
+    currentSize += line.length;
+  }
+  if (current.length > 0) chunks.push(current);
+  return chunks;
 }
 
 // --------------- routes ---------------
@@ -310,28 +312,11 @@ app.get("/api/status", (_req, res) => {
   res.json({
     loaded: ALL_RECORDS.length > 0,
     totalRecords: ALL_RECORDS.length,
+    chunks: CHUNKS.length,
     emails: ALL_RECORDS.filter((r) => r.type === "email").length,
     attachments: ALL_RECORDS.filter((r) => r.type === "attachment").length,
   });
 });
-
-app.post("/api/load", async (_req, res) => {
-  try {
-    if (!fs.existsSync(ALL_DIR))
-      return res.status(400).json({ error: "All/ folder not found." });
-    ALL_RECORDS = await loadAllFolder(ALL_DIR);
-    INDEX = buildIndex(ALL_RECORDS);
-    const emails = ALL_RECORDS.filter((r) => r.type === "email").length;
-    const attachments = ALL_RECORDS.filter((r) => r.type === "attachment").length;
-    res.json({ count: ALL_RECORDS.length, emails, attachments });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-const TOKEN_BUDGET = 25000;
-const CHARS_PER_TOKEN = 4;
-const CHAR_BUDGET = TOKEN_BUDGET * CHARS_PER_TOKEN;
 
 async function callLLM(messages) {
   const apiKey = process.env.OPENAI_API_KEY;
@@ -347,7 +332,7 @@ async function callLLM(messages) {
       model: "gpt-4o-mini",
       messages,
       temperature: 0.2,
-      max_tokens: 4096,
+      max_tokens: 2048,
     }),
   });
   if (!resp.ok) {
@@ -356,6 +341,10 @@ async function callLLM(messages) {
   }
   const data = await resp.json();
   return data.choices?.[0]?.message?.content || "";
+}
+
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
 }
 
 app.post("/api/ask", async (req, res) => {
@@ -369,63 +358,54 @@ app.post("/api/ask", async (req, res) => {
       return res.json({ answer: "No OPENAI_API_KEY set in .env. Add your key and restart." });
     }
 
-    // Pass 1: send the index (compact summaries) and ask which records are relevant
-    const indexText = INDEX.map((r) => JSON.stringify(r)).join("\n");
+    // MAP: send each chunk to GPT with the question, collect partial answers
+    const chunkPrompt =
+      "You are analysing a batch of email and attachment records (JSONL). " +
+      "Extract ALL information relevant to the user's question from this batch. " +
+      "Include specific details: names, dates, numbers, filenames, quotes. " +
+      "If nothing relevant is found, reply with just: [NO_RELEVANT_DATA]";
 
-    const pickResponse = await callLLM([
-      {
-        role: "system",
-        content:
-          "You are a file selector. Given an index of email and attachment records, " +
-          "pick the records most relevant to the user's question. " +
-          "Return ONLY a JSON array of record IDs, like [1, 5, 12]. " +
-          "Pick up to 20 most relevant records. If the question is broad, pick a diverse set. " +
-          "Return ONLY the JSON array, nothing else.\n\n" +
-          "INDEX:\n" + indexText,
-      },
-      { role: "user", content: question },
-    ]);
-
-    let selectedIds = [];
-    try {
-      const match = pickResponse.match(/\[[\d\s,]+\]/);
-      if (match) selectedIds = JSON.parse(match[0]);
-    } catch (_e) {}
-
-    if (selectedIds.length === 0) {
-      selectedIds = ALL_RECORDS.slice(0, 15).map((r) => r.id);
-    }
-
-    // Pass 2: send full content of selected records + question
-    const selected = ALL_RECORDS.filter((r) => selectedIds.includes(r.id));
-
-    let context = "";
-    let charCount = 0;
-    for (const r of selected) {
-      const line = JSON.stringify(r);
-      if (charCount + line.length > CHAR_BUDGET) {
-        const trimmed = { ...r, body: r.body.slice(0, Math.max(500, CHAR_BUDGET - charCount - 200)) + "...[truncated]" };
-        context += JSON.stringify(trimmed) + "\n";
-        break;
+    const partialAnswers = [];
+    for (let i = 0; i < CHUNKS.length; i++) {
+      const chunkText = CHUNKS[i].join("\n");
+      try {
+        const partial = await callLLM([
+          { role: "system", content: chunkPrompt + `\n\nRECORDS (batch ${i + 1}/${CHUNKS.length}):\n` + chunkText },
+          { role: "user", content: question },
+        ]);
+        if (partial && !partial.includes("[NO_RELEVANT_DATA]")) {
+          partialAnswers.push(`[Batch ${i + 1}]\n${partial}`);
+        }
+      } catch (e) {
+        if (e.message.includes("429")) {
+          await sleep(5000);
+          i--;
+          continue;
+        }
+        partialAnswers.push(`[Batch ${i + 1}] Error: ${e.message}`);
       }
-      context += line + "\n";
-      charCount += line.length;
+      if (i < CHUNKS.length - 1) await sleep(1000);
     }
 
-    const answer = await callLLM([
+    if (partialAnswers.length === 0) {
+      return res.json({ answer: "No relevant information found across all records.", chunksProcessed: CHUNKS.length });
+    }
+
+    // REDUCE: combine all partial answers into one final answer
+    const combined = partialAnswers.join("\n\n");
+    const finalAnswer = await callLLM([
       {
         role: "system",
         content:
-          "You are an expert analyst reviewing emails, documents, and spreadsheets. " +
-          "Below are the full contents of selected records (emails and attachments including spreadsheet CSV data). " +
-          "Answer the user's question thoroughly using this data. Cite filenames, senders, dates, and specific data points.\n\n" +
-          "RECORDS:\n" + context,
+          "You are an expert analyst. Below are extracted findings from multiple batches of emails, documents, and spreadsheets. " +
+          "Combine them into one clear, thorough answer. Remove duplicates. Cite specific filenames, people, dates, and data points. " +
+          "Structure your answer with clear sections if appropriate.\n\n" +
+          "FINDINGS:\n" + combined,
       },
       { role: "user", content: question },
     ]);
 
-    const usedFiles = selected.map((r) => r.filename).join(", ");
-    res.json({ answer, filesUsed: usedFiles });
+    res.json({ answer: finalAnswer, chunksProcessed: CHUNKS.length });
   } catch (error) {
     res.status(500).json({ error: error.message || "Ask failed." });
   }
@@ -437,7 +417,9 @@ app.listen(port, async () => {
   if (fs.existsSync(ALL_DIR)) {
     console.log("Auto-loading All/ folder...");
     ALL_RECORDS = await loadAllFolder(ALL_DIR);
-    INDEX = buildIndex(ALL_RECORDS);
-    console.log(`Loaded ${ALL_RECORDS.length} records (${ALL_RECORDS.filter(r => r.type === "email").length} emails, ${ALL_RECORDS.filter(r => r.type === "attachment").length} attachments)`);
+    CHUNKS = buildChunks(ALL_RECORDS);
+    const emails = ALL_RECORDS.filter((r) => r.type === "email").length;
+    const attachments = ALL_RECORDS.filter((r) => r.type === "attachment").length;
+    console.log(`Loaded ${ALL_RECORDS.length} records (${emails} emails, ${attachments} attachments) in ${CHUNKS.length} chunks`);
   }
 });

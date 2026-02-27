@@ -16,7 +16,7 @@ async function checkReady() {
     const res = await fetch("/api/status");
     const data = await res.json();
     if (data.loaded) {
-      setStatus(`${data.emails} emails + ${data.attachments} attachments loaded. Ask away.`);
+      setStatus(`${data.emails} emails + ${data.attachments} attachments loaded in ${data.chunks} chunks. Ask away.`);
       askBtn.disabled = false;
       promptInput.focus();
       return;
@@ -52,8 +52,8 @@ async function ask() {
     if (!res.ok) throw new Error(data.error || "Request failed.");
 
     let output = data.answer || "No answer returned.";
-    if (data.filesUsed) {
-      output += `\n\n---\nFiles referenced: ${data.filesUsed}`;
+    if (data.chunksProcessed) {
+      output += `\n\n---\nProcessed ${data.chunksProcessed} data chunks.`;
     }
     resultOutput.textContent = output;
   } catch (error) {
