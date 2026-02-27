@@ -9,6 +9,8 @@ function setStatus(msg, isError = false) {
   statusEl.style.color = isError ? "#b91c1c" : "#4b5563";
 }
 
+let retryCount = 0;
+
 async function checkReady() {
   try {
     const res = await fetch("/api/status");
@@ -17,13 +19,15 @@ async function checkReady() {
       setStatus(`${data.emails} emails + ${data.attachments} attachments loaded. Ask away.`);
       askBtn.disabled = false;
       promptInput.focus();
-    } else {
-      setStatus("Loading data...");
-      setTimeout(checkReady, 2000);
+      return;
     }
+    retryCount++;
+    setStatus(`Loading data... (attempt ${retryCount})`);
   } catch (_e) {
-    setStatus("Server not reachable.", true);
+    retryCount++;
+    setStatus(`Connecting to server... (attempt ${retryCount})`);
   }
+  setTimeout(checkReady, 2000);
 }
 
 checkReady();
